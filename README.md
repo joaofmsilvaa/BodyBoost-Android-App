@@ -24,7 +24,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/JOao7640/BodyBoost-Android-App">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/BodyBoostIcon.png" alt="Logo" width="160" height="160">
   </a>
 
 <h3 align="center">Body Boost</h3>
@@ -34,7 +34,7 @@
 The project has a mobile application and website for exercise and healthy meals aimed at people who can't go to a gym or get dietary advice by other means.
 The goal of the app is for the user to have easy access to workout plans that match their goal (whether gaining mass or losing weight) as well as easy monitoring of their daily progress.
 In addition to the workout plans, the application also suggests healthy recipes that can help the user reach his or her goal.
-The web application was implemented using the front-end web platform, React and the mobile application was implemented using React Native. In the implementation of the website various technologies were used, such as HTML, CSS, Javascript, among others.
+The web application was implemented using the front-end web platform, React and the mobile application was implemented using Java and developed in the IDE Android Studio.
     <br />
     <br />
     <br />
@@ -73,15 +73,15 @@ The web application was implemented using the front-end web platform, React and 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+ <img src="images/BodyBoostIcon.png" alt="Logo" width="160" height="160">
 
 The project is an exercise app that suggests training plans and eating plans to users accor-
 ding to their goals (Gain mass or lose weight). The intention of the app is to give the user
 easy access to workout plans as well as healthy meals that help them reach their goal. The
 app also features a progress bar that makes it easy for the user to track their daily progress.
 The application is intended for users who do not have access to gyms or nutritionists. To
-develop this application we chose the "React Native"technology since it is one of the most
-widely used for developing for mobile devices. Keep in mind that this project was developed in an education environment. 
+develop this application we chose the "Java" programming languages since it was the one that was taugh and it is
+widely used for developing mobile devices. Keep in mind that this project was developed in an education environment. 
 <br>
 <br>
 <Strong>The training plans and dietary advice were formed based on research on some websites and other applications on the market. We are not experts in the field and we strongly advise that if you want to get both dietary advice and a well-structured training plan that you contact experts.</Strong>
@@ -106,31 +106,32 @@ In the next chapter you will explain the requirements for using the application
 
 ### Prerequisites
 
-* Node JS
-  Install NodeJS in order to run the JavaScript code 
+* Android Studio
+  Install Android Studio
   <br>
-  <a href="https://nodejs.org/en">Click here to install Node JS</a>
+  <a href="https://developer.android.com/studio">Click here to install Android Studio</a>
 
-* Expo GO
-  Install the app "Expo go" on your phone to use the app on it
-  <br>
-  <Strong>This method only works in Android!</Strong>
+* Unable developer and debugging mode in your phone
+  <a href="https://developer.android.com/studio/debug/dev-options?hl=pt-br">Configure your phone</a>
+  <br> 
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/JOao7640/BodyBoost.git
+   git clone https://github.com/JOao7640/BodyBoost-Android-App.git
    ```
-2. Start expo
-   ```sh
-   expo start
-   ```
+2. Open the project in Android Studio
+   File > Open > (The directory you cloned the project to)
+   <br>
 3. Start the app on your mobile device
     <br>
-   <Strong>Option 1</Strong>: Scan the QR code generated in the Visual Studio terminal 
-   <br>
-   <Strong>Option 2</Strong>: Connect your device to the pc by a usb-cable and choose the option "a" in the vs code terminal
+    1. Connect your phone to your laptop by a usb-cable
+    <br>
+    2. Click in "run 'app' "
+    <br>
+    3. If the program and your phone are properly configured the app will be executed
+    
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -178,6 +179,6 @@ In the next chapter you will explain the requirements for using the application
 João Silva - <a href="https://github.com/JOao7640">Github</a>
 <br>
 João Santos - <a href="https://github.com/IM-SaiNt-LuKe">Github</a>
-Project Link: [https://github.com/JOao7640/BodyBoost](https://github.com/JOao7640/BodyBoost)
+Project Link: [https://github.com/JOao7640/BodyBoost](https://github.com/JOao7640/BodyBoost-Android-App)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
