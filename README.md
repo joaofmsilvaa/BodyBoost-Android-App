@@ -153,7 +153,8 @@ In the next chapter you will explain the requirements for using the application
 
 - [ ] Code the structure of the inicial menu
   - [ ] Make the progress bar functional
-  - [ ] Make the navigation bar functional
+  - [X] Make the navigation bar functional
+    - [ ] Style the navigation bar
   - [ ] Make the cards functional
   
 - [ ] Code the structure of the user profile
