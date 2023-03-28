@@ -180,6 +180,7 @@ In the next chapter you will explain the requirements for using the application
 João Silva - <a href="https://github.com/JOao7640">Github</a>
 <br>
 João Santos - <a href="https://github.com/IM-SaiNt-LuKe">Github</a>
+<br>
 Project Link: [https://github.com/JOao7640/BodyBoost](https://github.com/JOao7640/BodyBoost-Android-App)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
