@@ -34,7 +34,7 @@
 The project has a mobile application and website for exercise and healthy meals aimed at people who can't go to a gym or get dietary advice by other means.
 The goal of the app is for the user to have easy access to workout plans that match their goal (whether gaining mass or losing weight) as well as easy monitoring of their daily progress.
 In addition to the workout plans, the application also suggests healthy recipes that can help the user reach his or her goal.
-The web application was implemented using the front-end web platform, React and the mobile application was implemented using Java and developed in the IDE Android Studio.
+The web application was implemented using web technologies like HTML, CSS and JavaScript and the mobile application was implemented using Java and developed in the IDE Android Studio.
     <br />
     <br />
     <br />
