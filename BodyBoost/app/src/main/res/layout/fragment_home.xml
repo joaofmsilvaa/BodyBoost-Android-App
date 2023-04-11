@@ -4,15 +4,122 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textAlignment="center"
     tools:context=".HomeFragment">
 
+    <ProgressBar
+        android:id="@+id/percentageBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="230dp"
+        android:layout_height="232dp"
+        android:layout_marginTop="128dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="75"
+        android:progressDrawable="@drawable/custom_progressbar"
+        android:secondaryProgress="0"
+        app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView2"
+        app:layout_constraintStart_toStartOf="@+id/horizontalScrollView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/percentage"
+        android:layout_width="104dp"
+        android:layout_height="90dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_vertical"
+        android:text="75%"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/percentageBar"
+        app:layout_constraintEnd_toEndOf="@+id/percentageBar"
+        app:layout_constraintStart_toStartOf="@+id/percentageBar"
+        app:layout_constraintTop_toTopOf="@+id/percentageBar"
+        tools:ignore="RtlCompat" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="64dp"
+        android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/percentageBar">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textAlignment="center">
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="150dp"
+                android:layout_height="111dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Button1" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="150dp"
+                android:layout_height="111dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Button2" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="150dp"
+                android:layout_height="111dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Button3" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView2"
+        app:layout_constraintStart_toStartOf="@+id/horizontalScrollView2"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="150dp"
+                android:layout_height="111dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Button1" />
+
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="150dp"
+                android:layout_height="111dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Button2" />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="150dp"
+                android:layout_height="111dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Button3" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
