@@ -15,8 +15,10 @@
         android:layout_marginTop="128dp"
         android:indeterminate="false"
         android:max="100"
-        android:progress="75"
+        android:progress="0"
         android:progressDrawable="@drawable/custom_progressbar"
+        android:rotation="270"
+        android:rotationY="180"
         android:secondaryProgress="0"
         app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView2"
         app:layout_constraintStart_toStartOf="@+id/horizontalScrollView2"
@@ -28,7 +30,7 @@
         android:layout_height="90dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center_vertical"
-        android:text="75%"
+        android:text="0"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_error"
         android:textSize="40sp"
@@ -40,10 +42,11 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:fillViewport="true"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/percentageBar">
@@ -51,39 +54,38 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:textAlignment="center">
+            android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/button1"
                 android:layout_width="150dp"
                 android:layout_height="111dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Button1" />
+                android:text="@string/button1" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/button2"
                 android:layout_width="150dp"
                 android:layout_height="111dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Button2" />
+                android:text="@string/button2" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button3"
                 android:layout_width="150dp"
                 android:layout_height="111dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Button3" />
+                android:text="@string/button3" />
 
         </LinearLayout>
     </HorizontalScrollView>
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView2"
@@ -96,30 +98,54 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button13"
+                android:id="@+id/button4"
                 android:layout_width="150dp"
                 android:layout_height="111dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Button1" />
+                android:text="@string/button4" />
 
             <Button
-                android:id="@+id/button14"
+                android:id="@+id/button5"
                 android:layout_width="150dp"
                 android:layout_height="111dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Button2" />
+                android:text="@string/button5" />
 
             <Button
-                android:id="@+id/button12"
+                android:id="@+id/button6"
                 android:layout_width="150dp"
                 android:layout_height="111dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Button3" />
+                android:text="@string/button6" />
 
         </LinearLayout>
     </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/def_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/definicoes"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/user_button"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/baseline_account_circle_24"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
