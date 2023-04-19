@@ -152,10 +152,12 @@ In the next chapter you will explain the requirements for using the application
 ## Roadmap
 
 - [ ] Code the structure of the inicial menu
-  - [ ] Make the progress bar functional
+  - [X] Make the progress bar functional
+    - [X] Style the progress bar 
   - [X] Make the navigation bar functional
-    - [ ] Style the navigation bar 
-  - [ ] Make the cards functional
+    - [X] Style the navigation bar 
+  - [X] Make the cards functional
+    - [ ] Style the cards 
   
 - [ ] Code the structure of the user profile
   - [ ] Let him change his personal data
