@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.example.bodyboost.feedFragment"
+        android:label="fragment_feed"
+        tools:layout="@layout/fragment_feed" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.bodyboost.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nutricionFragment"
+        android:name="com.example.bodyboost.nutricionFragment"
+        android:label="fragment_nutricion"
+        tools:layout="@layout/fragment_nutricion" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.bodyboost.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="com.example.bodyboost.workoutFragment"
+        android:label="fragment_workout"
+        tools:layout="@layout/fragment_workout" />
+</navigation>
