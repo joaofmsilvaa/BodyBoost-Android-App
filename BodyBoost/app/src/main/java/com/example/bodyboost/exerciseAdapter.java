@@ -1,8 +1,12 @@
 package com.example.bodyboost;
 
+import android.content.Context;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +33,8 @@ public class exerciseAdapter extends RecyclerView.Adapter<exerciseAdapter.MyView
     @NonNull
     @Override
     public exerciseAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_exercises, parent, false);
+
         return new MyViewHolder(itemView);
     }
 
@@ -43,4 +48,5 @@ public class exerciseAdapter extends RecyclerView.Adapter<exerciseAdapter.MyView
     public int getItemCount() {
         return exerciseList.size();
     }
+
 }
