@@ -12,7 +12,7 @@
         android:layout_height="80dp"
         android:layout_marginBottom="96dp"
         android:backgroundTint="#7A7A7A"
-        android:text="SIGN IN"
+        android:text="SIGN UP"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/usernameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#7A7A7A"
@@ -61,7 +60,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#7A7A7A"
@@ -76,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/don_t_have_an_account"
+        android:text="Already have an account?"
         android:textColor="#7A7A7A"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,13 +83,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/signUp"
+        android:id="@+id/signIN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
-        android:onClick="signUpMenu"
-        android:text="@string/sign_up"
+        android:onClick="signINMenu"
+        android:text="SIGN IN"
         android:textColor="@color/design_default_color_error"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
