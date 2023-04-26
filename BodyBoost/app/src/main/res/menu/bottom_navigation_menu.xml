@@ -4,22 +4,22 @@
 
     <item
         android:id="@+id/feedFragment"
-        android:icon="@android:drawable/presence_audio_away"
+        android:icon="@drawable/feed"
         android:title="Feed" />
     <item
         android:id="@+id/workoutFragment"
-        android:icon="@android:drawable/presence_audio_away"
+        android:icon="@drawable/train"
         android:title="Workout" />
     <item
         android:id="@+id/homeFragment"
-        android:icon="@android:drawable/ic_menu_today"
+        android:icon="@drawable/home"
         android:title="Home" />
     <item
         android:id="@+id/nutricionFragment"
-        android:icon="@android:drawable/presence_audio_away"
+        android:icon="@drawable/food"
         android:title="Nutricion" />
     <item
         android:id="@+id/profileFragment"
-        android:icon="@drawable/baseline_account_circle_24"
+        android:icon="@drawable/grafico"
         android:title="Report" />
 </menu>

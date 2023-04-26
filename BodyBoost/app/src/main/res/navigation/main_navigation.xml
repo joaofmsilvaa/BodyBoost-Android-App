@@ -34,4 +34,10 @@
         android:name="com.example.bodyboost.workoutFragment"
         android:label="fragment_workout"
         tools:layout="@layout/fragment_workout" />
+
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.bodyboost.logInFragment"
+        android:label="fragment_logIn"
+        tools:layout="@layout/activity_login" />
 </navigation>
