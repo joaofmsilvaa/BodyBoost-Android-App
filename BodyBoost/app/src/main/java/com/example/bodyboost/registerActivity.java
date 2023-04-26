@@ -19,7 +19,7 @@ public class registerActivity extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         NavigationUI.setupWithNavController(bottomNav, navController);*/
-        setContentView(R.layout.fragment_register);
+        setContentView(R.layout.activity_register);
 
 
     }

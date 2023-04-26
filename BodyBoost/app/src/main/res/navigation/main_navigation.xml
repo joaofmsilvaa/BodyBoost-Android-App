@@ -39,5 +39,5 @@
         android:id="@+id/logInFragment"
         android:name="com.example.bodyboost.logInFragment"
         android:label="fragment_logIn"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/activity_login" />
 </navigation>
