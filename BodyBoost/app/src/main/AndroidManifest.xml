@@ -12,6 +12,10 @@
         android:theme="@style/Theme.BodyBoost"
         tools:targetApi="31">
         <activity
+            android:name=".homeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".registerActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
