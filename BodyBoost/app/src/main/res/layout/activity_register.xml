@@ -34,7 +34,7 @@
         android:id="@+id/textInputLayout1"
         android:layout_width="320dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:baselineAligned="false"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
@@ -43,7 +43,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#7A7A7A"
             android:hint="@string/username"
             android:textColor="@color/white"
@@ -62,7 +62,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#7A7A7A"
             android:hint="@string/password"
             android:inputType="textPassword"
@@ -95,5 +95,23 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textViewAlertName"
+        android:layout_width="315dp"
+        android:layout_height="21dp"
+        android:textColor="#BC1818"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout1" />
+
+    <TextView
+        android:id="@+id/textViewAlertPassword"
+        android:layout_width="315dp"
+        android:layout_height="21dp"
+        android:textColor="#BC1818"
+        tools:layout_editor_absoluteX="51dp"
+        tools:layout_editor_absoluteY="657dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

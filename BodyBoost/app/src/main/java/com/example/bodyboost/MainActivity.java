@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Objects;
 
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
+
+    private TextView usernameAlert;
+
+    private TextView passwordAlert;
 
     String usernameString;
     String passwordString;
@@ -36,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         // Stores the EditText with the ID "passwordInput" in the password variable
         this.password = findViewById(R.id.passwordInput);
 
+        this.usernameAlert = findViewById(R.id.textViewAlertName2);
+        this.passwordAlert = findViewById(R.id.textViewAlertPassword2);
     }
 
     /*
@@ -63,11 +70,32 @@ public class MainActivity extends AppCompatActivity {
     public void signIN(View view) {
         final String TAG = "Given credentials";
 
+        final String emptyUsername = "Insert a username!";
+        final String emptyPassword = "Insert a password!";
+
         usernameString = this.username.getText().toString();
         passwordString = this.password.getText().toString();
 
         String testUsername = "abc";
         String testPassword = "cba";
+
+        if(usernameString.equals("")){
+            usernameAlert.setText(emptyUsername);
+
+        }
+
+        if(!usernameString.equals("")){
+            usernameAlert.setText("");
+        }
+
+        if(passwordString.equals("")){
+            passwordAlert.setText(emptyPassword);
+
+        }
+
+        if(!passwordString.equals("")){
+            passwordAlert.setText("");
+        }
 
         if(usernameString.equals(testUsername) && passwordString.equals(testPassword)){
             Log.i("Login", "log-in successfull");
