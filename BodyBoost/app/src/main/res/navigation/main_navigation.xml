@@ -25,13 +25,13 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.bodyboost.ReportFragment"
+        android:name="com.example.bodyboost.Report_classes.ReportFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_report" />
 
     <fragment
         android:id="@+id/workoutFragment"
-        android:name="com.example.bodyboost.workoutFragment"
+        android:name="com.example.bodyboost.Exercise_classes.workoutFragment"
         android:label="fragment_workout"
         tools:layout="@layout/fragment_workout" />
 

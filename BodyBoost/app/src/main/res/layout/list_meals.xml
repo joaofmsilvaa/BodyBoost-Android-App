@@ -14,7 +14,7 @@
         app:layout_constraintTop_toBottomOf="parent" />
 
     <TextView
-        android:id="@+id/weightValue"
+        android:id="@+id/weightCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="64dp"
@@ -28,14 +28,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/exerciseName"
+        android:id="@+id/weightValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Meal Name"
         android:textColor="?android:textColorPrimary"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/weightValue"
-        app:layout_constraintEnd_toEndOf="@+id/weightValue"
-        app:layout_constraintStart_toStartOf="@+id/weightValue"
-        app:layout_constraintTop_toTopOf="@+id/weightValue" />
+        app:layout_constraintBottom_toBottomOf="@+id/weightCard"
+        app:layout_constraintEnd_toEndOf="@+id/weightCard"
+        app:layout_constraintStart_toStartOf="@+id/weightCard"
+        app:layout_constraintTop_toTopOf="@+id/weightCard" />
 </androidx.constraintlayout.widget.ConstraintLayout>

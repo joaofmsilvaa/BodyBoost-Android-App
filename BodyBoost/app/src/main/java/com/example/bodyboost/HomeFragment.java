@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.bodyboost.Exercise_classes.Exercise;
+import com.example.bodyboost.Exercise_classes.exerciseAdapter;
+
 import java.util.ArrayList;
 
 /**
