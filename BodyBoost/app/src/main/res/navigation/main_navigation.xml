@@ -25,9 +25,9 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.bodyboost.ProfileFragment"
+        android:name="com.example.bodyboost.ReportFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_report" />
 
     <fragment
         android:id="@+id/workoutFragment"

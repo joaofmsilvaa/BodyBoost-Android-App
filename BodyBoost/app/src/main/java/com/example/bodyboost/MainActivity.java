@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.Objects;
 
 
@@ -40,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
         this.username = findViewById(R.id.usernameInput);
         // Stores the EditText with the ID "passwordInput" in the password variable
         this.password = findViewById(R.id.passwordInput);
-
+        // Stores the textView with the ID "textViewAlertName2" in the usernameAlert variable
         this.usernameAlert = findViewById(R.id.textViewAlertName2);
+        // Stores the textView with the ID "textViewAlertPassword2" in the passwordAlert variable
         this.passwordAlert = findViewById(R.id.textViewAlertPassword2);
+
     }
 
     /*
@@ -70,14 +74,34 @@ public class MainActivity extends AppCompatActivity {
     public void signIN(View view) {
         final String TAG = "Given credentials";
 
-        final String emptyUsername = "Insert a username!";
-        final String emptyPassword = "Insert a password!";
-
         usernameString = this.username.getText().toString();
         passwordString = this.password.getText().toString();
 
         String testUsername = "abc";
         String testPassword = "cba";
+
+        emptyFieldChecker(usernameString, passwordString, usernameAlert, passwordAlert);
+
+        if(usernameString.equals(testUsername) && passwordString.equals(testPassword)){
+            Log.i("Login", "log-in successfull");
+            Log.i(TAG, usernameString + " " + passwordString);
+
+            Intent intent = new Intent(this, homeActivity.class);
+            Log.i("Home Activity", "Entering the homeActivity");
+            startActivity(intent);
+            finish();
+
+        }else{
+            Log.i("Login", "Incorrect credentials");
+            Log.i(TAG, usernameString + " " + passwordString);
+        }
+
+    }
+
+    public static void emptyFieldChecker(String usernameString, String passwordString, TextView usernameAlert, TextView passwordAlert){
+        // Stores the alert messages in the proper variables
+        final String emptyUsername = "Insert a username!";
+        final String emptyPassword = "Insert a password!";
 
         if(usernameString.equals("")){
             usernameAlert.setText(emptyUsername);
@@ -96,20 +120,5 @@ public class MainActivity extends AppCompatActivity {
         if(!passwordString.equals("")){
             passwordAlert.setText("");
         }
-
-        if(usernameString.equals(testUsername) && passwordString.equals(testPassword)){
-            Log.i("Login", "log-in successfull");
-            Log.i(TAG, usernameString + " " + passwordString);
-
-            Intent intent = new Intent(this, homeActivity.class);
-            Log.i("Home Activity", "Entering the homeActivity");
-            startActivity(intent);
-            finish();
-
-        }else{
-            Log.i("Login", "Incorrect credentials");
-            Log.i(TAG, usernameString + " " + passwordString);
-        }
-
     }
 }
