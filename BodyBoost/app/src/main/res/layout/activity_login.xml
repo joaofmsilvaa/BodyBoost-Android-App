@@ -49,7 +49,6 @@
             android:layout_height="match_parent"
             android:background="#7A7A7A"
             android:hint="@string/username"
-            android:textAlignment="center"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 

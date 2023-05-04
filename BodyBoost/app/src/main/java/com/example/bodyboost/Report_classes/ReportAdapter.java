@@ -15,12 +15,11 @@ import java.util.List;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportViewHolder>{
 
-    ArrayList<Report> reportList;
+    List<Report> reportList;
     Context context;
 
-    public ReportAdapter(Context context, ArrayList<Report> reports){
+    public ReportAdapter(List<Report> reports){
         this.reportList = reports;
-        this.context = context;
     }
 
 

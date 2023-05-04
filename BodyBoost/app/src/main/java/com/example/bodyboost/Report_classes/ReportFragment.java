@@ -43,12 +43,27 @@ public class ReportFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView reportRecyclerView = view.findViewById(R.id.reportRecyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.reportRecyclerView);
 
+        // obter uma instância do ContactDao
+        ReportDatabase db = ReportDatabase.getInstance(this.getContext());
+        ReportDao reportDao = db.getReportDao();
+
+        // criar um objeto do tipo ContactAdapter (que extende Adapter)
+        // ContactAdapter adapter = new ContactAdapter(MemoryDatabase.getAllContacts());
+        ReportAdapter adapter = new ReportAdapter(reportDao.getAll());
+        // ContactAdapter adapter = new ContactAdapter(AppDatabase.getInstance(this).getContactDao().getAll());
+
+
+        // criar um objecto do tipo LinearLayoutManager para ser utilizado na RecyclerView
+        // o LinearLayoutManager tem como orientação default a orientação Vertical
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-        ReportAdapter adapter = new ReportAdapter (this.getContext(), ReportMemoryDatabase.getAllReports());
 
-        reportRecyclerView.setLayoutManager(layoutManager);
-        reportRecyclerView.setAdapter(adapter);
+        // Definir que a RecyclerView utiliza como Adapter o objeto que criámos anteriormente
+        recyclerView.setAdapter(adapter);
+        // Definir que a RecyclerView utiliza como LayoutManager o objeto que criámos anteriormente
+        recyclerView.setLayoutManager(layoutManager);
     }
+
+
 }

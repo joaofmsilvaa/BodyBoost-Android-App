@@ -1,8 +1,17 @@
 package com.example.bodyboost.Report_classes;
 
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Report {
 
+    @PrimaryKey(autoGenerate = true)
     private int reportID;
+
+    @ColumnInfo
     private String weight;
 
     public Report(int reportID,String weight) {
