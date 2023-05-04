@@ -3,6 +3,9 @@ package com.example.bodyboost;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
@@ -14,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.w3c.dom.Text;
 
@@ -34,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        /*super.onCreate(savedInstanceState);
         // Sets the content view to the activity_login layout
         setContentView(R.layout.activity_login);
 
@@ -45,8 +50,20 @@ public class MainActivity extends AppCompatActivity {
         // Stores the textView with the ID "textViewAlertName2" in the usernameAlert variable
         this.usernameAlert = findViewById(R.id.textViewAlertName2);
         // Stores the textView with the ID "textViewAlertPassword2" in the passwordAlert variable
-        this.passwordAlert = findViewById(R.id.textViewAlertPassword2);
+        this.passwordAlert = findViewById(R.id.textViewAlertPassword2);*/
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Stores a fragment with the id "fragmentContainerView" in the navHostFragment variable
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        // Sets the navigation controller for the fragment stored in the navHostFragment variable
+        NavController navController = navHostFragment.getNavController();
+        // Stores the bottom navigation view with the id "bottomNavigationView" in the "bottomNav" variable
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
+        // Sets that the navigation controller is used in the bottom navigation stored in the "bottomNav" variable
+        NavigationUI.setupWithNavController(bottomNav, navController);
     }
 
     /*

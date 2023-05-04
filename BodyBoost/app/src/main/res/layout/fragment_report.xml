@@ -33,19 +33,104 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reportRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView" />
+        android:layout_height="450dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/weightCard"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reportRecyclerView" />
+
+    <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/reportRecyclerView"
+        android:text="BMI ( kg / m2 )"
+        android:textColor="?colorPrimary"
+        app:layout_constraintStart_toStartOf="@+id/weightCard"
+        app:layout_constraintTop_toBottomOf="@+id/reportRecyclerView" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Height"
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintStart_toStartOf="@+id/weightCard"
+        app:layout_constraintTop_toTopOf="@+id/weightCard" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Weight"
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        tools:layout_editor_absoluteY="606dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/heightTextInput"
+        android:layout_width="84dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="@+id/weightCard"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:layout_editor_absoluteX="167dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="cm" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        android:layout_width="84dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/weightCard"
+        app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weighTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="kg" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/BMIValue"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:gravity="center|center_horizontal"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/weightCard"
+        app:layout_constraintEnd_toEndOf="@+id/weightCard"
+        app:layout_constraintStart_toEndOf="@+id/heightTextInput"
+        app:layout_constraintTop_toTopOf="@+id/weightCard" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/def_button" />
+        app:layout_constraintGuide_begin="569dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

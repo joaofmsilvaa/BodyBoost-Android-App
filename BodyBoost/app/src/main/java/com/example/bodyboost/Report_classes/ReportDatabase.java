@@ -18,12 +18,16 @@ public abstract class ReportDatabase extends RoomDatabase {
     public static ReportDatabase getInstance(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            ReportDatabase.class, "contactsDB").allowMainThreadQueries()
+                            ReportDatabase.class, "reportDB").allowMainThreadQueries()
                     .addCallback(new Callback() {
                         @Override
                         public void onCreate(@NonNull SupportSQLiteDatabase db) {
                             super.onCreate(db);
-                            db.execSQL("INSERT INTO Report VALUES (1, 23)");
+                            db.execSQL("INSERT INTO Report VALUES (1, 53)");
+                            db.execSQL("INSERT INTO Report VALUES (2, 63)");
+                            db.execSQL("INSERT INTO Report VALUES (3, 73)");
+                            db.execSQL("INSERT INTO Report VALUES (4, 70)");
+                            db.execSQL("INSERT INTO Report VALUES (5, 67)");
                         }
                     })
                     .build();
