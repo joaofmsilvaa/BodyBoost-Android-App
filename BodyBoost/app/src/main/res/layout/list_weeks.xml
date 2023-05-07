@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="400dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/weekCardView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/weekCard"
+        android:layout_width="0dp"
+        android:layout_height="320dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="?colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/weekCardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="133dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/weekTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Semana "
+        android:textColor="?android:textColorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="@+id/weekCard"
+        app:layout_constraintStart_toStartOf="@+id/weekCard"
+        app:layout_constraintTop_toTopOf="@+id/weekCard"
+        app:layout_constraintVertical_bias="0.377" />
+
+    <TextView
+        android:id="@+id/countTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/weekCard"
+        app:layout_constraintStart_toStartOf="@+id/weekCard"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/mainRed"
+        android:text="BEGIN WORKOUT"
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/weekCard"
+        app:layout_constraintEnd_toEndOf="@+id/weekCard"
+        app:layout_constraintStart_toStartOf="@+id/weekCard"
+        app:layout_constraintTop_toBottomOf="@+id/countTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

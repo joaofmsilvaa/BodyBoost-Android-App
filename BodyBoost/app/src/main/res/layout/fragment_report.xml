@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< Updated upstream
     tools:context=".Report_classes.ReportFragment" >
+=======
+    tools:context=".Report_classes.ReportFragment">
+>>>>>>> Stashed changes
 
     <Button
         android:id="@+id/user_button"
@@ -34,6 +38,7 @@
         android:id="@+id/reportRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="450dp"
+<<<<<<< Updated upstream
         app:layout_constraintBottom_toTopOf="@+id/guideline3" />
 
     <TextView
@@ -123,6 +128,11 @@
         app:layout_constraintEnd_toEndOf="@+id/weightCard"
         app:layout_constraintStart_toEndOf="@+id/heightTextInput"
         app:layout_constraintTop_toTopOf="@+id/weightCard" />
+=======
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+>>>>>>> Stashed changes
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -133,4 +143,20 @@
         app:layout_constraintGuide_begin="569dp"
         app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< Updated upstream
+=======
+    <Button
+        android:id="@+id/bmiButton"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:onClick="bmiCalculator"
+        android:text="CALCULATE BMI"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reportRecyclerView" />
+
+>>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

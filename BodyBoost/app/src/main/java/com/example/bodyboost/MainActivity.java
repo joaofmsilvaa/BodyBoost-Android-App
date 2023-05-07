@@ -138,4 +138,17 @@ public class MainActivity extends AppCompatActivity {
             passwordAlert.setText("");
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    public void bmiCalculator(View view) {
+        Button bmiButton = view.findViewById(R.id.bmiButton);
+
+        bmiCalculator bmiDialog = new bmiCalculator();
+        bmiDialog.show(getSupportFragmentManager(), "bmiCalculator");
+
+        bmiButton.setText("clicked");
+    }
+
+>>>>>>> Stashed changes
 }
