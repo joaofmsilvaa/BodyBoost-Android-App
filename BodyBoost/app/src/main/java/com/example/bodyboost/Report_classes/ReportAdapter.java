@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,16 +51,17 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             int previousValue = previous.getWeight();
 
             if (previousValue > currentValue) {
-                holder.testTextView.setText("Diminuiu");
+                holder.testImageView.setImageResource(R.drawable.up_report);
+
             }
             else if(previousValue == currentValue){
-                holder.testTextView.setText("Manteve-se");
+                holder.testImageView.setImageResource(R.drawable.same_report);
             }
             else {
-                holder.testTextView.setText("Aumentou");
+                holder.testImageView.setImageResource(R.drawable.down_report);
             }
         } else {
-            holder.testTextView.setText("Primeiro peso");
+            holder.testImageView.setImageResource(R.drawable.same_report);
         }
     }
 
@@ -71,12 +73,12 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     public class ReportViewHolder extends RecyclerView.ViewHolder{
 
         TextView weightValue;
-        TextView testTextView;
+        ImageView testImageView;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
             weightValue = itemView.findViewById(R.id.weightValue);
-            testTextView = itemView.findViewById(R.id.testTextView);
+            testImageView = itemView.findViewById(R.id.imageViewTest);
 
         }
     }

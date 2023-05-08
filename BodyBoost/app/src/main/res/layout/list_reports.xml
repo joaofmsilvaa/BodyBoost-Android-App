@@ -38,15 +38,13 @@
         app:layout_constraintStart_toStartOf="@+id/weightCard"
         app:layout_constraintTop_toTopOf="@+id/weightCard" />
 
-    <TextView
-        android:id="@+id/testTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:background="#FFFFFF"
-        android:text="test"
-        android:textColor="#C81717"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageViewTest"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/weightCard"
         app:layout_constraintEnd_toEndOf="@+id/weightCard"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/weightCard"
+        app:srcCompat="@drawable/down_report" />
 </androidx.constraintlayout.widget.ConstraintLayout>

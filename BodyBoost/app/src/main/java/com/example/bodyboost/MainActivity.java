@@ -139,13 +139,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void bmiCalculator(View view) {
-        Button bmiButton = view.findViewById(R.id.bmiButton);
-
-        bmiCalculator bmiDialog = new bmiCalculator();
-        bmiDialog.show(getSupportFragmentManager(), "bmiCalculator");
-
-        bmiButton.setText("clicked");
-    }
-
 }
