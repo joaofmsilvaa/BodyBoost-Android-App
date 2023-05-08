@@ -1,7 +1,9 @@
 package com.example.bodyboost.Report_classes;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -10,18 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bodyboost.R;
 
-<<<<<<< Updated upstream
-=======
 import org.w3c.dom.Text;
 
->>>>>>> Stashed changes
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportAdapter extends RecyclerView.Adapter<ReportViewHolder>{
+public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder>{
 
-    List<Report> reportList;
-    Context context;
+    private List<Report> reportList;
+    private Context context;
 
     public ReportAdapter(List<Report> reports){
         this.reportList = reports;
@@ -36,34 +35,49 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ReportViewHolder holder, int position) {
-<<<<<<< Updated upstream
-        holder.weightValue.setText(reportList.get(position).getWeight());
-
-=======
 
         Report current = reportList.get(position);
-        String currentStr = current.toString();
-        int currentValue = Integer.parseInt(currentStr);
-        holder.weightValue.setText(current.getWeight());
+
+        int currentValue = current.getWeight();
+        holder.weightValue.setText(Integer.toString(currentValue));
+
+        int pos = position;
+
         if (position > 0) {
 
             Report previous = reportList.get(position - 1);
-            String previousStr = previous.toString();
-            int previousValue = Integer.parseInt(previousStr);
+
+            int previousValue = previous.getWeight();
 
             if (previousValue > currentValue) {
-
-            } else {
-
+                holder.testTextView.setText("Diminuiu");
+            }
+            else if(previousValue == currentValue){
+                holder.testTextView.setText("Manteve-se");
+            }
+            else {
+                holder.testTextView.setText("Aumentou");
             }
         } else {
-
+            holder.testTextView.setText("Primeiro peso");
         }
->>>>>>> Stashed changes
     }
 
     @Override
     public int getItemCount() {
         return reportList.size();
+    }
+
+    public class ReportViewHolder extends RecyclerView.ViewHolder{
+
+        TextView weightValue;
+        TextView testTextView;
+
+        public ReportViewHolder(@NonNull View itemView) {
+            super(itemView);
+            weightValue = itemView.findViewById(R.id.weightValue);
+            testTextView = itemView.findViewById(R.id.testTextView);
+
+        }
     }
 }

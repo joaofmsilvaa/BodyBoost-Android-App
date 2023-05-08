@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< Updated upstream
-=======
 import android.widget.Button;
->>>>>>> Stashed changes
 import android.widget.TextView;
 
 import com.example.bodyboost.R;
@@ -53,15 +50,18 @@ public class ReportFragment extends Fragment {
         ReportDatabase db = ReportDatabase.getInstance(this.getContext());
         ReportDao reportDao = db.getReportDao();
 
-        // criar um objeto do tipo ContactAdapter (que extende Adapter)
-<<<<<<< Updated upstream
-        // ContactAdapter adapter = new ContactAdapter(MemoryDatabase.getAllContacts());
-        ReportAdapter adapter = new ReportAdapter(reportDao.getAll());
-        // ContactAdapter adapter = new ContactAdapter(AppDatabase.getInstance(this).getContactDao().getAll());
+        List<Report> reportList = reportDao.getAll();
+        if (reportList.size() == 0) {
+            reportDao.insert(new Report(0, 90));
+            reportDao.insert(new Report(0, 80));
+            reportDao.insert(new Report(0, 80));
+            reportDao.insert(new Report(0, 95));
+            reportDao.insert(new Report(0, 85));
+            reportList = reportDao.getAll();
+        }
 
-=======
+        // criar um objeto do tipo ContactAdapter (que extende Adapter)
         ReportAdapter adapter = new ReportAdapter(reportDao.getAll());
->>>>>>> Stashed changes
 
         // criar um objecto do tipo LinearLayoutManager para ser utilizado na RecyclerView
         // o LinearLayoutManager tem como orientação default a orientação Vertical
@@ -73,8 +73,4 @@ public class ReportFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
     }
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 }

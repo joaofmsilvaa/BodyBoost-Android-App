@@ -5,23 +5,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-<<<<<<< Updated upstream
-=======
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
->>>>>>> Stashed changes
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< Updated upstream
-=======
 import android.widget.Button;
 
 import com.example.bodyboost.Report_classes.ReportAdapter;
 import com.example.bodyboost.Report_classes.ReportDao;
 import com.example.bodyboost.Report_classes.ReportDatabase;
->>>>>>> Stashed changes
 
 import java.util.ArrayList;
 
@@ -36,10 +30,7 @@ public class ReportFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
     }
 
     @Override
@@ -49,8 +40,6 @@ public class ReportFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_report, container, false);
     }
 
-<<<<<<< Updated upstream
-=======
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -73,5 +62,4 @@ public class ReportFragment extends Fragment {
         // Definir que a RecyclerView utiliza como LayoutManager o objeto que criámos anteriormente
         recyclerView.setLayoutManager(layoutManager);
     }
->>>>>>> Stashed changes
 }

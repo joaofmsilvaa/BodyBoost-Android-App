@@ -1,6 +1,7 @@
 package com.example.bodyboost.Report_classes;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -11,26 +12,15 @@ public class Report {
     @PrimaryKey(autoGenerate = true)
     private int reportID;
 
-    @ColumnInfo
-<<<<<<< Updated upstream
-    private String weight;
-
-    public Report(int reportID,String weight) {
-=======
     private int weight;
 
     public Report(int reportID,int weight) {
->>>>>>> Stashed changes
         this.reportID= reportID;
         this.weight = weight;
 
     }
 
-<<<<<<< Updated upstream
-    public String getWeight() {
-=======
     public int getWeight() {
->>>>>>> Stashed changes
         return weight;
     }
 
@@ -42,13 +32,7 @@ public class Report {
         this.reportID = reportID;
     }
 
-<<<<<<< Updated upstream
-    public void setWeight(String weight) {
-=======
     public void setWeight(int weight) {
->>>>>>> Stashed changes
         this.weight = weight;
     }
-
-
 }

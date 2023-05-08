@@ -11,13 +11,8 @@ public class ReportMemoryDatabase {
     private static ArrayList<Report> initializeList() {
         if (reportList == null) {
             reportList = new ArrayList<>();
-<<<<<<< Updated upstream
-            reportList.add(new Report(1,"53"));
-            reportList.add(new Report(2,"65"));
-=======
             reportList.add(new Report(1,53));
             reportList.add(new Report(2,65));
->>>>>>> Stashed changes
         }
         return reportList;
     }
@@ -30,8 +25,4 @@ public class ReportMemoryDatabase {
         return initializeList().get(position);
     }
 
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes
