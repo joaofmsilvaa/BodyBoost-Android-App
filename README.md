@@ -169,8 +169,8 @@ In the next chapter you will explain the requirements for using the application
 - [ ] Code the structure of the meal list section
   - [ ] Display the meals corresponding to the users goal
   
-- [ ] Code the structure of the statistics menu
-  - [ ] Make the graph functional
+- [X] Code the structure of the statistics menu
+  - [X] Make the graph functional
   - [ ] Make the BMI calculator functional
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
