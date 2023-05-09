@@ -40,7 +40,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         Report current = reportList.get(position);
 
         int currentValue = current.getWeight();
-        holder.weightValue.setText(Integer.toString(currentValue));
+        holder.weightValue.setText(Integer.toString(currentValue) + " KG");
 
         int pos = position;
 
@@ -51,14 +51,14 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             int previousValue = previous.getWeight();
 
             if (previousValue > currentValue) {
-                holder.testImageView.setImageResource(R.drawable.up_report);
+                holder.testImageView.setImageResource(R.drawable.down_report);
 
             }
             else if(previousValue == currentValue){
                 holder.testImageView.setImageResource(R.drawable.same_report);
             }
             else {
-                holder.testImageView.setImageResource(R.drawable.down_report);
+                holder.testImageView.setImageResource(R.drawable.up_report);
             }
         } else {
             holder.testImageView.setImageResource(R.drawable.same_report);

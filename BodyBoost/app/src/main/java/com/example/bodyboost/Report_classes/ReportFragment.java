@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.bodyboost.R;
@@ -44,11 +45,22 @@ public class ReportFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = view.findViewById(R.id.reportRecyclerView);
-
         // obter uma instância do ContactDao
         ReportDatabase db = ReportDatabase.getInstance(this.getContext());
         ReportDao reportDao = db.getReportDao();
+
+
+        RecyclerView recyclerView = view.findViewById(R.id.reportRecyclerView);
+        EditText weightInput = view.findViewById(R.id.weightIputEditText);
+
+        Button inserWeight = (Button) view.findViewById(R.id.insertWeightButton);
+        inserWeight.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int weight = Integer.parseInt(weightInput.getText().toString());
+                reportDao.insert(new Report(0, weight ));
+
+            }
+        });
 
         List<Report> reportList = reportDao.getAll();
         if (reportList.size() == 0) {

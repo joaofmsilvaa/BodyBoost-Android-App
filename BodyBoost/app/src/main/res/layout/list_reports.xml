@@ -47,4 +47,5 @@
         app:layout_constraintEnd_toEndOf="@+id/weightCard"
         app:layout_constraintTop_toTopOf="@+id/weightCard"
         app:srcCompat="@drawable/down_report" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

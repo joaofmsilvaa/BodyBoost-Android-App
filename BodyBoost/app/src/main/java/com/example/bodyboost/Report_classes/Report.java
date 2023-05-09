@@ -28,11 +28,4 @@ public class Report {
         return reportID;
     }
 
-    public void setReportID(int reportID) {
-        this.reportID = reportID;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
 }
