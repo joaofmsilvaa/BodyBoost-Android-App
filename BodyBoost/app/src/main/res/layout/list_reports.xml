@@ -48,4 +48,13 @@
         app:layout_constraintTop_toTopOf="@+id/weightCard"
         app:srcCompat="@drawable/down_report" />
 
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/weightCard"
+        app:layout_constraintStart_toStartOf="@+id/weightCard" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

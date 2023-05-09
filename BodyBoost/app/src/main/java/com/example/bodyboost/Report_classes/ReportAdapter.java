@@ -15,7 +15,9 @@ import com.example.bodyboost.R;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder>{
@@ -39,8 +41,14 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
         Report current = reportList.get(position);
 
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+
+
         int currentValue = current.getWeight();
-        holder.weightValue.setText(Integer.toString(currentValue) + " KG");
+        holder.weightValue.setText(currentValue + " KG");
+        holder.dateTextView.setText(currentDate);
+
 
         int pos = position;
 
@@ -73,13 +81,16 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     public class ReportViewHolder extends RecyclerView.ViewHolder{
 
         TextView weightValue;
+
+        TextView dateTextView;
+
         ImageView testImageView;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
             weightValue = itemView.findViewById(R.id.weightValue);
             testImageView = itemView.findViewById(R.id.imageViewTest);
-
+            dateTextView = itemView.findViewById(R.id.dateTextView);
         }
     }
 }

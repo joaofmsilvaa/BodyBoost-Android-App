@@ -1,5 +1,6 @@
 package com.example.bodyboost.Report_classes;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,9 +16,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+
 import com.example.bodyboost.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -49,28 +55,30 @@ public class ReportFragment extends Fragment {
         ReportDatabase db = ReportDatabase.getInstance(this.getContext());
         ReportDao reportDao = db.getReportDao();
 
-
         RecyclerView recyclerView = view.findViewById(R.id.reportRecyclerView);
         EditText weightInput = view.findViewById(R.id.weightIputEditText);
+
+
 
         Button inserWeight = (Button) view.findViewById(R.id.insertWeightButton);
         inserWeight.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int weight = Integer.parseInt(weightInput.getText().toString());
                 reportDao.insert(new Report(0, weight ));
+                weightInput.setText("");
 
             }
         });
 
         List<Report> reportList = reportDao.getAll();
-        if (reportList.size() == 0) {
+        /*if (reportList.size() == 0) {
             reportDao.insert(new Report(0, 90));
             reportDao.insert(new Report(0, 80));
             reportDao.insert(new Report(0, 80));
             reportDao.insert(new Report(0, 95));
             reportDao.insert(new Report(0, 85));
             reportList = reportDao.getAll();
-        }
+        }*/
 
         // criar um objeto do tipo ContactAdapter (que extende Adapter)
         ReportAdapter adapter = new ReportAdapter(reportDao.getAll());

@@ -12,7 +12,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="230dp"
         android:layout_height="232dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="64dp"
         android:indeterminate="false"
         android:max="100"
         android:progress="0"
@@ -39,30 +39,6 @@
         app:layout_constraintStart_toStartOf="@+id/percentageBar"
         app:layout_constraintTop_toTopOf="@+id/percentageBar"
         tools:ignore="RtlCompat" />
-
-    <Button
-        android:id="@+id/user_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/user"
-        android:text=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/def_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/config"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
 
     <ScrollView
         android:layout_width="0dp"
