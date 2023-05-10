@@ -33,17 +33,21 @@ import java.util.List;
  */
 public class ReportFragment extends Fragment {
 
+    private ReportAdapter adapter;
+    private ReportDatabase db;
+    private ReportDao reportDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        // Obtain an instance of ReportDatabase and ReportDao
+        db = ReportDatabase.getInstance(getContext());
+        reportDao = db.getReportDao();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_report, container, false);
     }
 
@@ -51,46 +55,36 @@ public class ReportFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // obter uma instância do ContactDao
-        ReportDatabase db = ReportDatabase.getInstance(this.getContext());
-        ReportDao reportDao = db.getReportDao();
-
         RecyclerView recyclerView = view.findViewById(R.id.reportRecyclerView);
         EditText weightInput = view.findViewById(R.id.weightIputEditText);
 
-
-
-        Button inserWeight = (Button) view.findViewById(R.id.insertWeightButton);
-        inserWeight.setOnClickListener(new View.OnClickListener() {
+        Button insertWeight = view.findViewById(R.id.insertWeightButton);
+        insertWeight.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+
                 int weight = Integer.parseInt(weightInput.getText().toString());
-                reportDao.insert(new Report(0, weight ));
+                reportDao.insert(new Report(0, weight, currentDate));
                 weightInput.setText("");
 
+                refreshFragment();
             }
         });
 
-        List<Report> reportList = reportDao.getAll();
-        /*if (reportList.size() == 0) {
-            reportDao.insert(new Report(0, 90));
-            reportDao.insert(new Report(0, 80));
-            reportDao.insert(new Report(0, 80));
-            reportDao.insert(new Report(0, 95));
-            reportDao.insert(new Report(0, 85));
-            reportList = reportDao.getAll();
-        }*/
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
-        // criar um objeto do tipo ContactAdapter (que extende Adapter)
-        ReportAdapter adapter = new ReportAdapter(reportDao.getAll());
-
-        // criar um objecto do tipo LinearLayoutManager para ser utilizado na RecyclerView
-        // o LinearLayoutManager tem como orientação default a orientação Vertical
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-
-        // Definir que a RecyclerView utiliza como Adapter o objeto que criámos anteriormente
-        recyclerView.setAdapter(adapter);
-        // Definir que a RecyclerView utiliza como LayoutManager o objeto que criámos anteriormente
         recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new ReportAdapter(reportDao.getAll());
+
+        recyclerView.setAdapter(adapter);
     }
 
+    public void refreshFragment() {
+
+        adapter.updateData(reportDao.getAll());
+
+        adapter.notifyDataSetChanged();
+    }
 }

@@ -12,9 +12,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 @Database(entities = {Report.class}, version = 1)
 public abstract class ReportDatabase extends RoomDatabase {
 
-    // Database class after the version update.
-
-
     public abstract ReportDao getReportDao();
 
     private static ReportDatabase INSTANCE;

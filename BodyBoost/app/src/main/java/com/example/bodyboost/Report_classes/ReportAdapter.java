@@ -20,52 +20,40 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder>{
+public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
 
     private List<Report> reportList;
-    private Context context;
 
-    public ReportAdapter(List<Report> reports){
+    public ReportAdapter(List<Report> reports) {
         this.reportList = reports;
     }
-
 
     @NonNull
     @Override
     public ReportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ReportViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_reports, parent, false));
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_reports, parent, false);
+        return new ReportViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ReportViewHolder holder, int position) {
-
         Report current = reportList.get(position);
 
-        Calendar calendar = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-
-
+        String currentDate = current.getDate();
         int currentValue = current.getWeight();
+
         holder.weightValue.setText(currentValue + " KG");
         holder.dateTextView.setText(currentDate);
 
-
-        int pos = position;
-
         if (position > 0) {
-
             Report previous = reportList.get(position - 1);
-
             int previousValue = previous.getWeight();
 
             if (previousValue > currentValue) {
                 holder.testImageView.setImageResource(R.drawable.down_report);
-
-            }
-            else if(previousValue == currentValue){
+            } else if (previousValue == currentValue) {
                 holder.testImageView.setImageResource(R.drawable.same_report);
-            }
-            else {
+            } else {
                 holder.testImageView.setImageResource(R.drawable.up_report);
             }
         } else {
@@ -78,12 +66,13 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         return reportList.size();
     }
 
-    public class ReportViewHolder extends RecyclerView.ViewHolder{
+    public void updateData(List<Report> reports) {
+        this.reportList = reports;
+    }
 
+    public class ReportViewHolder extends RecyclerView.ViewHolder {
         TextView weightValue;
-
         TextView dateTextView;
-
         ImageView testImageView;
 
         public ReportViewHolder(@NonNull View itemView) {
@@ -94,3 +83,4 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         }
     }
 }
+

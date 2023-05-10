@@ -14,10 +14,12 @@ public class Report {
 
     private int weight;
 
-    public Report(int reportID,int weight) {
+    private String date;
+
+    public Report(int reportID,int weight, String date) {
         this.reportID= reportID;
         this.weight = weight;
-
+        this.date = date;
     }
 
     public int getWeight() {
@@ -28,4 +30,7 @@ public class Report {
         return reportID;
     }
 
+    public String getDate() {
+        return date;
+    }
 }
