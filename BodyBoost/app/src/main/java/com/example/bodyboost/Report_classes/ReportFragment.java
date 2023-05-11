@@ -21,6 +21,7 @@ import java.text.DateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
+import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.R;
 
 import java.util.ArrayList;
@@ -35,16 +36,16 @@ import java.util.List;
 public class ReportFragment extends Fragment {
 
     private ReportAdapter adapter;
-    private ReportDatabase db;
+    private AppDatabase db;
     private ReportDao reportDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Obtain an instance of ReportDatabase and ReportDao
-        db = ReportDatabase.getInstance(getContext());
+        db = AppDatabase.getInstance(getContext());
         reportDao = db.getReportDao();
-        Log.i("Test", "Created");
+
     }
 
     @Override

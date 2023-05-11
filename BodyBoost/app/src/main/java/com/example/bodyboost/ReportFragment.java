@@ -11,13 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.bodyboost.Report_classes.ReportAdapter;
 import com.example.bodyboost.Report_classes.ReportDao;
-import com.example.bodyboost.Report_classes.ReportDatabase;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,7 +43,7 @@ public class ReportFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.reportRecyclerView);
 
         // obter uma instância do ContactDao
-        ReportDatabase db = ReportDatabase.getInstance(this.getContext());
+        AppDatabase db = AppDatabase.getInstance(this.getContext());
         ReportDao reportDao = db.getReportDao();
 
         // criar um objeto do tipo ContactAdapter (que extende Adapter)

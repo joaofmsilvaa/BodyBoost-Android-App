@@ -8,21 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
+import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.R;
-import com.example.bodyboost.Report_classes.Report;
-import com.example.bodyboost.Report_classes.ReportAdapter;
-import com.example.bodyboost.Report_classes.ReportDao;
-import com.example.bodyboost.Report_classes.ReportDatabase;
-
-import java.text.DateFormat;
-import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,14 +23,14 @@ import java.util.Calendar;
 public class workoutFragment extends Fragment {
 
     private DaysAdapter adapter;
-    private DaysDatabase db;
+    private AppDatabase db;
     private DaysDao daysDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Obtain an instance of ReportDatabase and ReportDao
-        db = DaysDatabase.getInstance(getContext());
+        db = AppDatabase.getInstance(getContext());
         daysDao = db.getDaysDao();
     }
 
