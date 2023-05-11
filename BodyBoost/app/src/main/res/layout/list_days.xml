@@ -11,7 +11,7 @@
         android:layout_height="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/daysCard"
@@ -35,23 +35,22 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/weekTextView"
+        android:id="@+id/dayTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Semana "
+        android:text="Day"
         android:textColor="?android:textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="@+id/daysCard"
         app:layout_constraintStart_toStartOf="@+id/daysCard"
-        app:layout_constraintTop_toTopOf="@+id/daysCard"
-        app:layout_constraintVertical_bias="0.377" />
+        app:layout_constraintTop_toTopOf="@+id/daysCard" />
 
     <TextView
         android:id="@+id/countTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="TextView"
         android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
@@ -59,17 +58,15 @@
         app:layout_constraintStart_toStartOf="@+id/daysCard"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/mainRed"
-        android:text="BEGIN WORKOUT"
-        android:textColor="?android:textColorPrimary"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="@+id/daysCard"
-        app:layout_constraintEnd_toEndOf="@+id/daysCard"
-        app:layout_constraintStart_toStartOf="@+id/daysCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/countTextView" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
 
+</androidx.constraintlayout.widget.ConstraintLayout>

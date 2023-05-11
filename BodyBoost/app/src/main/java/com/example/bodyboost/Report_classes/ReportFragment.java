@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,12 +44,19 @@ public class ReportFragment extends Fragment {
         // Obtain an instance of ReportDatabase and ReportDao
         db = ReportDatabase.getInstance(getContext());
         reportDao = db.getReportDao();
+        Log.i("Test", "Created");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_report, container, false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i("Test", "started");
     }
 
     @Override
@@ -76,7 +84,8 @@ public class ReportFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ReportAdapter(reportDao.getAll());
+        List<Report> getAll = reportDao.getAll();
+        adapter = new ReportAdapter(getAll);
 
         recyclerView.setAdapter(adapter);
     }

@@ -12,10 +12,10 @@ import com.example.bodyboost.R;
 
 import java.util.ArrayList;
 
-public class exerciseAdapter extends RecyclerView.Adapter<exerciseAdapter.MyViewHolder>{
+public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyViewHolder>{
     private ArrayList<Exercise> exerciseList;
 
-    public exerciseAdapter(ArrayList<Exercise> exerciseList){
+    public ExerciseAdapter(ArrayList<Exercise> exerciseList){
         this.exerciseList = exerciseList;
     }
 
@@ -30,14 +30,14 @@ public class exerciseAdapter extends RecyclerView.Adapter<exerciseAdapter.MyView
 
     @NonNull
     @Override
-    public exerciseAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ExerciseAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_exercises, parent, false);
 
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull exerciseAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ExerciseAdapter.MyViewHolder holder, int position) {
         String name = exerciseList.get(position).getExerciseName();
         holder.exerciseNameText.setText(name);
     }

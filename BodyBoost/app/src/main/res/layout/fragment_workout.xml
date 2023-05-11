@@ -6,12 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".Exercise_classes.workoutFragment" >
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dayRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="493dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Workout"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Day list"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/dayRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
