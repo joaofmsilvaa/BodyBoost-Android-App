@@ -12,10 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bodyboost.Exercise_classes.DaysAdapter;
-import com.example.bodyboost.Exercise_classes.DaysDao;
+
 import com.example.bodyboost.Exercise_classes.ExerciseAdapter;
-import com.example.bodyboost.Exercise_classes.ExerciseDao;
+import com.example.bodyboost.Exercise_classes.ExerciseSetDao;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +25,7 @@ public class ExerciseFragment extends Fragment {
 
     private ExerciseAdapter adapter;
     private AppDatabase db;
-    private ExerciseDao exerciseDao;
+    private ExerciseSetDao exerciseSetDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,8 @@ public class ExerciseFragment extends Fragment {
 
         // Obtain an instance of AppDatabase and DaysDao
         db = AppDatabase.getInstance(getContext());
-        exerciseDao = db.getExerciseDao();
+        exerciseSetDao = db.getExerciseSetDao();
+
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ExerciseFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ExerciseAdapter(exerciseDao.getAll());
+        adapter = new ExerciseAdapter(exerciseSetDao.getExercisesFromSet(0));
 
         recyclerView.setAdapter(adapter);
     }

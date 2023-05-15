@@ -42,6 +42,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
     public void onBindViewHolder(@NonNull ExerciseAdapter.MyViewHolder holder, int position) {
         Exercise exercises = this.exerciseList.get(position);
 
+
         holder.exerciseNameText.setText(exercises.getExerciseName());
 
     }
