@@ -8,14 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bodyboost.Exercise;
 import com.example.bodyboost.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyViewHolder>{
-    private ArrayList<Exercise> exerciseList;
+    private List<Exercise> exerciseList;
 
-    public ExerciseAdapter(ArrayList<Exercise> exerciseList){
+    public ExerciseAdapter(List<Exercise> exerciseList){
         this.exerciseList = exerciseList;
     }
 
@@ -38,8 +40,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull ExerciseAdapter.MyViewHolder holder, int position) {
-        String name = exerciseList.get(position).getExerciseName();
-        holder.exerciseNameText.setText(name);
+        Exercise exercises = this.exerciseList.get(position);
+
+        holder.exerciseNameText.setText(exercises.getExerciseName());
+
     }
 
     @Override

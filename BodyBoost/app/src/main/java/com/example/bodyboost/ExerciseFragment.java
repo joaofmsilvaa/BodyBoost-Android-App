@@ -2,11 +2,20 @@ package com.example.bodyboost;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.bodyboost.Exercise_classes.DaysAdapter;
+import com.example.bodyboost.Exercise_classes.DaysDao;
+import com.example.bodyboost.Exercise_classes.ExerciseAdapter;
+import com.example.bodyboost.Exercise_classes.ExerciseDao;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,9 +24,17 @@ import android.view.ViewGroup;
  */
 public class ExerciseFragment extends Fragment {
 
+    private ExerciseAdapter adapter;
+    private AppDatabase db;
+    private ExerciseDao exerciseDao;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Obtain an instance of AppDatabase and DaysDao
+        db = AppDatabase.getInstance(getContext());
+        exerciseDao = db.getExerciseDao();
     }
 
     @Override
@@ -27,5 +44,20 @@ public class ExerciseFragment extends Fragment {
         int exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
 
         return inflater.inflate(R.layout.fragment_exercise, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecyclerView recyclerView = view.findViewById(R.id.exerciseRecyclerView);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new ExerciseAdapter(exerciseDao.getAll());
+
+        recyclerView.setAdapter(adapter);
     }
 }

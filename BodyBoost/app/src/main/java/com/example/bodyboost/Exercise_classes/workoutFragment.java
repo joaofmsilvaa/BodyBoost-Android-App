@@ -32,7 +32,7 @@ public class WorkoutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Obtain an instance of ReportDatabase and ReportDao
+        // Obtain an instance of AppDatabase and DaysDao
         db = AppDatabase.getInstance(getContext());
         daysDao = db.getDaysDao();
     }

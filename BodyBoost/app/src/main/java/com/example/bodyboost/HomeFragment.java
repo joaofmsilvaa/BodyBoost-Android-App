@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.bodyboost.Exercise_classes.Exercise;
 import com.example.bodyboost.Exercise_classes.ExerciseAdapter;
 
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class HomeFragment extends Fragment {
         mealsRecyclerView = view.findViewById(R.id.mealRecyclerView);
 
         exerciseArrayList = new ArrayList<>();
-        setExerciseInfo();
+
         setExerciseAdapter();
 
         mealArrayList = new ArrayList<>();
@@ -89,11 +88,6 @@ public class HomeFragment extends Fragment {
         mealsRecyclerView.setAdapter(mealAdapter);
     }
 
-    private void setExerciseInfo() {
-        exerciseArrayList.add(new Exercise("Flexões"));
-        exerciseArrayList.add(new Exercise("Abdominais"));
-        exerciseArrayList.add(new Exercise("Agachamentos"));
-    }
 
     private void setMealInfo() {
         mealArrayList.add(new Meal("Frango"));
