@@ -31,13 +31,26 @@
 
     <fragment
         android:id="@+id/workoutFragment"
-        android:name="com.example.bodyboost.Exercise_classes.workoutFragment"
+        android:name="com.example.bodyboost.Exercise_classes.WorkoutFragment"
         android:label="fragment_workout"
-        tools:layout="@layout/fragment_workout" />
+        tools:layout="@layout/fragment_workout" >
+        <action
+            android:id="@+id/action_workoutFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/logInFragment"
         android:name="com.example.bodyboost.logInFragment"
         android:label="fragment_logIn"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="com.example.bodyboost.ExerciseFragment"
+        android:label="fragment_exercise"
+        tools:layout="@layout/fragment_exercise" >
+        <argument
+            android:name="ExerciseDay"
+            app:argType="integer" />
+    </fragment>
 </navigation>

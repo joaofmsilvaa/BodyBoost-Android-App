@@ -31,8 +31,12 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
     @Override
     public void onBindViewHolder(@NonNull DaysAdapter.DaysViewHolder holder, int position) {
         Days days = this.daysList.get(position);
+        String numberOfExercises = Integer.toString(days.getNumberOfExercises());
+        String concludedExercises = Integer.toString(days.getConcludedExercises());
 
         holder.daysTextView.setText(days.getDay());
+        holder.countTextView.setText(concludedExercises + " / " + numberOfExercises);
+
     }
 
     @Override
@@ -42,10 +46,12 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
 
     public class DaysViewHolder extends RecyclerView.ViewHolder {
         TextView daysTextView;
+        TextView countTextView;
 
         public DaysViewHolder(@NonNull View itemView) {
             super(itemView);
             daysTextView = itemView.findViewById(R.id.dayTextView);
+            countTextView = itemView.findViewById(R.id.countTextView);
 
         }
     }

@@ -7,26 +7,32 @@ import androidx.room.PrimaryKey;
 public class Days {
 
     @PrimaryKey(autoGenerate = true)
-    private int day_id;
+    private int dayId;
     private String day;
-    private int number_exercises;
+    private int numberOfExercises;
 
-    public Days(int day_id,String day, int number_exercises) {
-        this.day_id = day_id;
+    private int concludedExercises;
+
+    public Days(int dayId,String day, int numberOfExercises, int concludedExercises) {
+        this.dayId = dayId;
         this.day = day;
-        this.number_exercises = number_exercises;
+        this.numberOfExercises = numberOfExercises;
+        this.concludedExercises = concludedExercises;
     }
 
-    public int getDay_id() {
-        return day_id;
+    public int getDayId() {
+        return dayId;
     }
     public String getDay() {
         return day;
     }
 
-    public int getNumber_exercises() {
-        return number_exercises;
+    public int getNumberOfExercises() {
+        return numberOfExercises;
     }
 
+    public int getConcludedExercises() {
+        return concludedExercises;
+    }
 }
 

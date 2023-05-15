@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Exercise_classes.workoutFragment" >
+    tools:context=".Exercise_classes.WorkoutFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dayRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="493dp"
+        android:layout_height="454dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView5"
+    <Button
+        android:id="@+id/navigateBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Day list"
-        android:textSize="24sp"
+        android:text="Navigate"
         app:layout_constraintBottom_toTopOf="@+id/dayRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

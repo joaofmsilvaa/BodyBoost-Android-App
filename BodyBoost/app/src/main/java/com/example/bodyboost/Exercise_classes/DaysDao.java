@@ -1,6 +1,7 @@
 package com.example.bodyboost.Exercise_classes;
 
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.example.bodyboost.Exercise_classes.Days;
@@ -12,5 +13,9 @@ public interface DaysDao {
 
     @Query("SELECT * FROM days")
     List<Days> getAll();
+
+    @Insert
+    void insertAll(Days day);
+
 
 }

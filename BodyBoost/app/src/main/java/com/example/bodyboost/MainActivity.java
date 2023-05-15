@@ -138,5 +138,4 @@ public class MainActivity extends AppCompatActivity {
             passwordAlert.setText("");
         }
     }
-
 }
