@@ -1,11 +1,15 @@
 package com.example.bodyboost.Exercise_classes;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bodyboost.R;
@@ -37,6 +41,14 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
         holder.daysTextView.setText(days.getDay());
         holder.countTextView.setText(concludedExercises + " / " + numberOfExercises);
 
+        holder.dayCard.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int currentPos = holder.getAdapterPosition();
+                NavDirections action = WorkoutFragmentDirections.actionWorkoutFragmentToExerciseFragment(currentPos);
+                Navigation.findNavController(v).navigate(action);
+            }
+        });
+
     }
 
     @Override
@@ -48,14 +60,15 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
         TextView daysTextView;
         TextView countTextView;
 
+        TextView dayCard;
         public DaysViewHolder(@NonNull View itemView) {
             super(itemView);
             daysTextView = itemView.findViewById(R.id.dayTextView);
             countTextView = itemView.findViewById(R.id.countTextView);
+            dayCard = itemView.findViewById(R.id.dayCard);
 
         }
     }
-
 }
 
 

@@ -26,9 +26,7 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment {
 
-    private ArrayList<Exercise> exerciseArrayList;
     private ArrayList<Meal> mealArrayList;
-    private RecyclerView exerciseRecyclerView;
     private RecyclerView mealsRecyclerView;
     private int percentageValue = 100;
     private TextView percentage;
@@ -55,12 +53,8 @@ public class HomeFragment extends Fragment {
         percentageBar = view.findViewById(R.id.percentageBar);
         percentageBar.setProgress(percentageValue);
 
-        exerciseRecyclerView = view.findViewById(R.id.exerciseRecyclerView);
         mealsRecyclerView = view.findViewById(R.id.mealRecyclerView);
 
-        exerciseArrayList = new ArrayList<>();
-
-        setExerciseAdapter();
 
         mealArrayList = new ArrayList<>();
         setMealInfo();
@@ -68,15 +62,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void setExerciseAdapter() {
-        ExerciseAdapter exerciseAdapter = new ExerciseAdapter(exerciseArrayList);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-
-        exerciseRecyclerView.setLayoutManager(layoutManager);
-        exerciseRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        exerciseRecyclerView.setAdapter(exerciseAdapter);
-    }
 
     private void setMealsAdapter() {
         mealAdapter mealAdapter = new mealAdapter(mealArrayList);

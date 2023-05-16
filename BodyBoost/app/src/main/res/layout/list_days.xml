@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400dp">
+    android:layout_height="220dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/weekCardView"
@@ -14,12 +14,13 @@
         app:layout_constraintTop_toBottomOf="parent" />
 
     <TextView
-        android:id="@+id/daysCard"
+        android:id="@+id/dayCard"
         android:layout_width="350dp"
         android:layout_height="192dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
         android:background="?colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/weekCardView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,9 +35,9 @@
         android:text="Day"
         android:textColor="?android:textColorPrimary"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/daysCard"
-        app:layout_constraintStart_toStartOf="@+id/daysCard"
-        app:layout_constraintTop_toTopOf="@+id/daysCard" />
+        app:layout_constraintEnd_toEndOf="@+id/dayCard"
+        app:layout_constraintStart_toStartOf="@+id/dayCard"
+        app:layout_constraintTop_toTopOf="@+id/dayCard" />
 
     <TextView
         android:id="@+id/countTextView"
@@ -45,9 +46,9 @@
         android:text="TextView"
         android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/daysCard"
-        app:layout_constraintEnd_toEndOf="@+id/daysCard"
-        app:layout_constraintStart_toStartOf="@+id/daysCard"
+        app:layout_constraintBottom_toBottomOf="@+id/dayCard"
+        app:layout_constraintEnd_toEndOf="@+id/dayCard"
+        app:layout_constraintStart_toStartOf="@+id/dayCard"
         app:layout_constraintTop_toBottomOf="@+id/dayTextView" />
 
 

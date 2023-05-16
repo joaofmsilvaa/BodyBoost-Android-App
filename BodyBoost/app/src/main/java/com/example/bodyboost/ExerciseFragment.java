@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import com.example.bodyboost.Exercise_classes.ExerciseAdapter;
@@ -40,8 +41,6 @@ public class ExerciseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        int exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
 
         return inflater.inflate(R.layout.fragment_exercise, container, false);
     }
@@ -50,14 +49,26 @@ public class ExerciseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Inflate the layout for this fragment
+        int exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
+
+        TextView dayOfWeek = view.findViewById(R.id.dayIndicatorTextView);
+        dayOfWeek.setText(dayFinder(exerciseDay));
+
         RecyclerView recyclerView = view.findViewById(R.id.exerciseRecyclerView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ExerciseAdapter(exerciseSetDao.getExercisesFromSet(0));
+        adapter = new ExerciseAdapter(exerciseSetDao.getExercisesFromSet(exerciseDay),exerciseSetDao.getAll());
 
         recyclerView.setAdapter(adapter);
+    }
+
+    public static String dayFinder(int givenID){
+        String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+        return daysOfWeek[givenID];
     }
 }

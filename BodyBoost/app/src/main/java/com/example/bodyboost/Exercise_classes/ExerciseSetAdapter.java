@@ -13,55 +13,48 @@ import com.example.bodyboost.R;
 
 import java.util.List;
 
-public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyViewHolder>{
-    private List<Exercise> exerciseList;
+public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.MyViewHolder>{
     private List<ExerciseSet> exerciseSetList;
 
-    public ExerciseAdapter(List<Exercise> exerciseList, List<ExerciseSet> exerciseSetList){
-        this.exerciseList = exerciseList;
+    public ExerciseSetAdapter(List<ExerciseSet> exerciseSetList){
         this.exerciseSetList = exerciseSetList;
-
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView exerciseNameText;
+
         private TextView timeRepetitionsTextView;
 
         public MyViewHolder(final View view){
             super(view);
-            exerciseNameText = view.findViewById(R.id.weightValue);
+
             timeRepetitionsTextView = view.findViewById(R.id.timeRepetitionsTextView);
         }
     }
 
     @NonNull
     @Override
-    public ExerciseAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ExerciseSetAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_exercises, parent, false);
 
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExerciseAdapter.MyViewHolder holder, int position) {
-        Exercise exercises = this.exerciseList.get(position);
+    public void onBindViewHolder(@NonNull ExerciseSetAdapter.MyViewHolder holder, int position) {
         ExerciseSet exerciseSet = this.exerciseSetList.get(position);
-
-        holder.exerciseNameText.setText(exercises.getExerciseName());
 
         if(exerciseSet.getRepetitions() == 0){
             holder.timeRepetitionsTextView.setText(exerciseSet.getTime());
         }
         else{
-            holder.timeRepetitionsTextView.setText(Integer.toString(exerciseSet.getRepetitions()));
+            holder.timeRepetitionsTextView.setText(exerciseSet.getRepetitions());
         }
-
 
     }
 
     @Override
     public int getItemCount() {
-        return exerciseList.size();
+        return exerciseSetList.size();
     }
 
 }

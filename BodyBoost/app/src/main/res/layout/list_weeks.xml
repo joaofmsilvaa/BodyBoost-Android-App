@@ -14,7 +14,7 @@
         app:layout_constraintTop_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/daysCard"
+        android:id="@+id/dayCard"
         android:layout_width="0dp"
         android:layout_height="320dp"
         android:layout_marginStart="32dp"
@@ -42,9 +42,9 @@
         android:textColor="?android:textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="@+id/daysCard"
-        app:layout_constraintStart_toStartOf="@+id/daysCard"
-        app:layout_constraintTop_toTopOf="@+id/daysCard"
+        app:layout_constraintEnd_toEndOf="@+id/dayCard"
+        app:layout_constraintStart_toStartOf="@+id/dayCard"
+        app:layout_constraintTop_toTopOf="@+id/dayCard"
         app:layout_constraintVertical_bias="0.377" />
 
     <TextView
@@ -55,8 +55,8 @@
         android:text="TextView"
         android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/daysCard"
-        app:layout_constraintStart_toStartOf="@+id/daysCard"
+        app:layout_constraintEnd_toEndOf="@+id/dayCard"
+        app:layout_constraintStart_toStartOf="@+id/dayCard"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <Button
@@ -66,9 +66,9 @@
         android:background="@color/mainRed"
         android:text="BEGIN WORKOUT"
         android:textColor="?android:textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/daysCard"
-        app:layout_constraintEnd_toEndOf="@+id/daysCard"
-        app:layout_constraintStart_toStartOf="@+id/daysCard"
+        app:layout_constraintBottom_toBottomOf="@+id/dayCard"
+        app:layout_constraintEnd_toEndOf="@+id/dayCard"
+        app:layout_constraintStart_toStartOf="@+id/dayCard"
         app:layout_constraintTop_toBottomOf="@+id/countTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
