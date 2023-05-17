@@ -22,7 +22,7 @@ public class mealAdapter extends RecyclerView.Adapter<mealAdapter.MyViewHolder>{
 
         public MyViewHolder(final View view){
             super(view);
-            mealNameText = view.findViewById(R.id.weightValue);
+            mealNameText = view.findViewById(R.id.exerciseName);
         }
     }
 

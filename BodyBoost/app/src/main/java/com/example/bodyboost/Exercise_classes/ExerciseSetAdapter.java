@@ -15,18 +15,21 @@ import java.util.List;
 
 public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.MyViewHolder>{
     private List<ExerciseSet> exerciseSetList;
+    private List<Exercise> exerciseList;
 
-    public ExerciseSetAdapter(List<ExerciseSet> exerciseSetList){
+    public ExerciseSetAdapter(List<ExerciseSet> exerciseSetList, List<Exercise> exerciseList){
         this.exerciseSetList = exerciseSetList;
+        this.exerciseList = exerciseList;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView timeRepetitionsTextView;
+        private TextView exerciseNameTextView;
 
         public MyViewHolder(final View view){
             super(view);
-
+            exerciseNameTextView = view.findViewById(R.id.exerciseName);
             timeRepetitionsTextView = view.findViewById(R.id.timeRepetitionsTextView);
         }
     }
@@ -42,12 +45,16 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
     @Override
     public void onBindViewHolder(@NonNull ExerciseSetAdapter.MyViewHolder holder, int position) {
         ExerciseSet exerciseSet = this.exerciseSetList.get(position);
+        Exercise exercise = this.exerciseList.get(position);
+
+
+        holder.exerciseNameTextView.setText(exercise.getExerciseName());
 
         if(exerciseSet.getRepetitions() == 0){
             holder.timeRepetitionsTextView.setText(exerciseSet.getTime());
         }
         else{
-            holder.timeRepetitionsTextView.setText(exerciseSet.getRepetitions());
+            holder.timeRepetitionsTextView.setText(Integer.toString(exerciseSet.getRepetitions()));
         }
 
     }

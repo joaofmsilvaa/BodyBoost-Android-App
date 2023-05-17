@@ -43,8 +43,8 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
 
         holder.dayCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int currentPos = holder.getAdapterPosition();
-                NavDirections action = WorkoutFragmentDirections.actionWorkoutFragmentToExerciseFragment(currentPos);
+                int currentDay = holder.getAdapterPosition();
+                NavDirections action = WorkoutFragmentDirections.actionWorkoutFragmentToExerciseFragment(currentDay);
                 Navigation.findNavController(v).navigate(action);
             }
         });
@@ -70,6 +70,8 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
         }
     }
 }
+
+
 
 
 

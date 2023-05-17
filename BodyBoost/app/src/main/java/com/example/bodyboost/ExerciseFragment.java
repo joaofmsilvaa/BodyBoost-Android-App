@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.example.bodyboost.Exercise_classes.ExerciseAdapter;
+import com.example.bodyboost.Exercise_classes.DaysDao;
+import com.example.bodyboost.Exercise_classes.ExerciseSetAdapter;
 import com.example.bodyboost.Exercise_classes.ExerciseSetDao;
 
 /**
@@ -24,9 +25,10 @@ import com.example.bodyboost.Exercise_classes.ExerciseSetDao;
  */
 public class ExerciseFragment extends Fragment {
 
-    private ExerciseAdapter adapter;
+    private ExerciseSetAdapter adapter;
     private AppDatabase db;
     private ExerciseSetDao exerciseSetDao;
+    private DaysDao daysDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,13 +37,14 @@ public class ExerciseFragment extends Fragment {
         // Obtain an instance of AppDatabase and DaysDao
         db = AppDatabase.getInstance(getContext());
         exerciseSetDao = db.getExerciseSetDao();
-
+        daysDao = db.getDaysDao();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_exercise, container, false);
     }
 
@@ -49,11 +52,14 @@ public class ExerciseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Inflate the layout for this fragment
+        // Stores the given argument ( an ID of the selected day ) in the exerciseDay variable
         int exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
 
+
+
         TextView dayOfWeek = view.findViewById(R.id.dayIndicatorTextView);
-        dayOfWeek.setText(dayFinder(exerciseDay));
+
+        dayOfWeek.setText(daysDao.getDayByID(exerciseDay));
 
         RecyclerView recyclerView = view.findViewById(R.id.exerciseRecyclerView);
 
@@ -61,14 +67,10 @@ public class ExerciseFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ExerciseAdapter(exerciseSetDao.getExercisesFromSet(exerciseDay),exerciseSetDao.getAll());
+
+        adapter = new ExerciseSetAdapter(exerciseSetDao.getSetByDay(exerciseDay),exerciseSetDao.getAllExercisesInSet(exerciseDay));
 
         recyclerView.setAdapter(adapter);
     }
 
-    public static String dayFinder(int givenID){
-        String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-
-        return daysOfWeek[givenID];
-    }
 }

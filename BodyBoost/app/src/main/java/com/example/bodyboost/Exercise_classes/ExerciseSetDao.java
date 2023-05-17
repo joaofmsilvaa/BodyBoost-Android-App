@@ -13,10 +13,11 @@ public interface ExerciseSetDao {
     @Query("SELECT * FROM exerciseset")
     List<ExerciseSet> getAll();
 
-    @Query("SELECT e.*\n" +
-            "FROM Exercise e\n" +
-            "JOIN ExerciseSet es ON e.exerciseId = es.exerciseId\n" +
-            "WHERE es.exerciseSetId = :id;")
-    List<Exercise> getExercisesFromSet(int id);
+    @Query("SELECT exercise.* " +
+            "FROM exerciseset, exercise " +
+            "WHERE exerciseSet.dayId = :id AND exerciseset.exerciseId = exercise.exerciseId")
+    List<Exercise> getAllExercisesInSet(int id);
 
+    @Query("SELECT * FROM exerciseset WHERE dayId = :day")
+    List<ExerciseSet> getSetByDay(int day);
 }

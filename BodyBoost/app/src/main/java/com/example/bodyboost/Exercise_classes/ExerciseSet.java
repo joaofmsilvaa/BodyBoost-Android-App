@@ -1,19 +1,20 @@
 package com.example.bodyboost.Exercise_classes;
 
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
 
-import com.example.bodyboost.Exercise;
 
-@Entity(primaryKeys = {"exerciseSetID", "exerciseId"}, foreignKeys = {@ForeignKey(entity = Exercise.class,
-        parentColumns = "exerciseId",
-        childColumns = "exerciseId",
+@Entity(primaryKeys = {"dayId", "exerciseId"}, foreignKeys = {
+
+        @ForeignKey(entity = Days.class,
+        parentColumns = "dayId",
+        childColumns = "dayId",
         onDelete = ForeignKey.CASCADE)
 })
 public class ExerciseSet {
 
-    int exerciseSetID;
+    int dayId;
 
     int exerciseId;
 
@@ -21,15 +22,15 @@ public class ExerciseSet {
 
     String time;
 
-    public ExerciseSet(int exerciseSetID, int exerciseId, int repetitions, String time) {
-        this.exerciseSetID = exerciseSetID;
+    public ExerciseSet(int dayId, int exerciseId, int repetitions, String time) {
+        this.dayId = dayId;
         this.exerciseId = exerciseId;
         this.repetitions = repetitions;
         this.time = time;
     }
 
-    public int getExerciseSetID() {
-        return exerciseSetID;
+    public int getdayID() {
+        return dayId;
     }
 
     public int getExerciseId() {
@@ -44,3 +45,5 @@ public class ExerciseSet {
         return time;
     }
 }
+
+

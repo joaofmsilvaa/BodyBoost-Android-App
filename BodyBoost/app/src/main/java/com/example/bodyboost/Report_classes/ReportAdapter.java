@@ -1,7 +1,5 @@
 package com.example.bodyboost.Report_classes;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bodyboost.R;
 
-import org.w3c.dom.Text;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
@@ -77,7 +70,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
-            weightValue = itemView.findViewById(R.id.weightValue);
+            weightValue = itemView.findViewById(R.id.exerciseName);
             testImageView = itemView.findViewById(R.id.imageViewTest);
             dateTextView = itemView.findViewById(R.id.dateTextView);
         }

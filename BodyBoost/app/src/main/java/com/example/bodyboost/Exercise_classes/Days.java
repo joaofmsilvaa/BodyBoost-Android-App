@@ -8,9 +8,9 @@ public class Days {
 
     @PrimaryKey(autoGenerate = true)
     private int dayId;
+
     private String day;
     private int numberOfExercises;
-
     private int concludedExercises;
 
     public Days(int dayId,String day, int numberOfExercises, int concludedExercises) {

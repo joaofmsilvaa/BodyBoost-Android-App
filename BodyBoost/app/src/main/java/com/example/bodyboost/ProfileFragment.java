@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
+ * Use the {@link ProfileFragment} factory method to
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {

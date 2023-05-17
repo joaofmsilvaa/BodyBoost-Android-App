@@ -35,6 +35,7 @@ public class WorkoutFragment extends Fragment {
         // Obtain an instance of AppDatabase and DaysDao
         db = AppDatabase.getInstance(getContext());
         daysDao = db.getDaysDao();
+
     }
 
     @Override
@@ -47,15 +48,6 @@ public class WorkoutFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        Button navigateBtn = view.findViewById(R.id.navigateBtn);
-        navigateBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                NavDirections action = WorkoutFragmentDirections.actionWorkoutFragmentToExerciseFragment(1);
-                Navigation.findNavController(view).navigate(action);
-            }
-        });
 
         RecyclerView recyclerView = view.findViewById(R.id.dayRecyclerView);
 
