@@ -22,15 +22,13 @@ public class ExerciseSet {
 
     String time;
 
-    public ExerciseSet(int dayId, int exerciseId, int repetitions, String time) {
+    Boolean completed;
+
+    public ExerciseSet(int dayId, int exerciseId, int repetitions, String time, Boolean completed) {
         this.dayId = dayId;
         this.exerciseId = exerciseId;
         this.repetitions = repetitions;
         this.time = time;
-    }
-
-    public int getdayID() {
-        return dayId;
     }
 
     public int getExerciseId() {
@@ -43,6 +41,14 @@ public class ExerciseSet {
 
     public String getTime() {
         return time;
+    }
+
+    public int getDayId() {
+        return dayId;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
     }
 }
 

@@ -68,7 +68,7 @@ public class ExerciseFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        adapter = new ExerciseSetAdapter(exerciseSetDao.getSetByDay(exerciseDay),exerciseSetDao.getAllExercisesInSet(exerciseDay));
+        adapter = new ExerciseSetAdapter(exerciseSetDao.getSetByDay(exerciseDay),exerciseSetDao.getExercisesInSet(exerciseDay));
 
         recyclerView.setAdapter(adapter);
     }

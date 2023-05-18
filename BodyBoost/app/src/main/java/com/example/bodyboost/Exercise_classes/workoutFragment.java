@@ -1,5 +1,6 @@
 package com.example.bodyboost.Exercise_classes;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,11 +24,13 @@ import com.example.bodyboost.R;
  * Use the {@link WorkoutFragment} factory method to
  * create an instance of this fragment.
  */
-public class WorkoutFragment extends Fragment {
+public class WorkoutFragment extends Fragment implements ExerciseSetAdapter.ExerciseSetAdapterEventListener {
 
     private DaysAdapter adapter;
     private AppDatabase db;
     private DaysDao daysDao;
+
+    private Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,5 +61,15 @@ public class WorkoutFragment extends Fragment {
         adapter = new DaysAdapter(daysDao.getAll());
 
         recyclerView.setAdapter(adapter);
+    }
+
+
+    public static void onExerciseCompleted(int chatId, int exerciseId, int repetitions, String time) {
+        AppDatabase db = AppDatabase.getInstance(this.getContext());
+        ExerciseSetDao exerciseSetDao = db.getExerciseSetDao();
+
+        ExerciseSet updatedExerciseSet = new ExerciseSet(chatId,exerciseId,repetitions,time,true);
+
+        exerciseSetDao.update(updatedExerciseSet);
     }
 }

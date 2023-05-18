@@ -50,4 +50,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/weightCard"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/exerciseDoneCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Done"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/weightCard"
+        app:layout_constraintStart_toStartOf="@+id/weightCard"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseName" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

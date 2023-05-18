@@ -3,12 +3,16 @@ package com.example.bodyboost.Exercise_classes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bodyboost.Exercise;
+import com.example.bodyboost.ExerciseFragment;
 import com.example.bodyboost.R;
 
 import java.util.List;
@@ -26,11 +30,12 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
         private TextView timeRepetitionsTextView;
         private TextView exerciseNameTextView;
-
+        private CheckBox exerciseDoneCheckBox;
         public MyViewHolder(final View view){
             super(view);
             exerciseNameTextView = view.findViewById(R.id.exerciseName);
             timeRepetitionsTextView = view.findViewById(R.id.timeRepetitionsTextView);
+            exerciseDoneCheckBox = view.findViewById(R.id.exerciseDoneCheckBox);
         }
     }
 
@@ -47,6 +52,11 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         ExerciseSet exerciseSet = this.exerciseSetList.get(position);
         Exercise exercise = this.exerciseList.get(position);
 
+        holder.exerciseDoneCheckBox.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                WorkoutFragment.onExerciseCompleted(position);
+            }
+        });
 
         holder.exerciseNameTextView.setText(exercise.getExerciseName());
 
@@ -57,6 +67,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
             holder.timeRepetitionsTextView.setText(Integer.toString(exerciseSet.getRepetitions()));
         }
 
+
     }
 
     @Override
@@ -64,4 +75,8 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         return exerciseSetList.size();
     }
 
+
+    public interface ExerciseSetAdapterEventListener {
+        void onExerciseCompleted(int dayId);
+    }
 }

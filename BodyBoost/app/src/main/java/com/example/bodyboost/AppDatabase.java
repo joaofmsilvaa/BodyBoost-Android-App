@@ -22,6 +22,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract DaysDao getDaysDao();
     public abstract ExerciseSetDao getExerciseSetDao();
 
+    // Gets an instance of the app database
     private static AppDatabase INSTANCE;
 
 
