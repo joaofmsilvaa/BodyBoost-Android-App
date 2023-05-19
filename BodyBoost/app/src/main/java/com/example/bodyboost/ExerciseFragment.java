@@ -1,5 +1,6 @@
 package com.example.bodyboost;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 
 import com.example.bodyboost.Exercise_classes.DaysDao;
+import com.example.bodyboost.Exercise_classes.ExerciseSet;
 import com.example.bodyboost.Exercise_classes.ExerciseSetAdapter;
 import com.example.bodyboost.Exercise_classes.ExerciseSetDao;
 
@@ -23,7 +25,7 @@ import com.example.bodyboost.Exercise_classes.ExerciseSetDao;
  * Use the {@link ExerciseFragment} factory method to
  * create an instance of this fragment.
  */
-public class ExerciseFragment extends Fragment {
+public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.ExerciseSetAdapterEventListener {
 
     private ExerciseSetAdapter adapter;
     private AppDatabase db;
@@ -68,9 +70,19 @@ public class ExerciseFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        adapter = new ExerciseSetAdapter(exerciseSetDao.getSetByDay(exerciseDay),exerciseSetDao.getExercisesInSet(exerciseDay));
+        adapter = new ExerciseSetAdapter(this, exerciseSetDao.getSetByDay(exerciseDay),exerciseSetDao.getExercisesInSet(exerciseDay));
 
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onExerciseCompleted(int dayId, int exerciseId, Context context) {
+        AppDatabase db = AppDatabase.getInstance(context);
+        ExerciseSetDao exerciseSetDao = db.getExerciseSetDao();
+
+        if(!exerciseSetDao.checkCompleted(dayId,exerciseId)){
+            exerciseSetDao.completedExercise(dayId, exerciseId);
+        }
     }
 
 }

@@ -1,5 +1,7 @@
 package com.example.bodyboost.Exercise_classes;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,18 +23,23 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
     private List<ExerciseSet> exerciseSetList;
     private List<Exercise> exerciseList;
 
-    public ExerciseSetAdapter(List<ExerciseSet> exerciseSetList, List<Exercise> exerciseList){
+    ExerciseSetAdapterEventListener eventListener;
+
+    public ExerciseSetAdapter(ExerciseSetAdapterEventListener eventListener , List<ExerciseSet> exerciseSetList, List<Exercise> exerciseList){
         this.exerciseSetList = exerciseSetList;
         this.exerciseList = exerciseList;
+        this.eventListener = eventListener;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
+        private Context context;
         private TextView timeRepetitionsTextView;
         private TextView exerciseNameTextView;
         private CheckBox exerciseDoneCheckBox;
-        public MyViewHolder(final View view){
+        public MyViewHolder(final View view, Context context){
             super(view);
+            this.context = context;
             exerciseNameTextView = view.findViewById(R.id.exerciseName);
             timeRepetitionsTextView = view.findViewById(R.id.timeRepetitionsTextView);
             exerciseDoneCheckBox = view.findViewById(R.id.exerciseDoneCheckBox);
@@ -44,7 +51,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
     public ExerciseSetAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_exercises, parent, false);
 
-        return new MyViewHolder(itemView);
+        return new MyViewHolder(itemView, parent.getContext());
     }
 
     @Override
@@ -54,7 +61,13 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
         holder.exerciseDoneCheckBox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                WorkoutFragment.onExerciseCompleted(position);
+                Log.i("CheckBox", "Exercise completed");
+                int dayId = exerciseSet.dayId;
+                int exerciseId = exerciseSet.exerciseId;
+
+                Context context = holder.context;
+                if (eventListener != null) eventListener.onExerciseCompleted(dayId,exerciseId,context);
+
             }
         });
 
@@ -77,6 +90,6 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
 
     public interface ExerciseSetAdapterEventListener {
-        void onExerciseCompleted(int dayId);
+        void onExerciseCompleted(int chatId, int exerciseId, Context context);
     }
 }
