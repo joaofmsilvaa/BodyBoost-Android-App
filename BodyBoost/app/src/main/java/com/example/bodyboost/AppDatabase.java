@@ -12,15 +12,19 @@ import com.example.bodyboost.Exercise_classes.Days;
 import com.example.bodyboost.Exercise_classes.DaysDao;
 import com.example.bodyboost.Exercise_classes.ExerciseSet;
 import com.example.bodyboost.Exercise_classes.ExerciseSetDao;
+import com.example.bodyboost.Feed_classes.Feed;
+import com.example.bodyboost.Feed_classes.FeedDao;
 import com.example.bodyboost.Report_classes.Report;
 import com.example.bodyboost.Report_classes.ReportDao;
 
-@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSet.class}, version = 1)
+@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSet.class, Feed.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ReportDao getReportDao();
     public abstract DaysDao getDaysDao();
     public abstract ExerciseSetDao getExerciseSetDao();
+    public abstract FeedDao getFeedDao();
+
 
     // Gets an instance of the app database
     private static AppDatabase INSTANCE;
@@ -145,6 +149,10 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (6, 22 , 4 , 0 , '1 minute')");
                             db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (6, 23 , 5 , 0  , '45 seconds')");
                             db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (6, 29 , 6 , 8 , null)");
+
+                            // Feed - News
+                            db.execSQL("INSERT INTO Feed ('newsTitle', 'newsSmallDescription', 'newsImg') Values('João Coelho abre época com boa marca em Yokohama', 'O velocista português João Coelho terminou no segundo lugar a corrida de 400 metros, com a marca de 45,46 segundos.', 'https://cdn-images.rtp.pt/icm/noticias/images/eb/eb80c6ff94c0c6fd4846fb61f6e10005?w=860&q=90&rect=0,48,1587,870&auto=format')");
+                            db.execSQL("INSERT INTO Feed ('newsTitle', 'newsSmallDescription', 'newsImg') Values('Jessica Inchude vence lançamento do peso em meeting na Polónia', 'A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros, a dois centímetros do seu recorde pessoal.', 'https://cdn.record.pt/images/2023-05/img_920x518$2023_05_21_19_27_28_2131327.png')");
 
                         }
                     })
