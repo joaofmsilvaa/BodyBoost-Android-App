@@ -27,15 +27,12 @@ public interface ExerciseSetDao {
     /*
     Selects all the information from the exerciseSet with the given dayId
      */
-    @Query("SELECT * FROM exerciseset WHERE dayId = :day")
+    @Query("SELECT * FROM exerciseset WHERE dayId = :day ORDER BY orderIndex")
     List<ExerciseSet> getSetByDay(int day);
 
-    /*
-    Updates the exerciseSet with the given day and exerciseId and sets it to completed
-     */
-    @Query("UPDATE or REPLACE exerciseset SET completed = 'true' WHERE dayId = :day AND exerciseId = :exerciseId")
-    void completedExercise(int day, int exerciseId);
+    @Query("SELECT COUNT(exerciseId) FROM exerciseset WHERE dayId = :day")
+    int getAmmountOfExercisesInSet(int day);
 
-    @Query("SELECT completed FROM exerciseset WHERE dayId = :day AND exerciseId = :exerciseId")
-    Boolean checkCompleted(int day, int exerciseId);
+
+
 }

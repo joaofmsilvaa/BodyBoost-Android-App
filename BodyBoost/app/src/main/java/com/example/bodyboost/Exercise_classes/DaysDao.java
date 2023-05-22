@@ -15,6 +15,7 @@ public interface DaysDao {
     @Query("SELECT day FROM days WHERE dayId = :id")
     String getDayByID(int id);
 
+
     @Insert
     void insertAll(Days day);
 

@@ -18,21 +18,26 @@ public class ExerciseSet {
 
     int exerciseId;
 
+    int orderIndex;
+
     int repetitions;
 
     String time;
 
-    Boolean completed;
-
-    public ExerciseSet(int dayId, int exerciseId, int repetitions, String time, Boolean completed) {
+    public ExerciseSet(int dayId, int exerciseId, int orderIndex ,int repetitions, String time) {
         this.dayId = dayId;
         this.exerciseId = exerciseId;
+        this.orderIndex = orderIndex;
         this.repetitions = repetitions;
         this.time = time;
     }
 
     public int getExerciseId() {
         return exerciseId;
+    }
+
+    public int getOrderIndex() {
+        return orderIndex;
     }
 
     public int getRepetitions() {
@@ -47,13 +52,6 @@ public class ExerciseSet {
         return dayId;
     }
 
-    public Boolean getCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
-    }
 }
 
 

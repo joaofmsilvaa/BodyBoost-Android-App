@@ -10,12 +10,9 @@ public class Exercise {
     private int exerciseId;
     private String exerciseName;
 
-    private String exerciseType;
-
-    public Exercise(int exerciseId, String exerciseName, String exerciseType){
+    public Exercise(int exerciseId, String exerciseName){
         this.exerciseId = exerciseId;
         this.exerciseName = exerciseName;
-        this.exerciseType = exerciseType;
     }
 
     public String getExerciseName(){
@@ -26,7 +23,4 @@ public class Exercise {
         return exerciseId;
     }
 
-    public String getExerciseType() {
-        return exerciseType;
-    }
 }

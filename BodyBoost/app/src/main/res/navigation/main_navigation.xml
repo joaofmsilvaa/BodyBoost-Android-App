@@ -30,12 +30,12 @@
         tools:layout="@layout/fragment_report" />
 
     <fragment
-        android:id="@+id/workoutFragment"
-        android:name="com.example.bodyboost.Exercise_classes.WorkoutFragment"
-        android:label="fragment_workout"
-        tools:layout="@layout/fragment_workout" >
+        android:id="@+id/daysFragment"
+        android:name="com.example.bodyboost.Exercise_classes.DaysFragment"
+        android:label="fragment_days"
+        tools:layout="@layout/fragment_days" >
         <action
-            android:id="@+id/action_workoutFragment_to_exerciseFragment"
+            android:id="@+id/action_DaysFragment_to_exerciseFragment"
             app:destination="@id/exerciseFragment" />
     </fragment>
 

@@ -13,9 +13,11 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.Exercise;
 import com.example.bodyboost.ExerciseFragment;
 import com.example.bodyboost.R;
+import com.example.bodyboost.Report_classes.Report;
 
 import java.util.List;
 
@@ -23,12 +25,11 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
     private List<ExerciseSet> exerciseSetList;
     private List<Exercise> exerciseList;
 
-    ExerciseSetAdapterEventListener eventListener;
 
-    public ExerciseSetAdapter(ExerciseSetAdapterEventListener eventListener , List<ExerciseSet> exerciseSetList, List<Exercise> exerciseList){
+    public ExerciseSetAdapter(List<ExerciseSet> exerciseSetList, List<Exercise> exerciseList){
         this.exerciseSetList = exerciseSetList;
         this.exerciseList = exerciseList;
-        this.eventListener = eventListener;
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -61,12 +62,9 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
         holder.exerciseDoneCheckBox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CheckBox", "Exercise completed");
                 int dayId = exerciseSet.dayId;
                 int exerciseId = exerciseSet.exerciseId;
 
-                Context context = holder.context;
-                if (eventListener != null) eventListener.onExerciseCompleted(dayId,exerciseId,context);
 
             }
         });
@@ -81,6 +79,10 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         }
 
 
+    }
+
+    public void updateData(List<ExerciseSet> exerciseSetList) {
+        this.exerciseSetList = exerciseSetList;
     }
 
     @Override

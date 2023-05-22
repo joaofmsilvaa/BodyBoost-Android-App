@@ -35,117 +35,116 @@ public abstract class AppDatabase extends RoomDatabase {
                         public void onCreate(@NonNull SupportSQLiteDatabase db) {
                             super.onCreate(db);
                             // Days and exercises
-                            db.execSQL("INSERT INTO Days ('dayId','day', 'numberOfExercises', 'concludedExercises') Values (0,'Monday', 10, 0)");
-                            db.execSQL("INSERT INTO Days ('day', 'numberOfExercises', 'concludedExercises') Values ('Tuesday', 10, 0)");
-                            db.execSQL("INSERT INTO Days ('day', 'numberOfExercises', 'concludedExercises') Values ('Wednesday', 10, 0)");
-                            db.execSQL("INSERT INTO Days ('day', 'numberOfExercises', 'concludedExercises') Values ('Thursday', 10, 0)");
-                            db.execSQL("INSERT INTO Days ('day', 'numberOfExercises', 'concludedExercises') Values ('Friday', 10, 0)");
-                            db.execSQL("INSERT INTO Days ('day', 'numberOfExercises', 'concludedExercises') Values ('Saturday', 10, 0)");
-                            db.execSQL("INSERT INTO Days ('day', 'numberOfExercises', 'concludedExercises') Values ('Sunday', 10, 0)");
+                            db.execSQL("INSERT INTO Days ('dayId','day') Values (0,'Monday')");
+                            db.execSQL("INSERT INTO Days ('day') Values ('Tuesday')");
+                            db.execSQL("INSERT INTO Days ('day') Values ('Wednesday')");
+                            db.execSQL("INSERT INTO Days ('day') Values ('Thursday')");
+                            db.execSQL("INSERT INTO Days ('day') Values ('Friday')");
+                            db.execSQL("INSERT INTO Days ('day') Values ('Saturday')");
+                            db.execSQL("INSERT INTO Days ('day') Values ('Sunday')");
 
                             // Exercises
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Push-up chair dips', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Wall push-ups', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Jump rope', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Knee push-ups', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Squat', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Side Jump', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Deep crunch', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Side leg raises', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Donkey kicks', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('One-arm push-ups', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Wide-arm push-ups', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Diamond push-ups', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Abdominal crunch', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Mountain climbers', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Heel touchh', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Russian twist', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Leg raises', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Jumping jacks', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Burpees', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Skipping', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Air bicycle', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Plank', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('V-sit crunch', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Extended-arm crunch', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Barbell bench press', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Pull-ups', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Straight Supine with Bar', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Chest in parallel', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Crucifix on the fly', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Push-ups on the wall', 'Gain Weigh')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Front raise with dumbbells', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Fixed barbell lifts', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Closed barbell pulldown', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Isometric squat', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Bulgarian squat', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Chair extensor', 'Lose weight')");
-                            db.execSQL("INSERT INTO Exercise('exerciseName', 'exerciseType') Values ('Jumping jacks', 'Lose weight')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Push-up chair dips')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Wall push-ups')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Jump rope')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Knee push-ups')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Squat')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Side Jump')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Deep crunch')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Side leg raises')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Donkey kicks')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('One-arm push-ups')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Wide-arm push-ups')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Diamond push-ups')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Abdominal crunch')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Mountain climbers')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Heel touchh')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Russian twist')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Leg raises')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Jumping jacks')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Burpees')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Skipping')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Air bicycle')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Plank')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('V-sit crunch')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Extended-arm crunch')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Barbell bench press')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Pull-ups')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Straight Supine with Bar')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Chest in parallel')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Crucifix on the fly')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Push-ups on the wall')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Front raise with dumbbells')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Fixed barbell lifts')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Closed barbell pulldown')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Isometric squat')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Bulgarian squat')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Chair extensor')");
+                            db.execSQL("INSERT INTO Exercise('exerciseName') Values ('Jumping jacks')");
 
                             // Exercise set
 
                             // Exercise set - Monday
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (0, 1 , 10 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (0, 2 , 20 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (0, 3 , 0 , '1 minute', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (0, 5 , 0 , '2 minutes', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (0, 11 , 0  , '1 minute', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (0, 12 , 0 , '1 minute', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (0, 13 , 0 , '30 seconds', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (0, 28 , 15 , null, 0)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex' ,'repetitions', 'time') Values (0, 1 ,1 ,10 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex' , 'repetitions', 'time') Values (0, 2, 2 , 20 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (0, 3, 3 ,0 , '1 minute')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (0, 5 , 4 ,0 , '2 minutes')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (0, 11 , 5 ,0  , '1 minute')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (0, 12 , 6 ,0 , '1 minute')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (0, 13 , 7, 0 , '30 seconds')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (0, 28 , 8, 15 , null)");
 
                             // Exercise set - Tuesday
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (1, 4 , 0 , '2 minutes', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (1, 20 , 0 , '1 minute', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (1, 23 , 0 , '45 seconds', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (1, 26 , 15 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (1, 28 , 12  , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (1, 33 , 10 , null, 0)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (1, 4 , 1 ,0 , '2 minutes')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (1, 20 , 2 ,0 , '1 minute')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (1, 23 , 3 , 0 , '45 seconds')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (1, 26 , 4 , 15 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (1, 28 , 5 , 12  , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (1, 33 , 6 , 10 , null)");
 
                             // Exercise set - Wednesday
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (2, 1 , 10 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (2, 3 , 15 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (2, 5 , 15 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (2, 11 , 14 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (2, 12 , 14  , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (2, 26 , 12 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (2, 27 , 10 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (2, 28 , 8  , null, 0)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (2, 1 , 1, 10 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (2, 3 , 2, 15 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (2, 5 , 3, 15 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (2, 11 , 4, 14 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (2, 12 , 5, 14  , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (2, 26 , 6, 12 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (2, 27 , 7, 10 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (2, 28 , 8, 8  , null)");
 
                             // Exercise set - Thursday
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (3, 6 , 15 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (3, 7 , 0 , '1 minute', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (3, 8 , 15 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (3, 9 , 12 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (3, 10 , 10  , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (3, 13 ,  14, null, 0)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (3, 6 , 1, 15 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (3, 7 , 2, 0 , '1 minute')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (3, 8 , 3, 15 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (3, 9 , 4 , 12 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (3, 10 , 5 , 10  , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (3, 13 , 6 , 14, null)");
 
                             // Exercise set - Friday
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (4, 4 , 0 , '2 minutes', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (4, 20 , 0 , '1 minute', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (4, 23, 0 , '45 seconds', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (4, 34 , 15 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (4, 35 , 15  , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (4, 36 , 12 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (4, 37 , 10  , null, 0)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (4, 4 , 1, 0 , '2 minutes')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (4, 20 , 2, 0 , '1 minute')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (4, 23, 3, 0 , '45 seconds')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (4, 34 , 4, 15 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (4, 35 , 5, 15  , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (4, 36 , 6, 12 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (4, 37 , 7, 10  , null)");
 
                             // Exercise set - Saturday
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (5, 14 , 10 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (5, 15 , 12 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (5, 16,  15 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (5, 17 , 15 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (5, 18 , 15  , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (5, 24 , 12 , null, 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (5, 25 , 10  , null, 0)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (5, 14 , 1, 10 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (5, 15 , 2, 12 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (5, 16, 3 ,15 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (5, 17 , 4 , 15 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (5, 18 , 5 , 15  , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (5, 24 , 6 , 12 , null)");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (5, 25 , 7 , 10  , null)");
 
                             // Exercise set - Sunday
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (6, 19,  0 , '1 minute', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (6, 20 , 0 , '2 minute', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (6, 21 , 0  , '2 minutes', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (6, 22 , 0 , '1 minute', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (6, 23 , 0  , '45 seconds', 0)");
-                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'repetitions', 'time', 'completed') Values (6, 29 , 8 , null, 0)");
-
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (6, 19, 1 , 0 , '1 minute')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (6, 20 , 2 ,0 , '2 minute')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (6, 21 , 3 , 0  , '2 minutes')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (6, 22 , 4 , 0 , '1 minute')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (6, 23 , 5 , 0  , '45 seconds')");
+                            db.execSQL("INSERT INTO ExerciseSet('dayId', 'exerciseId', 'orderIndex','repetitions', 'time') Values (6, 29 , 6 , 8 , null)");
 
                         }
                     })

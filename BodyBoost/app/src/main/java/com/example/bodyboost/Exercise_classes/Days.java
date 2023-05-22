@@ -10,14 +10,11 @@ public class Days {
     private int dayId;
 
     private String day;
-    private int numberOfExercises;
-    private int concludedExercises;
 
-    public Days(int dayId,String day, int numberOfExercises, int concludedExercises) {
+    public Days(int dayId,String day) {
         this.dayId = dayId;
         this.day = day;
-        this.numberOfExercises = numberOfExercises;
-        this.concludedExercises = concludedExercises;
+
     }
 
     public int getDayId() {
@@ -27,12 +24,6 @@ public class Days {
         return day;
     }
 
-    public int getNumberOfExercises() {
-        return numberOfExercises;
-    }
 
-    public int getConcludedExercises() {
-        return concludedExercises;
-    }
 }
 

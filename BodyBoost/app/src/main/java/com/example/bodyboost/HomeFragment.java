@@ -5,8 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -24,7 +22,7 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment {
 
-    private ArrayList<Meal> mealArrayList;
+    private ArrayList<Meals> mealArrayList;
     private RecyclerView mealsRecyclerView;
     private int percentageValue = 100;
     private TextView percentage;
@@ -51,31 +49,8 @@ public class HomeFragment extends Fragment {
         percentageBar = view.findViewById(R.id.percentageBar);
         percentageBar.setProgress(percentageValue);
 
-        mealsRecyclerView = view.findViewById(R.id.mealRecyclerView);
-
-
-        mealArrayList = new ArrayList<>();
-        setMealInfo();
-        setMealsAdapter();
 
     }
 
-
-    private void setMealsAdapter() {
-        mealAdapter mealAdapter = new mealAdapter(mealArrayList);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-
-        mealsRecyclerView.setLayoutManager(layoutManager);
-        mealsRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mealsRecyclerView.setAdapter(mealAdapter);
-    }
-
-
-    private void setMealInfo() {
-        mealArrayList.add(new Meal("Frango"));
-        mealArrayList.add(new Meal("Arroz"));
-        mealArrayList.add(new Meal("Feijão"));
-    }
 
 }

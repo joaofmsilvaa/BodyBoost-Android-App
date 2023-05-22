@@ -57,7 +57,6 @@ public class ReportFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.i("Test", "started");
     }
 
     @Override

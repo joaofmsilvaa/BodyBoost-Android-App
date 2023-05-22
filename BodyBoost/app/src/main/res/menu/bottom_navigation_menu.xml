@@ -7,7 +7,7 @@
         android:icon="@drawable/feed"
         android:title="Feed" />
     <item
-        android:id="@+id/workoutFragment"
+        android:id="@+id/daysFragment"
         android:icon="@drawable/train"
         android:title="Workout" />
     <item
