@@ -6,16 +6,31 @@
     android:layout_height="420dp">
 
     <TextView
+        android:id="@+id/newsCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/newsTitleTextView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="João Coelho abre época com boa marca em Yokohama"
+        android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/newsDescriptionTextView"
-        app:layout_constraintStart_toStartOf="@+id/newsDescriptionTextView"
+        app:layout_constraintEnd_toEndOf="@+id/newsCard"
+        app:layout_constraintStart_toStartOf="@+id/newsCard"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -27,28 +42,27 @@
 
     <TextView
         android:id="@+id/newsDescriptionTextView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="O velocista português João Coelho terminou no segundo lugar a corrida de 400 metros, com a marca de 45,46 segundos."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newsTitleTextView" />
+        android:layout_marginBottom="8dp"
+        android:text="A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros."
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/newsCard"
+        app:layout_constraintStart_toStartOf="@+id/newsCard" />
 
     <ImageView
         android:id="@+id/newsImageView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="220dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/newsCard"
+        app:layout_constraintStart_toStartOf="@+id/newsCard"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

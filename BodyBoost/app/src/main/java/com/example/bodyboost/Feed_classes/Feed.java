@@ -10,27 +10,29 @@ public class Feed {
     int feedId;
     String newsTitle;
     String newsSmallDescription;
+    String newsFullDescription;
     String newsImg;
 
-    public Feed(int feedId, String newsTitle, String newsSmallDescription, String newsImg) {
+    public Feed(int feedId, String newsTitle, String newsSmallDescription, String newsFullDescription,String newsImg) {
         this.feedId = feedId;
         this.newsTitle = newsTitle;
         this.newsSmallDescription = newsSmallDescription;
+        this.newsFullDescription = newsSmallDescription;
         this.newsImg = newsImg;
     }
 
     public int getFeedId() {
         return feedId;
     }
-
     public String getNewsTitle() {
         return newsTitle;
     }
-
     public String getNewsSmallDescription() {
         return newsSmallDescription;
     }
-
+    public String getNewsFullDescription() {
+        return newsFullDescription;
+    }
     public String getNewsImg() {
         return newsImg;
     }
