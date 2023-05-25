@@ -1,7 +1,6 @@
 package com.example.bodyboost.Exercise_classes;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +8,10 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.Exercise;
-import com.example.bodyboost.ExerciseFragment;
 import com.example.bodyboost.R;
-import com.example.bodyboost.Report_classes.Report;
 
 import java.util.List;
 

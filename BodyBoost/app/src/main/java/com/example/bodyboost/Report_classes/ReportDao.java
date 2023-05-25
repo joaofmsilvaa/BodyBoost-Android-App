@@ -11,7 +11,7 @@ import java.util.List;
 @Dao
 public interface ReportDao {
 
-    @Query("SELECT * FROM report")
+    @Query("SELECT * FROM report ORDER BY date ASC")
     List<Report> getAll();
 
     @Insert

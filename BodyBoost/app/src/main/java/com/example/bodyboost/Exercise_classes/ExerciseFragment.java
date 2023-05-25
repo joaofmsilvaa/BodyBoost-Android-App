@@ -1,5 +1,6 @@
-package com.example.bodyboost.Feed_classes;
+package com.example.bodyboost.Exercise_classes;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,60 +8,71 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 
 import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.R;
 
-import java.util.List;
-
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link feedFragment} factory method to
+ * Use the {@link ExerciseFragment} factory method to
  * create an instance of this fragment.
  */
-public class feedFragment extends Fragment {
+public class ExerciseFragment extends Fragment{
 
-    private FeedAdapter adapter;
+    private ExerciseSetAdapter adapter;
     private AppDatabase db;
-    private FeedDao feedDao;
+    private ExerciseSetDao exerciseSetDao;
+    private DaysDao daysDao;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Obtain an instance of ReportDatabase and ReportDao
+
+        // Obtain an instance of AppDatabase and DaysDao
         db = AppDatabase.getInstance(getContext());
-        feedDao = db.getFeedDao();
+        exerciseSetDao = db.getExerciseSetDao();
+        daysDao = db.getDaysDao();
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_feed, container, false);
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_exercise, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = view.findViewById(R.id.feedRecyclerView);
+        // Stores the given argument ( an ID of the selected day ) in the exerciseDay variable
+        int exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
+
+        TextView dayOfWeek = view.findViewById(R.id.dayIndicatorTextView);
+
+        dayOfWeek.setText(daysDao.getDayByID(exerciseDay));
+
+        RecyclerView recyclerView = view.findViewById(R.id.exerciseRecyclerView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
         recyclerView.setLayoutManager(layoutManager);
 
-        List<Feed> getAll = feedDao.getAll();
-        adapter = new FeedAdapter(getAll);
+        adapter = new ExerciseSetAdapter(exerciseSetDao.getSetByDay(exerciseDay),exerciseSetDao.getExercisesInSet(exerciseDay));
 
         recyclerView.setAdapter(adapter);
     }
+
+
+
 }

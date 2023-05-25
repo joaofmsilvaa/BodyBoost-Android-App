@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/logInFragment">
 
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.example.bodyboost.Feed_classes.feedFragment"
         android:label="fragment_feed"
-        tools:layout="@layout/fragment_feed" />
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_feedFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
@@ -46,11 +50,21 @@
         tools:layout="@layout/activity_login" />
     <fragment
         android:id="@+id/exerciseFragment"
-        android:name="com.example.bodyboost.ExerciseFragment"
+        android:name="com.example.bodyboost.Exercise_classes.ExerciseFragment"
         android:label="fragment_exercise"
         tools:layout="@layout/fragment_exercise" >
         <argument
             android:name="ExerciseDay"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.bodyboost.Feed_classes.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news">
+        <argument
+            android:name="selectedNew"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         // Sets the content view to the activity_login layout
         setContentView(R.layout.activity_login);
 
@@ -50,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
         // Stores the textView with the ID "textViewAlertName2" in the usernameAlert variable
         this.usernameAlert = findViewById(R.id.textViewAlertName2);
         // Stores the textView with the ID "textViewAlertPassword2" in the passwordAlert variable
-        this.passwordAlert = findViewById(R.id.textViewAlertPassword2);*/
+        this.passwordAlert = findViewById(R.id.textViewAlertPassword2);
 
+        /*
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         // Stores the bottom navigation view with the id "bottomNavigationView" in the "bottomNav" variable
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         // Sets that the navigation controller is used in the bottom navigation stored in the "bottomNav" variable
-        NavigationUI.setupWithNavController(bottomNav, navController);
+        NavigationUI.setupWithNavController(bottomNav, navController);*/
     }
 
     /*

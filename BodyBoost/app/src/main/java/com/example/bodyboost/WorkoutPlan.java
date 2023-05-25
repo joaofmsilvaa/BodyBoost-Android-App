@@ -8,27 +8,30 @@ import androidx.room.PrimaryKey;
 import com.example.bodyboost.Exercise_classes.Days;
 import com.example.bodyboost.Exercise_classes.ExerciseSet;
 
-@Entity(foreignKeys = {
-        @ForeignKey(
-                entity = ExerciseSet.class,
-                parentColumns = "dayId",
-                childColumns = "dayId"
-        ),
-        @ForeignKey(
-                entity = ExerciseSet.class,
-                parentColumns = "exerciseId",
-                childColumns = "exerciseId"
-        )
-})
+
+@Entity(tableName = "WorkoutPlan",
+        primaryKeys = {"planId", "dayId", "exerciseId"},
+        foreignKeys = {
+                @ForeignKey(
+                        entity = ExerciseSet.class,
+                        parentColumns = {"dayId", "exerciseId"},
+                        childColumns = {"dayId", "exerciseId"},
+                        onDelete = ForeignKey.CASCADE
+                )
+        }
+)
 public class WorkoutPlan {
 
-    @PrimaryKey
+    @ColumnInfo(name = "planId")
     int planId;
 
+    @ColumnInfo(name = "dayId")
     int dayId;
+
+    @ColumnInfo(name = "exerciseId")
     int exerciseId;
 
-    @ColumnInfo
+    @ColumnInfo(name = "type")
     String type;
 
     public WorkoutPlan(int planId, int dayId, int exerciseId, String type) {
@@ -36,9 +39,10 @@ public class WorkoutPlan {
         this.dayId = dayId;
         this.exerciseId = exerciseId;
         this.type = type;
+
     }
 
-    public int getPlanId() {
+        public int getPlanId() {
         return planId;
     }
 

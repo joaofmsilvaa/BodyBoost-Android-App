@@ -33,25 +33,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         Report current = reportList.get(position);
 
         String currentDate = current.getDate();
-        int currentValue = current.getWeight();
+        String currentValue = Float.toString(current.getWeight());
 
         holder.weightValue.setText(currentValue + " KG");
         holder.dateTextView.setText(currentDate);
-
-        if (position > 0) {
-            Report previous = reportList.get(position - 1);
-            int previousValue = previous.getWeight();
-
-            if (previousValue > currentValue) {
-                holder.testImageView.setImageResource(R.drawable.down_report);
-            } else if (previousValue == currentValue) {
-                holder.testImageView.setImageResource(R.drawable.same_report);
-            } else {
-                holder.testImageView.setImageResource(R.drawable.up_report);
-            }
-        } else {
-            holder.testImageView.setImageResource(R.drawable.same_report);
-        }
     }
 
     @Override
@@ -66,12 +51,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     public class ReportViewHolder extends RecyclerView.ViewHolder {
         TextView weightValue;
         TextView dateTextView;
-        ImageView testImageView;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
             weightValue = itemView.findViewById(R.id.exerciseName);
-            testImageView = itemView.findViewById(R.id.imageViewTest);
             dateTextView = itemView.findViewById(R.id.dateTextView);
         }
     }

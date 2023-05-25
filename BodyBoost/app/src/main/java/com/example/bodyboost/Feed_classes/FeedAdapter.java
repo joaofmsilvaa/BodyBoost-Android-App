@@ -6,8 +6,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.bodyboost.Exercise_classes.DaysFragmentDirections;
 import com.example.bodyboost.R;
 import java.util.List;
 
@@ -35,6 +38,16 @@ public class FeedAdapter extends RecyclerView.Adapter<com.example.bodyboost.Feed
 
         Glide.with(holder.rootView.getContext()).load(news.getNewsImg()).into(holder.newsImageView);
 
+        holder.newsCard.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int selectedNew = holder.getAdapterPosition();
+                selectedNew ++;
+                NavDirections action = com.example.bodyboost.Feed_classes.feedFragmentDirections.actionFeedFragmentToNewsFragment(selectedNew);
+                Navigation.findNavController(v).navigate(action);
+            }
+        });
+
+
     }
 
     @Override
@@ -49,12 +62,15 @@ public class FeedAdapter extends RecyclerView.Adapter<com.example.bodyboost.Feed
         TextView newsDescriptionTextView;
         ImageView newsImageView;
 
+        TextView newsCard;
+
         public FeedViewHolder(@NonNull View rootView) {
             super(rootView);
             this.rootView = rootView;
             this.newsTitleTextView = rootView.findViewById(R.id.newsTitleTextView);
             this.newsDescriptionTextView = rootView.findViewById(R.id.newsDescriptionTextView);
             this.newsImageView = rootView.findViewById(R.id.newsImageView);
+            this.newsCard = rootView.findViewById(R.id.newsCard);
 
         }
     }

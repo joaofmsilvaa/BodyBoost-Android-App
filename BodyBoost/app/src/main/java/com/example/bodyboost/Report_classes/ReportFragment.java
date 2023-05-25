@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,13 +67,16 @@ public class ReportFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.reportRecyclerView);
         EditText weightInput = view.findViewById(R.id.weightIputEditText);
 
+        weightInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+
         Button insertWeight = view.findViewById(R.id.insertWeightButton);
         insertWeight.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
-                int weight = Integer.parseInt(weightInput.getText().toString());
+                float weight = Float.parseFloat(weightInput.getText().toString());
+
                 reportDao.insert(new Report(0, weight, currentDate));
                 weightInput.setText("");
 

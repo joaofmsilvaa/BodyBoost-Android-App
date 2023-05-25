@@ -1,30 +1,40 @@
 package com.example.bodyboost.Exercise_classes;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 
 
-@Entity(primaryKeys = {"dayId", "exerciseId"}, foreignKeys = {
-
-        @ForeignKey(entity = Days.class,
-        parentColumns = "dayId",
-        childColumns = "dayId",
-        onDelete = ForeignKey.CASCADE)
-})
+@Entity(tableName = "ExerciseSet",
+        primaryKeys = {"dayId", "exerciseId"},
+        foreignKeys = {
+                @ForeignKey(entity = Days.class,
+                        parentColumns = "dayId",
+                        childColumns = "dayId",
+                        onDelete = ForeignKey.CASCADE)
+        },
+        indices = {@Index("dayId")}
+)
 public class ExerciseSet {
 
+    @ColumnInfo(name = "dayId")
     int dayId;
 
+    @ColumnInfo(name = "exerciseId")
     int exerciseId;
 
+    @ColumnInfo(name = "orderIndex")
     int orderIndex;
 
+    @ColumnInfo(name = "repetitions")
     int repetitions;
 
+    @ColumnInfo(name = "time")
     String time;
 
-    public ExerciseSet(int dayId, int exerciseId, int orderIndex ,int repetitions, String time) {
+    public ExerciseSet(int dayId, int exerciseId, int orderIndex, int repetitions, String time) {
         this.dayId = dayId;
         this.exerciseId = exerciseId;
         this.orderIndex = orderIndex;
