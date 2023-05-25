@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/logInFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/feedFragment"
@@ -19,7 +19,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.bodyboost.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/nutricionFragment"
@@ -47,7 +51,11 @@
         android:id="@+id/logInFragment"
         android:name="com.example.bodyboost.logInFragment"
         android:label="fragment_logIn"
-        tools:layout="@layout/activity_login" />
+        tools:layout="@layout/activity_login" >
+        <action
+            android:id="@+id/action_logInFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exerciseFragment"
         android:name="com.example.bodyboost.Exercise_classes.ExerciseFragment"

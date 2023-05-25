@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -52,19 +53,6 @@ public class MainActivity extends AppCompatActivity {
         // Stores the textView with the ID "textViewAlertPassword2" in the passwordAlert variable
         this.passwordAlert = findViewById(R.id.textViewAlertPassword2);
 
-        /*
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // Stores a fragment with the id "fragmentContainerView" in the navHostFragment variable
-        NavHostFragment navHostFragment =
-                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-        // Sets the navigation controller for the fragment stored in the navHostFragment variable
-        NavController navController = navHostFragment.getNavController();
-        // Stores the bottom navigation view with the id "bottomNavigationView" in the "bottomNav" variable
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
-        // Sets that the navigation controller is used in the bottom navigation stored in the "bottomNav" variable
-        NavigationUI.setupWithNavController(bottomNav, navController);*/
     }
 
     /*
@@ -90,53 +78,62 @@ public class MainActivity extends AppCompatActivity {
      * @param View view
      */
     public void signIN(View view) {
+
+        AppDatabase db = AppDatabase.getInstance(this);
+        UserDao userDao = db.getUserDao();
+
         final String TAG = "Given credentials";
 
         usernameString = this.username.getText().toString();
         passwordString = this.password.getText().toString();
 
-        String testUsername = "abc";
-        String testPassword = "cba";
+        int ammountOfUsersWithCred = userDao.correspondingUsers(usernameString, passwordString);
 
-        emptyFieldChecker(usernameString, passwordString, usernameAlert, passwordAlert);
+        Boolean checker = emptyFieldChecker(usernameString, passwordString, usernameAlert, passwordAlert);
 
-        if(usernameString.equals(testUsername) && passwordString.equals(testPassword)){
-            Log.i("Login", "log-in successfull");
-            Log.i(TAG, usernameString + " " + passwordString);
+        if(checker){
+            if(ammountOfUsersWithCred == 1){
+                Log.i("Login", "log-in successfull");
+                Log.i(TAG, usernameString + " " + passwordString);
 
-            Intent intent = new Intent(this, homeActivity.class);
-            Log.i("Home Activity", "Entering the homeActivity");
-            startActivity(intent);
-            finish();
+                Intent intent = new Intent(this, homeActivity.class);
+                Log.i("Home Activity", "Entering the homeActivity");
+                startActivity(intent);
+                finish();
 
-        }else{
-            Log.i("Login", "Incorrect credentials");
-            Log.i(TAG, usernameString + " " + passwordString);
+            }else{
+                Toast.makeText(getApplicationContext(),"The credentials don't match any account",Toast.LENGTH_SHORT).show();
+            }
         }
-
     }
 
-    public static void emptyFieldChecker(String usernameString, String passwordString, TextView usernameAlert, TextView passwordAlert){
+    public static boolean emptyFieldChecker(String usernameString, String passwordString, TextView usernameAlert, TextView passwordAlert){
         // Stores the alert messages in the proper variables
         final String emptyUsername = "Insert a username!";
         final String emptyPassword = "Insert a password!";
+        Boolean checker = true;
 
         if(usernameString.equals("")){
             usernameAlert.setText(emptyUsername);
-
+            checker = false;
         }
 
         if(!usernameString.equals("")){
             usernameAlert.setText("");
+            checker = true;
         }
 
         if(passwordString.equals("")){
             passwordAlert.setText(emptyPassword);
+            checker = false;
 
         }
 
         if(!passwordString.equals("")){
             passwordAlert.setText("");
+            checker = true;
         }
+
+        return checker;
     }
 }

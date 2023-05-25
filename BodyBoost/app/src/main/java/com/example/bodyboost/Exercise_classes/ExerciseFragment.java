@@ -30,7 +30,6 @@ public class ExerciseFragment extends Fragment{
     private ExerciseSetDao exerciseSetDao;
     private DaysDao daysDao;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

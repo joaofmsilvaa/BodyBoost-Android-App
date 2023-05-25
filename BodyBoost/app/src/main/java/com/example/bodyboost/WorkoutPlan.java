@@ -3,24 +3,16 @@ package com.example.bodyboost;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.example.bodyboost.Exercise_classes.Days;
 import com.example.bodyboost.Exercise_classes.ExerciseSet;
 
 
-@Entity(tableName = "WorkoutPlan",
-        primaryKeys = {"planId", "dayId", "exerciseId"},
-        foreignKeys = {
-                @ForeignKey(
-                        entity = ExerciseSet.class,
-                        parentColumns = {"dayId", "exerciseId"},
-                        childColumns = {"dayId", "exerciseId"},
-                        onDelete = ForeignKey.CASCADE
-                )
-        }
-)
+@Entity(primaryKeys = {"planId", "dayId", "exerciseId"})
 public class WorkoutPlan {
+
 
     @ColumnInfo(name = "planId")
     int planId;
@@ -39,10 +31,9 @@ public class WorkoutPlan {
         this.dayId = dayId;
         this.exerciseId = exerciseId;
         this.type = type;
-
     }
 
-        public int getPlanId() {
+    public int getPlanId() {
         return planId;
     }
 
