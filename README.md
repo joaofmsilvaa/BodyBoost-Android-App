@@ -162,7 +162,7 @@ In the next chapter you will explain the requirements for using the application
 - [ ] Code the structure of the user profile
   - [ ] Let him change his personal data
   
-- [ ] Code the structure of the workout list section
+- [X] Code the structure of the workout list section
     - [ ] Display the exercises corresponding to the users goal
     - [ ] Add the calendar option
 
@@ -170,8 +170,11 @@ In the next chapter you will explain the requirements for using the application
   - [ ] Display the meals corresponding to the users goal
   
 - [X] Code the structure of the statistics menu
-  - [X] Make the graph functional
-  - [ ] Make the BMI calculator functional
+  - [X] Make the weight list functional
+
+- [X] Code the structure of the feed menu
+  - [X] Make the "news consultig" option functional
+
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
