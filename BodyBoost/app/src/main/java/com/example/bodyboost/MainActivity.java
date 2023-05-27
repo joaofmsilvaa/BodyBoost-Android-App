@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bodyboost.Exercise_classes.DaysFragmentDirections;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.w3c.dom.Text;
@@ -98,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this, homeActivity.class);
                 Log.i("Home Activity", "Entering the homeActivity");
+
+                int userId = userDao.getUserId(usernameString);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
                 finish();
 

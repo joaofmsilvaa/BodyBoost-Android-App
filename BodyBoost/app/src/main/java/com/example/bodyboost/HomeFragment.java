@@ -1,5 +1,6 @@
 package com.example.bodyboost;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,8 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.bodyboost.Exercise_classes.ExerciseFragmentArgs;
 
 import java.util.ArrayList;
 
@@ -28,9 +33,23 @@ public class HomeFragment extends Fragment {
     private TextView percentage;
     private ProgressBar percentageBar;
 
+    private TextView userIdTextView;
+
+    public static int userId;
+
+    private String KEY_USER_ID = "userId";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle bundle = getActivity().getIntent().getExtras();
+
+        this.userId = bundle.getInt(this.KEY_USER_ID, 0);
+
+        AppDatabase db = AppDatabase.getInstance(getContext());
+        UserDao UserDao = db.getUserDao();
+
     }
 
     @Override
@@ -49,6 +68,8 @@ public class HomeFragment extends Fragment {
         percentageBar = view.findViewById(R.id.percentageBar);
         percentageBar.setProgress(percentageValue);
 
+        userIdTextView = view.findViewById(R.id.userIdTextView);
+        userIdTextView.setText(Integer.toString(this.userId));
 
     }
 

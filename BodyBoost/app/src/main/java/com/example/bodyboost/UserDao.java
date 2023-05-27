@@ -14,4 +14,7 @@ public interface UserDao {
     @Query("SELECT COUNT(userId) FROM User WHERE username = :username AND password = :password")
     int correspondingUsers(String username, String password);
 
+    @Query("SELECT userId FROM User WHERE username = :username")
+    int getUserId(String username);
+
 }

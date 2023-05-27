@@ -25,7 +25,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ExerciseSetDao getExerciseSetDao();
     public abstract  WorkoutPlanDao getWorkoutPlanDao();
     public abstract FeedDao getFeedDao();
-    public abstract UserPlanDao getUserPlan();
+    public abstract UserPlanDao getUserPlanDao();
     public abstract UserDao getUserDao();
     // Gets an instance of the app database
     private static AppDatabase INSTANCE;
@@ -288,11 +288,11 @@ public abstract class AppDatabase extends RoomDatabase {
 
                             // User - testUsers
                             db.execSQL("INSERT INTO User(userId, username, password, weight, height, objective) VALUES(0, 'user', 'password', 60.2, 1.60, 'gain muscle')");
-                            db.execSQL("INSERT INTO User(userId, username, password, weight, height, objective) VALUES(0, 'user2', 'password2', 60.2, 1.60, 'lose weight ')");
+                            db.execSQL("INSERT INTO User(username, password, weight, height, objective) VALUES('user2', 'password2', 60.2, 1.60, 'lose weight ')");
 
                             // UserPlan
-                            db.execSQL("INSERT INTO UserPlan VALUES(0, 0, 1)");
-
+                            db.execSQL("INSERT INTO UserPlan(userId,planId) VALUES(0, 1)");
+                            db.execSQL("INSERT INTO UserPlan(userId,planId) VALUES(1, 2)");
                         }
                     })
                     .build();

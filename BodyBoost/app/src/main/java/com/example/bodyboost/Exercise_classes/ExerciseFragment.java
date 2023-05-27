@@ -16,7 +16,10 @@ import android.widget.TextView;
 
 
 import com.example.bodyboost.AppDatabase;
+import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
+import com.example.bodyboost.UserPlanDao;
+import com.example.bodyboost.WorkoutPlanDao;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,8 +30,9 @@ public class ExerciseFragment extends Fragment{
 
     private ExerciseSetAdapter adapter;
     private AppDatabase db;
-    private ExerciseSetDao exerciseSetDao;
     private DaysDao daysDao;
+    private WorkoutPlanDao workoutPlanDao;
+    private UserPlanDao userPlanDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +40,9 @@ public class ExerciseFragment extends Fragment{
 
         // Obtain an instance of AppDatabase and DaysDao
         db = AppDatabase.getInstance(getContext());
-        exerciseSetDao = db.getExerciseSetDao();
         daysDao = db.getDaysDao();
+        workoutPlanDao = db.getWorkoutPlanDao();
+        userPlanDao = db.getUserPlanDao();
 
     }
 
@@ -67,7 +72,9 @@ public class ExerciseFragment extends Fragment{
 
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ExerciseSetAdapter(exerciseSetDao.getSetByDay(exerciseDay),exerciseSetDao.getExercisesInSet(exerciseDay));
+        int planId = userPlanDao.getUserPlanById(HomeFragment.userId);
+
+        adapter = new ExerciseSetAdapter(workoutPlanDao.getExerciseInfosFromPlan(planId,exerciseDay),workoutPlanDao.getExercisesFromPlan(planId,exerciseDay));
 
         recyclerView.setAdapter(adapter);
     }

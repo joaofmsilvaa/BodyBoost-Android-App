@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bodyboost.AppDatabase;
+import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
+import com.example.bodyboost.UserPlanDao;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +29,7 @@ public class DaysFragment extends Fragment{
     private AppDatabase db;
     private DaysDao daysDao;
 
-    private Context context;
+    private UserPlanDao userPlanDao;
 
 
     @Override
@@ -35,8 +37,9 @@ public class DaysFragment extends Fragment{
         super.onCreate(savedInstanceState);
         // Obtain an instance of AppDatabase and DaysDao
         db = AppDatabase.getInstance(getContext());
-        daysDao = db.getDaysDao();
 
+        daysDao = db.getDaysDao();
+        userPlanDao = db.getUserPlanDao();
     }
 
     @Override
@@ -49,6 +52,8 @@ public class DaysFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        int planId = userPlanDao.getUserPlanById(HomeFragment.userId);
 
         RecyclerView recyclerView = view.findViewById(R.id.dayRecyclerView);
 

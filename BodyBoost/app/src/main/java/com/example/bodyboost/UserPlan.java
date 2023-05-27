@@ -8,11 +8,11 @@ import androidx.room.PrimaryKey;
 import com.example.bodyboost.Exercise_classes.ExerciseSet;
 
 
-@Entity(primaryKeys = {"user_planId", "userId", "planId"})
+@Entity
 
 public class UserPlan {
 
-
+    @PrimaryKey(autoGenerate = true)
     int user_planId;
 
     int userId;
