@@ -163,8 +163,7 @@ In the next chapter you will explain the requirements for using the application
   - [ ] Let him change his personal data
   
 - [X] Code the structure of the workout list section
-    - [ ] Display the exercises corresponding to the users goal
-    - [ ] Add the calendar option
+    - [X] Display the exercises corresponding to the users goal
 
 - [ ] Code the structure of the meal list section
   - [ ] Display the meals corresponding to the users goal
