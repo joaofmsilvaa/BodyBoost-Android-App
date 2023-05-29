@@ -16,6 +16,9 @@ public interface DaysDao {
     String getDayByID(int id);
 
 
+    @Query("SELECT * FROM days WHERE dayId = :id")
+    List<Days> getCurrentDay(int id);
+
     @Insert
     void insertAll(Days day);
 

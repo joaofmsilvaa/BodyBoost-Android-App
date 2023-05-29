@@ -20,9 +20,11 @@ import java.util.List;
 
 public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder> {
 
+    private DaysAdapterEventListener eventListener;
     private List<Days> daysList;
 
-    public DaysAdapter(List<Days> days) {
+    public DaysAdapter(DaysAdapterEventListener eventLister, List<Days> days) {
+        this.eventListener = eventLister;
         this.daysList = days;
     }
 
@@ -44,9 +46,13 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
 
         holder.dayCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Log.i("test", String.valueOf(holder.context));
+
                 int currentDay = holder.getAdapterPosition();
-                NavDirections action = DaysFragmentDirections.actionDaysFragmentToExerciseFragment(currentDay);
-                Navigation.findNavController(v).navigate(action);
+
+                if (eventListener != null) eventListener.onDayClicked(currentDay, v);
+
+
             }
         });
 
@@ -72,6 +78,11 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
             dayCard = itemView.findViewById(R.id.dayCard);
 
         }
+    }
+
+    public interface DaysAdapterEventListener {
+        void onDayClicked(int dayId, View v);
+
     }
 }
 

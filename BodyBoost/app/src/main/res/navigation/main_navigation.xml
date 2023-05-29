@@ -23,6 +23,9 @@
         <argument
             android:name="userId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_homeFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
     </fragment>
 
     <fragment

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +25,7 @@ import com.example.bodyboost.UserPlanDao;
  * Use the {@link DaysFragment} factory method to
  * create an instance of this fragment.
  */
-public class DaysFragment extends Fragment{
+public class DaysFragment extends Fragment implements DaysAdapter.DaysAdapterEventListener{
 
     private DaysAdapter adapter;
     private AppDatabase db;
@@ -61,8 +63,14 @@ public class DaysFragment extends Fragment{
 
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new DaysAdapter(daysDao.getAll());
+        adapter = new DaysAdapter(this,daysDao.getAll());
 
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onDayClicked(int dayId, View v) {
+        NavDirections action = DaysFragmentDirections.actionDaysFragmentToExerciseFragment(dayId);
+        Navigation.findNavController(v).navigate(action);
     }
 }
