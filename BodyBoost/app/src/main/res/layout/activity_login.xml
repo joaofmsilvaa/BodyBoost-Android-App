@@ -61,7 +61,9 @@
         android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toTopOf="@+id/loginBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#BC1818">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordInput"

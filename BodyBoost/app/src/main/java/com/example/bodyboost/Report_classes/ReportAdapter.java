@@ -11,13 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bodyboost.R;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
 
     private List<Report> reportList;
 
-    public ReportAdapter(List<Report> reports) {
+    private ReportAdapterEventListener eventListener;
+
+    public ReportAdapter(ReportAdapterEventListener eventListener ,List<Report> reports) {
+        this.eventListener = eventListener;
         this.reportList = reports;
     }
 
@@ -37,6 +42,14 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
         holder.weightValue.setText(currentValue + " KG");
         holder.dateTextView.setText(currentDate);
+
+        holder.weightCard.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(eventListener != null) eventListener.onCardLongClick(current.getReportID());
+                return true;
+            }
+        });
     }
 
     @Override
@@ -49,14 +62,21 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     }
 
     public class ReportViewHolder extends RecyclerView.ViewHolder {
+
+        TextView weightCard;
         TextView weightValue;
         TextView dateTextView;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
+            weightCard = itemView.findViewById(R.id.weightCard);
             weightValue = itemView.findViewById(R.id.exerciseName);
             dateTextView = itemView.findViewById(R.id.dateTextView);
         }
+    }
+
+    public interface ReportAdapterEventListener {
+        void onCardLongClick(int reportId);
     }
 }
 

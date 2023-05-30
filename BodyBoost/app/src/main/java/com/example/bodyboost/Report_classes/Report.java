@@ -12,18 +12,25 @@ public class Report {
     @PrimaryKey(autoGenerate = true)
     private int reportID;
 
+    private int userId;
+
     private float weight;
 
     private String date;
 
-    public Report(int reportID,float weight, String date) {
-        this.reportID= reportID;
+    public Report(int reportID, int userId ,float weight, String date) {
+        this.reportID = reportID;
+        this.userId = userId;
         this.weight = weight;
         this.date = date;
     }
 
     public float getWeight() {
         return weight;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public int getReportID() {

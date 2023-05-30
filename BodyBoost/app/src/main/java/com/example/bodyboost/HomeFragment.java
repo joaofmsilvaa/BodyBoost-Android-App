@@ -1,6 +1,6 @@
 package com.example.bodyboost;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,20 +11,16 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.bodyboost.Exercise_classes.Days;
 import com.example.bodyboost.Exercise_classes.DaysAdapter;
 import com.example.bodyboost.Exercise_classes.DaysDao;
-import com.example.bodyboost.Exercise_classes.ExerciseFragmentArgs;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -36,13 +32,7 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
 
     public static int userId;
-    private String KEY_USER_ID = "userId";
 
-    private int percentageValue = 100;
-    private TextView percentage;
-    private ProgressBar percentageBar;
-
-    private DaysAdapter adapter;
     private DaysDao daysDao;
 
     @Override
@@ -51,7 +41,8 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
         Bundle bundle = getActivity().getIntent().getExtras();
 
-        this.userId = bundle.getInt(this.KEY_USER_ID, 0);
+        String KEY_USER_ID = "userId";
+        this.userId = bundle.getInt(KEY_USER_ID, 0);
 
         AppDatabase db = AppDatabase.getInstance(getContext());
         daysDao = db.getDaysDao();
@@ -68,10 +59,11 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        percentage = view.findViewById(R.id.percentage);
+        TextView percentage = view.findViewById(R.id.percentage);
+        int percentageValue = 100;
         percentage.setText(percentageValue + "%");
 
-        percentageBar = view.findViewById(R.id.percentageBar);
+        ProgressBar percentageBar = view.findViewById(R.id.percentageBar);
         percentageBar.setProgress(percentageValue);
 
         RecyclerView daysRecyclerView = view.findViewById(R.id.curretnDayRecyclerView);
@@ -80,9 +72,17 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
         daysRecyclerView.setLayoutManager(layoutManager);
 
+
+        DaysAdapter adapter = new DaysAdapter(this, daysDao.getCurrentDay(getCurrentDay()));
+
+        daysRecyclerView.setAdapter(adapter);
+
+
+    }
+
+    public int getCurrentDay(){
         Calendar calendar = Calendar.getInstance();
         int currentDay = calendar.get(Calendar.DAY_OF_WEEK);
-
 
         switch (currentDay) {
             case 1:
@@ -107,18 +107,15 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
                 currentDay = 5;
         }
 
-
-        adapter = new DaysAdapter(this,daysDao.getCurrentDay(currentDay));
-
-        daysRecyclerView.setAdapter(adapter);
-
-
+        return currentDay;
     }
 
 
     @Override
     public void onDayClicked(int dayId, View v) {
-        // TO-DO Finish the interface
+
+        dayId = getCurrentDay();
+
         NavDirections action = HomeFragmentDirections.actionHomeFragmentToExerciseFragment(dayId);
         Navigation.findNavController(v).navigate(action);
     }

@@ -11,8 +11,11 @@ import java.util.List;
 @Dao
 public interface ReportDao {
 
-    @Query("SELECT * FROM report ORDER BY date ASC")
-    List<Report> getAll();
+    @Query("SELECT * FROM report WHERE userId = :userId ORDER BY date DESC")
+    List<Report> getAll(int userId);
+
+    @Query("SELECT * FROM report WHERE reportID = :id")
+    Report getById(int id);
 
     @Insert
     void insert(Report report);
@@ -20,5 +23,7 @@ public interface ReportDao {
     @Update
     void update(Report report);
 
+    @Delete
+    void delete(Report report);
 
 }

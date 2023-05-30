@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/nutricionFragment"
-        android:name="com.example.bodyboost.nutricionFragment"
+        android:name="com.example.bodyboost.nutricion.nutricionFragment"
         android:label="fragment_nutricion"
         tools:layout="@layout/fragment_nutricion" />
 
