@@ -32,8 +32,8 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
 
     public static int userId;
-
     private DaysDao daysDao;
+    private UserCompletedDao userCompletedDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
         AppDatabase db = AppDatabase.getInstance(getContext());
         daysDao = db.getDaysDao();
+        userCompletedDao = db.getUserCompletedDao();
 
     }
 
@@ -60,7 +61,7 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         super.onViewCreated(view, savedInstanceState);
 
         TextView percentage = view.findViewById(R.id.percentage);
-        int percentageValue = 100;
+        int percentageValue = Math.round(userCompletedDao.percentageCompleted(userId, getCurrentDay()));
         percentage.setText(percentageValue + "%");
 
         ProgressBar percentageBar = view.findViewById(R.id.percentageBar);

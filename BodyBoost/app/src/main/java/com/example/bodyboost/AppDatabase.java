@@ -19,7 +19,7 @@ import com.example.bodyboost.Report_classes.ReportDao;
 import com.example.bodyboost.nutricion.Meals;
 import com.example.bodyboost.nutricion.MealsDao;
 
-@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSet.class, WorkoutPlan.class ,Feed.class, Meals.class ,User.class, UserPlan.class}, version = 1)
+@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSet.class, WorkoutPlan.class ,Feed.class, Meals.class ,User.class, UserPlan.class, UserCompleted.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ReportDao getReportDao();
@@ -30,6 +30,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract MealsDao getMealsDao();
     public abstract UserPlanDao getUserPlanDao();
     public abstract UserDao getUserDao();
+    public abstract UserCompletedDao getUserCompletedDao();
+
     // Gets an instance of the app database
     private static AppDatabase INSTANCE;
 
@@ -51,7 +53,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO Days (day) VALUES ('Saturday')");
                             db.execSQL("INSERT INTO Days (day) VALUES ('Sunday')");
 
-// Exercises
+                            // Exercises
                             db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Push-up chair dips')");
                             db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Wall push-ups')");
                             db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Jump rope')");
@@ -302,6 +304,88 @@ public abstract class AppDatabase extends RoomDatabase {
                             // UserPlan
                             db.execSQL("INSERT INTO UserPlan(userId,planId) VALUES(0, 1)");
                             db.execSQL("INSERT INTO UserPlan(userId,planId) VALUES(1, 2)");
+
+                            // UserCompleted
+
+                            // Day 0
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 1, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 2, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 3, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 5, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 11, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 12, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 13, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 28, 'true')");
+
+                            // Day 1
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 1, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 2, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 3, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 5, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 11, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 12, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 13, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 28, 'true')");
+
+                            // Day 2
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 1, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 2, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 3, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 5, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 11, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 12, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 13, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 28, 'true')");
+
+                            // Day 3
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 1, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 2, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 3, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 5, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 11, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 12, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 13, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 28, 'true')");
+
+                            // Day 4
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 1, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 2, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 3, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 5, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 11, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 12, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 13, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 28, 'true')");
+
+                            // Day 5
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 1, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 2, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 3, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 5, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 11, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 12, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 13, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 28, 'true')");
+
+                            // Day 6
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 1, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 2, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 3, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 5, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 11, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 12, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 13, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 28, 'true')");
+
+
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 1, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 2, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 3, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 5, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 11, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 12, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 13, 'true')");
+                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 28, 'true')");
                         }
                     })
                     .build();
