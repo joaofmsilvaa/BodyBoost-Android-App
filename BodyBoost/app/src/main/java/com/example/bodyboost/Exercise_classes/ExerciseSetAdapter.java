@@ -4,41 +4,33 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.Exercise;
+import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
+import com.example.bodyboost.UserCompletedDao;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.MyViewHolder>{
     private List<ExerciseSet> exerciseSetList;
     private List<Exercise> exerciseList;
+    private Context context;
+    private ExerciseSetAdapterEventListener eventListener;
 
-
-    public ExerciseSetAdapter(List<ExerciseSet> exerciseSetList, List<Exercise> exerciseList){
+    public ExerciseSetAdapter(ExerciseSetAdapterEventListener eventListener, List<ExerciseSet> exerciseSetList, List<Exercise> exerciseList){
+        this.eventListener = eventListener;
         this.exerciseSetList = exerciseSetList;
         this.exerciseList = exerciseList;
 
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-
-        private Context context;
-        private TextView timeRepetitionsTextView;
-        private TextView exerciseNameTextView;
-        private CheckBox exerciseDoneCheckBox;
-        public MyViewHolder(final View view, Context context){
-            super(view);
-            this.context = context;
-            exerciseNameTextView = view.findViewById(R.id.exerciseName);
-            timeRepetitionsTextView = view.findViewById(R.id.timeRepetitionsTextView);
-            exerciseDoneCheckBox = view.findViewById(R.id.exerciseDoneCheckBox);
-        }
     }
 
     @NonNull
@@ -51,15 +43,32 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ExerciseSetAdapter.MyViewHolder holder, int position) {
+        AppDatabase db = AppDatabase.getInstance(context);
+        UserCompletedDao userCompletedDao = db.getUserCompletedDao();
+
         ExerciseSet exerciseSet = this.exerciseSetList.get(position);
         Exercise exercise = this.exerciseList.get(position);
 
-        holder.exerciseDoneCheckBox.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                int dayId = exerciseSet.dayId;
-                int exerciseId = exerciseSet.exerciseId;
+        // TO-DO fix the bug NULL POINTER EXCEPTION
+        int exerciseID = exercise.getExerciseId();
 
+        if(userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId,HomeFragment.getCurrentDay(),exercise.getExerciseId())){
+            holder.weightCard.setBackgroundResource(R.color.green);
+        }
+        else{
+            holder.weightCard.setBackgroundResource(R.color.mainRed);
+        }
 
+        holder.exerciseDoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, exerciseSet.dayId, exerciseSet.exerciseId)) {
+                    userCompletedDao.updateCompleted(0, HomeFragment.userId, exerciseSet.dayId, exerciseSet.exerciseId);
+                    eventListener.onExerciseCompleted();
+                } else {
+                    userCompletedDao.updateCompleted(1, HomeFragment.userId, exerciseSet.dayId, exerciseSet.exerciseId);
+                    eventListener.onExerciseCompleted();
+                }
             }
         });
 
@@ -75,17 +84,30 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
     }
 
-    public void updateData(List<ExerciseSet> exerciseSetList) {
-        this.exerciseSetList = exerciseSetList;
-    }
-
     @Override
     public int getItemCount() {
         return exerciseSetList.size();
     }
 
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+
+        private Context context;
+        private TextView timeRepetitionsTextView;
+        private TextView exerciseNameTextView;
+        private TextView weightCard;
+        private Button exerciseDoneButton;
+        public MyViewHolder(final View view, Context context){
+            super(view);
+            this.context = context;
+            exerciseNameTextView = view.findViewById(R.id.exerciseName);
+            timeRepetitionsTextView = view.findViewById(R.id.timeRepetitionsTextView);
+            weightCard = view.findViewById(R.id.weightCard);
+            exerciseDoneButton = view.findViewById(R.id.exerciseDoneButton);
+        }
+    }
+
 
     public interface ExerciseSetAdapterEventListener {
-        void onExerciseCompleted(int chatId, int exerciseId, Context context);
+        void onExerciseCompleted();
     }
 }

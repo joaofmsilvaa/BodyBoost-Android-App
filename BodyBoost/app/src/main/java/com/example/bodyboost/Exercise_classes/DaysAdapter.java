@@ -1,5 +1,8 @@
 package com.example.bodyboost.Exercise_classes;
 
+import static com.example.bodyboost.HomeFragment.getCurrentDay;
+import static com.example.bodyboost.HomeFragment.userId;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.R;
+import com.example.bodyboost.UserCompletedDao;
 
 import java.util.List;
 
@@ -39,14 +43,20 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
     @Override
     public void onBindViewHolder(@NonNull DaysAdapter.DaysViewHolder holder, int position) {
         Days days = this.daysList.get(position);
+        AppDatabase db = AppDatabase.getInstance(holder.context);
+        UserCompletedDao userCompletedDao = db.getUserCompletedDao();
+
         int numOfExercises = AppDatabase.getInstance(holder.context).getExerciseSetDao().getAmmountOfExercisesInSet(days.getDayId());
+        int ammountCompleted = userCompletedDao.ammountCompleted(userId, getCurrentDay());
+
 
         holder.daysTextView.setText(days.getDay());
-        holder.countTextView.setText(Integer.toString(numOfExercises));
+        holder.countTextView.setText(ammountCompleted + " / " + numOfExercises);
+
+
 
         holder.dayCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("test", String.valueOf(holder.context));
 
                 int currentDay = holder.getAdapterPosition();
 

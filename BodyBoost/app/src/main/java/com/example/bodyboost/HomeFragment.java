@@ -1,6 +1,7 @@
 package com.example.bodyboost;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,10 @@ import android.widget.TextView;
 
 import com.example.bodyboost.Exercise_classes.DaysAdapter;
 import com.example.bodyboost.Exercise_classes.DaysDao;
+import com.example.bodyboost.Exercise_classes.ExerciseFragment;
+import com.example.bodyboost.Exercise_classes.ExerciseSetAdapter;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -28,10 +33,13 @@ import java.util.Calendar;
  * Use the {@link HomeFragment} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEventListener {
-
+public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEventListener{
 
     public static int userId;
+    public ProgressBar progressBar;
+    public TextView percentage;
+
+
     private DaysDao daysDao;
     private UserCompletedDao userCompletedDao;
 
@@ -44,15 +52,14 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         String KEY_USER_ID = "userId";
         this.userId = bundle.getInt(KEY_USER_ID, 0);
 
-        AppDatabase db = AppDatabase.getInstance(getContext());
+        AppDatabase db = AppDatabase.getInstance(requireContext());
         daysDao = db.getDaysDao();
         userCompletedDao = db.getUserCompletedDao();
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-         //Inflate the layout for this fragment
+        //Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -60,12 +67,16 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView percentage = view.findViewById(R.id.percentage);
-        int percentageValue = Math.round(userCompletedDao.percentageCompleted(userId, getCurrentDay()));
+        int ammountCompleted = userCompletedDao.ammountCompleted(userId,getCurrentDay());
+        int ammountOfExercisesInDay = userCompletedDao.ammountOfExercisesInDay(userId,getCurrentDay());
+
+        percentage = view.findViewById(R.id.percentage);
+        int percentageValue = ammountCompleted / ammountOfExercisesInDay * 100;
+
         percentage.setText(percentageValue + "%");
 
-        ProgressBar percentageBar = view.findViewById(R.id.percentageBar);
-        percentageBar.setProgress(percentageValue);
+        progressBar = view.findViewById(R.id.percentageBar);
+        progressBar.setProgress(percentageValue);
 
         RecyclerView daysRecyclerView = view.findViewById(R.id.curretnDayRecyclerView);
 
@@ -77,11 +88,15 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         DaysAdapter adapter = new DaysAdapter(this, daysDao.getCurrentDay(getCurrentDay()));
 
         daysRecyclerView.setAdapter(adapter);
-
-
     }
 
-    public int getCurrentDay(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        updatePercentage();
+    }
+
+    public static int getCurrentDay(){
         Calendar calendar = Calendar.getInstance();
         int currentDay = calendar.get(Calendar.DAY_OF_WEEK);
 
@@ -119,5 +134,24 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
         NavDirections action = HomeFragmentDirections.actionHomeFragmentToExerciseFragment(dayId);
         Navigation.findNavController(v).navigate(action);
+    }
+
+
+    public void updatePercentage() {
+        AppDatabase db = AppDatabase.getInstance(this.getContext());
+        UserCompletedDao userCompletedDao = db.getUserCompletedDao();
+
+        TextView percentage = this.percentage;
+
+        int exercisesInDay = userCompletedDao.ammountOfExercisesInDay(userId, getCurrentDay());
+        int amountCompleted = userCompletedDao.ammountCompleted(userId, getCurrentDay());
+
+        double percentageValue = (amountCompleted / (double) exercisesInDay) * 100;
+        int percentageInt = (int) percentageValue;
+
+        percentage.setText(percentageInt + "%");
+
+        ProgressBar progressBar = this.progressBar;
+        progressBar.setProgress(percentageInt);
     }
 }

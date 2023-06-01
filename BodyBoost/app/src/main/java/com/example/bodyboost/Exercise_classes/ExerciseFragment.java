@@ -1,5 +1,7 @@
 package com.example.bodyboost.Exercise_classes;
 
+import static com.example.bodyboost.HomeFragment.userId;
+
 import android.content.Context;
 import android.os.Bundle;
 
@@ -13,12 +15,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
 import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
+import com.example.bodyboost.User;
+import com.example.bodyboost.UserCompleted;
+import com.example.bodyboost.UserCompletedDao;
 import com.example.bodyboost.UserPlanDao;
 import com.example.bodyboost.WorkoutPlanDao;
 
@@ -27,13 +33,14 @@ import com.example.bodyboost.WorkoutPlanDao;
  * Use the {@link ExerciseFragment} factory method to
  * create an instance of this fragment.
  */
-public class ExerciseFragment extends Fragment{
+public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.ExerciseSetAdapterEventListener {
 
     private ExerciseSetAdapter adapter;
     private AppDatabase db;
     private DaysDao daysDao;
     private WorkoutPlanDao workoutPlanDao;
     private UserPlanDao userPlanDao;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,12 +80,21 @@ public class ExerciseFragment extends Fragment{
 
         recyclerView.setLayoutManager(layoutManager);
 
-        int planId = userPlanDao.getUserPlanById(HomeFragment.userId);
+        int planId = userPlanDao.getUserPlanById(userId);
 
-        adapter = new ExerciseSetAdapter(workoutPlanDao.getExerciseInfosFromPlan(planId,exerciseDay),workoutPlanDao.getExercisesFromPlan(planId,exerciseDay));
+        adapter = new ExerciseSetAdapter(this, workoutPlanDao.getExerciseInfosFromPlan(planId, exerciseDay), workoutPlanDao.getExercisesFromPlan(planId, exerciseDay));
 
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void onExerciseCompleted() {
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        onExerciseCompleted();
+    }
 }
