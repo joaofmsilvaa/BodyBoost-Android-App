@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -55,6 +57,7 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         AppDatabase db = AppDatabase.getInstance(requireContext());
         daysDao = db.getDaysDao();
         userCompletedDao = db.getUserCompletedDao();
+
     }
 
     @Override

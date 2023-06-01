@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/username"
+            android:icon="@drawable/user"
+            android:title="Username" />
+
+        <item
+            android:id="@+id/editProfile"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="Edit profile" />
+    </group>
+
+    <item
+        android:id="@+id/navClose"
+        android:title="Close" />
+
+</menu>
