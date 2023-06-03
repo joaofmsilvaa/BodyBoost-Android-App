@@ -121,7 +121,7 @@ In the next chapter you will explain the requirements for using the application
    ```sh
    git clone https://github.com/JOao7640/BodyBoost-Android-App.git
    ```
-2. Open the project in Android Studio
+2. Open the project in Android Studio <br>
    File > Open > (The directory you cloned the project to)
    <br>
 3. Start the app on your mobile device
