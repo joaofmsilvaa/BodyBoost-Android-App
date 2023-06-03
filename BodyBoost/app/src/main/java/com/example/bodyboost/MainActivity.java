@@ -1,8 +1,10 @@
 package com.example.bodyboost;
-
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -15,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
 
     private TextView usernameAlert;
-
     private TextView passwordAlert;
 
     String usernameString;
@@ -24,100 +25,90 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Sets the content view to the activity_login layout
-        setContentView(R.layout.activity_login);
 
-        // Stores the EditText with the ID "usernameinput" in the username variable
-        this.username = findViewById(R.id.usernameInput);
-        // Stores the EditText with the ID "passwordInput" in the password variable
-        this.password = findViewById(R.id.passwordInput);
-        // Stores the textView with the ID "textViewAlertName2" in the usernameAlert variable
-        this.usernameAlert = findViewById(R.id.textViewAlertName2);
-        // Stores the textView with the ID "textViewAlertPassword2" in the passwordAlert variable
-        this.passwordAlert = findViewById(R.id.textViewAlertPassword2);
+        // Check if user is already logged in
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
 
+        if (isLoggedIn) {
+            // User is logged in, navigate to homeActivity
+            int userId = sharedPreferences.getInt("userId", 0);
+            Intent intent = new Intent(this, homeActivity.class);
+            intent.putExtra("userId", userId);
+            startActivity(intent);
+            finish();
+        } else {
+            // User is not logged in, proceed with the login screen
+            setContentView(R.layout.activity_login);
+
+            username = findViewById(R.id.usernameInput);
+            password = findViewById(R.id.passwordInput);
+            usernameAlert = findViewById(R.id.textViewAlertName2);
+            passwordAlert = findViewById(R.id.textViewAlertPassword2);
+        }
     }
 
-    /*
-    *
-    * signUpMenu - Starts the "registerActivity" activity and finishes the current one using an Intent.
-    *
-    * @param View view
-     */
     public void signUpMenu(View view) {
         Intent intent = new Intent(this, registerActivity.class);
-        Log.i("Register activity", "Entering registerActivity");
         startActivity(intent);
         finish();
     }
 
-    /*
-     *
-     * signIN - Checks if the values stored in the "usernameString" and "passwordString" correspond
-     * to the values stored in the "testUsername" and "testPassword" variables. If so the program
-     * uses an Intent to start the homeActivity, otherwise it leaves a message in the logcat interface
-     * saying that the credentials are incorrect.
-     *
-     * @param View view
-     */
     public void signIN(View view) {
-
         AppDatabase db = AppDatabase.getInstance(this);
         UserDao userDao = db.getUserDao();
 
         final String TAG = "Given credentials";
 
-        usernameString = this.username.getText().toString();
-        passwordString = this.password.getText().toString();
+        usernameString = username.getText().toString();
+        passwordString = password.getText().toString();
 
-        int ammountOfUsersWithCred = userDao.correspondingUsers(usernameString, passwordString);
+        int amountOfUsersWithCred = userDao.correspondingUsers(usernameString, passwordString);
 
-        Boolean checker = emptyFieldChecker(usernameString, passwordString, usernameAlert, passwordAlert);
+        boolean checker = emptyFieldChecker(usernameString, passwordString, usernameAlert, passwordAlert);
 
-        if(checker){
-            if(ammountOfUsersWithCred == 1){
-                Log.i("Login", "log-in successfull");
+        if (checker) {
+            if (amountOfUsersWithCred == 1) {
+                Log.i("Login", "log-in successful");
                 Log.i(TAG, usernameString + " " + passwordString);
 
-                Intent intent = new Intent(this, homeActivity.class);
-                Log.i("Home Activity", "Entering the homeActivity");
+                // Store boolean value in SharedPreferences
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isLoggedIn", true);
 
                 int userId = userDao.getUserId(usernameString);
+                editor.putInt("userId", userId);
+
+                editor.apply();
+
+                Intent intent = new Intent(this, homeActivity.class);
                 intent.putExtra("userId", userId);
                 startActivity(intent);
                 finish();
-
-            }else{
-                Toast.makeText(getApplicationContext(),"The credentials don't match any account",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "The credentials don't match any account", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    public static boolean emptyFieldChecker(String usernameString, String passwordString, TextView usernameAlert, TextView passwordAlert){
-        // Stores the alert messages in the proper variables
+    public static boolean emptyFieldChecker(String usernameString, String passwordString, TextView usernameAlert, TextView passwordAlert) {
         final String emptyUsername = "Insert a username!";
         final String emptyPassword = "Insert a password!";
-        Boolean checker = true;
+        boolean checker = true;
 
-        if(usernameString.equals("")){
+        if (usernameString.equals("")) {
             usernameAlert.setText(emptyUsername);
             checker = false;
-        }
-
-        if(!usernameString.equals("")){
+        } else {
             usernameAlert.setText("");
-            checker = true;
         }
 
-        if(passwordString.equals("")){
+        if (passwordString.equals("")) {
             passwordAlert.setText(emptyPassword);
             checker = false;
-
-        }
-
-        if(!passwordString.equals("")){
+        } else {
             passwordAlert.setText("");
-            checker = true;
         }
 
         return checker;

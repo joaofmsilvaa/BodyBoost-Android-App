@@ -99,31 +99,32 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         updatePercentage();
     }
 
-    public static int getCurrentDay(){
+    public static int getCurrentDay() {
         Calendar calendar = Calendar.getInstance();
         int currentDay = calendar.get(Calendar.DAY_OF_WEEK);
 
         switch (currentDay) {
-            case 1:
-                currentDay = 6;
-                break;
-            case 2:
+            case Calendar.MONDAY:
                 currentDay = 0;
                 break;
-            case 3:
+            case Calendar.TUESDAY:
                 currentDay = 1;
                 break;
-            case 4:
+            case Calendar.WEDNESDAY:
                 currentDay = 2;
                 break;
-            case 5:
+            case Calendar.THURSDAY:
                 currentDay = 3;
                 break;
-            case 6:
+            case Calendar.FRIDAY:
                 currentDay = 4;
                 break;
-            case 7:
+            case Calendar.SATURDAY:
                 currentDay = 5;
+                break;
+            case Calendar.SUNDAY:
+                currentDay = 6;
+                break;
         }
 
         return currentDay;

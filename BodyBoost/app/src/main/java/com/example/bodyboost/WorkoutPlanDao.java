@@ -23,6 +23,10 @@ public interface WorkoutPlanDao {
     List<Exercise> getExercisesFromPlan(int planId, int day);
 
 
+    @Query("SELECT exercise.* FROM exercise, usercompleted WHERE dayId = :dayId AND userId = :userId AND userCompleted.exerciseId = exercise.exerciseId")
+    List<Exercise> getExercises(int userId, int dayId);
+
+
     @Query("SELECT DISTINCT exerciseSet.*\n" +
             "FROM exercise, workoutplan, userplan, exerciseset\n" +
             "WHERE workoutplan.planId = :planId\n" +
