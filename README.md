@@ -151,13 +151,13 @@ In the next chapter you will explain the requirements for using the application
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Code the structure of the inicial menu
+- [X] Code the structure of the inicial menu
   - [X] Make the progress bar functional
     - [X] Style the progress bar 
   - [X] Make the navigation bar functional
     - [X] Style the navigation bar 
   - [X] Make the cards functional
-    - [ ] Style the cards 
+    - [X] Style the cards 
   
 - [ ] Code the structure of the user profile
   - [ ] Let him change his personal data
@@ -165,8 +165,8 @@ In the next chapter you will explain the requirements for using the application
 - [X] Code the structure of the workout list section
     - [X] Display the exercises corresponding to the users goal
 
-- [ ] Code the structure of the meal list section
-  - [ ] Display the meals corresponding to the users goal
+- [X] Code the structure of the meal list section
+  - [X] Make the "meals information" option functional
   
 - [X] Code the structure of the statistics menu
   - [X] Make the weight list functional
