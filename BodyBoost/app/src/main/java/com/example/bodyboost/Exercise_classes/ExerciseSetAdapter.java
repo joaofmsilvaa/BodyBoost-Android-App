@@ -15,6 +15,7 @@ import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.Exercise;
 import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
+import com.example.bodyboost.UserCompleted;
 import com.example.bodyboost.UserCompletedDao;
 
 import java.util.List;
@@ -63,10 +64,14 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
             @Override
             public void onClick(View view) {
                 if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, dayId, exerciseID)) {
-                    userCompletedDao.updateCompleted(0, HomeFragment.userId, dayId, exerciseID);
+                    UserCompleted userCompleted = new UserCompleted(0, HomeFragment.userId, dayId, exerciseID, false);
+
+                    userCompletedDao.updateCompleted(userCompleted);
                     eventListener.onExerciseCompleted();
                 } else {
-                    userCompletedDao.updateCompleted(1, HomeFragment.userId, dayId, exerciseID);
+                    UserCompleted userCompleted = new UserCompleted(0, HomeFragment.userId, dayId, exerciseID, true);
+
+                    userCompletedDao.updateCompleted(userCompleted);
                     eventListener.onExerciseCompleted();
                 }
             }

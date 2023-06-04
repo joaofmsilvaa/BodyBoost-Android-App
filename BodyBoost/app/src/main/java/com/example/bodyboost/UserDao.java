@@ -16,7 +16,7 @@ public interface UserDao {
     int correspondingUsers(String username, String password);
 
     @Query("SELECT COUNT(userId) FROM User WHERE username = :username")
-    int nameAvailable(String username);
+    int isUsernameAvailable(String username);
 
     @Query("SELECT userId FROM User WHERE username = :username")
     int getUserId(String username);
@@ -26,5 +26,4 @@ public interface UserDao {
 
     @Insert
     void insert(User user);
-
 }

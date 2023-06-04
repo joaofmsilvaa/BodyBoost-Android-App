@@ -1,4 +1,5 @@
 package com.example.bodyboost;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -49,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signUpMenu(View view) {
-        Intent intent = new Intent(this, registerActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void signIN(View view) {
+    public void signIn(View view) {
         AppDatabase db = AppDatabase.getInstance(this);
         UserDao userDao = db.getUserDao();
 

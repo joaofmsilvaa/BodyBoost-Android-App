@@ -36,4 +36,9 @@ public interface WorkoutPlanDao {
             "  AND exerciseset.exerciseId = exercise.exerciseId\n" +
             "  AND workoutPlan.exerciseId = exerciseSet.exerciseId")
     List<ExerciseSet> getExerciseInfosFromPlan(int planId, int day);
+
+
+    @Query("SELECT exerciseId FROM WorkoutPlan WHERE planId = :planId")
+    List<Integer> getAllExerciseIds(int planId);
+
 }

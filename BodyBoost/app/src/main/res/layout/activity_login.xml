@@ -12,7 +12,7 @@
         android:layout_height="80dp"
         android:layout_marginBottom="96dp"
         android:backgroundTint="#7A7A7A"
-        android:onClick="signIN"
+        android:onClick="signIn"
         android:text="@string/log_in"
         android:textColor="@color/white"
         android:textSize="24sp"

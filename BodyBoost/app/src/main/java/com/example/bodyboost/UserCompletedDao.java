@@ -1,7 +1,8 @@
 package com.example.bodyboost;
-
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 @Dao
 public interface UserCompletedDao {
@@ -13,9 +14,11 @@ public interface UserCompletedDao {
     int ammountCompleted(int userId, int dayId);
 
     @Query("SELECT completed FROM UserCompleted WHERE userId = :userId AND dayId = :dayId AND exerciseId = :exerciseId")
-    Boolean checkIfExerciseCompleted(int userId, int dayId ,int exerciseId);
+    Boolean checkIfExerciseCompleted(int userId, int dayId, int exerciseId);
 
+    @Update
+    void updateCompleted(UserCompleted userCompleted);
 
-    @Query("UPDATE usercompleted SET completed = :completed WHERE userId = :userId AND dayId = :dayId AND exerciseId = :exerciseId")
-    void updateCompleted(int completed , int userId, int dayId, int exerciseId);
+    @Insert
+    void insert(UserCompleted userCompleted);
 }
