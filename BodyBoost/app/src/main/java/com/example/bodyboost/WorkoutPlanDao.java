@@ -41,4 +41,7 @@ public interface WorkoutPlanDao {
     @Query("SELECT exerciseId FROM WorkoutPlan WHERE planId = :planId")
     List<Integer> getAllExerciseIds(int planId);
 
+
+    @Query("SELECT exerciseId FROM WorkoutPlan WHERE planId = :planId AND dayId = :dayId")
+    List<Integer> getExercisesInDay(int planId, int dayId);
 }

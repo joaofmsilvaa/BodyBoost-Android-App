@@ -14,7 +14,6 @@ public class UserPlan {
 
     @PrimaryKey(autoGenerate = true)
     int user_planId;
-
     int userId;
     int planId;
 

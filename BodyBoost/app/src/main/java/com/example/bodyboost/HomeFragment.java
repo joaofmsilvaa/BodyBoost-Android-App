@@ -74,7 +74,14 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         int ammountOfExercisesInDay = userCompletedDao.ammountOfExercisesInDay(userId,getCurrentDay());
 
         percentage = view.findViewById(R.id.percentage);
-        int percentageValue = ammountCompleted / ammountOfExercisesInDay * 100;
+
+        int percentageValue = 0;
+
+        if(ammountCompleted != 0){
+            percentageValue = ammountCompleted / ammountOfExercisesInDay * 100;
+        }
+
+
 
         percentage.setText(percentageValue + "%");
 
