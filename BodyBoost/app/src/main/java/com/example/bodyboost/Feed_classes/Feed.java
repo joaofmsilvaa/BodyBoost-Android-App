@@ -13,12 +13,15 @@ public class Feed {
     String newsFullDescription;
     String newsImg;
 
-    public Feed(int feedId, String newsTitle, String newsSmallDescription, String newsFullDescription,String newsImg) {
+    String newsDate;
+
+    public Feed(int feedId, String newsTitle, String newsSmallDescription, String newsFullDescription,String newsImg, String newsDate) {
         this.feedId = feedId;
         this.newsTitle = newsTitle;
         this.newsSmallDescription = newsSmallDescription;
-        this.newsFullDescription = newsSmallDescription;
+        this.newsFullDescription = newsFullDescription;
         this.newsImg = newsImg;
+        this.newsDate = newsDate;
     }
 
     public int getFeedId() {

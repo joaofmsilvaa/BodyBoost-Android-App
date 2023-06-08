@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="420dp">
+    android:layout_height="450dp">
 
     <TextView
         android:id="@+id/newsCard"
@@ -63,6 +63,18 @@
         app:layout_constraintEnd_toEndOf="@+id/newsCard"
         app:layout_constraintStart_toStartOf="@+id/newsCard"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/newsDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Date"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/newsDescriptionTextView"
+        app:layout_constraintStart_toStartOf="@+id/newsCard"
+        app:layout_constraintTop_toBottomOf="@+id/newsTitleTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

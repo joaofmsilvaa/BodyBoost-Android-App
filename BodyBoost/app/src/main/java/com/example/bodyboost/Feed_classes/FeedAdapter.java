@@ -35,6 +35,7 @@ public class FeedAdapter extends RecyclerView.Adapter<com.example.bodyboost.Feed
 
         holder.newsTitleTextView.setText(news.newsTitle);
         holder.newsDescriptionTextView.setText(news.newsSmallDescription);
+        holder.newsDateTextView.setText(news.newsDate);
 
         Glide.with(holder.rootView.getContext()).load(news.getNewsImg()).into(holder.newsImageView);
 
@@ -60,8 +61,8 @@ public class FeedAdapter extends RecyclerView.Adapter<com.example.bodyboost.Feed
         View rootView;
         TextView newsTitleTextView;
         TextView newsDescriptionTextView;
+        TextView newsDateTextView;
         ImageView newsImageView;
-
         TextView newsCard;
 
         public FeedViewHolder(@NonNull View rootView) {
@@ -69,6 +70,7 @@ public class FeedAdapter extends RecyclerView.Adapter<com.example.bodyboost.Feed
             this.rootView = rootView;
             this.newsTitleTextView = rootView.findViewById(R.id.newsTitleTextView);
             this.newsDescriptionTextView = rootView.findViewById(R.id.newsDescriptionTextView);
+            this.newsDateTextView = rootView.findViewById(R.id.newsDateTextView);
             this.newsImageView = rootView.findViewById(R.id.newsImageView);
             this.newsCard = rootView.findViewById(R.id.newsCard);
 

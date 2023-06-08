@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
             int planValue = goalString.equals("lose weight") ? 1 : 2;
 
             UserPlan userPlan = new UserPlan(userId, planValue);
-            
+
             userPlanDao.insert(userPlan);
 
             for (int i = 0; i < daysOfWeek.size(); i++) {
