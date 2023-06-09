@@ -17,4 +17,6 @@ public interface MealsDao {
     @Query("SELECT mealName FROM meals WHERE mealId = :mealId")
     String getMealsNameById(int mealId);
 
+    @Query("SELECT mealRecipe FROM meals WHERE mealId = :mealId")
+    String getRecipeById(int mealId);
 }

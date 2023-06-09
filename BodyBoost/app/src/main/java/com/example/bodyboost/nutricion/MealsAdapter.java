@@ -45,7 +45,6 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
         holder.recipeCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int selectedRecipe = holder.getAdapterPosition();
-                selectedRecipe ++;
                 NavDirections action = com.example.bodyboost.nutricion.nutricionFragmentDirections.actionNutricionFragmentToFragmentRecipe(selectedRecipe);
                 Navigation.findNavController(v).navigate(action);
             }
