@@ -172,7 +172,7 @@ In the next chapter you will explain the requirements for using the application
   - [X] Make the weight list functional
 
 - [X] Code the structure of the feed menu
-  - [X] Make the "news consultig" option functional
+  - [X] Make the "news consulting" option functional
 
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
