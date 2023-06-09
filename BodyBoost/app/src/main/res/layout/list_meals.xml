@@ -3,36 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="200dp">
+
+    <TextView
+        android:id="@+id/recipeCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/mealImageView"
-        android:layout_width="350dp"
+        android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeCard"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recipeCard"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
         android:id="@+id/recipeNameTextView"
-        android:layout_width="0dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
         android:text="TextView"
+        android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/mealImageView"
-        app:layout_constraintStart_toStartOf="@+id/mealImageView"
-        app:layout_constraintTop_toBottomOf="@+id/mealImageView" />
+        app:layout_constraintStart_toEndOf="@+id/mealImageView"
+        app:layout_constraintTop_toTopOf="@+id/mealImageView" />
 
     <TextView
         android:id="@+id/recipeDescTextView"
-        android:layout_width="0dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="TextView"
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/mealImageView"
         app:layout_constraintEnd_toEndOf="@+id/recipeNameTextView"
         app:layout_constraintStart_toStartOf="@+id/recipeNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/recipeNameTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

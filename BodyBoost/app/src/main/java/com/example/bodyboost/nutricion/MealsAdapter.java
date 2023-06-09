@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +42,15 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
 
         Glide.with(holder.rootView.getContext()).load(meals.getMealImage()).into(holder.mealImageView);
 
+        holder.recipeCard.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int selectedRecipe = holder.getAdapterPosition();
+                selectedRecipe ++;
+                NavDirections action = com.example.bodyboost.nutricion.nutricionFragmentDirections.actionNutricionFragmentToFragmentRecipe(selectedRecipe);
+                Navigation.findNavController(v).navigate(action);
+            }
+        });
+
     }
 
     @Override
@@ -54,6 +65,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
         Context context;
         TextView recipeNameTextView;
         TextView recipeDescTextView;
+        TextView recipeCard;
         ImageView mealImageView;
 
         public MealsViewHolder(@NonNull View itemView, Context context) {
@@ -63,6 +75,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
             recipeNameTextView = rootView.findViewById(R.id.recipeNameTextView);
             recipeDescTextView = rootView.findViewById(R.id.recipeDescTextView);
             mealImageView = rootView.findViewById(R.id.mealImageView);
+            recipeCard = rootView.findViewById(R.id.recipeCard);
 
         }
     }

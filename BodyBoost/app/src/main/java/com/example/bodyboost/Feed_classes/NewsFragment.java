@@ -58,13 +58,13 @@ public class NewsFragment extends Fragment{
         TextView newsTitle = view.findViewById(R.id.newstitleTextView2);
         TextView newsSmallDescription = view.findViewById(R.id.newsSmallDescriptionTextView);
         TextView newsFullDescription = view.findViewById(R.id.newsDescriptionTextView2);
-
+        TextView newsDateTextView = view.findViewById(R.id.newsDateTextView2);
 
         Glide.with(context).load(feedDao.getNewsImgById(newsId)).into(newsImageView);
         newsTitle.setText(feedDao.getNewsTitleById(newsId));
         newsSmallDescription.setText(feedDao.getNewsSmallDesById(newsId));
         newsFullDescription.setText(feedDao.getFullDesById(newsId));
-
+        newsDateTextView.setText(feedDao.getNewsDateById(newsId));
 
 
 

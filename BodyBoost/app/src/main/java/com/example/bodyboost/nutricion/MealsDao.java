@@ -11,4 +11,10 @@ public interface MealsDao {
     @Query("SELECT * FROM Meals")
     List<Meals> getAll();
 
+    @Query("SELECT mealImage FROM meals WHERE mealId = :mealId")
+    String getMealsImgById(int mealId);
+
+    @Query("SELECT mealName FROM meals WHERE mealId = :mealId")
+    String getMealsNameById(int mealId);
+
 }

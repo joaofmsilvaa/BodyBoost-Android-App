@@ -16,10 +16,14 @@ import com.example.bodyboost.Feed_classes.Feed;
 import com.example.bodyboost.Feed_classes.FeedDao;
 import com.example.bodyboost.Report_classes.Report;
 import com.example.bodyboost.Report_classes.ReportDao;
+import com.example.bodyboost.nutricion.Ingredients;
+import com.example.bodyboost.nutricion.IngredientsDao;
+import com.example.bodyboost.nutricion.MealIngredients;
+import com.example.bodyboost.nutricion.MealIngredientsDao;
 import com.example.bodyboost.nutricion.Meals;
 import com.example.bodyboost.nutricion.MealsDao;
 
-@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSet.class, WorkoutPlan.class ,Feed.class, Meals.class ,User.class, UserPlan.class, UserCompleted.class}, version = 1)
+@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSet.class, WorkoutPlan.class ,Feed.class, Meals.class, Ingredients.class, MealIngredients.class,User.class, UserPlan.class, UserCompleted.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ReportDao getReportDao();
@@ -28,6 +32,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract  WorkoutPlanDao getWorkoutPlanDao();
     public abstract FeedDao getFeedDao();
     public abstract MealsDao getMealsDao();
+    public abstract IngredientsDao getIngredientsDao();
+    public abstract MealIngredientsDao getMealIngredientsDao();
     public abstract UserPlanDao getUserPlanDao();
     public abstract UserDao getUserDao();
     public abstract UserCompletedDao getUserCompletedDao();
@@ -297,10 +303,82 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO Feed (newsTitle, newsSmallDescription, newsFullDescription, newsImg, newsDate) VALUES ('Jessica Inchude vence lançamento do peso em meeting na Polónia', 'A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros.', 'A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros, a dois centímetros do seu recorde pessoal.\n\nNa mesma prova, o segundo lugar também foi para uma lançadora lusa, Eliane Bandeira, com um arremesso a 18,20 metros, passando pela segunda vez na carreira os 18,00 metros. Inchude, que em Portugal apenas é superada pela recordista nacional, Auriol Dongmo, conseguiu ainda um registo de 18,63, em concurso de grande consistência, com cinco tiros a mais de 18 metros.\n\nNa qualificação para os Mundiais de Budapeste, ainda não atinge a marca de qualificação direta, que é de 18,80, mas reforça amplamente a sua posição no ranking de apuramento. Inchude é a primeira atleta sem marca de qualificação direta, em 17.ª, sendo que se vão apurar 36 lançadoras. Manterá a posição, mas com mais pontos.\n\nEliana Bandeira também está na lista de qualificação por ranking, neste momento na 26.ª posição.', 'https://cdn.record.pt/images/2023-05/img_920x518$2023_05_21_19_27_28_2131327.png', '22/05/2023')");
 
                             // Meals
-                            db.execSQL("INSERT INTO Meals(mealName,mealsShortDescription,mealRecipe, mealImage) VALUES('Green tea noodles with sticky sweet chilli salmon', 'Green tea noodles bring a pop of colour to this easy midweek dinner.', 'Preheat oven to 220°C. Heat peanut oil in a small saucepan over low heat. Add ginger, long green shallot, lemongrass and a pinch of salt. Cook, stirring occasionally, for 6-8 minutes until long green shallot is very soft but not coloured. Remove from heat and cool.\n" +
-                                    "Meanwhile, combine honey, olive oil and chilli paste in a bowl. Stir to combine. Line a baking tray with baking paper and add salmon. Rub honey mixture over salmon to coat, then season. Roast for 12-15 minutes for medium. Set aside, loosely covered with foil, to rest for 5 minutes.\n" +
+                            db.execSQL("INSERT INTO Meals(mealId, mealName,mealsShortDescription,mealRecipe, mealImage) VALUES(0,'Creamy Garlic Mushrooms', 'This Creamy Garlic Mushroom is a quick and easy side dish recipe that’s made with button mushrooms.', 'Heat the oil in a large pan over medium heat; Once hot, add in the mushrooms and cook stirring occasionally, for about 10-15 minutes.\n" +
+                                    "Stir in the garlic, season with a pinch of salt and pepper, then cook for about a minute more.\n" +
+                                    "Add the broth and chopped brie, and stirring constantly cook until the brie has melted into a super creamy sauce.\n" +
+                                    "Taste and adjust seasonings if needed. Garnish with fresh thyme. Serve immediately and enjoy!', 'https://healthyfitnessmeals.com/wp-content/uploads/2019/12/instagram-In-Stream_Square___Creamy-garlic-mushrooms-3-360x360.jpg')");
+                            db.execSQL("INSERT INTO Meals(mealId, mealName,mealsShortDescription,mealRecipe, mealImage) VALUES(1,'Italian Baked Turkey Meatballs', 'Need a little change from your regular meatballs? Try this Gluten-free and dairy-free Italian Turkey Meatballs recipe.', 'Preheat the broiler: First, line a sheet pan with foil and coat the foil with cooking spray.\n" +
+                                    "Place the turkey, breadcrumbs, salt, pepper, garlic powder, basil, egg, and water in a bowl; mix until thoroughly combined. You may need to add more water, 1 teaspoon at a time, to get a smooth mixture.\n" +
+                                    "Take approximately 2 tablespoons of the meat mixture and roll it into a ball. Place the meatball on the sheet pan and repeat with the remaining meat.\n" +
+                                    "Spray the tops of the meatballs with cooking spray. Broil for 10 minutes or until meatballs are just done.\n" +
+                                    "Place the meatballs on a plate and pour the marinara sauce over the top. Finally, sprinkle with\n" +
+                                    "parsley and serve immediately." +
                                     "Cook noodles according to packet instructions. Drain and rinse briefly with warm water.\n" +
-                                    "Whisk lime juice, sugar, fish sauce and chilli flakes into the shallot oil mixture. Place noodles in a large bowl with three quarters of the shallot oil, season and toss to combine. Arrange on a serving platter and flake salmon over the top. Drizzle over remaining shallot oil and scatter with extra chilli flakes, toasted sesame seeds and shiso leaves. Serve at room temperature or chilled.', 'https://img.delicious.com.au/EEJ2ozkv/del/2020/10/green-tea-noodles-with-sticky-sweet-chilli-salmon-140868-2.jpg')");
+                                    "Whisk lime juice, sugar, fish sauce and chilli flakes into the shallot oil mixture. Place noodles in a large bowl with three quarters of the shallot oil, season and toss to combine. Arrange on a serving platter and flake salmon over the top. Drizzle over remaining shallot oil and scatter with extra chilli flakes, toasted sesame seeds and shiso leaves. Serve at room temperature or chilled.', 'https://healthyfitnessmeals.com/wp-content/uploads/2018/01/italian-turkey-meatballs-square-360x360.jpg')");
+                            db.execSQL("INSERT INTO Meals(mealId, mealName,mealsShortDescription,mealRecipe, mealImage) VALUES(2,'Creamy Salmon And Potato Skillet', 'Make this Easy Creamy Salmon and Potato Skillet recipe any day of the week for the family to enjoy.', 'Place the potatoes in a pot of water and boil just until they begin to soften.\n" +
+                                    "Do not overcook as they’ll get mushy. Once ready, drain and season with salt and pepper.\n" +
+                                    "cooked halved potatoes in a pot\n" +
+                                    "Season the salmon skillets with salt and pepper. Heat the oil in a non-stick pan and fry the salmon until golden on both sides, then set aside.\n" +
+                                    "sauteed salmon fillet in a pan\n" +
+                                    "In the same preheated pan, saute the garlic for 30 seconds. Deglaze the pan with the stock and allow it to bubble for a couple of minutes. Add the cream cheese and use a whisk to incorporate and get a creamy sauce.\n" +
+                                    "vegetable stock with sauteed garlic and creamy cheese on a pan\n" +
+                                    "Stir in the chives, chili flakes, and potatoes. Return the salmon back into the pan and drizzle with the creamy sauce. Garnish with freshly ground black pepper, and extra chives, if desired.\n" +
+                                    "potatoes added over a creamy white sauce in skillet', 'https://healthyfitnessmeals.com/wp-content/uploads/2023/04/Creamy-salmon-and-potato-skillet7-360x360.jpg')");
+
+
+                            // Ingredients
+                            // Recipe 1
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(0,'Olive Oil')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(1,'Button Mushrooms')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(2,'Garlic Cloves Chopped')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(3,'Vegetable Broth')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(4,'Brie')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(5,'Salt and pepper')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(6,'Fresh Thyme leaves')");
+
+                            // Recipe 2
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(7,'Ground Turkey')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(8,'Breadcrumbs')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(9,'salt, black pepper, garlic powder, dried basil, chopped fresh parsley.')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(10,'Egg')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(11,'Marinara Sauce')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(12,'Cooking Spray')");
+
+                            // Recipe 3
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(13,'Baby Potatoes')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(14,'Salmon Filets')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(15,'Garlic cloves, salt, pepper, fresh chives, and chili flakes')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(16,'Oil')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(17,'Vegetable Stock')");
+                            db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(18,'Creamy cheese')");
+
+
+                            // MealIngredients
+                            // Recipe 1 - Ingredients
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 0, '1 Tbsp')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 1, '1 Lb')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 2, '2')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 3, '1/4 Cup')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 4, '4 oz')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 5, '')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 6, '')");
+
+                            // Recipe 2 - Ingredients
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 7, '1 Lb')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 8, '1/4 Cup')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 9, '')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 10, '1')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 11, '3 cups')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 12, '')");
+
+                            // Recipe 3 - Ingredients
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 13, '1 Lb')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 14, '4')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 15, '')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 16, '1 Tbsp')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 17, '1 cup')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 18, '8 oz')");
+
 
                             // User - testUsers
                             db.execSQL("INSERT INTO User(userId, username, password, weight, height, objective) VALUES(0, 'user', 'password', 60.2, 1.60, 'gain muscle')");
@@ -310,7 +388,8 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO UserPlan(userId,planId) VALUES(0, 1)");
                             db.execSQL("INSERT INTO UserPlan(userId,planId) VALUES(1, 2)");
 
-                            // UserCompleteds
+
+                            // UserCompleted
 
                             // Day 0
                             db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 1, '0')");

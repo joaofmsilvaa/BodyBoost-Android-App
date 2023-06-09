@@ -32,7 +32,14 @@
         android:id="@+id/nutricionFragment"
         android:name="com.example.bodyboost.nutricion.nutricionFragment"
         android:label="fragment_nutricion"
-        tools:layout="@layout/fragment_nutricion" />
+        tools:layout="@layout/fragment_nutricion" >
+        <argument
+            android:name="selectedRecipe"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_nutricionFragment_to_fragment_recipe"
+            app:destination="@id/fragment_recipe" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
@@ -77,5 +84,13 @@
             android:name="selectedNew"
             app:argType="integer" />
     </fragment>
-
+    <fragment
+        android:id="@+id/fragment_recipe"
+        android:name="com.example.bodyboost.fragment_recipe"
+        android:label="fragment_recipe2"
+        tools:layout="@layout/fragment_recipe">
+        <argument
+            android:name="selectedRecipe"
+            app:argType="integer" />
+    </fragment>
 </navigation>

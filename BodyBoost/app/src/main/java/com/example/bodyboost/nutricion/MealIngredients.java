@@ -3,18 +3,7 @@ package com.example.bodyboost.nutricion;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
-@Entity(primaryKeys = {"mealsId", "ingredientsId"},foreignKeys = {
-        @ForeignKey(
-                entity = Meals.class,
-                parentColumns = "mealsId",
-                childColumns = "mealsId"
-        ),
-        @ForeignKey(
-                entity = Ingredients.class,
-                parentColumns = "ingredientsId",
-                childColumns = "ingredientsId"
-        )
-})
+@Entity(primaryKeys = {"mealsId", "ingredientsId"})
 public class MealIngredients {
 
 
@@ -22,9 +11,12 @@ public class MealIngredients {
 
     int ingredientsId;
 
-    public MealIngredients(int mealsId, int ingredientsId) {
+    String quantity;
+
+    public MealIngredients(int mealsId, int ingredientsId, String quantity) {
         this.mealsId = mealsId;
         this.ingredientsId = ingredientsId;
+        this.quantity = quantity;
     }
 
     public int getMealsId() {

@@ -12,7 +12,6 @@ public class Meals {
     String mealName;
     String mealsShortDescription;
     String mealRecipe;
-
     String mealImage;
 
 
