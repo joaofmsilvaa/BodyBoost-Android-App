@@ -30,6 +30,8 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
 
     private ExerciseSetAdapter adapter;
     private AppDatabase db;
+
+    private int exerciseDay;
     private DaysDao daysDao;
     private WorkoutPlanDao workoutPlanDao;
     private UserPlanDao userPlanDao;
@@ -75,6 +77,14 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
 
     @Override
     public void onExerciseCompleted() {
+        refreshFragment();
+    }
+
+    public void refreshFragment() {
+
+        adapter.updateData(workoutPlanDao.getExercises(HomeFragment.userId, exerciseDay));
+
+        adapter.notifyDataSetChanged();
     }
 
     @Override

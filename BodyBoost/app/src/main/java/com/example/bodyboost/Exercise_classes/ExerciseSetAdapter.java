@@ -15,6 +15,7 @@ import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.Exercise;
 import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
+import com.example.bodyboost.Report_classes.Report;
 import com.example.bodyboost.UserCompleted;
 import com.example.bodyboost.UserCompletedDao;
 
@@ -53,25 +54,26 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         int dayId = exerciseSet.getDayId();
 
         if (holder.weightCard != null) {
-            if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, dayId, exerciseID)) {
+            if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, dayId, exerciseID) == 1) {
                 holder.weightCard.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
             } else {
                 holder.weightCard.setBackgroundColor(ContextCompat.getColor(context, R.color.mainRed));
             }
         }
 
+        // TO-DO - corrigir o bug de marcar um exercício como completo
         holder.exerciseDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, dayId, exerciseID)) {
-                    UserCompleted userCompleted = new UserCompleted(0, HomeFragment.userId, dayId, exerciseID, false);
+                int test = userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, HomeFragment.getCurrentDay(), exerciseID);
 
-                    userCompletedDao.updateCompleted(userCompleted);
+                if (test == 1) {
+
+                    userCompletedDao.updateExerciseCompleted(0,dayId,HomeFragment.userId,exerciseID);
                     eventListener.onExerciseCompleted();
                 } else {
-                    UserCompleted userCompleted = new UserCompleted(0, HomeFragment.userId, dayId, exerciseID, true);
 
-                    userCompletedDao.updateCompleted(userCompleted);
+                    userCompletedDao.updateExerciseCompleted(1,dayId,HomeFragment.userId,exerciseID);
                     eventListener.onExerciseCompleted();
                 }
             }
@@ -82,13 +84,17 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         if (exerciseSet.getRepetitions() == 0) {
             holder.timeRepetitionsTextView.setText(exerciseSet.getTime());
         } else {
-            holder.timeRepetitionsTextView.setText(Integer.toString(exerciseSet.getRepetitions()));
+            holder.timeRepetitionsTextView.setText(exerciseSet.getRepetitions() + "x");
         }
     }
 
     @Override
     public int getItemCount() {
         return exerciseSetList.size();
+    }
+
+    public void updateData(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

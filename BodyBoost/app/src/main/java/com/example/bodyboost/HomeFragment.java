@@ -81,8 +81,6 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
             percentageValue = ammountCompleted / ammountOfExercisesInDay * 100;
         }
 
-
-
         percentage.setText(percentageValue + "%");
 
         progressBar = view.findViewById(R.id.percentageBar);

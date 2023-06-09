@@ -18,16 +18,11 @@ public interface UserCompletedDao {
 
 
     @Query("SELECT completed FROM UserCompleted WHERE userId = :userId AND dayId = :dayId AND exerciseId = :exerciseId")
-    Boolean checkIfExerciseCompleted(int userId, int dayId, int exerciseId);
+    int checkIfExerciseCompleted(int userId, int dayId, int exerciseId);
 
 
-    @Query("SELECT usercompleted.exerciseId FROM usercompleted, workoutplan WHERE usercompleted.dayId = :dayId AND workoutplan.planId = :planId")
-    List<Integer> getExercisesInDay(int dayId, int planId);
-
-
-    @Update
-    void updateCompleted(UserCompleted userCompleted);
-
+    @Query("UPDATE usercompleted SET completed = :status WHERE usercompleted.dayId = :dayId AND userId = :userId AND exerciseId = :exerciseId")
+    void updateExerciseCompleted(int status,int dayId, int userId, int exerciseId);
 
     @Insert
     void insert(UserCompleted userCompleted);
