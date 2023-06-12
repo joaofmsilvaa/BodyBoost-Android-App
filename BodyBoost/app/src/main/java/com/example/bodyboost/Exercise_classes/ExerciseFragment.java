@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.bodyboost.AppDatabase;
+import com.example.bodyboost.Exercise;
 import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
 import com.example.bodyboost.User;
@@ -24,6 +25,8 @@ import com.example.bodyboost.UserCompleted;
 import com.example.bodyboost.UserCompletedDao;
 import com.example.bodyboost.UserPlanDao;
 import com.example.bodyboost.WorkoutPlanDao;
+
+import java.util.List;
 
 public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.ExerciseSetAdapterEventListener {
     private int userId; // Declare the userId variable
@@ -35,6 +38,7 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
     private DaysDao daysDao;
     private WorkoutPlanDao workoutPlanDao;
     private UserPlanDao userPlanDao;
+    private UserCompletedDao userCompletedDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
         daysDao = db.getDaysDao();
         workoutPlanDao = db.getWorkoutPlanDao();
         userPlanDao = db.getUserPlanDao();
+        userCompletedDao = db.getUserCompletedDao();
     }
 
     @Override
@@ -59,9 +64,11 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
 
         // Retrieve the userId from the arguments using HomeFragmentArgs
         userId = HomeFragment.userId;
-
+        
         // Stores the given argument (an ID of the selected day) in the exerciseDay variable
-        int exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
+        exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
+
+
 
         TextView dayOfWeek = view.findViewById(R.id.dayIndicatorTextView);
         dayOfWeek.setText(daysDao.getDayByID(exerciseDay));
@@ -70,8 +77,12 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        List<Exercise> getExercisesForUser = userCompletedDao.getExercisesForUser(userId,exerciseDay);
+
+        Log.i("test", getExercisesForUser.get(0).getExerciseName());
+
         int planId = userPlanDao.getUserPlanById(userId);
-        adapter = new ExerciseSetAdapter(this, workoutPlanDao.getExerciseInfosFromPlan(planId, exerciseDay), workoutPlanDao.getExercises(HomeFragment.userId, exerciseDay), getContext());
+        adapter = new ExerciseSetAdapter(this, workoutPlanDao.getExerciseInfosFromPlan(planId, exerciseDay), getExercisesForUser, getContext());
         recyclerView.setAdapter(adapter);
     }
 

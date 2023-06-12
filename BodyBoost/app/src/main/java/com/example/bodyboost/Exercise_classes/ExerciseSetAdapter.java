@@ -1,6 +1,7 @@
 package com.example.bodyboost.Exercise_classes;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,14 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
         int dayId = exerciseSet.getDayId();
 
+        holder.exerciseNameTextView.setText(exercise.getExerciseName());
+
+        if (exerciseSet.getRepetitions() == 0) {
+            holder.timeRepetitionsTextView.setText(exerciseSet.getTime());
+        } else {
+            holder.timeRepetitionsTextView.setText(exerciseSet.getRepetitions() + "x");
+        }
+
         if (holder.weightCard != null) {
             if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, dayId, exerciseID) == 1) {
                 holder.weightCard.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
@@ -65,7 +74,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         holder.exerciseDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int test = userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, HomeFragment.getCurrentDay(), exerciseID);
+                int test = userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, dayId, exerciseID);
 
                 if (test == 1) {
 
@@ -78,14 +87,6 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
                 }
             }
         });
-
-        holder.exerciseNameTextView.setText(exercise.getExerciseName());
-
-        if (exerciseSet.getRepetitions() == 0) {
-            holder.timeRepetitionsTextView.setText(exerciseSet.getTime());
-        } else {
-            holder.timeRepetitionsTextView.setText(exerciseSet.getRepetitions() + "x");
-        }
     }
 
     @Override

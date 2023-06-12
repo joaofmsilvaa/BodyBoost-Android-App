@@ -74,6 +74,8 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         int ammountOfExercisesInDay = userCompletedDao.ammountOfExercisesInDay(userId,getCurrentDay());
 
         percentage = view.findViewById(R.id.percentage);
+        progressBar = view.findViewById(R.id.percentageBar);
+        RecyclerView daysRecyclerView = view.findViewById(R.id.curretnDayRecyclerView);
 
         int percentageValue = 0;
 
@@ -82,16 +84,12 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         }
 
         percentage.setText(percentageValue + "%");
-
-        progressBar = view.findViewById(R.id.percentageBar);
         progressBar.setProgress(percentageValue);
 
-        RecyclerView daysRecyclerView = view.findViewById(R.id.curretnDayRecyclerView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
         daysRecyclerView.setLayoutManager(layoutManager);
-
 
         DaysAdapter adapter = new DaysAdapter(this, daysDao.getCurrentDay(getCurrentDay()));
 
@@ -139,8 +137,7 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     @Override
     public void onDayClicked(int dayId, View v) {
 
-        dayId = getCurrentDay();
-
+        Log.i("String", "" + dayId);
         NavDirections action = HomeFragmentDirections.actionHomeFragmentToExerciseFragment(dayId);
         Navigation.findNavController(v).navigate(action);
     }

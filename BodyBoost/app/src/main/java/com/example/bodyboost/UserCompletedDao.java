@@ -4,10 +4,17 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.bodyboost.Exercise_classes.ExerciseSet;
+
 import java.util.List;
 
 @Dao
 public interface UserCompletedDao {
+
+    @Query("SELECT exercise.* " +
+            "FROM exercise, usercompleted " +
+            "WHERE userId = :userId AND dayId = :dayId AND exercise.exerciseId = usercompleted.exerciseId")
+    List<Exercise> getExercisesForUser(int userId, int dayId);
 
     @Query("SELECT COUNT(userId) FROM usercompleted WHERE userId = :userId AND dayId = :dayId")
     int ammountOfExercisesInDay(int userId, int dayId);

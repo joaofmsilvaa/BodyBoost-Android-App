@@ -1,19 +1,15 @@
 package com.example.bodyboost.Exercise_classes;
 
-import static com.example.bodyboost.HomeFragment.getCurrentDay;
+
 import static com.example.bodyboost.HomeFragment.userId;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bodyboost.AppDatabase;
@@ -58,7 +54,7 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
         holder.dayCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                int currentDay = holder.getAdapterPosition();
+                int currentDay = days.getDayId();
 
                 if (eventListener != null) eventListener.onDayClicked(currentDay, v);
 
