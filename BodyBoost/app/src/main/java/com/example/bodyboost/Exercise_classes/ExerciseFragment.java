@@ -64,7 +64,7 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
 
         // Retrieve the userId from the arguments using HomeFragmentArgs
         userId = HomeFragment.userId;
-        
+
         // Stores the given argument (an ID of the selected day) in the exerciseDay variable
         exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
 

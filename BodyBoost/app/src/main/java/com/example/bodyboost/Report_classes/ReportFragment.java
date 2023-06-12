@@ -54,8 +54,7 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_report, container, false);
     }
 
@@ -76,26 +75,30 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
         Button insertWeight = view.findViewById(R.id.insertWeightButton);
         insertWeight.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                String inputText = weightInput.getText().toString().trim();
+                if (!inputText.isEmpty()) {
+                    float weight = Float.parseFloat(inputText);
 
-                Calendar now = Calendar.getInstance();
-                int year = now.get(Calendar.YEAR);
-                int month = now.get(Calendar.MONTH) + 1;
-                int day = now.get(Calendar.DAY_OF_MONTH);
-                int hour = now.get(Calendar.HOUR_OF_DAY);
-                int minute = now.get(Calendar.MINUTE);
-                int second = now.get(Calendar.SECOND);
+                    Calendar now = Calendar.getInstance();
+                    int year = now.get(Calendar.YEAR);
+                    int month = now.get(Calendar.MONTH) + 1;
+                    int day = now.get(Calendar.DAY_OF_MONTH);
+                    int hour = now.get(Calendar.HOUR_OF_DAY);
+                    int minute = now.get(Calendar.MINUTE);
+                    int second = now.get(Calendar.SECOND);
 
-                String currentDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+                    String currentDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
 
+                    reportDao.insert(new Report(0, HomeFragment.userId, weight, currentDate));
+                    weightInput.setText("");
 
-                float weight = Float.parseFloat(weightInput.getText().toString());
+                    Toast.makeText(getContext(), "Report added", Toast.LENGTH_SHORT).show();
 
-                reportDao.insert(new Report(0, HomeFragment.userId ,weight, currentDate));
-                weightInput.setText("");
-
-                Toast.makeText(getContext(),"Report added",Toast.LENGTH_SHORT).show();
-
-                refreshFragment();
+                    refreshFragment();
+                } else {
+                    // Handle empty input, display an error message, or take appropriate action.
+                    Toast.makeText(getContext(), "Please enter a weight value", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
