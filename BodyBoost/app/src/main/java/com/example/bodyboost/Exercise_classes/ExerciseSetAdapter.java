@@ -64,9 +64,9 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
         if (holder.weightCard != null) {
             if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, dayId, exerciseID) == 1) {
-                holder.weightCard.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
+                holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_completed) );
             } else {
-                holder.weightCard.setBackgroundColor(ContextCompat.getColor(context, R.color.mainRed));
+                holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_uncompleted) );
             }
         }
 
