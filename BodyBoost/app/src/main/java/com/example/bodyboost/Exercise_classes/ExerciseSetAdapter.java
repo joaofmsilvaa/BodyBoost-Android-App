@@ -70,7 +70,6 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
             }
         }
 
-        // TO-DO - corrigir o bug de marcar um exercício como completo
         holder.exerciseDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

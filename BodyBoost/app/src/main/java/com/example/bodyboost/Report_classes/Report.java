@@ -16,9 +16,9 @@ public class Report {
 
     private float weight;
 
-    private String date;
+    private long date;
 
-    public Report(int reportID, int userId ,float weight, String date) {
+    public Report(int reportID, int userId ,float weight, long date) {
         this.reportID = reportID;
         this.userId = userId;
         this.weight = weight;
@@ -37,7 +37,7 @@ public class Report {
         return reportID;
     }
 
-    public String getDate() {
+    public long getDate() {
         return date;
     }
 }

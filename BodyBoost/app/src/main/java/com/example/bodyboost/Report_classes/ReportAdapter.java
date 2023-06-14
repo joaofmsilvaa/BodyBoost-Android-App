@@ -13,6 +13,8 @@ import com.example.bodyboost.R;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
@@ -37,7 +39,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     public void onBindViewHolder(@NonNull ReportViewHolder holder, int position) {
         Report current = reportList.get(position);
 
-        String currentDate = current.getDate();
+        long currentDateMillis = current.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String currentDate = sdf.format(new Date(currentDateMillis));
+
         String currentValue = Float.toString(current.getWeight());
 
         holder.weightValue.setText(currentValue + " KG");

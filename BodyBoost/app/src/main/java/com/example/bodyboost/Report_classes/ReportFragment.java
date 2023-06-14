@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
@@ -31,6 +32,7 @@ import com.example.bodyboost.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -79,17 +81,12 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
                 if (!inputText.isEmpty()) {
                     float weight = Float.parseFloat(inputText);
 
-                    Calendar now = Calendar.getInstance();
-                    int year = now.get(Calendar.YEAR);
-                    int month = now.get(Calendar.MONTH) + 1;
-                    int day = now.get(Calendar.DAY_OF_MONTH);
-                    int hour = now.get(Calendar.HOUR_OF_DAY);
-                    int minute = now.get(Calendar.MINUTE);
-                    int second = now.get(Calendar.SECOND);
+                    long currentDateMillis = System.currentTimeMillis();
 
-                    String currentDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    String currentDate = sdf.format(new Date(currentDateMillis));
 
-                    reportDao.insert(new Report(0, HomeFragment.userId, weight, currentDate));
+                    reportDao.insert(new Report(0, HomeFragment.userId, weight, currentDateMillis));
                     weightInput.setText("");
 
                     Toast.makeText(getContext(), "Report added", Toast.LENGTH_SHORT).show();
