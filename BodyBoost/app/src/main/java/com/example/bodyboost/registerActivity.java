@@ -9,6 +9,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -43,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout textInputLayout4;
     private TextInputLayout textInputLayout5;
 
-    private Spinner spinner;
+    private AutoCompleteTextView autoCompleteTextView;
 
     private TextView logInTextView;
 
@@ -69,20 +70,20 @@ public class RegisterActivity extends AppCompatActivity {
         userCompletedDao = db.getUserCompletedDao();
         workoutPlanDao = db.getWorkoutPlanDao();
 
-        spinner = findViewById(R.id.goalSpinner);
+        autoCompleteTextView = findViewById(R.id.goalsACT);
         username = findViewById(R.id.usernameEditText);
         password = findViewById(R.id.passwordEditText);
         // Define the array of goals
         String[] goalsArray = {"Gain mass", "Lose weight"};
 
         // Create an ArrayAdapter using the goalsArray and a default spinner layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, goalsArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.dropdown_item, goalsArray);
 
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        autoCompleteTextView.setAdapter(adapter);
 
 
         height = findViewById(R.id.heightEditText);
@@ -126,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void signUp(View view) {
         usernameString = username.getText().toString();
         passwordString = password.getText().toString();
-        goalString = spinner.getSelectedItem().toString();
+        goalString = autoCompleteTextView.getText().toString();
         heightString = height.getText().toString();
         weightString = weight.getText().toString();
 

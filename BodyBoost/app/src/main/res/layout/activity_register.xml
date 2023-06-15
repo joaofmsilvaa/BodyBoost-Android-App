@@ -63,26 +63,25 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:baselineAligned="false"
+        android:hint="Goal"
+        android:orientation="vertical"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout4">
 
-        <Spinner
-            android:id="@+id/goalSpinner"
+        <AutoCompleteTextView
+            android:id="@+id/goalsACT"
             android:layout_width="340dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:background="#7A7A7A"
-            android:dropDownSelector="@drawable/baseline_account_circle_24"
-            android:gravity="center"
-            android:hint="Select your goal"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:inputType="none"
+            android:textColorHint="#FFFFFF" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
