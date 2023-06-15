@@ -28,12 +28,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/bottom_recycler_gradient"
-        app:layout_constraintBottom_toBottomOf="@+id/mealsRecyclerVIEW"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

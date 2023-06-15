@@ -382,11 +382,9 @@ public abstract class AppDatabase extends RoomDatabase {
 
                             // User - testUsers
                             db.execSQL("INSERT INTO User(userId, username, password, weight, height, objective) VALUES(0, 'user', 'password', 60.2, 1.60, 'gain muscle')");
-                            db.execSQL("INSERT INTO User(username, password, weight, height, objective) VALUES('user2', 'password2', 60.2, 1.60, 'lose weight ')");
 
                             // UserPlan
                             db.execSQL("INSERT INTO UserPlan(userId,planId) VALUES(0, 1)");
-                            db.execSQL("INSERT INTO UserPlan(userId,planId) VALUES(1, 2)");
 
 
                             // UserCompleted
@@ -454,15 +452,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 29, '0')");
 
 
-                            // USER2
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 1, 'true')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 2, 'true')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 3, 'true')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 5, 'true')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 11, 'true')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 12, 'true')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 13, 'true')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (1, 0, 28, 'false')");
                         }
                     })
                     .build();

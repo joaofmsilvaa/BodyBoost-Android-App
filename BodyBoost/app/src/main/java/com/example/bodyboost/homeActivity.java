@@ -1,5 +1,4 @@
 package com.example.bodyboost;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
@@ -7,7 +6,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,6 +54,7 @@ public class homeActivity extends AppCompatActivity {
 
         Menu navMenu = navigationView.getMenu();
         MenuItem closeItem = navMenu.findItem(R.id.navClose);
+        MenuItem logOutItem = navMenu.findItem(R.id.logOut);
 
         View headerView = navigationView.getHeaderView(0);
         Button closeButton = headerView.findViewById(R.id.navClose);
@@ -68,7 +71,16 @@ public class homeActivity extends AppCompatActivity {
             }
         });
 
+        logOutItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                performLogout();
+                return true;
+            }
+        });
+
         Button userButton = findViewById(R.id.user_button);
+
         userButton.setOnClickListener(new View.OnClickListener() {
             private boolean isSidebarVisible = false;
 
@@ -83,6 +95,17 @@ public class homeActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+
+    private void performLogout() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn", false);
+        editor.remove("userId"); // Optionally remove the stored user ID
+        editor.apply();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

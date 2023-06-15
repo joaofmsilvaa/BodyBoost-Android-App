@@ -13,10 +13,16 @@
             android:id="@+id/editProfile"
             android:icon="@android:drawable/ic_menu_edit"
             android:title="Edit profile" />
+
     </group>
 
     <item
         android:id="@+id/navClose"
         android:title="Close" />
+
+    <item
+        android:id="@+id/logOut"
+        android:icon="@android:drawable/ic_delete"
+        android:title="Log-out" />
 
 </menu>

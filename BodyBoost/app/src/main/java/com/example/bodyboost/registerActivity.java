@@ -1,5 +1,7 @@
 package com.example.bodyboost;
 
+import static com.example.bodyboost.Hash.hashPassword;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
@@ -141,7 +143,9 @@ public class RegisterActivity extends AppCompatActivity {
                 float weightFloat = Float.parseFloat(weightString);
                 float heightFloat = Float.parseFloat(heightString);
 
-                User user = new User(0, usernameString, passwordString, weightFloat, heightFloat, goalString);
+                String hashedInputPassword = hashPassword(passwordString);
+
+                User user = new User(0, usernameString, hashedInputPassword, weightFloat, heightFloat, goalString);
                 userDao.insert(user);
 
                 int userId = userDao.getUserId(usernameString);

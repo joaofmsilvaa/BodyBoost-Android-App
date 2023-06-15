@@ -1,5 +1,7 @@
 package com.example.bodyboost;
 
+import static com.example.bodyboost.Hash.hashPassword;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -69,25 +71,23 @@ public class MainActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getInstance(this);
         UserDao userDao = db.getUserDao();
 
-        final String TAG = "Given credentials";
-
         usernameString = username.getText().toString();
         passwordString = password.getText().toString();
 
-        int amountOfUsersWithCred = userDao.correspondingUsers(usernameString, passwordString);
-
-
         if (usernameString.trim().length() > 0 && passwordString.trim().length() > 0) {
+            int userId = userDao.getUserId(usernameString);
+
+
+            String hashedInputPassword = hashPassword(usernameString);
+
+            int amountOfUsersWithCred = userDao.correspondingUsers(usernameString, hashedInputPassword);
+
             if (amountOfUsersWithCred == 1) {
-                Log.i("Login", "log-in successful");
-                Log.i(TAG, usernameString + " " + passwordString);
 
                 // Store boolean value in SharedPreferences
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("isLoggedIn", true);
-
-                int userId = userDao.getUserId(usernameString);
                 editor.putInt("userId", userId);
 
                 editor.apply();
