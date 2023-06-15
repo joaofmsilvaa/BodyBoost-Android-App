@@ -4,21 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
 
-    private TextView usernameAlert;
-    private TextView passwordAlert;
+    private TextInputLayout textInputLayout1;
+    private TextInputLayout textInputLayout2;
+
+    private TextView register;
 
     String usernameString;
     String passwordString;
@@ -44,8 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
             username = findViewById(R.id.usernameInput);
             password = findViewById(R.id.passwordInput);
-            usernameAlert = findViewById(R.id.textViewAlertName2);
-            passwordAlert = findViewById(R.id.textViewAlertPassword2);
+            textInputLayout1 = findViewById(R.id.textInputLayout1);
+            textInputLayout2 = findViewById(R.id.textInputLayout2);
+            register = findViewById(R.id.signUp);
+            register.setPaintFlags(register.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+
+
         }
     }
 
@@ -66,9 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
         int amountOfUsersWithCred = userDao.correspondingUsers(usernameString, passwordString);
 
-        boolean checker = emptyFieldChecker(usernameString, passwordString, usernameAlert, passwordAlert);
 
-        if (checker) {
+        if (usernameString.trim().length() > 0 && passwordString.trim().length() > 0) {
             if (amountOfUsersWithCred == 1) {
                 Log.i("Login", "log-in successful");
                 Log.i(TAG, usernameString + " " + passwordString);
@@ -91,27 +100,22 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "The credentials don't match any account", Toast.LENGTH_SHORT).show();
             }
         }
+
+        else{
+            if(TextUtils.isEmpty(usernameString)){
+                textInputLayout1.setError("Insert a username");
+            }
+            else{
+                textInputLayout1.setError(null);
+            }
+            if(TextUtils.isEmpty(passwordString)){
+                textInputLayout2.setError("Insert a password");
+            }
+            else{
+                textInputLayout2.setError(null);
+            }
+        }
     }
 
-    public static boolean emptyFieldChecker(String usernameString, String passwordString, TextView usernameAlert, TextView passwordAlert) {
-        final String emptyUsername = "Insert a username!";
-        final String emptyPassword = "Insert a password!";
-        boolean checker = true;
 
-        if (usernameString.equals("")) {
-            usernameAlert.setText(emptyUsername);
-            checker = false;
-        } else {
-            usernameAlert.setText("");
-        }
-
-        if (passwordString.equals("")) {
-            passwordAlert.setText(emptyPassword);
-            checker = false;
-        } else {
-            passwordAlert.setText("");
-        }
-
-        return checker;
-    }
 }
