@@ -380,13 +380,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO mealIngredients VALUES(2, 18, '8 oz')");
 
 
-                            // User - testUsers
-                            db.execSQL("INSERT INTO User(userId, username, password, weight, height, objective) VALUES(0, 'user', 'password', 60.2, 1.60, 'gain muscle')");
-
-                            // UserPlan
-                            db.execSQL("INSERT INTO UserPlan(userId,planId) VALUES(0, 1)");
-
-
                             // UserCompleted
 
                             // Day 0

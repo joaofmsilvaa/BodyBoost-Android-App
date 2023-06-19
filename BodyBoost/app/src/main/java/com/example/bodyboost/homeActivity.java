@@ -1,7 +1,11 @@
 package com.example.bodyboost;
+import static java.lang.Thread.sleep;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
@@ -53,29 +57,44 @@ public class homeActivity extends AppCompatActivity {
         navigationView.setVisibility(View.GONE);
 
         Menu navMenu = navigationView.getMenu();
-        MenuItem closeItem = navMenu.findItem(R.id.navClose);
         MenuItem logOutItem = navMenu.findItem(R.id.logOut);
+        MenuItem profileItem = navMenu.findItem(R.id.username);
 
         View headerView = navigationView.getHeaderView(0);
-        Button closeButton = headerView.findViewById(R.id.navClose);
+        Button closeButton = headerView.findViewById(R.id.close_button);
 
-        closeItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        profileItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
+            public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
+                NavDirections action = HomeFragmentDirections.actionHomeFragmentToProfileFragment();
+                NavController navController = Navigation.findNavController(navHostFragment.getView());
+                navController.navigate(action);
+
+                try {
+                    sleep(200);
+                    toolbar.setVisibility(View.GONE);
+                    navigationView.setVisibility(View.GONE);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                return false;
+            }
+        });
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 toolbar.setVisibility(View.GONE);
                 navigationView.setVisibility(View.GONE);
-                if (closeButton != null) {
-                    closeButton.setVisibility(View.GONE);
-                }
-                return true;
             }
         });
 
         logOutItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                performLogout();
-                return true;
+            performLogout();
+            return true;
             }
         });
 
@@ -90,7 +109,8 @@ public class homeActivity extends AppCompatActivity {
 
                 if (isSidebarVisible) {
                     navigationView.setVisibility(View.VISIBLE);
-                } else {
+                }
+                else {
                     navigationView.setVisibility(View.GONE);
                 }
             }
@@ -102,10 +122,14 @@ public class homeActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isLoggedIn", false);
-        editor.remove("userId"); // Optionally remove the stored user ID
+        editor.remove("userId");
         editor.apply();
+
+        finishAffinity();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+
     }
 }

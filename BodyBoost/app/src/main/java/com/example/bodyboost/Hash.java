@@ -28,6 +28,6 @@ public class Hash {
             e.printStackTrace();
         }
 
-        return null; // Return null if an error occurs
+        return null;
     }
 }

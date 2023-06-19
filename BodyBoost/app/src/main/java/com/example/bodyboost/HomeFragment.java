@@ -137,9 +137,9 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     @Override
     public void onDayClicked(int dayId, View v) {
 
-        Log.i("String", "" + dayId);
         NavDirections action = HomeFragmentDirections.actionHomeFragmentToExerciseFragment(dayId);
         Navigation.findNavController(v).navigate(action);
+
     }
 
 
