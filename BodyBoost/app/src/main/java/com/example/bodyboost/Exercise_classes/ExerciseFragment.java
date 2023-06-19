@@ -36,6 +36,7 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
 
     private int exerciseDay;
     private DaysDao daysDao;
+    private ExerciseSetDao exerciseSetDao;
     private WorkoutPlanDao workoutPlanDao;
     private UserPlanDao userPlanDao;
     private UserCompletedDao userCompletedDao;
@@ -47,9 +48,10 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
         // Obtain an instance of AppDatabase and DaysDao
         db = AppDatabase.getInstance(getContext());
         daysDao = db.getDaysDao();
-        workoutPlanDao = db.getWorkoutPlanDao();
+        exerciseSetDao = db.getExerciseSetDao();
         userPlanDao = db.getUserPlanDao();
         userCompletedDao = db.getUserCompletedDao();
+        workoutPlanDao = db.getWorkoutPlanDao();
     }
 
     @Override
@@ -68,8 +70,6 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
         // Stores the given argument (an ID of the selected day) in the exerciseDay variable
         exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
 
-
-
         TextView dayOfWeek = view.findViewById(R.id.dayIndicatorTextView);
         dayOfWeek.setText(daysDao.getDayByID(exerciseDay));
 
@@ -77,12 +77,11 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        List<Exercise> getExercisesForUser = userCompletedDao.getExercisesForUser(userId,exerciseDay);
-
-        Log.i("test", getExercisesForUser.get(0).getExerciseName());
-
         int planId = userPlanDao.getUserPlanById(userId);
-        adapter = new ExerciseSetAdapter(this, workoutPlanDao.getExerciseInfosFromPlan(planId, exerciseDay), getExercisesForUser, getContext());
+
+        List<Exercise> getExercisesForUser = userCompletedDao.getExercisesForUser(userId,exerciseDay);
+        List<ExerciseSet> getExerciseInfosFromPlan = exerciseSetDao.getExerciseInfosFromPlan(planId, exerciseDay);
+        adapter = new ExerciseSetAdapter(this, getExerciseInfosFromPlan, getExercisesForUser, getContext());
         recyclerView.setAdapter(adapter);
     }
 

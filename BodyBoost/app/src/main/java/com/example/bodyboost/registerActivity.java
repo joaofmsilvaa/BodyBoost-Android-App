@@ -59,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
     private String weightString;
 
     private List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
-    private String[] goals_array = {"Lose weight", "Gain mass"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

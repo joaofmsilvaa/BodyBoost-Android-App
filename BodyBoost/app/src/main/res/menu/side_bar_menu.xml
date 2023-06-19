@@ -7,7 +7,7 @@
         <item
             android:id="@+id/username"
             android:icon="@drawable/user"
-            android:title="Username" />
+            android:title="User profile" />
 
     </group>
 

@@ -33,6 +33,9 @@ public interface ExerciseSetDao {
     @Query("SELECT COUNT(exerciseId) FROM exerciseset WHERE dayId = :day")
     int getAmmountOfExercisesInSet(int day);
 
-
+    @Query("SELECT exerciseset.* " +
+            "FROM exerciseset, workoutplan " +
+            "WHERE workoutplan.planId = :planId AND exerciseset.dayId = :day AND workoutPlan.exerciseId = exerciseSet.exerciseId")
+    List<ExerciseSet> getExerciseInfosFromPlan(int planId, int day);
 
 }

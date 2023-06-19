@@ -33,4 +33,8 @@ public interface UserCompletedDao {
 
     @Insert
     void insert(UserCompleted userCompleted);
+
+    @Query("DELETE FROM UserCompleted WHERE userId = :id")
+    void deleteByUserId(int id);
+
 }

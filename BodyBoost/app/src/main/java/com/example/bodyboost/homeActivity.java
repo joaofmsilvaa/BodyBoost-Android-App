@@ -40,10 +40,6 @@ public class homeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        User user = userDao.getUserById(userId);
-
-        MenuItem usernameItem = navigationView.getMenu().findItem(R.id.username);
-        usernameItem.setTitle(user.getUsername());
 
         // Stores a fragment with the id "fragmentContainerView" in the navHostFragment variable
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
