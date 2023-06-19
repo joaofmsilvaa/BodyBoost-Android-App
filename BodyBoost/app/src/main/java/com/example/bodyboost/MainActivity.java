@@ -77,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
         if (usernameString.trim().length() > 0 && passwordString.trim().length() > 0) {
             int userId = userDao.getUserId(usernameString);
 
-
-            String hashedInputPassword = hashPassword(usernameString);
+            String hashedInputPassword = hashPassword(passwordString);
 
             int amountOfUsersWithCred = userDao.correspondingUsers(usernameString, hashedInputPassword);
 

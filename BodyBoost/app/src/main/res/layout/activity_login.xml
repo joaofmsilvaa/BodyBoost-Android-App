@@ -61,7 +61,9 @@
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout1"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout1">
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout1"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#EC3147">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordInput"
@@ -72,6 +74,7 @@
             android:gravity="center|fill_horizontal"
             android:hint="Password"
             android:inputType="textPassword"
+            android:password="false"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
