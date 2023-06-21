@@ -26,9 +26,6 @@
         <action
             android:id="@+id/action_homeFragment_to_exerciseFragment"
             app:destination="@id/exerciseFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment2" />
     </fragment>
 
     <fragment
@@ -93,14 +90,5 @@
         <argument
             android:name="selectedRecipe"
             app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileFragment2"
-        android:name="com.example.bodyboost.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment2" />
     </fragment>
 </navigation>

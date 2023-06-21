@@ -62,19 +62,9 @@ public class homeActivity extends AppCompatActivity {
         profileItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
-                NavDirections action = HomeFragmentDirections.actionHomeFragmentToProfileFragment();
-                NavController navController = Navigation.findNavController(navHostFragment.getView());
-                navController.navigate(action);
-
-                try {
-                    sleep(200);
-                    toolbar.setVisibility(View.GONE);
-                    navigationView.setVisibility(View.GONE);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-
-                return false;
+                Intent intent = new Intent(homeActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                return true;
             }
         });
 

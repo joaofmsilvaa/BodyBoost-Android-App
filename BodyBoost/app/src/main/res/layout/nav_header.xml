@@ -23,7 +23,7 @@
         android:id="@+id/close_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@android:drawable/ic_menu_revert"
+        android:background="@android:drawable/ic_menu_close_clear_cancel"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
