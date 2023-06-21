@@ -23,14 +23,15 @@ import com.example.bodyboost.UserCompletedDao;
 import java.util.List;
 
 public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.MyViewHolder> {
-    private List<ExerciseSet> exerciseSetList;
+
+    private int day;
     private List<Exercise> exerciseList;
     private Context context;
     private ExerciseSetAdapterEventListener eventListener;
 
-    public ExerciseSetAdapter(ExerciseSetAdapterEventListener eventListener, List<ExerciseSet> exerciseSetList, List<Exercise> exerciseList, Context context) {
+    public ExerciseSetAdapter(ExerciseSetAdapterEventListener eventListener, int dayId ,List<Exercise> exerciseList, Context context) {
         this.eventListener = eventListener;
-        this.exerciseSetList = exerciseSetList;
+        this.day = dayId;
         this.exerciseList = exerciseList;
         this.context = context;
     }
@@ -46,24 +47,22 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
     public void onBindViewHolder(@NonNull ExerciseSetAdapter.MyViewHolder holder, int position) {
         AppDatabase db = AppDatabase.getInstance(context);
         UserCompletedDao userCompletedDao = db.getUserCompletedDao();
+        ExerciseSetDao exerciseSetDao = db.getExerciseSetDao();
 
-        ExerciseSet exerciseSet = exerciseSetList.get(position);
         Exercise exercise = exerciseList.get(position);
 
-        int exerciseID = exercise.getExerciseId();
-
-        int dayId = exerciseSet.getDayId();
+        ExerciseSet getExerciseInfos = exerciseSetDao.getInfosForExercise(exercise.getExerciseId());
 
         holder.exerciseNameTextView.setText(exercise.getExerciseName());
 
-        if (exerciseSet.getRepetitions() == 0) {
-            holder.timeRepetitionsTextView.setText(exerciseSet.getTime());
+        if (Integer.toString(getExerciseInfos.getRepetitions()).equals("")) {
+            holder.timeRepetitionsTextView.setText(getExerciseInfos.getTime());
         } else {
-            holder.timeRepetitionsTextView.setText(exerciseSet.getRepetitions() + "x");
+            holder.timeRepetitionsTextView.setText(getExerciseInfos.getRepetitions() + "x");
         }
 
         if (holder.weightCard != null) {
-            if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, dayId, exerciseID) == 1) {
+            if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId()) == 1) {
                 holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_completed) );
             } else {
                 holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_uncompleted) );
@@ -73,15 +72,15 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         holder.exerciseDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int test = userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, dayId, exerciseID);
+                int test = userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId());
 
                 if (test == 1) {
 
-                    userCompletedDao.updateExerciseCompleted(0,dayId,HomeFragment.userId,exerciseID);
+                    userCompletedDao.updateExerciseCompleted(0,day,HomeFragment.userId,exercise.getExerciseId());
                     eventListener.onExerciseCompleted();
                 } else {
 
-                    userCompletedDao.updateExerciseCompleted(1,dayId,HomeFragment.userId,exerciseID);
+                    userCompletedDao.updateExerciseCompleted(1,day,HomeFragment.userId,exercise.getExerciseId());
                     eventListener.onExerciseCompleted();
                 }
             }
@@ -90,7 +89,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
     @Override
     public int getItemCount() {
-        return exerciseSetList.size();
+        return exerciseList.size();
     }
 
     public void updateData(List<Exercise> exerciseList) {

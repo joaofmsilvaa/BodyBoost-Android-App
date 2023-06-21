@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bodyboost.AppDatabase;
+import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
 import com.example.bodyboost.UserCompletedDao;
 
@@ -41,8 +42,9 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
         Days days = this.daysList.get(position);
         AppDatabase db = AppDatabase.getInstance(holder.context);
         UserCompletedDao userCompletedDao = db.getUserCompletedDao();
+        int planForUser = db.getUserPlanDao().getUserPlanById(userId);
 
-        int numOfExercises = AppDatabase.getInstance(holder.context).getExerciseSetDao().getAmmountOfExercisesInSet(days.getDayId());
+        int numOfExercises = userCompletedDao.countExercisesForUser(userId,days.getDayId(), planForUser);
         int ammountCompleted = userCompletedDao.ammountCompleted(userId, days.getDayId());
 
 

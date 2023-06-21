@@ -34,7 +34,7 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
     private ExerciseSetAdapter adapter;
     private AppDatabase db;
 
-    private int exerciseDay;
+    private int day;
     private DaysDao daysDao;
     private ExerciseSetDao exerciseSetDao;
     private WorkoutPlanDao workoutPlanDao;
@@ -68,10 +68,10 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
         userId = HomeFragment.userId;
 
         // Stores the given argument (an ID of the selected day) in the exerciseDay variable
-        exerciseDay = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
+        day = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
 
         TextView dayOfWeek = view.findViewById(R.id.dayIndicatorTextView);
-        dayOfWeek.setText(daysDao.getDayByID(exerciseDay));
+        dayOfWeek.setText(daysDao.getDayByID(day));
 
         RecyclerView recyclerView = view.findViewById(R.id.exerciseRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -79,9 +79,8 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
 
         int planId = userPlanDao.getUserPlanById(userId);
 
-        List<Exercise> getExercisesForUser = userCompletedDao.getExercisesForUser(userId,exerciseDay);
-        List<ExerciseSet> getExerciseInfosFromPlan = exerciseSetDao.getExerciseInfosFromPlan(planId, exerciseDay);
-        adapter = new ExerciseSetAdapter(this, getExerciseInfosFromPlan, getExercisesForUser, getContext());
+        List<Exercise> getExercisesForUser = userCompletedDao.getExercisesForUser(userId, day, planId);
+        adapter = new ExerciseSetAdapter(this, day ,getExercisesForUser, getContext());
         recyclerView.setAdapter(adapter);
     }
 
@@ -92,7 +91,7 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
 
     public void refreshFragment() {
 
-        adapter.updateData(workoutPlanDao.getExercises(HomeFragment.userId, exerciseDay));
+        adapter.updateData(workoutPlanDao.getExercises(HomeFragment.userId, day));
 
         adapter.notifyDataSetChanged();
     }

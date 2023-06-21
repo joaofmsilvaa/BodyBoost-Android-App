@@ -26,31 +26,46 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/recipeCard"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recipeCard"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
         android:id="@+id/recipeNameTextView"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
         android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/mealImageView"
+        app:layout_constraintEnd_toEndOf="@+id/recipeCard"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="@+id/mealImageView" />
 
     <TextView
         android:id="@+id/recipeDescTextView"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
         android:textColor="?android:textColorPrimary"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/mealImageView"
-        app:layout_constraintEnd_toEndOf="@+id/recipeNameTextView"
-        app:layout_constraintStart_toStartOf="@+id/recipeNameTextView"
+        app:layout_constraintEnd_toEndOf="@+id/recipeCard"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/recipeNameTextView" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="179dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
