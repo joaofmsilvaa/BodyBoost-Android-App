@@ -58,7 +58,7 @@
         android:id="@+id/textInputLayout1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginBottom="24dp"
         android:baselineAligned="false"
         android:hint="Goal"
@@ -71,9 +71,10 @@
         <AutoCompleteTextView
             android:id="@+id/goalsACT"
             android:layout_width="340dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#7A7A7A"
             android:inputType="none"
+            android:textColor="@color/colorPrimary"
             android:textColorHint="#FFFFFF" />
 
     </com.google.android.material.textfield.TextInputLayout>

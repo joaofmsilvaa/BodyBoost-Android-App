@@ -44,7 +44,7 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
         UserCompletedDao userCompletedDao = db.getUserCompletedDao();
         int planForUser = db.getUserPlanDao().getUserPlanById(userId);
 
-        int numOfExercises = userCompletedDao.countExercisesForUser(userId,days.getDayId(), planForUser);
+        int numOfExercises = userCompletedDao.countExercisesForUser(userId,days.getDayId());
         int ammountCompleted = userCompletedDao.ammountCompleted(userId, days.getDayId());
 
 

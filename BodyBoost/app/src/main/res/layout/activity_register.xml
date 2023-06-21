@@ -81,6 +81,7 @@
             android:layout_height="wrap_content"
             android:background="#7A7A7A"
             android:inputType="none"
+            android:textColor="@color/colorPrimary"
             android:textColorHint="#FFFFFF" />
 
     </com.google.android.material.textfield.TextInputLayout>

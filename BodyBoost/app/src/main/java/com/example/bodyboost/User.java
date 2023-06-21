@@ -43,8 +43,31 @@ public class User {
     public float getHeight() {
         return height;
     }
-
     public String getObjective() {
         return objective;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public void setObjective(String objective) {
+        this.objective = objective;
     }
 }

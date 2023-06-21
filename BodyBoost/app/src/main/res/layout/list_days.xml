@@ -15,8 +15,8 @@
 
     <TextView
         android:id="@+id/dayCard"
-        android:layout_width="350dp"
-        android:layout_height="192dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"

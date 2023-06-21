@@ -15,36 +15,29 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
-    AppDatabase db;
-    UserDao userDao;
-    UserPlanDao userPlanDao;
-    UserCompletedDao userCompletedDao;
-    WorkoutPlanDao workoutPlanDao;
-    EditText username;
-    AutoCompleteTextView goal;
-    EditText weight;
-    EditText height;
-    Button saveChangesBtn;
+    private AppDatabase db;
+    private UserDao userDao;
+    private UserPlanDao userPlanDao;
+    private UserCompletedDao userCompletedDao;
+    private WorkoutPlanDao workoutPlanDao;
+    private EditText username;
+    private AutoCompleteTextView goal;
+    private EditText weight;
+    private EditText height;
+    private Button saveChangesBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db = AppDatabase.getInstance(this.getContext());
+        db = AppDatabase.getInstance(requireContext());
         userDao = db.getUserDao();
         userPlanDao = db.getUserPlanDao();
         userCompletedDao = db.getUserCompletedDao();
@@ -71,38 +64,30 @@ public class ProfileFragment extends Fragment {
         weight = view.findViewById(R.id.weightEditText);
         height = view.findViewById(R.id.heightEditText);
 
-        username.setText(user.username);
+        username.setText(user.getUsername());
 
-        String[] goals_array = {"Lose weight", "Gain mass"};
+        String[] goalsArray = {"Lose weight", "Gain mass"};
 
-        // Create an ArrayAdapter using the goalsArray and the custom dropdown item layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), R.layout.dropdown_item, goals_array);
-
-        // Specify the layout to use when the list of choices appears
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), R.layout.dropdown_item, goalsArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        goal.setText(user.objective);
-
-        // Apply the adapter to the spinner
+        goal.setText(user.getObjective());
         goal.setAdapter(adapter);
 
-        weight.setText(Float.toString(user.weight));
-        height.setText(Float.toString(user.height));
+        weight.setText(Float.toString(user.getWeight()));
+        height.setText(Float.toString(user.getHeight()));
 
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String updatedUsername = username.getText().toString();
                 String updatedGoal = goal.getText().toString();
                 float updatedWeight = Float.parseFloat(weight.getText().toString());
                 float updatedHeight = Float.parseFloat(height.getText().toString());
 
-                user.username = updatedUsername;
-                user.objective = updatedGoal;
-                user.weight = updatedWeight;
-                user.height = updatedHeight;
-
+                user.setUsername(updatedUsername);
+                user.setObjective(updatedGoal);
+                user.setWeight(updatedWeight);
+                user.setHeight(updatedHeight);
 
                 userDao.updateUser(user);
 

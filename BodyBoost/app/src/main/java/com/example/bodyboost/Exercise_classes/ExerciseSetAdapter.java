@@ -20,6 +20,8 @@ import com.example.bodyboost.Report_classes.Report;
 import com.example.bodyboost.UserCompleted;
 import com.example.bodyboost.UserCompletedDao;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.MyViewHolder> {
@@ -54,8 +56,9 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         ExerciseSet getExerciseInfos = exerciseSetDao.getInfosForExercise(exercise.getExerciseId());
 
         holder.exerciseNameTextView.setText(exercise.getExerciseName());
+        holder.exerciseDescTextView.setText(exercise.getExerciseDescription());
 
-        if (Integer.toString(getExerciseInfos.getRepetitions()).equals("")) {
+        if (getExerciseInfos.getRepetitions() == 0) {
             holder.timeRepetitionsTextView.setText(getExerciseInfos.getTime());
         } else {
             holder.timeRepetitionsTextView.setText(getExerciseInfos.getRepetitions() + "x");
@@ -100,6 +103,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         private Context context;
         private TextView timeRepetitionsTextView;
         private TextView exerciseNameTextView;
+        private TextView exerciseDescTextView;
         private View weightCard;
         private Button exerciseDoneButton;
 
@@ -107,6 +111,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
             super(view);
             this.context = context;
             exerciseNameTextView = view.findViewById(R.id.exerciseName);
+            exerciseDescTextView = view.findViewById(R.id.exerciseDescTextView);
             timeRepetitionsTextView = view.findViewById(R.id.timeRepetitionsTextView);
             weightCard = view.findViewById(R.id.weightCard);
             exerciseDoneButton = view.findViewById(R.id.exerciseDoneButton);

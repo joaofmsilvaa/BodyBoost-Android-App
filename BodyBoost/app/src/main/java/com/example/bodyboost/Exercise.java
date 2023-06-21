@@ -10,15 +10,21 @@ public class Exercise {
     private int exerciseId;
     private String exerciseName;
 
-    public Exercise(int exerciseId, String exerciseName){
+    private String exerciseDescription;
+
+    public Exercise(int exerciseId, String exerciseName, String exerciseDescription ){
         this.exerciseId = exerciseId;
         this.exerciseName = exerciseName;
+        this.exerciseDescription = exerciseDescription;
     }
 
     public String getExerciseName(){
         return(exerciseName);
     }
 
+    public String getExerciseDescription(){
+        return exerciseDescription;
+    }
     public int getExerciseId() {
         return exerciseId;
     }

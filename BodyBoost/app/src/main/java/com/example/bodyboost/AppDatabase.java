@@ -60,43 +60,79 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO Days (day) VALUES ('Sunday')");
 
                             // Exercises
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Push-up chair dips')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Wall push-ups')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Jump rope')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Knee push-ups')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Squat')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Side Jump')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Deep crunch')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Side leg raises')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Donkey kicks')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('One-arm push-ups')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Wide-arm push-ups')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Diamond push-ups')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Abdominal crunch')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Mountain climbers')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Heel touch')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Russian twist')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Leg raises')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Jumping jacks')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Burpees')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Skipping')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Air bicycle')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Plank')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('V-sit crunch')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Extended-arm crunch')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Barbell bench press')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Pull-ups')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Straight Supine with Bar')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Chest in parallel')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Crucifix on the fly')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Push-ups on the wall')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Front raise with dumbbells')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Fixed barbell lifts')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Closed barbell pulldown')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Isometric squat')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Bulgarian squat')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Chair extensor')");
-                            db.execSQL("INSERT INTO Exercise (exerciseName) VALUES ('Jumping jacks')");
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Push-up chair dips', 'A compound exercise that targets the chest, triceps, and shoulders. Begin with a push-up position and lower your body by bending your arms, then use your triceps to push yourself back up while keeping your legs elevated on a chair.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Wall push-ups', 'A modified version of push-ups where you perform the exercise against a wall instead of on the floor. It targets the chest, shoulders, and triceps.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Jump rope', 'A cardiovascular exercise that involves jumping over a rope as it passes under your feet. It improves coordination, endurance, and cardiovascular health.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Knee push-ups', 'An easier variation of push-ups where you perform the exercise with your knees on the ground. It targets the chest, shoulders, and triceps.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Squat', 'A lower body exercise that targets the quadriceps, hamstrings, and glutes. Start with your feet shoulder-width apart, lower your body by bending your knees, and then return to the starting position.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Side Jump', 'A plyometric exercise that involves jumping laterally from side to side. It improves lower body strength, agility, and cardiovascular fitness.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Deep crunch', 'An abdominal exercise that targets the rectus abdominis. Lie on your back, bend your knees, and curl your upper body off the floor to engage your abs.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Side leg raises', 'A lower body exercise that targets the hip abductors. Lie on your side and lift your top leg upward while keeping it straight.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Donkey kicks', 'A bodyweight exercise that targets the glutes. Get on all fours and kick your leg back while keeping your knee bent.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('One-arm push-ups', 'A challenging variation of push-ups that targets the chest, triceps, and shoulders. Perform a push-up while balancing on one hand and keeping your body straight.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Wide-arm push-ups', 'A variation of push-ups that targets the chest, shoulders, and triceps. Place your hands wider than shoulder-width apart while maintaining proper form.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Diamond push-ups', 'A triceps-focused variation of push-ups. Place your hands close together in a diamond shape beneath your chest while performing the exercise.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Abdominal crunch', 'A classic abdominal exercise that targets the rectus abdominis. Lie on your back, bend your knees, and lift your shoulders off the floor while keeping your lower back pressed into the ground.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Mountain climbers', 'A full-body exercise that targets the core, shoulders, and legs. Begin in a plank position and alternate bringing your knees toward your chest in a running motion.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Heel touch', 'An oblique exercise that targets the side abdominals. Lie on your back with your knees bent, and touch your heels with your fingertips while engaging your obliques.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Russian twist', 'An oblique-strengthening exercise that targets the side abdominals. Sit on the floor, lean back slightly, and twist your torso from side to side while holding a weight or touching the floor with your hands.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Leg raises', 'An abdominal exercise that targets the lower abs. Lie on your back, raise your legs off the ground while keeping them straight, and lower them back down without touching the floor.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Jumping jacks', 'A full-body cardiovascular exercise. Start with your feet together and arms by your sides, then jump while spreading your legs apart and raising your arms above your head. Jump again to return to the starting position.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Burpees', 'A full-body exercise that combines a squat, plank, and jump. Begin in a standing position, drop into a squat, kick your feet back into a plank, jump your feet back to the squat position, and finally jump explosively into the air with your arms raised.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Skipping', 'A cardiovascular exercise that involves jumping over a rope while holding the ends. It improves coordination, endurance, and cardiovascular health.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Air bicycle', 'An abdominal exercise that targets the obliques. Lie on your back, bring your knees toward your chest, and simulate a cycling motion with your legs while reaching your opposite elbow toward the opposite knee.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Plank', 'A core-strengthening exercise that targets the abs, back, and shoulders. Start in a push-up position and hold your body in a straight line, supporting yourself with your forearms and toes.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('V-sit crunch', 'An advanced abdominal exercise that targets the entire core. Sit on the floor, lean back slightly, lift your legs off the ground, and bring your chest and knees toward each other to form a V shape.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Extended-arm crunch', 'A variation of the traditional crunch exercise that targets the upper abs. Lie on your back, extend your arms overhead, and lift your upper body off the floor while reaching toward your toes.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Barbell bench press', 'A compound exercise that targets the chest, shoulders, and triceps. Lie on a bench, grip the barbell with an overhand grip, and lower it to your chest before pressing it back up.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Pull-ups', 'An upper body exercise that targets the back and arms. Hang from a bar with an overhand grip and pull your body upward until your chin reaches the bar.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Straight Supine with Bar', 'A compound exercise that targets the chest, shoulders, and triceps. Lie on your back, grip a barbell with an overhand grip, and press it upward from your chest.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Chest in parallel', 'A chest exercise that targets the pectoral muscles. Sit on a chest press machine with your hands on the handles, push the handles forward, and return them to the starting position.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Crucifix on the fly', 'A chest exercise that targets the pectoral muscles. Stand in a crucifix position with arms outstretched to the sides, hold dumbbells, and bring your arms together in front of you.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Push-ups on the wall', 'A modified version of push-ups where you perform the exercise against a wall instead of on the floor. It targets the chest, shoulders, and triceps.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Front raise with dumbbells', 'A shoulder exercise that targets the front deltoids. Stand with dumbbells in your hands, palms facing your body, and raise the weights in front of you until they reach shoulder level.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Fixed barbell lifts', 'A compound exercise that targets multiple muscles. Hold a fixed barbell with an overhand grip and perform lifts such as bicep curls, shoulder presses, or upright rows.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Closed barbell pulldown', 'A back exercise that targets the latissimus dorsi. Sit at a pulldown machine, grip the bar with a closed overhand grip, and pull it down to your chest while keeping your back straight.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Isometric squat', 'A lower body exercise that targets the quadriceps, hamstrings, and glutes. Hold a squat position with your thighs parallel to the ground for a set amount of time.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Bulgarian squat', 'A single-leg exercise that targets the quadriceps, hamstrings, and glutes. Place one foot on a raised surface behind you and lower your body into a lunge position.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Chair extensor', 'A lower body exercise that targets the glutes and hamstrings. Sit on a chair, extend one leg straight out, and raise and lower your leg using your glutes and hamstrings.')");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Jumping jacks', 'A full-body cardiovascular exercise. Start with your feet together and arms by your sides, then jump while spreading your legs apart and raising your arms above your head. Jump again to return to the starting position.')");
 
 
                             // Exercise set
