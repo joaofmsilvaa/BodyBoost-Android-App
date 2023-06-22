@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.dropdown_item, goalsArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         goal.setAdapter(adapter);
-        goal.setText(user.getObjective());
+        goal.setText(user.objective, false);
 
         weight.setText(Float.toString(user.getWeight()));
         height.setText(Float.toString(user.getHeight()));
