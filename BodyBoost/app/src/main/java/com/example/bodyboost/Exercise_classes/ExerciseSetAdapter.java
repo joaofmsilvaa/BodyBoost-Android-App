@@ -6,14 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.Exercise;
+import com.example.bodyboost.ExerciseSteps;
+import com.example.bodyboost.ExerciseStepsDao;
 import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
 import com.example.bodyboost.Report_classes.Report;
@@ -50,6 +55,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         AppDatabase db = AppDatabase.getInstance(context);
         UserCompletedDao userCompletedDao = db.getUserCompletedDao();
         ExerciseSetDao exerciseSetDao = db.getExerciseSetDao();
+        ExerciseStepsDao exerciseStepsDao = db.getExerciseStepsDao();
 
         Exercise exercise = exerciseList.get(position);
 
@@ -57,6 +63,16 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
         holder.exerciseNameTextView.setText(exercise.getExerciseName());
         holder.exerciseDescTextView.setText(exercise.getExerciseDescription());
+
+        List<String> exerciseStepImages = exerciseStepsDao.getExerciseSteps(exercise.getExerciseId());
+
+        Glide.with(holder.context).load(R.drawable.chairdips_1).into(holder.exerciseImageView);
+        holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow_disabled));
+
+        int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(0), "drawable", holder.context.getPackageName());
+
+        Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
+
 
         if (getExerciseInfos.getRepetitions() == 0) {
             holder.timeRepetitionsTextView.setText(getExerciseInfos.getTime());
@@ -90,6 +106,30 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
                 }
             }
         });
+
+        holder.button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow));
+                holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow_disabled));
+
+                int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(1), "drawable", holder.context.getPackageName());
+
+                Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
+            }
+        });
+
+        holder.button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow));
+                holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow_disabled));
+
+                int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(0), "drawable", holder.context.getPackageName());
+
+                Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
+            }
+        });
     }
 
     @Override
@@ -102,10 +142,14 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+
         private Context context;
         private TextView timeRepetitionsTextView;
         private TextView exerciseNameTextView;
         private TextView exerciseDescTextView;
+        private ImageButton button4;
+        private ImageButton button5;
+        private ImageView exerciseImageView;
         private View weightCard;
         private Button exerciseDoneButton;
 
@@ -115,8 +159,11 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
             exerciseNameTextView = view.findViewById(R.id.exerciseName);
             exerciseDescTextView = view.findViewById(R.id.exerciseDescTextView);
             timeRepetitionsTextView = view.findViewById(R.id.timeRepetitionsTextView);
+            exerciseImageView = view.findViewById(R.id.exerciseImageView);
             weightCard = view.findViewById(R.id.weightCard);
             exerciseDoneButton = view.findViewById(R.id.exerciseDoneButton);
+            button4 = view.findViewById(R.id.button4);
+            button5 = view.findViewById(R.id.button5);
         }
     }
 

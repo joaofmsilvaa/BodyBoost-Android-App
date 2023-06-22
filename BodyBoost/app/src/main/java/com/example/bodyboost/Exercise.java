@@ -28,5 +28,4 @@ public class Exercise {
     public int getExerciseId() {
         return exerciseId;
     }
-
 }

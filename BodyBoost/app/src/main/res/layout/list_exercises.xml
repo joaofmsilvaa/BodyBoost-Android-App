@@ -31,13 +31,14 @@
         android:id="@+id/exerciseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Exercise name"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/weightCard"
         app:layout_constraintStart_toStartOf="@+id/weightCard"
-        app:layout_constraintTop_toTopOf="@+id/weightCard" />
+        app:layout_constraintTop_toBottomOf="@+id/exerciseImageView" />
 
     <TextView
         android:id="@+id/timeRepetitionsTextView"
@@ -47,6 +48,7 @@
         android:text="TextView"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/exerciseDescTextView"
         app:layout_constraintStart_toStartOf="@+id/exerciseDescTextView"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDescTextView" />
@@ -74,5 +76,37 @@
         app:layout_constraintEnd_toEndOf="@+id/weightCard"
         app:layout_constraintStart_toStartOf="@+id/weightCard"
         app:layout_constraintTop_toBottomOf="@+id/exerciseName" />
+
+    <ImageView
+        android:id="@+id/exerciseImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/weightCard"
+        app:layout_constraintStart_toStartOf="@+id/weightCard"
+        app:layout_constraintTop_toTopOf="@+id/weightCard"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/button4"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/right_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/exerciseImageView"
+        app:layout_constraintEnd_toEndOf="@+id/weightCard"
+        app:layout_constraintStart_toEndOf="@+id/exerciseImageView"
+        app:layout_constraintTop_toTopOf="@+id/weightCard" />
+
+    <ImageButton
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/left_arrow"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/exerciseImageView"
+        app:layout_constraintEnd_toStartOf="@+id/exerciseImageView"
+        app:layout_constraintStart_toStartOf="@+id/weightCard"
+        app:layout_constraintTop_toTopOf="@+id/weightCard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

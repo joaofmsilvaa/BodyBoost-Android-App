@@ -23,11 +23,12 @@ import com.example.bodyboost.nutricion.MealIngredientsDao;
 import com.example.bodyboost.nutricion.Meals;
 import com.example.bodyboost.nutricion.MealsDao;
 
-@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSet.class, WorkoutPlan.class ,Feed.class, Meals.class, Ingredients.class, MealIngredients.class,User.class, UserPlan.class, UserCompleted.class}, version = 1)
+@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSteps.class ,ExerciseSet.class, WorkoutPlan.class ,Feed.class, Meals.class, Ingredients.class, MealIngredients.class,User.class, UserPlan.class, UserCompleted.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ReportDao getReportDao();
     public abstract DaysDao getDaysDao();
+    public abstract ExerciseStepsDao getExerciseStepsDao();
     public abstract ExerciseSetDao getExerciseSetDao();
     public abstract  WorkoutPlanDao getWorkoutPlanDao();
     public abstract FeedDao getFeedDao();
@@ -59,82 +60,151 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO Days (day) VALUES ('Saturday')");
                             db.execSQL("INSERT INTO Days (day) VALUES ('Sunday')");
 
-                            // Exercises
+                            // Exercises AND ExerciseSteps
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Push-up chair dips', 'A compound exercise that targets the chest, triceps, and shoulders. Begin with a push-up position and lower your body by bending your arms, then use your triceps to push yourself back up while keeping your legs elevated on a chair.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(1, " + R.drawable.chairdips_1 + ");");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(1, " + R.drawable.chairdips_2 + ");");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Wall push-ups', 'A modified version of push-ups where you perform the exercise against a wall instead of on the floor. It targets the chest, shoulders, and triceps.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(2, " + R.drawable.wallpushup_1 + ");");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(2, " + R.drawable.wallpushup_2 + ");");
 
-                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Jump rope', 'A cardiovascular exercise that involves jumping over a rope as it passes under your feet. It improves coordination, endurance, and cardiovascular health.')");
+                            db.execSQL("INSERT INTO Exercise ( exerciseName, exerciseDescription) VALUES ('Jump rope', 'A cardiovascular exercise that involves jumping over a rope as it passes under your feet. It improves coordination, endurance, and cardiovascular health.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(3, '" + R.drawable.jumprope_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(3, '" + R.drawable.jumprope_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Knee push-ups', 'An easier variation of push-ups where you perform the exercise with your knees on the ground. It targets the chest, shoulders, and triceps.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(4, '" + R.drawable.kneebentpushup_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(4, '" + R.drawable.kneebentpushup_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Squat', 'A lower body exercise that targets the quadriceps, hamstrings, and glutes. Start with your feet shoulder-width apart, lower your body by bending your knees, and then return to the starting position.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(5, '" + R.drawable.squat_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(5, '" + R.drawable.squat_2 + "');");
 
-                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Side Jump', 'A plyometric exercise that involves jumping laterally from side to side. It improves lower body strength, agility, and cardiovascular fitness.')");
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Front jumps', 'A plyometric exercise that involves jumping laterally from side to side. It improves lower body strength, agility, and cardiovascular fitness.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(6, '" + R.drawable.jumps_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(6, '" + R.drawable.jumps_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Deep crunch', 'An abdominal exercise that targets the rectus abdominis. Lie on your back, bend your knees, and curl your upper body off the floor to engage your abs.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(7, '" + R.drawable.crunch_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(7, '" + R.drawable.crunch_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Side leg raises', 'A lower body exercise that targets the hip abductors. Lie on your side and lift your top leg upward while keeping it straight.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(8, '" + R.drawable.legraises_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(8, '" + R.drawable.legraises_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Donkey kicks', 'A bodyweight exercise that targets the glutes. Get on all fours and kick your leg back while keeping your knee bent.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(9, '" + R.drawable.donkey_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(9, '" + R.drawable.donkey_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('One-arm push-ups', 'A challenging variation of push-ups that targets the chest, triceps, and shoulders. Perform a push-up while balancing on one hand and keeping your body straight.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(10, '" + R.drawable.onearm_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(10, '" + R.drawable.onearm_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Wide-arm push-ups', 'A variation of push-ups that targets the chest, shoulders, and triceps. Place your hands wider than shoulder-width apart while maintaining proper form.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(11, '" + R.drawable.wide_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(11, '" + R.drawable.wide_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Diamond push-ups', 'A triceps-focused variation of push-ups. Place your hands close together in a diamond shape beneath your chest while performing the exercise.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(12, '" + R.drawable.diamond_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(12, '" + R.drawable.diamond_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Abdominal crunch', 'A classic abdominal exercise that targets the rectus abdominis. Lie on your back, bend your knees, and lift your shoulders off the floor while keeping your lower back pressed into the ground.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(13, '" + R.drawable.bicycle_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(13, '" + R.drawable.bicycle_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Mountain climbers', 'A full-body exercise that targets the core, shoulders, and legs. Begin in a plank position and alternate bringing your knees toward your chest in a running motion.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(14, '" + R.drawable.mountain_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(14, '" + R.drawable.mountain_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Heel touch', 'An oblique exercise that targets the side abdominals. Lie on your back with your knees bent, and touch your heels with your fingertips while engaging your obliques.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(15, '" + R.drawable.heel_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(15, '" + R.drawable.heel_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Russian twist', 'An oblique-strengthening exercise that targets the side abdominals. Sit on the floor, lean back slightly, and twist your torso from side to side while holding a weight or touching the floor with your hands.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(16, '" + R.drawable.twist_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(16, '" + R.drawable.twist_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Leg raises', 'An abdominal exercise that targets the lower abs. Lie on your back, raise your legs off the ground while keeping them straight, and lower them back down without touching the floor.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(17, '" + R.drawable.raise_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(17, '" + R.drawable.raise_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Jumping jacks', 'A full-body cardiovascular exercise. Start with your feet together and arms by your sides, then jump while spreading your legs apart and raising your arms above your head. Jump again to return to the starting position.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(18, '" + R.drawable.jacks_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(18, '" + R.drawable.jacks_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Burpees', 'A full-body exercise that combines a squat, plank, and jump. Begin in a standing position, drop into a squat, kick your feet back into a plank, jump your feet back to the squat position, and finally jump explosively into the air with your arms raised.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(19, '" + R.drawable.burpee_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(19, '" + R.drawable.burpee_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(19, '" + R.drawable.burpee_3 + "');");
+
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Skipping', 'A cardiovascular exercise that involves jumping over a rope while holding the ends. It improves coordination, endurance, and cardiovascular health.')");
-
-                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Air bicycle', 'An abdominal exercise that targets the obliques. Lie on your back, bring your knees toward your chest, and simulate a cycling motion with your legs while reaching your opposite elbow toward the opposite knee.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(20, '" + R.drawable.skipping_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(20, '" + R.drawable.skipping_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Plank', 'A core-strengthening exercise that targets the abs, back, and shoulders. Start in a push-up position and hold your body in a straight line, supporting yourself with your forearms and toes.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(22, '" + R.drawable.plank + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('V-sit crunch', 'An advanced abdominal exercise that targets the entire core. Sit on the floor, lean back slightly, lift your legs off the ground, and bring your chest and knees toward each other to form a V shape.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(23, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(23, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Extended-arm crunch', 'A variation of the traditional crunch exercise that targets the upper abs. Lie on your back, extend your arms overhead, and lift your upper body off the floor while reaching toward your toes.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image)  VALUES(24, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(24, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Barbell bench press', 'A compound exercise that targets the chest, shoulders, and triceps. Lie on a bench, grip the barbell with an overhand grip, and lower it to your chest before pressing it back up.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(25, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(25, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Pull-ups', 'An upper body exercise that targets the back and arms. Hang from a bar with an overhand grip and pull your body upward until your chin reaches the bar.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(26, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(26, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Straight Supine with Bar', 'A compound exercise that targets the chest, shoulders, and triceps. Lie on your back, grip a barbell with an overhand grip, and press it upward from your chest.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(27, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(27, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Chest in parallel', 'A chest exercise that targets the pectoral muscles. Sit on a chest press machine with your hands on the handles, push the handles forward, and return them to the starting position.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(28, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(28, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Crucifix on the fly', 'A chest exercise that targets the pectoral muscles. Stand in a crucifix position with arms outstretched to the sides, hold dumbbells, and bring your arms together in front of you.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(29, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(29, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Push-ups on the wall', 'A modified version of push-ups where you perform the exercise against a wall instead of on the floor. It targets the chest, shoulders, and triceps.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(30, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(30, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Front raise with dumbbells', 'A shoulder exercise that targets the front deltoids. Stand with dumbbells in your hands, palms facing your body, and raise the weights in front of you until they reach shoulder level.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(31, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(31, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Fixed barbell lifts', 'A compound exercise that targets multiple muscles. Hold a fixed barbell with an overhand grip and perform lifts such as bicep curls, shoulder presses, or upright rows.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(32, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(32, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Closed barbell pulldown', 'A back exercise that targets the latissimus dorsi. Sit at a pulldown machine, grip the bar with a closed overhand grip, and pull it down to your chest while keeping your back straight.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(33, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(33, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Isometric squat', 'A lower body exercise that targets the quadriceps, hamstrings, and glutes. Hold a squat position with your thighs parallel to the ground for a set amount of time.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(34, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(34, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Bulgarian squat', 'A single-leg exercise that targets the quadriceps, hamstrings, and glutes. Place one foot on a raised surface behind you and lower your body into a lunge position.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(35, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(35, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Chair extensor', 'A lower body exercise that targets the glutes and hamstrings. Sit on a chair, extend one leg straight out, and raise and lower your leg using your glutes and hamstrings.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(36, '" + R.drawable.chairdips_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(36, '" + R.drawable.chairdips_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Jumping jacks', 'A full-body cardiovascular exercise. Start with your feet together and arms by your sides, then jump while spreading your legs apart and raising your arms above your head. Jump again to return to the starting position.')");
-
-
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(37, " + R.drawable.chairdips_1 +");");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(37, " + R.drawable.chairdips_2 + ");");
                             // Exercise set
 
                             // Exercise set - Monday
@@ -199,7 +269,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             // Exercise set - Sunday
                             db.execSQL("INSERT INTO ExerciseSet(dayId, exerciseId, orderIndex, repetitions, time) VALUES (6, 19, 1, 0, '1 minute')");
                             db.execSQL("INSERT INTO ExerciseSet(dayId, exerciseId, orderIndex, repetitions, time) VALUES (6, 20, 2, 0, '2 minutes')");
-                            db.execSQL("INSERT INTO ExerciseSet(dayId, exerciseId, orderIndex, repetitions, time) VALUES (6, 21, 3, 0, '2 minutes')");
                             db.execSQL("INSERT INTO ExerciseSet(dayId, exerciseId, orderIndex, repetitions, time) VALUES (6, 22, 4, 0, '1 minute')");
                             db.execSQL("INSERT INTO ExerciseSet(dayId, exerciseId, orderIndex, repetitions, time) VALUES (6, 23, 5, 0, '45 seconds')");
                             db.execSQL("INSERT INTO ExerciseSet(dayId, exerciseId, orderIndex, repetitions, time) VALUES (6, 29, 6, 8, null)");
@@ -270,7 +339,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             // Workout Plan - 1 - day 7
                             db.execSQL("INSERT INTO WorkoutPlan('planId', 'dayId', 'exerciseId', 'type') Values (1, 6 , 19, 'gain mass')");
                             db.execSQL("INSERT INTO WorkoutPlan('planId', 'dayId', 'exerciseId', 'type') Values (1, 6 , 20, 'gain mass')");
-                            db.execSQL("INSERT INTO WorkoutPlan('planId', 'dayId', 'exerciseId', 'type') Values (1, 6 , 21, 'gain mass')");
                             db.execSQL("INSERT INTO WorkoutPlan('planId', 'dayId', 'exerciseId', 'type') Values (1, 6 , 22, 'gain mass')");
                             db.execSQL("INSERT INTO WorkoutPlan('planId', 'dayId', 'exerciseId', 'type') Values (1, 6 , 23, 'gain mass')");
                             db.execSQL("INSERT INTO WorkoutPlan('planId', 'dayId', 'exerciseId', 'type') Values (1, 6 , 29, 'gain mass')");
@@ -281,7 +349,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 0, 36, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 0, 23, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 0, 4, 'lose weight')");
-                            db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 0, 21, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 0, 11, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 0, 16, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 0, 7, 'lose weight')");
@@ -302,7 +369,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 2, 30, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 2, 15, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 2, 24, 'lose weight')");
-                            db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 2, 21, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 2, 25, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 2, 27, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 2, 28, 'lose weight')");
@@ -312,7 +378,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 3, 31, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 3, 6, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 3, 9, 'lose weight')");
-                            db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 3, 21, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 3, 13, 'lose weight')");
 
                             // Workout Plan - 2 - day 5
@@ -329,7 +394,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 5, 17, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 5, 14, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 5, 18, 'lose weight')");
-                            db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 5, 21, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 5, 3, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 5, 8, 'lose weight')");
 
@@ -421,72 +485,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO mealIngredients VALUES(2, 16, '1 Tbsp')");
                             db.execSQL("INSERT INTO mealIngredients VALUES(2, 17, '1 cup')");
                             db.execSQL("INSERT INTO mealIngredients VALUES(2, 18, '8 oz')");
-
-
-                            // UserCompleted
-
-                            // Day 0
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 1, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 2, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 3, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 5, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 11, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 12, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 13, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 0, 28, '0')");
-
-                            // Day 1
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 4, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 20, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 23, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 26, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 28, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 1, 33, '0')");
-
-                            // Day 2
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 1, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 3, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 5, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 11, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 12, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 26, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 2, 27, '0')");
-
-                            // Day 3
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 6, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 7, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 8, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 9, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 10, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 3, 13, '0')");
-
-                            // Day 4
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 18, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 8, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 3, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 9, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 23, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 30, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 4, 37, '0')");
-
-
-                            // Day 5
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 14, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 15, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 16, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 17, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 18, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 24, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 5, 25, '0')");
-
-                            // Day 6
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 19, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 20, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 21, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 22, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 23, '0')");
-                            db.execSQL("INSERT INTO UserCompleted(userId, dayId, exerciseId, completed) VALUES (0, 6, 29, '0')");
-
 
                         }
                     })
