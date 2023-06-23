@@ -18,10 +18,12 @@ public interface UserCompletedDao {
             "AND workoutplan.dayId = userCompleted.dayId AND workoutplan.exerciseId = userCompleted.exerciseId")
     List<Exercise> getExercisesForUser(int userId, int dayId, int planId);
 
-    @Query("SELECT COUNT(*) " +
-            "FROM usercompleted WHERE userId = :userId AND dayId = :dayId")
-    int countExercisesForUser(int userId, int dayId);
-
+    @Query("SELECT COUNT(userCompletedId) " +
+            "FROM exercise, usercompleted, workoutplan " +
+            "WHERE userId = :userId AND usercompleted.dayId = :dayId AND exercise.exerciseId = usercompleted.exerciseId " +
+            "AND workoutplan.exerciseId = exercise.exerciseId AND workoutplan.planId = :planId " +
+            "AND workoutplan.dayId = userCompleted.dayId AND workoutplan.exerciseId = userCompleted.exerciseId")
+    int countExercisesForUser(int userId, int dayId, int planId);
 
     @Query("SELECT COUNT(userId) FROM usercompleted WHERE userId = :userId AND dayId = :dayId")
     int ammountOfExercisesInDay(int userId, int dayId);
