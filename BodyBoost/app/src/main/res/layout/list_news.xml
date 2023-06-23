@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="450dp">
+    android:layout_height="500dp">
 
     <TextView
         android:id="@+id/newsCard"
@@ -43,15 +43,15 @@
     <TextView
         android:id="@+id/newsDescriptionTextView"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:text="A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros."
         android:textColor="?android:textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="@+id/newsCard"
-        app:layout_constraintStart_toStartOf="@+id/newsCard" />
+        app:layout_constraintStart_toStartOf="@+id/newsCard"
+        app:layout_constraintTop_toBottomOf="@+id/newsDateTextView" />
 
     <ImageView
         android:id="@+id/newsImageView"
@@ -69,12 +69,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Date"
         android:textColor="?android:textColorPrimary"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/newsDescriptionTextView"
         app:layout_constraintStart_toStartOf="@+id/newsCard"
         app:layout_constraintTop_toBottomOf="@+id/newsTitleTextView" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        android:textColor="@color/mainRed"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/newsCard"
+        app:layout_constraintStart_toStartOf="@+id/newsDescriptionTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

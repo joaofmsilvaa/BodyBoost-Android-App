@@ -407,8 +407,8 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 6, 24, 'lose weight')");
 
                             // Feed - News
-                            db.execSQL("INSERT INTO Feed (newsTitle, newsSmallDescription, newsFullDescription, newsImg, newsDate) VALUES ('João Coelho abre época com boa marca em Yokohama', 'O velocista português João Coelho terminou no segundo lugar a corrida de 400 metros, com a marca de 45,46 segundos.', 'João Coelho, que é recordista de Portugal de 400 metros em pista coberta, ficou a 46 centésimos da qualificação direta para os Mundiais de Budapeste e a cinco centésimos do seu recorde pessoal.\n\nO atleta sportinguista aproveitou muito bem o ritmo do japonês Yuki Joseph Nakajima, vencedor em 45,31.\n\nCom este resultado, Coelho consegue pontos para subir no ranking mundial e abrir uma porta de qualificação para os Mundiais de Budapeste, no final de agosto.\nAinda em Yokohama, registo para a abertura de época do barreirista cubano Roger Iribarne, do Benfica, que terminou em quarto lugar com a marca de 13,37 segundos (vento: +0,8 m/s), numa prova dominada pelo japonês Shunsuke Izumiya, que fez a segunda melhor marca mundial do ano (13,07 segundos).', 'https://cdn-images.rtp.pt/icm/noticias/images/eb/eb80c6ff94c0c6fd4846fb61f6e10005?w=860&q=90&rect=0,48,1587,870&auto=format', '21/05/2023')");
-                            db.execSQL("INSERT INTO Feed (newsTitle, newsSmallDescription, newsFullDescription, newsImg, newsDate) VALUES ('Jessica Inchude vence lançamento do peso em meeting na Polónia', 'A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros.', 'A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros, a dois centímetros do seu recorde pessoal.\n\nNa mesma prova, o segundo lugar também foi para uma lançadora lusa, Eliane Bandeira, com um arremesso a 18,20 metros, passando pela segunda vez na carreira os 18,00 metros. Inchude, que em Portugal apenas é superada pela recordista nacional, Auriol Dongmo, conseguiu ainda um registo de 18,63, em concurso de grande consistência, com cinco tiros a mais de 18 metros.\n\nNa qualificação para os Mundiais de Budapeste, ainda não atinge a marca de qualificação direta, que é de 18,80, mas reforça amplamente a sua posição no ranking de apuramento. Inchude é a primeira atleta sem marca de qualificação direta, em 17.ª, sendo que se vão apurar 36 lançadoras. Manterá a posição, mas com mais pontos.\n\nEliana Bandeira também está na lista de qualificação por ranking, neste momento na 26.ª posição.', 'https://cdn.record.pt/images/2023-05/img_920x518$2023_05_21_19_27_28_2131327.png', '22/05/2023')");
+                            db.execSQL("INSERT INTO Feed (newsTitle, newsSmallDescription, newsFullDescription, newsImg, newsDate, sourceWebsite, sourceLink) VALUES ('João Coelho abre época com boa marca em Yokohama', 'O velocista português João Coelho terminou no segundo lugar a corrida de 400 metros, com a marca de 45,46 segundos.', 'João Coelho, que é recordista de Portugal de 400 metros em pista coberta, ficou a 46 centésimos da qualificação direta para os Mundiais de Budapeste e a cinco centésimos do seu recorde pessoal.\n\nO atleta sportinguista aproveitou muito bem o ritmo do japonês Yuki Joseph Nakajima, vencedor em 45,31.\n\nCom este resultado, Coelho consegue pontos para subir no ranking mundial e abrir uma porta de qualificação para os Mundiais de Budapeste, no final de agosto.\nAinda em Yokohama, registo para a abertura de época do barreirista cubano Roger Iribarne, do Benfica, que terminou em quarto lugar com a marca de 13,37 segundos (vento: +0,8 m/s), numa prova dominada pelo japonês Shunsuke Izumiya, que fez a segunda melhor marca mundial do ano (13,07 segundos).', 'https://cdn-images.rtp.pt/icm/noticias/images/eb/eb80c6ff94c0c6fd4846fb61f6e10005?w=860&q=90&rect=0,48,1587,870&auto=format', '21/05/2023', 'ojogo.pt' ,'https://www.ojogo.pt/modalidades/atletismo/noticias/joao-coelho-abre-epoca-com-boa-marca-nos-400-metros-de-yokohama-16395275.html')");
+                            db.execSQL("INSERT INTO Feed (newsTitle, newsSmallDescription, newsFullDescription, newsImg, newsDate, sourceWebsite, sourceLink) VALUES ('Jessica Inchude vence lançamento do peso em meeting na Polónia', 'A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros.', 'A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros, a dois centímetros do seu recorde pessoal.\n\nNa mesma prova, o segundo lugar também foi para uma lançadora lusa, Eliane Bandeira, com um arremesso a 18,20 metros, passando pela segunda vez na carreira os 18,00 metros. Inchude, que em Portugal apenas é superada pela recordista nacional, Auriol Dongmo, conseguiu ainda um registo de 18,63, em concurso de grande consistência, com cinco tiros a mais de 18 metros.\n\nNa qualificação para os Mundiais de Budapeste, ainda não atinge a marca de qualificação direta, que é de 18,80, mas reforça amplamente a sua posição no ranking de apuramento. Inchude é a primeira atleta sem marca de qualificação direta, em 17.ª, sendo que se vão apurar 36 lançadoras. Manterá a posição, mas com mais pontos.\n\nEliana Bandeira também está na lista de qualificação por ranking, neste momento na 26.ª posição.', 'https://cdn.record.pt/images/2023-05/img_920x518$2023_05_21_19_27_28_2131327.png', '22/05/2023', 'publico.pt' , 'https://www.publico.pt/2023/05/21/desporto/noticia/jessica-inchude-vence-lancamento-peso-meeting-polonia-2050498')");
 
                             // Meals
                             db.execSQL("INSERT INTO Meals(mealId, mealName, mealsShortDescription, mealRecipe, mealImage, calories) VALUES(0, 'Creamy Garlic Mushrooms', 'This Creamy Garlic Mushroom is a quick and easy side dish recipe that’s made with button mushrooms.', 'Heat the oil in a large pan over medium heat; Once hot, add in the mushrooms and cook stirring occasionally, for about 10-15 minutes.\n" +
@@ -462,29 +462,29 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
                             // Recipe 1 - Ingredients
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 0, '15 ml')");  // Olive Oil (1 Tbsp)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 1, '450 g')");  // Button Mushrooms (1 Lb)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 2, '2')");      // Garlic Cloves Chopped
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 3, '60 ml')");  // Vegetable Broth (1/4 Cup)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 4, '113 g')");  // Brie (4 oz)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 5, '')");       // Salt and pepper
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 6, '')");       // Fresh Thyme leaves
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 0, '15 ml')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 1, '450 g')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 2, '2')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 3, '60 ml')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 4, '113 g')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 5, '')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 6, '')");
 
                             // Recipe 2 - Ingredients
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 7, '450 g')");   // Ground Turkey (1 Lb)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 8, '60 ml')");   // Breadcrumbs (1/4 Cup)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 9, '')");        // salt, black pepper, garlic powder, dried basil, chopped fresh parsley.
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 10, '1')");      // Egg
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 11, '710 ml')"); // Marinara Sauce (3 cups)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 12, '')");      // Cooking Spray
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 7, '450 g')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 8, '60 ml')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 9, '')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 10, '1')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 11, '710 ml')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 12, '')");
 
                             // Recipe 3 - Ingredients
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 13, '450 g')");   // Baby Potatoes (1 Lb)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 14, '4')");      // Salmon Filets
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 15, '')");       // Garlic cloves, salt, pepper, fresh chives, and chili flakes
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 16, '15 ml')");  // Oil (1 Tbsp)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 17, '240 ml')"); // Vegetable Stock (1 cup)
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 18, '227 g')");  // Creamy cheese (8 oz)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 13, '450 g')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 14, '4')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 15, '')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 16, '15 ml')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 17, '240 ml')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 18, '227 g')");
 
                         }
                     })

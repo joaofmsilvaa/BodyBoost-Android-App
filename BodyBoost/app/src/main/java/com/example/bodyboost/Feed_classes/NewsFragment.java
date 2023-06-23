@@ -18,6 +18,8 @@ import com.example.bodyboost.Feed_classes.FeedDao;
 import com.example.bodyboost.R;
 import com.example.bodyboost.Feed_classes.NewsFragmentArgs;
 
+import org.w3c.dom.Text;
+
 public class NewsFragment extends Fragment{
 
     private AppDatabase db;
@@ -59,12 +61,14 @@ public class NewsFragment extends Fragment{
         TextView newsSmallDescription = view.findViewById(R.id.newsSmallDescriptionTextView);
         TextView newsFullDescription = view.findViewById(R.id.newsDescriptionTextView2);
         TextView newsDateTextView = view.findViewById(R.id.newsDateTextView2);
+        TextView newsWebsiteNameTextView = view.findViewById(R.id.websiteNameTextView);
 
         Glide.with(context).load(feedDao.getNewsImgById(newsId)).into(newsImageView);
         newsTitle.setText(feedDao.getNewsTitleById(newsId));
         newsSmallDescription.setText(feedDao.getNewsSmallDesById(newsId));
         newsFullDescription.setText(feedDao.getFullDesById(newsId));
         newsDateTextView.setText(feedDao.getNewsDateById(newsId));
+        newsWebsiteNameTextView.setText("Source: " + feedDao.getWebsiteById(newsId));
 
 
 
