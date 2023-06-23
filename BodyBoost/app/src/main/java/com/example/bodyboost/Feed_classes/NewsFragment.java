@@ -1,5 +1,7 @@
 package com.example.bodyboost.Feed_classes;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -70,6 +72,23 @@ public class NewsFragment extends Fragment{
         newsDateTextView.setText(feedDao.getNewsDateById(newsId));
         newsWebsiteNameTextView.setText("Source: " + feedDao.getWebsiteById(newsId));
 
+        newsWebsiteNameTextView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent viewIntent =
+                        new Intent("android.intent.action.VIEW",
+                                Uri.parse(feedDao.getSourceLinkById(newsId)));
+                context.startActivity(viewIntent);
+            }
+        });
+
+        newsImageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent viewIntent =
+                        new Intent("android.intent.action.VIEW",
+                                Uri.parse(feedDao.getSourceLinkById(newsId)));
+                context.startActivity(viewIntent);
+            }
+        });
 
 
     }

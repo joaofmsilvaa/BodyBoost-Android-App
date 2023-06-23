@@ -52,7 +52,7 @@ public class FeedAdapter extends RecyclerView.Adapter<com.example.bodyboost.Feed
                 int selectedNew = holder.getAdapterPosition();
                 selectedNew ++;
                 NavDirections action = com.example.bodyboost.Feed_classes.feedFragmentDirections.actionFeedFragmentToNewsFragment(selectedNew);
-                Navigation.findNavController(v).navigate(action);git
+                Navigation.findNavController(v).navigate(action);
             }
         });
 
