@@ -50,6 +50,8 @@
             android:background="#7A7A7A"
             android:gravity="center|fill_horizontal"
             android:hint="Username"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+            android:inputType="textFilter"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,8 +75,9 @@
             android:background="#7A7A7A"
             android:gravity="center|fill_horizontal"
             android:hint="Password"
-            android:inputType="textPassword"
-            android:password="false"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+            android:inputType="textFilter"
+            android:password="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>

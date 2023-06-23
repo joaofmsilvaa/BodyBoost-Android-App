@@ -26,10 +26,8 @@ public class RecipeFragment extends Fragment{
 
     private AppDatabase db;
     private MealsDao mealsDao;
-
     private IngredientAdapter adapter;
     private IngredientsDao ingredientsDao;
-
     Context context;
 
     @Override
@@ -48,7 +46,6 @@ public class RecipeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recipe, container, false);
     }
@@ -63,10 +60,13 @@ public class RecipeFragment extends Fragment{
         ImageView mealImageView = view.findViewById(R.id.mealImageView2);
         TextView recipeName = view.findViewById(R.id.recipeName2);
         TextView fullRecipe = view.findViewById(R.id.recipeTextView);
+        TextView caloriesTextView = view.findViewById(R.id.caloriesTextView2);
 
         Glide.with(context).load(mealsDao.getMealsImgById(mealsId)).into(mealImageView);
         recipeName.setText(mealsDao.getMealsNameById(mealsId));
         fullRecipe.setText(mealsDao.getRecipeById(mealsId));
+        caloriesTextView.setText(mealsDao.getCaloriesById(mealsId) + " cal");
+
 
         RecyclerView recyclerView = view.findViewById(R.id.ingredientsRecyclerView);
 

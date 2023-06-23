@@ -54,4 +54,17 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="263dp" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:text="You haven't inserted any weight"
+        android:textAlignment="center"
+        android:textColor="@color/mainRed"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/reportRecyclerView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

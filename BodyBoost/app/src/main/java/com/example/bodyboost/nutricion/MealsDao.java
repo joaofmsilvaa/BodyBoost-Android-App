@@ -19,4 +19,7 @@ public interface MealsDao {
 
     @Query("SELECT mealRecipe FROM meals WHERE mealId = :mealId")
     String getRecipeById(int mealId);
+
+    @Query("SELECT calories FROM meals WHERE mealId = :mealId")
+    int getCaloriesById(int mealId);
 }

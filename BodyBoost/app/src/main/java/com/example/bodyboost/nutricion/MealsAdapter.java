@@ -39,6 +39,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
         Meals meals = this.mealsList.get(position);
         holder.recipeNameTextView.setText(meals.mealName);
         holder.recipeDescTextView.setText(meals.mealsShortDescription);
+        holder.caloriesTextView.setText(meals.getCalories() + " cal");
 
         Glide.with(holder.rootView.getContext()).load(meals.getMealImage()).into(holder.mealImageView);
 
@@ -65,6 +66,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
         TextView recipeNameTextView;
         TextView recipeDescTextView;
         TextView recipeCard;
+        TextView caloriesTextView;
         ImageView mealImageView;
 
         public MealsViewHolder(@NonNull View itemView, Context context) {
@@ -75,6 +77,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
             recipeDescTextView = rootView.findViewById(R.id.recipeDescTextView);
             mealImageView = rootView.findViewById(R.id.mealImageView);
             recipeCard = rootView.findViewById(R.id.recipeCard);
+            caloriesTextView = rootView.findViewById(R.id.caloriesTextView);
 
         }
     }

@@ -137,6 +137,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileActivity.this, homeActivity.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });

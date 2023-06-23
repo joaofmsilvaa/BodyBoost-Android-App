@@ -36,6 +36,8 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
     private Context context;
     private ExerciseSetAdapterEventListener eventListener;
 
+    private int currentImg = 0;
+
     public ExerciseSetAdapter(ExerciseSetAdapterEventListener eventListener, int dayId ,List<Exercise> exerciseList, Context context) {
         this.eventListener = eventListener;
         this.day = dayId;
@@ -107,29 +109,72 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
             }
         });
 
-        holder.button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow));
-                holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow_disabled));
+        if (exerciseStepImages.size() > 1) {
+            if (exerciseStepImages.size() == 2) {
+                holder.button4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow));
+                        holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow_disabled));
 
-                int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(1), "drawable", holder.context.getPackageName());
+                        int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(1), "drawable", holder.context.getPackageName());
 
-                Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
+                        Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
+                    }
+                });
+
+                holder.button5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow));
+                        holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow_disabled));
+
+                        int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(0), "drawable", holder.context.getPackageName());
+
+                        Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
+                    }
+                });
+
+            } else if (exerciseStepImages.size() == 3) {
+                holder.button4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (currentImg == 2) {
+                            holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow));
+                            holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow));
+                        } else {
+                            holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow));
+                            holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow));
+                            currentImg++;
+                            int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(currentImg), "drawable", holder.context.getPackageName());
+                            Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
+                        }
+                    }
+                });
+
+                holder.button5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (currentImg == 0) {
+                            holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow));
+                            holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow));
+                        } else if (currentImg == 1) {
+                            holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow_disabled));
+                            holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow));
+                        } else {
+                            holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow_disabled));
+                            holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow));
+                        }
+                        currentImg--;
+                        int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(currentImg), "drawable", holder.context.getPackageName());
+                        Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
+                    }
+                });
             }
-        });
-
-        holder.button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow));
-                holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow_disabled));
-
-                int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(0), "drawable", holder.context.getPackageName());
-
-                Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
-            }
-        });
+        } else {
+            holder.button4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.right_arrow_disabled));
+            holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow_disabled));
+        }
     }
 
     @Override

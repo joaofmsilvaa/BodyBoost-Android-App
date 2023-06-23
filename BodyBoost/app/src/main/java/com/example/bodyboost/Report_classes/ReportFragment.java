@@ -30,6 +30,8 @@ import com.example.bodyboost.AppDatabase;
 import com.example.bodyboost.HomeFragment;
 import com.example.bodyboost.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,6 +47,7 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
     private ReportAdapter adapter;
     private AppDatabase db;
     private ReportDao reportDao;
+    private TextView messageTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,16 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
     @Override
     public void onStart() {
         super.onStart();
+
+        List<Report> getAll = reportDao.getAll(HomeFragment.userId);
+
+        if(getAll.size() > 0){
+            messageTextView.setText("");
+        }
+        else{
+            messageTextView.setText("test");
+        }
+
     }
 
     @Override
@@ -73,6 +86,8 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
         EditText weightInput = view.findViewById(R.id.weightIputEditText);
 
         weightInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+
+        messageTextView = view.findViewById(R.id.textView3);
 
         Button insertWeight = view.findViewById(R.id.insertWeightButton);
         insertWeight.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +119,14 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
         recyclerView.setLayoutManager(layoutManager);
 
         List<Report> getAll = reportDao.getAll(HomeFragment.userId);
+
+        if(getAll.size() > 0){
+            messageTextView.setText("");
+        }
+        else{
+            messageTextView.setText("test");
+        }
+
         adapter = new ReportAdapter(this, getAll);
 
         recyclerView.setAdapter(adapter);
@@ -112,6 +135,15 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
     public void refreshFragment() {
 
         adapter.updateData(reportDao.getAll(HomeFragment.userId));
+
+        List<Report> getAll = reportDao.getAll(HomeFragment.userId);
+
+        if(getAll.size() > 0){
+            messageTextView.setText("");
+        }
+        else{
+            messageTextView.setText("You haven't inserted any weight");
+        }
 
         adapter.notifyDataSetChanged();
     }

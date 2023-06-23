@@ -105,6 +105,8 @@
             android:background="#7A7A7A"
             android:gravity="center|fill_horizontal"
             android:hint="Username"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+            android:inputType="textFilter"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
@@ -117,7 +119,9 @@
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout1"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout3">
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#EC3147">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordEditText"
@@ -125,9 +129,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#7A7A7A"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!\|@#£$§[]{}?"
             android:gravity="center|fill_horizontal"
             android:hint="Password"
-            android:inputType="textPassword"
+            android:inputType="textFilter"
+            android:password="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>

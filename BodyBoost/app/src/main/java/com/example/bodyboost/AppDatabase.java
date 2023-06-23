@@ -147,64 +147,65 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(22, '" + R.drawable.plank + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('V-sit crunch', 'An advanced abdominal exercise that targets the entire core. Sit on the floor, lean back slightly, lift your legs off the ground, and bring your chest and knees toward each other to form a V shape.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(23, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(23, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(23, '" + R.drawable.vcrunch_1 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Extended-arm crunch', 'A variation of the traditional crunch exercise that targets the upper abs. Lie on your back, extend your arms overhead, and lift your upper body off the floor while reaching toward your toes.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image)  VALUES(24, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(24, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image)  VALUES(24, '" + R.drawable.extendedcrunch_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image)  VALUES(24, '" + R.drawable.extendedcrunch_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Barbell bench press', 'A compound exercise that targets the chest, shoulders, and triceps. Lie on a bench, grip the barbell with an overhand grip, and lower it to your chest before pressing it back up.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(25, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(25, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(25, '" + R.drawable.benchpress_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(25, '" + R.drawable.benchpress_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Pull-ups', 'An upper body exercise that targets the back and arms. Hang from a bar with an overhand grip and pull your body upward until your chin reaches the bar.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(26, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(26, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(26, '" + R.drawable.pullup_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(26, '" + R.drawable.pullup_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Straight Supine with Bar', 'A compound exercise that targets the chest, shoulders, and triceps. Lie on your back, grip a barbell with an overhand grip, and press it upward from your chest.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(27, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(27, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(27, '" + R.drawable.stretch_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(27, '" + R.drawable.stretch_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Chest in parallel', 'A chest exercise that targets the pectoral muscles. Sit on a chest press machine with your hands on the handles, push the handles forward, and return them to the starting position.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(28, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(28, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(28, '" + R.drawable.parallelbar_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(28, '" + R.drawable.parallelbar_2 + "');");
 
-                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Crucifix on the fly', 'A chest exercise that targets the pectoral muscles. Stand in a crucifix position with arms outstretched to the sides, hold dumbbells, and bring your arms together in front of you.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(29, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(29, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Plank Shoulder Taps', 'Plank Shoulder Taps is a core-strengthening exercise where you tap your shoulders alternately in a high plank position. It targets your core, shoulders, arms, and back. No equipment needed.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(29, '" + R.drawable.sholdertaps_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(29, '" + R.drawable.sholdertaps_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(29, '" + R.drawable.sholdertaps_3 + "');");
 
-                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Push-ups on the wall', 'A modified version of push-ups where you perform the exercise against a wall instead of on the floor. It targets the chest, shoulders, and triceps.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(30, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(30, '" + R.drawable.chairdips_2 + "');");
 
-                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Front raise with dumbbells', 'A shoulder exercise that targets the front deltoids. Stand with dumbbells in your hands, palms facing your body, and raise the weights in front of you until they reach shoulder level.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(31, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(31, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Wall Plank', 'A wall plank is a fitness exercise where you assume a plank position with your feet against a wall instead of the ground. It targets the core muscles and helps build strength and stability.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(30, '" + R.drawable.wallplank_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(30, '" + R.drawable.wallplank_2 + "');");
 
-                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Fixed barbell lifts', 'A compound exercise that targets multiple muscles. Hold a fixed barbell with an overhand grip and perform lifts such as bicep curls, shoulder presses, or upright rows.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(32, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(32, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Front raise with water bottles', 'A shoulder exercise that targets the front deltoids. Stand with dumbbells or water bottles in your hands, palms facing your body, and raise the weights in front of you until they reach shoulder level.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(31, '" + R.drawable.shoulderraise_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(31, '" + R.drawable.shoulderraise_2 + "');");
 
-                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Closed barbell pulldown', 'A back exercise that targets the latissimus dorsi. Sit at a pulldown machine, grip the bar with a closed overhand grip, and pull it down to your chest while keeping your back straight.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(33, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(33, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Close-grip push-ups', 'Close-grip push-ups: Hands close together, targets triceps while engaging chest and shoulders for overall upper body strength.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(32, '" + R.drawable.closegrip_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(32, '" + R.drawable.closegrip_2 + "');");
+
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Australian Pull-Up', 'The Bodyweight Row, also called the Australian Pull-Up, is a no-equipment exercise where you lie under a sturdy surface, grip the edge, and pull your chest towards it. It strengthens the upper back, biceps, and core muscles.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(33, '" + R.drawable.australian_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(33, '" + R.drawable.australian_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Isometric squat', 'A lower body exercise that targets the quadriceps, hamstrings, and glutes. Hold a squat position with your thighs parallel to the ground for a set amount of time.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(34, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(34, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(34, '" + R.drawable.isometricsquat_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(34, '" + R.drawable.isometricsquat_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Bulgarian squat', 'A single-leg exercise that targets the quadriceps, hamstrings, and glutes. Place one foot on a raised surface behind you and lower your body into a lunge position.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(35, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(35, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(35, '" + R.drawable.bulgarian_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(35, '" + R.drawable.bulgarian_2 + "');");
 
-                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Chair extensor', 'A lower body exercise that targets the glutes and hamstrings. Sit on a chair, extend one leg straight out, and raise and lower your leg using your glutes and hamstrings.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(36, '" + R.drawable.chairdips_1 + "');");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(36, '" + R.drawable.chairdips_2 + "');");
+                            db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Prone Superman', 'The Prone Superman is a no-equipment exercise where you lie facedown, lift your chest, arms, and legs off the ground, and hold for a moment. It strengthens your lower back, glutes, and posterior shoulder muscles while improving core stability and posture.')");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(36, '" + R.drawable.superman_1 + "');");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(36, '" + R.drawable.superman_2 + "');");
 
                             db.execSQL("INSERT INTO Exercise (exerciseName, exerciseDescription) VALUES ('Jumping jacks', 'A full-body cardiovascular exercise. Start with your feet together and arms by your sides, then jump while spreading your legs apart and raising your arms above your head. Jump again to return to the starting position.')");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(37, " + R.drawable.chairdips_1 +");");
-                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(37, " + R.drawable.chairdips_2 + ");");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(37, " + R.drawable.jacks_1 +");");
+                            db.execSQL("INSERT INTO ExerciseSteps (exerciseId, image) VALUES(37, " + R.drawable.jacks_2 + ");");
                             // Exercise set
 
                             // Exercise set - Monday
@@ -410,19 +411,20 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO Feed (newsTitle, newsSmallDescription, newsFullDescription, newsImg, newsDate) VALUES ('Jessica Inchude vence lançamento do peso em meeting na Polónia', 'A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros.', 'A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros, a dois centímetros do seu recorde pessoal.\n\nNa mesma prova, o segundo lugar também foi para uma lançadora lusa, Eliane Bandeira, com um arremesso a 18,20 metros, passando pela segunda vez na carreira os 18,00 metros. Inchude, que em Portugal apenas é superada pela recordista nacional, Auriol Dongmo, conseguiu ainda um registo de 18,63, em concurso de grande consistência, com cinco tiros a mais de 18 metros.\n\nNa qualificação para os Mundiais de Budapeste, ainda não atinge a marca de qualificação direta, que é de 18,80, mas reforça amplamente a sua posição no ranking de apuramento. Inchude é a primeira atleta sem marca de qualificação direta, em 17.ª, sendo que se vão apurar 36 lançadoras. Manterá a posição, mas com mais pontos.\n\nEliana Bandeira também está na lista de qualificação por ranking, neste momento na 26.ª posição.', 'https://cdn.record.pt/images/2023-05/img_920x518$2023_05_21_19_27_28_2131327.png', '22/05/2023')");
 
                             // Meals
-                            db.execSQL("INSERT INTO Meals(mealId, mealName,mealsShortDescription,mealRecipe, mealImage) VALUES(0,'Creamy Garlic Mushrooms', 'This Creamy Garlic Mushroom is a quick and easy side dish recipe that’s made with button mushrooms.', 'Heat the oil in a large pan over medium heat; Once hot, add in the mushrooms and cook stirring occasionally, for about 10-15 minutes.\n" +
+                            db.execSQL("INSERT INTO Meals(mealId, mealName, mealsShortDescription, mealRecipe, mealImage, calories) VALUES(0, 'Creamy Garlic Mushrooms', 'This Creamy Garlic Mushroom is a quick and easy side dish recipe that’s made with button mushrooms.', 'Heat the oil in a large pan over medium heat; Once hot, add in the mushrooms and cook stirring occasionally, for about 10-15 minutes.\n" +
                                     "Stir in the garlic, season with a pinch of salt and pepper, then cook for about a minute more.\n" +
                                     "Add the broth and chopped brie, and stirring constantly cook until the brie has melted into a super creamy sauce.\n" +
-                                    "Taste and adjust seasonings if needed. Garnish with fresh thyme. Serve immediately and enjoy!', 'https://healthyfitnessmeals.com/wp-content/uploads/2019/12/instagram-In-Stream_Square___Creamy-garlic-mushrooms-3-360x360.jpg')");
-                            db.execSQL("INSERT INTO Meals(mealId, mealName,mealsShortDescription,mealRecipe, mealImage) VALUES(1,'Italian Baked Turkey Meatballs', 'Need a little change from your regular meatballs? Try this Gluten-free and dairy-free Italian Turkey Meatballs recipe.', 'Preheat the broiler: First, line a sheet pan with foil and coat the foil with cooking spray.\n" +
+                                    "Taste and adjust seasonings if needed. Garnish with fresh thyme. Serve immediately and enjoy!', 'https://healthyfitnessmeals.com/wp-content/uploads/2019/12/instagram-In-Stream_Square___Creamy-garlic-mushrooms-3-360x360.jpg', 561)");
+
+                            db.execSQL("INSERT INTO Meals(mealId, mealName, mealsShortDescription, mealRecipe, mealImage, calories) VALUES(1, 'Italian Baked Turkey Meatballs', 'Need a little change from your regular meatballs? Try this Gluten-free and dairy-free Italian Turkey Meatballs recipe.', 'Preheat the broiler: First, line a sheet pan with foil and coat the foil with cooking spray.\n" +
                                     "Place the turkey, breadcrumbs, salt, pepper, garlic powder, basil, egg, and water in a bowl; mix until thoroughly combined. You may need to add more water, 1 teaspoon at a time, to get a smooth mixture.\n" +
-                                    "Take approximately 2 tablespoons of the meat mixture and roll it into a ball. Place the meatball on the sheet pan and repeat with the remaining meat.\n" +
-                                    "Spray the tops of the meatballs with cooking spray. Broil for 10 minutes or until meatballs are just done.\n" +
-                                    "Place the meatballs on a plate and pour the marinara sauce over the top. Finally, sprinkle with\n" +
-                                    "parsley and serve immediately." +
-                                    "Cook noodles according to packet instructions. Drain and rinse briefly with warm water.\n" +
-                                    "Whisk lime juice, sugar, fish sauce and chilli flakes into the shallot oil mixture. Place noodles in a large bowl with three quarters of the shallot oil, season and toss to combine. Arrange on a serving platter and flake salmon over the top. Drizzle over remaining shallot oil and scatter with extra chilli flakes, toasted sesame seeds and shiso leaves. Serve at room temperature or chilled.', 'https://healthyfitnessmeals.com/wp-content/uploads/2018/01/italian-turkey-meatballs-square-360x360.jpg')");
-                            db.execSQL("INSERT INTO Meals(mealId, mealName,mealsShortDescription,mealRecipe, mealImage) VALUES(2,'Creamy Salmon And Potato Skillet', 'Make this Easy Creamy Salmon and Potato Skillet recipe any day of the week for the family to enjoy.', 'Place the potatoes in a pot of water and boil just until they begin to soften.\n" +
+                                    "Take approximately 2 tablespoons of the meat mixture and roll it into a ball. Place the meatball on the sheet pan and repeat with the remaining meat." +
+                                    "Spray the tops of the meatballs with cooking spray. Broil for 10 minutes or until meatballs are just done." +
+                                    "Place the meatballs on a plate and pour the marinara sauce over the top. Finally, sprinkle with parsley and serve immediately." +
+                                    "Cook noodles according to packet instructions. Drain and rinse briefly with warm water." +
+                                    "Whisk lime juice, sugar, fish sauce and chilli flakes into the shallot oil mixture. Place noodles in a large bowl with three quarters of the shallot oil, season and toss to combine. Arrange on a serving platter and flake salmon over the top. Drizzle over remaining shallot oil and scatter with extra chilli flakes, toasted sesame seeds and shiso leaves. Serve at room temperature or chilled.', 'https://healthyfitnessmeals.com/wp-content/uploads/2018/01/italian-turkey-meatballs-square-360x360.jpg', 1020)");
+
+                            db.execSQL("INSERT INTO Meals(mealId, mealName, mealsShortDescription, mealRecipe, mealImage, calories) VALUES(2, 'Creamy Salmon And Potato Skillet', 'Make this Easy Creamy Salmon and Potato Skillet recipe any day of the week for the family to enjoy.', 'Place the potatoes in a pot of water and boil just until they begin to soften.\n" +
                                     "Do not overcook as they’ll get mushy. Once ready, drain and season with salt and pepper.\n" +
                                     "cooked halved potatoes in a pot\n" +
                                     "Season the salmon skillets with salt and pepper. Heat the oil in a non-stick pan and fry the salmon until golden on both sides, then set aside.\n" +
@@ -430,8 +432,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                     "In the same preheated pan, saute the garlic for 30 seconds. Deglaze the pan with the stock and allow it to bubble for a couple of minutes. Add the cream cheese and use a whisk to incorporate and get a creamy sauce.\n" +
                                     "vegetable stock with sauteed garlic and creamy cheese on a pan\n" +
                                     "Stir in the chives, chili flakes, and potatoes. Return the salmon back into the pan and drizzle with the creamy sauce. Garnish with freshly ground black pepper, and extra chives, if desired.\n" +
-                                    "potatoes added over a creamy white sauce in skillet', 'https://healthyfitnessmeals.com/wp-content/uploads/2023/04/Creamy-salmon-and-potato-skillet7-360x360.jpg')");
-
+                                    "potatoes added over a creamy white sauce in skillet', 'https://healthyfitnessmeals.com/wp-content/uploads/2023/04/Creamy-salmon-and-potato-skillet7-360x360.jpg', 1458)");
 
                             // Ingredients
                             // Recipe 1
@@ -460,31 +461,30 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO Ingredients(ingredientsId,ingredientName) VALUES(18,'Creamy cheese')");
 
 
-                            // MealIngredients
                             // Recipe 1 - Ingredients
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 0, '1 Tbsp')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 1, '1 Lb')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 2, '2')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 3, '1/4 Cup')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 4, '4 oz')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 5, '')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 6, '')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 0, '15 ml')");  // Olive Oil (1 Tbsp)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 1, '450 g')");  // Button Mushrooms (1 Lb)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 2, '2')");      // Garlic Cloves Chopped
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 3, '60 ml')");  // Vegetable Broth (1/4 Cup)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 4, '113 g')");  // Brie (4 oz)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 5, '')");       // Salt and pepper
+                            db.execSQL("INSERT INTO mealIngredients VALUES(0, 6, '')");       // Fresh Thyme leaves
 
                             // Recipe 2 - Ingredients
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 7, '1 Lb')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 8, '1/4 Cup')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 9, '')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 10, '1')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 11, '3 cups')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 12, '')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 7, '450 g')");   // Ground Turkey (1 Lb)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 8, '60 ml')");   // Breadcrumbs (1/4 Cup)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 9, '')");        // salt, black pepper, garlic powder, dried basil, chopped fresh parsley.
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 10, '1')");      // Egg
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 11, '710 ml')"); // Marinara Sauce (3 cups)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(1, 12, '')");      // Cooking Spray
 
                             // Recipe 3 - Ingredients
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 13, '1 Lb')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 14, '4')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 15, '')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 16, '1 Tbsp')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 17, '1 cup')");
-                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 18, '8 oz')");
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 13, '450 g')");   // Baby Potatoes (1 Lb)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 14, '4')");      // Salmon Filets
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 15, '')");       // Garlic cloves, salt, pepper, fresh chives, and chili flakes
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 16, '15 ml')");  // Oil (1 Tbsp)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 17, '240 ml')"); // Vegetable Stock (1 cup)
+                            db.execSQL("INSERT INTO mealIngredients VALUES(2, 18, '227 g')");  // Creamy cheese (8 oz)
 
                         }
                     })

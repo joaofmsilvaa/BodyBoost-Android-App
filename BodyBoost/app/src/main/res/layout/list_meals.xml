@@ -49,14 +49,13 @@
     <TextView
         android:id="@+id/recipeDescTextView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
         android:textColor="?android:textColorPrimary"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/mealImageView"
         app:layout_constraintEnd_toEndOf="@+id/recipeCard"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/recipeNameTextView" />
@@ -67,5 +66,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="179dp" />
+
+    <TextView
+        android:id="@+id/caloriesTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="TextView"
+        android:textColor="@color/mainRed"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/mealImageView"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/recipeDescTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
