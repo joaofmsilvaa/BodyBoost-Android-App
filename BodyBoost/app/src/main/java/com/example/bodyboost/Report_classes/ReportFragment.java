@@ -73,7 +73,7 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
             messageTextView.setText("");
         }
         else{
-            messageTextView.setText("test");
+            messageTextView.setText("You haven't inserted any weight");
         }
 
     }
@@ -124,7 +124,7 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
             messageTextView.setText("");
         }
         else{
-            messageTextView.setText("test");
+            messageTextView.setText("You haven't inserted any weight");
         }
 
         adapter = new ReportAdapter(this, getAll);
