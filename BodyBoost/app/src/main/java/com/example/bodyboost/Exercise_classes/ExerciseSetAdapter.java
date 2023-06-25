@@ -88,7 +88,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
                 holder.exerciseDoneButton.setText("DONE");
             } else {
                 holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_uncompleted) );
-                holder.exerciseDoneButton.setText("TO-DO");
+                holder.exerciseDoneButton.setText("NOT DONE");
             }
         }
 
