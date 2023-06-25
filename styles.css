@@ -1,0 +1,258 @@
+.navbar {
+  background-color: #bc1818d5;
+  color: white;
+}
+
+.navLogo{
+  width: 60%;
+}
+
+.navbar-brand {
+
+  width: 250px;
+  height: 30%;
+}
+
+.doctor {
+  width: 80%;
+}
+
+.doctor-div {
+  text-align: center;
+}
+
+.main-text {
+  font-size: 6vw;
+  width: 450px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.description {
+  font-size: 20px;
+  width: 450px;
+  margin: 5% auto;
+  text-align: left;
+}
+
+.searchBTN-div {
+  margin: 5% auto;
+  width: 450px;
+  text-align: left;
+}
+
+
+.btnLink{
+  border-radius: 10px;
+  text-decoration: none;
+  padding: 20px;
+  background-color: #bc1818d5;
+  color: whitesmoke;
+  width: 250px;
+  height: 60px;
+  font-size: 25px;
+  transition: 0.15s;
+}
+
+
+
+.btnLink:visited {
+  color: white;
+  background-color: #bc1818d5;
+  box-shadow: white;
+}
+
+.btnLink:hover {
+  color: white;
+  background-color: #ba3535d5;
+  box-shadow: white;
+}
+
+.btnLink:active {
+  color: white;
+  background-color: #ba3535d5;
+  box-shadow: white;
+}
+
+.paragraph-div {
+  padding-top: 50px;
+}
+
+.main-sub-div {
+  text-align: center;
+}
+
+.recomendations-logo {
+  width: 50px;
+}
+
+.reviewerImg{
+  width: 20%;
+}
+
+.card {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  margin-bottom: 20px;
+  height: 350px;
+  border-radius: 10px;
+}
+
+.card-top-nutri{
+  height: 70%;
+  background: url('https://images.pexels.com/photos/793765/pexels-photo-793765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') 50% 50% no-repeat;
+  border-radius: 10px;
+  object-fit: cover;
+  
+}
+.card-top-train{
+  height: 70%;
+  background: url('https://images.pexels.com/photos/3764014/pexels-photo-3764014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') 50% 70% no-repeat;
+  border-radius: 10px;
+  
+}
+.card-top-news{
+  height: 70%;
+  background: url('https://images.pexels.com/photos/2834917/pexels-photo-2834917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') 50% 20% no-repeat;
+  border-radius: 10px;
+  
+}
+
+.card-text {
+  font-size: large;
+  text-align: center;
+  justify-content: center;
+}
+
+
+
+.x {
+  margin-top: 10%;
+}
+
+.main-project-section {
+  margin-top: 10%;
+}
+
+.projetoConteudo{
+  font-size: 30px;
+}
+
+.jsonConteudo{
+  font-size: 30px;
+}
+
+.estig-div {
+  scale: 0.75;
+}
+
+.estig {
+  width: 80%;
+}
+
+.sobreProjeto {
+  background-color: rgb(46, 46, 46);
+  border-radius: 1%;
+}
+
+.estig-div {
+  text-align: center;
+}
+
+.main-api-section {
+  margin-top: 10%;
+}
+
+.sns {
+  width: 70%;
+}
+
+.sns-div {
+  text-align: center;
+}
+
+.footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  color: white;
+  background-color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.footerLogo{
+  width: 30%;
+}
+
+@media screen and (max-width: 991px) {
+  .main-content-header {
+    margin-top: 14%;
+  }
+
+  
+  .navbar-toggler {
+    margin-right: 10px;
+  }
+  
+  .navbar-nav {
+    margin-left: auto;
+    margin-right: 20px;
+  }
+
+
+  .doctor-div {
+    display: none;
+  }
+
+  .main-text {
+    font-size: 35px;
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .description {
+    width: 350px;
+    margin: 5% auto;
+    text-align: center;
+  }
+
+  .searchBTN-div {
+    width: 350px;
+    margin: 5% auto;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 525px) {
+  .navbar-brand{
+    width: 200px;
+    height: 30%;
+  }
+
+  .recomendations{
+    margin: 15%
+  }
+}
+
+@media screen and (max-width: 315px) {
+  
+  .navbar-brand{
+    width: 175px;
+    height: 30%;
+  }
+
+
+  .navbar-toggler {
+    margin-right: 5px;
+  }
+  
+  .navbar-nav {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+}
