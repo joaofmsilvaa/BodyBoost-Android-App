@@ -99,6 +99,13 @@ Mobile App:
 * Java
 <br>
 
+Website:
+<br>
+* HTML
+* CSS
+* JavaScript
+* Bootstrap
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
