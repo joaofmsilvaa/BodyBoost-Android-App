@@ -36,7 +36,7 @@ The goal of the app is for the user to have easy access to workout plans that ma
 In addition to the workout plans, the application also suggests healthy recipes that can help the user reach his or her goal.
 The web application was implemented using web technologies like HTML, CSS and JavaScript and the mobile application was implemented using Java and developed in the IDE Android Studio.
 
-<a href="https://joao7640.github.io/BodyBoost-Android-App/">Bodyboost</a>
+<a href="https://joao7640.github.io/BodyBoost-Android-App/">Our website</a>
     <br />
     <br />
     <br />
@@ -167,9 +167,8 @@ In the next chapter you will explain the requirements for using the application
     - [X] Style the navigation bar 
   - [X] Make the cards functional
     - [X] Style the cards 
-  
-- [ ] Code the structure of the user profile
-  - [ ] Let him change his personal data
+- [X] Code the structure of the user profile
+  - [X] Let him change his personal data
   
 - [X] Code the structure of the workout list section
     - [X] Display the exercises corresponding to the users goal
