@@ -103,18 +103,21 @@
   background: url('https://images.pexels.com/photos/793765/pexels-photo-793765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') 50% 50% no-repeat;
   border-radius: 10px;
   object-fit: cover;
+  background-size: cover;
 }
 
 .card-top-train {
   height: 70%;
   background: url('https://images.pexels.com/photos/3764014/pexels-photo-3764014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') 50% 70% no-repeat;
   border-radius: 10px;
+  background-size: cover;
 }
 
 .card-top-news {
   height: 70%;
   background: url('https://images.pexels.com/photos/2834917/pexels-photo-2834917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') 50% 20% no-repeat;
   border-radius: 10px;
+  background-size: cover;
 }
 
 .card-text {
