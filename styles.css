@@ -1,23 +1,65 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: #bc181895;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.container:hover .overlay {
+  bottom: 0;
+  height: 100%;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
 .navbar {
   background-color: #bc1818d5;
   color: white;
 }
 
-.navLogo{
+.navLogo {
   width: 60%;
 }
 
 .navbar-brand {
-
   width: 250px;
   height: 30%;
 }
 
-.doctor {
-  width: 80%;
+.slogan {
+  color: #bc1818;
 }
 
-.doctor-div {
+.phone {
+  width: 40%;
+}
+
+.phone-div {
   text-align: center;
 }
 
@@ -28,50 +70,15 @@
   text-align: left;
 }
 
+.headerText {
+  font-size: 20px;
+}
+
 .description {
   font-size: 20px;
   width: 450px;
   margin: 5% auto;
   text-align: left;
-}
-
-.searchBTN-div {
-  margin: 5% auto;
-  width: 450px;
-  text-align: left;
-}
-
-
-.btnLink{
-  border-radius: 10px;
-  text-decoration: none;
-  padding: 20px;
-  background-color: #bc1818d5;
-  color: whitesmoke;
-  width: 250px;
-  height: 60px;
-  font-size: 25px;
-  transition: 0.15s;
-}
-
-
-
-.btnLink:visited {
-  color: white;
-  background-color: #bc1818d5;
-  box-shadow: white;
-}
-
-.btnLink:hover {
-  color: white;
-  background-color: #ba3535d5;
-  box-shadow: white;
-}
-
-.btnLink:active {
-  color: white;
-  background-color: #ba3535d5;
-  box-shadow: white;
 }
 
 .paragraph-div {
@@ -82,14 +89,6 @@
   text-align: center;
 }
 
-.recomendations-logo {
-  width: 50px;
-}
-
-.reviewerImg{
-  width: 20%;
-}
-
 .card {
   background-color: rgb(46, 46, 46);
   color: white;
@@ -98,24 +97,23 @@
   border-radius: 10px;
 }
 
-.card-top-nutri{
+.card-top-nutri {
   height: 70%;
   background: url('https://images.pexels.com/photos/793765/pexels-photo-793765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') 50% 50% no-repeat;
   border-radius: 10px;
   object-fit: cover;
-  
 }
-.card-top-train{
+
+.card-top-train {
   height: 70%;
   background: url('https://images.pexels.com/photos/3764014/pexels-photo-3764014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') 50% 70% no-repeat;
   border-radius: 10px;
-  
 }
-.card-top-news{
+
+.card-top-news {
   height: 70%;
   background: url('https://images.pexels.com/photos/2834917/pexels-photo-2834917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') 50% 20% no-repeat;
   border-radius: 10px;
-  
 }
 
 .card-text {
@@ -124,22 +122,16 @@
   justify-content: center;
 }
 
-
-
-.x {
+.about-us-section {
   margin-top: 10%;
 }
 
-.main-project-section {
-  margin-top: 10%;
+.projectcontent {
+  font-size: 20px;
 }
 
-.projetoConteudo{
-  font-size: 30px;
-}
-
-.jsonConteudo{
-  font-size: 30px;
+.aboutusContent {
+  font-size: 20px;
 }
 
 .estig-div {
@@ -159,15 +151,15 @@
   text-align: center;
 }
 
-.main-api-section {
+.project-section {
   margin-top: 10%;
 }
 
-.sns {
+.logo {
   width: 70%;
 }
 
-.sns-div {
+.logo-div {
   text-align: center;
 }
 
@@ -177,12 +169,12 @@
   width: 100%;
   padding: 10px 0;
   color: white;
-  background-color: rgb(0, 0, 0);
+  background-color: #333;
   text-align: center;
 }
 
-.footerLogo{
-  width: 30%;
+.footerLogo {
+  width: 10%;
 }
 
 @media screen and (max-width: 991px) {
@@ -190,16 +182,14 @@
     margin-top: 14%;
   }
 
-  
   .navbar-toggler {
     margin-right: 10px;
   }
-  
+
   .navbar-nav {
     margin-left: auto;
     margin-right: 20px;
   }
-
 
   .doctor-div {
     display: none;
@@ -223,36 +213,49 @@
     margin: 5% auto;
     text-align: center;
   }
+
+  .footerLogo {
+    width: 30%;
+  }
 }
 
 @media screen and (max-width: 600px) {
+  .footerLogo {
+    width: 40%;
+  }
 }
 
 @media screen and (max-width: 525px) {
-  .navbar-brand{
+  .navbar-brand {
     width: 200px;
     height: 30%;
   }
 
-  .recomendations{
-    margin: 15%
+  .recomendations {
+    margin: 15%;
+  }
+
+  .footerLogo {
+    width: 50%;
   }
 }
 
 @media screen and (max-width: 315px) {
-  
-  .navbar-brand{
+  .navbar-brand {
     width: 175px;
     height: 30%;
   }
 
-
   .navbar-toggler {
     margin-right: 5px;
   }
-  
+
   .navbar-nav {
     margin-left: auto;
     margin-right: 10px;
+  }
+
+  .footerLogo {
+    width: 60%;
   }
 }
