@@ -167,9 +167,8 @@ In the next chapter you will explain the requirements for using the application
     - [X] Style the navigation bar 
   - [X] Make the cards functional
     - [X] Style the cards 
-  
-- [ ] Code the structure of the user profile
-  - [ ] Let him change his personal data
+- [X] Code the structure of the user profile
+  - [X] Let him change his personal data
   
 - [X] Code the structure of the workout list section
     - [X] Display the exercises corresponding to the users goal
