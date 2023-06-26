@@ -35,6 +35,8 @@ The project has a mobile application and website for exercise and healthy meals 
 The goal of the app is for the user to have easy access to workout plans that match their goal (whether gaining mass or losing weight) as well as easy monitoring of their daily progress.
 In addition to the workout plans, the application also suggests healthy recipes that can help the user reach his or her goal.
 The web application was implemented using web technologies like HTML, CSS and JavaScript and the mobile application was implemented using Java and developed in the IDE Android Studio.
+
+<a href="https://joao7640.github.io/BodyBoost-Android-App/">Bodyboost</a>
     <br />
     <br />
     <br />
