@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -55,6 +56,7 @@ public class homeActivity extends AppCompatActivity {
         Menu navMenu = navigationView.getMenu();
         MenuItem logOutItem = navMenu.findItem(R.id.logOut);
         MenuItem profileItem = navMenu.findItem(R.id.username);
+        MenuItem visitWebsite = navMenu.findItem(R.id.visitWebsite);
 
         View headerView = navigationView.getHeaderView(0);
         Button closeButton = headerView.findViewById(R.id.close_button);
@@ -65,6 +67,17 @@ public class homeActivity extends AppCompatActivity {
                 Intent intent = new Intent(homeActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 return true;
+            }
+        });
+
+        visitWebsite.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
+                Intent viewIntent =
+                        new Intent("android.intent.action.VIEW",
+                                Uri.parse("https://joao7640.github.io/BodyBoost-Android-App/"));
+                startActivity(viewIntent);
+                return false;
             }
         });
 

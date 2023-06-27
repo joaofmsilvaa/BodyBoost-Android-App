@@ -150,7 +150,15 @@ public class ProfileActivity extends AppCompatActivity {
                 float updatedWeight = Float.parseFloat(weight.getText().toString());
                 float updatedHeight = Float.parseFloat(height.getText().toString());
 
-                user.setUsername(updatedUsername);
+                int usernameExists = userDao.isUsernameAvailable(updatedUsername);
+
+                if (usernameExists < 1 || updatedUsername.equals(user.getUsername())) {
+                    user.setUsername(updatedUsername);
+                }
+                else if(usernameExists == 1){
+                    Toast.makeText(ProfileActivity.this, "This username is already taken", Toast.LENGTH_SHORT).show();
+                }
+
                 user.setObjective(updatedGoal);
                 user.setWeight(updatedWeight);
                 user.setHeight(updatedHeight);

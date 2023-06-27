@@ -16,4 +16,10 @@
         android:icon="@drawable/baseline_logout_24"
         android:title="Log-out" />
 
+
+    <item
+        android:icon="@drawable/simple_logo"
+        android:id="@+id/visitWebsite"
+        android:title="Visit our website" />
+
 </menu>

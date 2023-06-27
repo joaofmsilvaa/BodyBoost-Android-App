@@ -152,6 +152,8 @@
             android:layout_gravity="center"
             android:background="#7A7A7A"
             android:gravity="center|fill_horizontal"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+            android:inputType="textFilter"
             android:hint="Username"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />

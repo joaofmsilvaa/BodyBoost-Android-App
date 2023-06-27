@@ -75,7 +75,6 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
         percentage = view.findViewById(R.id.percentage);
         progressBar = view.findViewById(R.id.percentageBar);
-        RecyclerView daysRecyclerView = view.findViewById(R.id.curretnDayRecyclerView);
 
         int percentageValue = 0;
 
@@ -87,6 +86,7 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         progressBar.setProgress(percentageValue);
 
 
+        RecyclerView daysRecyclerView = view.findViewById(R.id.curretnDayRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
         daysRecyclerView.setLayoutManager(layoutManager);

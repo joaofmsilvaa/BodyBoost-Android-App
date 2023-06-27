@@ -21,5 +21,5 @@
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/grafico"
-        android:title="Report" />
+        android:title="Weight" />
 </menu>
