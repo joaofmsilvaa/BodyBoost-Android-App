@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,9 @@ public class FeedAdapter extends RecyclerView.Adapter<com.example.bodyboost.Feed
         holder.newsDescriptionTextView.setText(news.newsSmallDescription);
         holder.newsDateTextView.setText(news.newsDate);
         holder.websiteNameTextView.setText("Source: " + news.sourceWebsite);
+
+        holder.websiteNameTextView.setPaintFlags(holder.websiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+
 
         Glide.with(holder.rootView.getContext()).load(news.getNewsImg()).into(holder.newsImageView);
 

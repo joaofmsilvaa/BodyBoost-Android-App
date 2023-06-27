@@ -1,6 +1,7 @@
 package com.example.bodyboost.Feed_classes;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -71,6 +72,9 @@ public class NewsFragment extends Fragment{
         newsFullDescription.setText(feedDao.getFullDesById(newsId));
         newsDateTextView.setText(feedDao.getNewsDateById(newsId));
         newsWebsiteNameTextView.setText("Source: " + feedDao.getWebsiteById(newsId));
+
+        newsWebsiteNameTextView.setPaintFlags(newsWebsiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+
 
         newsWebsiteNameTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
