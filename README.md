@@ -63,10 +63,7 @@ The web application was implemented using web technologies like HTML, CSS and Ja
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#credits">Credits</a></li>
   </ol>
 </details>
 
