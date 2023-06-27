@@ -146,9 +146,9 @@ In the next chapter you will explain the requirements for using the application
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. The user can track his daily progress easily from the progress bar
-2. The user can check a calendar with the days that he completed
-3. The user can find healthy recipes that fit his goals easily and quickly
+1. The user can workout following the custom made workout plans
+2. The user can check a wide variety of meals and their recipes 
+3. The user can find the most up to date sports news
 <br>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
