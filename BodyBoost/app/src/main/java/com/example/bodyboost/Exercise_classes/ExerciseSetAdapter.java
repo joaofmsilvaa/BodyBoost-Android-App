@@ -85,10 +85,8 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         if (holder.weightCard != null) {
             if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId()) == 1) {
                 holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_completed) );
-                holder.exerciseDoneButton.setText("DONE");
             } else {
                 holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_uncompleted) );
-                holder.exerciseDoneButton.setText("NOT DONE");
             }
         }
 
