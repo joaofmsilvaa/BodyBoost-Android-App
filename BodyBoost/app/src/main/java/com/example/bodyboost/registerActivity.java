@@ -169,7 +169,6 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("isLoggedIn", true);
-
                 editor.putInt("userId", userId);
 
                 editor.apply();

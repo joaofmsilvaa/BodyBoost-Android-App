@@ -23,7 +23,7 @@ import com.example.bodyboost.nutricion.MealIngredientsDao;
 import com.example.bodyboost.nutricion.Meals;
 import com.example.bodyboost.nutricion.MealsDao;
 
-@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSteps.class ,ExerciseSet.class, WorkoutPlan.class ,Feed.class, Meals.class, Ingredients.class, MealIngredients.class,User.class, UserPlan.class, UserCompleted.class}, version = 1)
+@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSteps.class ,ExerciseSet.class, WorkoutPlan.class, DayWorkout.class ,Feed.class, Meals.class, Ingredients.class, MealIngredients.class,User.class, UserPlan.class, UserCompleted.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ReportDao getReportDao();
@@ -31,6 +31,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ExerciseStepsDao getExerciseStepsDao();
     public abstract ExerciseSetDao getExerciseSetDao();
     public abstract  WorkoutPlanDao getWorkoutPlanDao();
+    public abstract DayWorkoutDao getDayWorkoutDao();
     public abstract FeedDao getFeedDao();
     public abstract MealsDao getMealsDao();
     public abstract IngredientsDao getIngredientsDao();
@@ -405,6 +406,24 @@ public abstract class AppDatabase extends RoomDatabase {
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 6, 32, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 6, 5, 'lose weight')");
                             db.execSQL("INSERT INTO WorkoutPlan(planId, dayId, exerciseId, type) VALUES (2, 6, 24, 'lose weight')");
+
+                            //DayWorkout
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(0,1, 'Whats a better way to start of the week with some knee-push-ups or some russian twists? This full body exercise set is awaiting you!')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(1,1, 'From planks to squats, this exercise set will target your abdominals and lower body to its best!')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(2,1, 'Do you feel like working out your arms and shoulders with some plank shoulder taps or front raise with water bottles? Well thats what we have for you today')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(3,1, 'Another day, another set with some of our great exercises to help you reach a better version of yourself')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(4,1, 'Lets burn those abdominals and lower body with some side leg raises and jumping jacks. You can do it!')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(5,1, 'Feel free to rest today or if you feel like it you can check out our exercise set for today')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(6,1, 'The week is almost over and your body might need to rest but if you want to you can finish your week with our full body exercise set')");
+
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(0,2, 'Lets start your week working out your chest, a wide variaty of push-ups are awaiting you. You can do it!')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(1,2, 'A full body exercise set is awaiting you, do your best!')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(2,2, 'From squats to puch ups, this exercise set will be your challenge of the day')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(3,2, 'Thursday? More like legday, got it? Jokes aside, believe in yourself you can do it!')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(4,2, 'Friday will be a day full of core and leg exercises so warm up and go do it!')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(5,2, 'Imagine climbing a mountain, this exercise wont feel that bad but we want you to be proud of yourself, a day full of exercises awaits you')");
+                            db.execSQL("INSERT INTO DayWorkout(dayId,planId,description) VALUES(6,2, 'Here is a smaller exercise set to close out the week, remember to rest rest and respect your body')");
+
 
                             // Feed
                             db.execSQL("INSERT INTO Feed (newsTitle, newsSmallDescription, newsFullDescription, newsImg, newsDate, sourceWebsite, sourceLink) VALUES ('João Coelho opens season with a good performance in Yokohama', 'Portuguese sprinter João Coelho finished second in the 400-meter race with a time of 45.46 seconds.', 'João Coelho, who is the indoor record holder for Portugal in the 400 meters, missed direct qualification for the Budapest World Championships by 46 hundredths of a second and was five hundredths away from his personal record.\n\nThe Sporting athlete took full advantage of the pace set by Japanese athlete Yuki Joseph Nakajima, who won with a time of 45.31 seconds.\n\nWith this result, Coelho earns points to climb in the world rankings and opens a qualification opportunity for the Budapest World Championships at the end of August.\n\nAlso in Yokohama, Cuban hurdler Roger Iribarne from Benfica opened the season with a fourth-place finish, clocking a time of 13.37 seconds (wind: +0.8 m/s) in a race dominated by Japans Shunsuke Izumiya, who recorded the second-best world mark of the year (13.07 seconds).', 'https://cdn-images.rtp.pt/icm/noticias/images/eb/eb80c6ff94c0c6fd4846fb61f6e10005?w=860&q=90&rect=0,48,1587,870&auto=format', '21/05/2023', 'ojogo.pt' ,'https://www.ojogo.pt/modalidades/atletismo/noticias/joao-coelho-abre-epoca-com-boa-marca-nos-400-metros-de-yokohama-16395275.html')");
