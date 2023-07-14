@@ -63,6 +63,7 @@
         android:text="TextView"
         android:textColor="?android:textColorPrimary"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/dayCard"
         app:layout_constraintEnd_toEndOf="@+id/dayCard"
         app:layout_constraintStart_toStartOf="@+id/dayCard"
