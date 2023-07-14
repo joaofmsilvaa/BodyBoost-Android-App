@@ -18,4 +18,7 @@ public interface UserPlanDao {
     @Insert
     void insert(UserPlan userPlan);
 
+    @Query("DELETE FROM userplan WHERE userId = :id")
+    void deletePlanByUserId(int id);
+
 }

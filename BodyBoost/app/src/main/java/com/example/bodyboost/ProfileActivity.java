@@ -166,6 +166,7 @@ public class ProfileActivity extends AppCompatActivity {
                 userDao.updateUser(user);
 
                 userCompletedDao.deleteByUserId(userId);
+                userPlanDao.deletePlanByUserId(userId);
 
                 int planValue = updatedGoal.equalsIgnoreCase("lose weight") ? 1 : 2;
 
