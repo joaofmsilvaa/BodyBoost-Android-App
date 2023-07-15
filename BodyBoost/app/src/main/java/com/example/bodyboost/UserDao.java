@@ -28,6 +28,9 @@ public interface UserDao {
     @Query("SELECT * FROM User WHERE userId = :id")
     User getUserById(int id);
 
+    @Query("SELECT objective FROM User WHERE userId = :userId")
+    String userGoal(int userId);
+
     @Insert
     void insert(User user);
 

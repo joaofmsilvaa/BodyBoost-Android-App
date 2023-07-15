@@ -147,6 +147,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String updatedUsername = username.getText().toString();
                 String updatedGoal = goal.getText().toString();
+
                 float updatedWeight = Float.parseFloat(weight.getText().toString());
                 float updatedHeight = Float.parseFloat(height.getText().toString());
 
@@ -159,27 +160,35 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(ProfileActivity.this, "This username is already taken", Toast.LENGTH_SHORT).show();
                 }
 
-                user.setObjective(updatedGoal);
                 user.setWeight(updatedWeight);
                 user.setHeight(updatedHeight);
 
-                userDao.updateUser(user);
+                if(!updatedGoal.equals(userDao.userGoal(userId))){
 
-                userCompletedDao.deleteByUserId(userId);
-                userPlanDao.deletePlanByUserId(userId);
+                    user.setObjective(updatedGoal);
+                    userDao.updateUser(user);
 
-                int planValue = updatedGoal.equalsIgnoreCase("lose weight") ? 1 : 2;
+                    userCompletedDao.deleteByUserId(userId);
+                    userPlanDao.deletePlanByUserId(userId);
 
-                UserPlan userPlan = new UserPlan(userId, planValue);
-                userPlanDao.insert(userPlan);
+                    int planValue = updatedGoal.equalsIgnoreCase("lose weight") ? 1 : 2;
 
-                List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
-                for (int day : daysOfWeek) {
-                    List<Integer> exerciseIds = workoutPlanDao.getExercisesInDay(planValue, day);
-                    for (int exerciseId : exerciseIds) {
-                        UserCompleted userCompleted = new UserCompleted(0, userId, day, exerciseId, false);
-                        userCompletedDao.insert(userCompleted);
+                    UserPlan userPlan = new UserPlan(userId, planValue);
+                    userPlanDao.insert(userPlan);
+
+                    List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
+                    for (int day : daysOfWeek) {
+                        List<Integer> exerciseIds = workoutPlanDao.getExercisesInDay(planValue, day);
+                        for (int exerciseId : exerciseIds) {
+                            UserCompleted userCompleted = new UserCompleted(0, userId, day, exerciseId, false);
+                            userCompletedDao.insert(userCompleted);
+                        }
                     }
+
+                }
+                else{
+
+                    userDao.updateUser(user);
                 }
 
                 Toast.makeText(ProfileActivity.this, "Changes saved", Toast.LENGTH_SHORT).show();
