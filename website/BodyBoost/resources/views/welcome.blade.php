@@ -36,11 +36,43 @@
 
 <x-main-section/>
 
-<section class="justify-center p-5 mt-8">
+<section class="justify-center p-5 my-8">
     <div>
         <h1 class="text-4xl font-bold text-center my-5 w-">Services</h1>
     </div>
     <x-services/>
+</section>
+
+
+<section class="justify-center p-5 my-8">
+    <div>
+        <h1 class="text-4xl font-bold text-center my-5 w-">About us</h1>
+    </div>
+    <div class="justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
+        <div class="flex flex-wrap ">
+            <div class="w-full pr-4 mb-10 lg:w-1/2 lg:mb-0">
+                <h2 class="mt-2 mb-6 text-2xl font-bold dark:text-gray-300">
+                    We are two students with the dream of creating the best workout app</h2>
+                <p class="mb-10 text-lg text-justify">
+                    The objectives of the project arose from the desire to help
+                    people who do not have access to gyms or nutritional counseling
+                    due to geographical or financial reasons. We believe that
+                    everyone should have access to quality resources to adopt a
+                    healthy lifestyle and achieve their goals. By creating an
+                    application that offers personalized workout plans and healthy
+                    recipes, the project aims to provide access regardless of their
+                    geographical location or financial situation.</p>
+
+            </div>
+
+            <div class="w-full px-8 mb-10 lg:w-1/2 lg:mb-0">
+                <div class="relative shadow-xl ">
+                    <img src="images/IPBejaESTIG.jpg" alt="ESTIG Logo" class="relative z-10 object-cover w-full h-full rounded">
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>
 
 {{--<x-footer/>--}}
