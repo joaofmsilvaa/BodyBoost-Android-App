@@ -1,5 +1,5 @@
 <div class="flex lg:flex-row flex-col justify-center items-center w-full">
-    <div class="transition duration-300 hover:bg-gray-200 m-2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="transition duration-300 max-w-6xl hover:bg-gray-200 m-2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
             <img class="rounded-t-lg h-60 w-full object-cover" src="images/healthyfood.jpg" alt="" />
         </a>
