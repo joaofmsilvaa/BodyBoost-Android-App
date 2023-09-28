@@ -22,7 +22,10 @@
             <div class="hidden md:flex items-center space-x-3 ">
 
                 @auth
-                    <x-dropdown>
+                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                        Welcome, {{auth()->user()->name}}!
+                    </a>
+                    {{--<x-dropdown>
                         <x-slot name="trigger">
                             <button class="py-2 px-2 font-medium text-white rounded hover:bg-gray-100 hover:text-red-500 transition duration-300">
                                 Welcome, {{auth()->user()->name}}!
@@ -45,14 +48,14 @@
                         <form id="logout-form" method="POST" action="/logout" class="hidden">
                             @csrf
                         </form>
-                    </x-dropdown>
+                    </x-dropdown>--}}
 
                 @else
                     <a href="/login"
-                       class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300">Log
+                       class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
                         In</a>
                     <a href="/register"
-                       class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300">Sign
+                       class="py-2 px-2 font-medium text-white rounded  hover:text-gray-500 transition duration-300">Sign
                         Up</a>
                 @endauth
             </div>
@@ -71,23 +74,34 @@
                         <path d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
+                @auth
+                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                        Welcome, {{auth()->user()->name}}!
+                    </a>
+                @else
+                    <a href="/login"
+                       class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300">Log
+                        In</a>
+                    <a href="/register"
+                       class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300">Sign
+                        Up</a>
+                @endauth
             </div>
         </div>
     </div>
     <!-- mobile menu -->
-    <div class="hidden mobile-menu">
+    <div class="hidden">
         <ul class="text-right">
-            <li class="active"><a href="index.html" class="block text-sm px-2 py-4 text-white bg-red-500 font-semibold">Home</a>
+            <li class="active"><a href="/" class="block text-sm px-2 py-4 text-white bg-red-500 font-semibold">Home</a>
             </li>
             <li><a href="#services" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">Services</a></li>
             <li><a href="#about" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">About</a></li>
-            <li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">Contact
-                    Us</a></li>
+            <li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">Contact Us</a></li>
         </ul>
     </div>
     <script>
-        const btn = document.querySelector("button.mobile-menu-button");
-        const menu = document.querySelector(".mobile-menu");
+        let btn = document.querySelector("button.mobile-menu-button");
+        let menu = document.querySelector(".mobile-menu");
 
         btn.addEventListener("click", () => {
             menu.classList.toggle("hidden");
