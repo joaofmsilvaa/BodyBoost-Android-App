@@ -31,9 +31,11 @@
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/xjei76kbizfjo1f2974ozkdl8tkdjgb2jrmi8pvkjphg2uob/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
+
 </head>
 <body class="font-sans text-gray-900 antialiased">
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+
+<div class="p-4 min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
     <div>
         <a href="/">
             <img id="logo-light" class="w-52 h-auto" src="images/logo.png" />
