@@ -80,17 +80,17 @@
                     </a>
                 @else
                     <a href="/login"
-                       class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300">Log
+                       class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
                         In</a>
                     <a href="/register"
-                       class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300">Sign
+                       class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Sign
                         Up</a>
                 @endauth
             </div>
         </div>
     </div>
     <!-- mobile menu -->
-    <div class="hidden">
+    <div class="hidden mobile-menu">
         <ul class="text-right">
             <li class="active"><a href="/" class="block text-sm px-2 py-4 text-white bg-red-500 font-semibold">Home</a>
             </li>
@@ -99,6 +99,7 @@
             <li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">Contact Us</a></li>
         </ul>
     </div>
+
     <script>
         let btn = document.querySelector("button.mobile-menu-button");
         let menu = document.querySelector(".mobile-menu");
