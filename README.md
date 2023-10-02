@@ -98,10 +98,8 @@ Mobile App:
 
 Website:
 <br>
-* HTML
-* CSS
-* JavaScript
-* Bootstrap
+* Laravel
+* TailwindCSS
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
