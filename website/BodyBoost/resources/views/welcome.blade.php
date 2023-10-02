@@ -51,7 +51,7 @@
     <x-about-us/>
 </section>
 
-{{--<x-footer/>--}}
+<x-footer/>
 
 </body>
 

@@ -12,9 +12,9 @@
         </div>
 
         <div class="w-full px-8 mb-10 lg:w-1/2 lg:mb-0">
-            <div class="relative shadow-xl ">
+            <div class="shadow-xl">
                 <img src="images/IPBejaESTIG.jpg" alt="ESTIG Logo"
-                     class="relative z-10 object-cover w-full h-full rounded">
+                     class="rounded">
             </div>
 
         </div>

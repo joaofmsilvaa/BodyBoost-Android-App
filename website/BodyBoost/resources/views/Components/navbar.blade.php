@@ -1,5 +1,5 @@
 <!-- Navbar goes here -->
-<nav class="fixed bg-red-500 shadow-lg right-0 left-0 top-0 w-full">
+<nav class="fixed bg-red-500 z-index-40 shadow-lg right-0 left-0 top-0 w-full">
     <div class="max-w-6xl mx-auto px-4">
         <div class="flex justify-between">
             <div class="flex space-x-7">
