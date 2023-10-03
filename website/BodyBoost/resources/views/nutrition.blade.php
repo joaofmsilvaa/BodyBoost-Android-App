@@ -1,3 +1,5 @@
+@props(['meals'])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -34,26 +36,26 @@
 
 <x-navbar/>
 
-<x-main-section/>
-
 <section class="justify-center p-5 my-8">
-    <div class="p-8 overflow-hidden w-full">
-        <div>
-            <h1 class="text-4xl font-bold text-center my-5 w-">Services</h1>
-        </div>
-        <x-services/>
+    <div class="p-8 overflow-hidden mt-8 w-full">
+        <x-search/>
     </div>
 </section>
 
-
 <section class="justify-center p-5 my-8">
-    <div class="p-8 overflow-hidden w-full">
-        <div>
-            <h1 class="text-4xl font-bold text-center my-5 w-">About us</h1>
-        </div>
-        <x-about-us/>
+    <div class="p-8 overflow-hidden mt-8 w-full">
+        @if($meals->count() > 0)
+            @foreach($meals as $meal)
+                <p>{{$meal->name}}</p>
+            @endforeach
+
+        @else
+            <p>No meals yet</p>
+        @endif
+
     </div>
 </section>
+
 
 <x-footer/>
 
