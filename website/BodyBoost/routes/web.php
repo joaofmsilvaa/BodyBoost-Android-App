@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Jenssegers\Agent\Agent;
-use App\Http\Controllers\NutritionController;
+use App\Http\Controllers\MealController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('nutrition', [NutritionController::class, 'create']);
+Route::get('nutrition', [MealController::class, 'create']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

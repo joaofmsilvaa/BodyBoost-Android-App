@@ -5,7 +5,7 @@
             <div class="flex space-x-7">
                 <div>
                     <!-- Website Logo -->
-                    <a href="#" class="flex items-center py-4 px-2">
+                    <a href="/" class="flex items-center py-4 px-2">
                         <img class="w-28 h-auto" src="images/logo.png">
                     </a>
                 </div>
