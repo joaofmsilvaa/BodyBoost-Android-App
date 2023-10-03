@@ -11,8 +11,8 @@
                 </div>
                 <!-- Primary Navbar items -->
                 <div class="hidden md:flex items-center space-x-1">
-                    <a href="" class="{{request()->is('/') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Home</a>
-                    <a href="" class="{{request()->is('/nutricion') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Nutrition</a>
+                    <a href="/" class="{{request()->is('/') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Home</a>
+                    <a href="/nutrition" class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Nutrition</a>
                     <a href="" class="{{request()->is('/news') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">News</a>
                     <a href="" class="{{request()->is('/store') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Store</a>
                 </div>
@@ -25,30 +25,6 @@
                     <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
                         Welcome, {{auth()->user()->name}}!
                     </a>
-                    {{--<x-dropdown>
-                        <x-slot name="trigger">
-                            <button class="py-2 px-2 font-medium text-white rounded hover:bg-gray-100 hover:text-red-500 transition duration-300">
-                                Welcome, {{auth()->user()->name}}!
-                            </button>
-                        </x-slot>
-
-                        @can('admin')
-                            <x-dropdown-item href="/admin/dashboard">Dashboard</x-dropdown-item>
-                        @endcan
-
-                        <x-dropdown-item href="/profile">Profile</x-dropdown-item>
-
-                        <x-dropdown-item href="/bookmarks/">Bookmarks</x-dropdown-item>
-
-                        <x-dropdown-item href="#" x-data="{}"
-                                         @click.prevent="document.querySelector('#logout-form').submit()">Log out
-                        </x-dropdown-item>
-
-
-                        <form id="logout-form" method="POST" action="/logout" class="hidden">
-                            @csrf
-                        </form>
-                    </x-dropdown>--}}
 
                 @else
                     <a href="/login"
