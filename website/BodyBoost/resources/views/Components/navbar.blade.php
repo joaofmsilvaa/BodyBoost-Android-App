@@ -22,10 +22,30 @@
             <div class="hidden md:flex items-center space-x-3 ">
 
                 @auth
-                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
-                        Welcome, {{auth()->user()->name}}!
-                    </a>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Welcome, {{auth()->user()->name}}!</button>
+                        </x-slot>
 
+                        @can('admin')
+                            <x-dropdown-item href="/admin/posts">Dashboard
+                            </x-dropdown-item>
+                        @endcan
+
+                        <x-dropdown-item href="/profile/{{auth()->user()->id}}">Profile
+                        </x-dropdown-item>
+
+                        <x-dropdown-item href="/bookmarks/">Bookmarks</x-dropdown-item>
+
+                        <x-dropdown-item href="#" x-data="{}"
+                                         @click.prevent="document.querySelector('#logout-form').submit()">Log out
+                        </x-dropdown-item>
+
+
+                        <form id="logout-form" method="POST" action="/logout" class="hidden">
+                            @csrf
+                        </form>
+                    </x-dropdown>
                 @else
                     <a href="/login"
                        class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
@@ -51,9 +71,30 @@
                     </svg>
                 </button>
                 @auth
-                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
-                        Welcome, {{auth()->user()->name}}!
-                    </a>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Welcome, {{auth()->user()->name}}!</button>
+                        </x-slot>
+
+                        @can('admin')
+                            <x-dropdown-item href="/admin/posts">Dashboard
+                            </x-dropdown-item>
+                        @endcan
+
+                        <x-dropdown-item href="/profile/{{auth()->user()->id}}">Profile
+                        </x-dropdown-item>
+
+                        <x-dropdown-item href="/bookmarks/">Bookmarks</x-dropdown-item>
+
+                        <x-dropdown-item href="#" x-data="{}"
+                                         @click.prevent="document.querySelector('#logout-form').submit()">Log out
+                        </x-dropdown-item>
+
+
+                        <form id="logout-form" method="POST" action="/logout" class="hidden">
+                            @csrf
+                        </form>
+                    </x-dropdown>
                 @else
                     <a href="/login"
                        class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
