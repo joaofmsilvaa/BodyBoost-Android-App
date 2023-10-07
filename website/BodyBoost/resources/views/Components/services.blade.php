@@ -1,7 +1,7 @@
 <div class="flex lg:flex-row flex-col justify-center items-center w-full">
     <div class="transition  duration-300 w-96 hover:bg-gray-200 m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-            <img class="rounded-t-lg h-60 w-full object-cover" src="images/healthyfood.jpg" alt="" />
+        <a href="/nutrition">
+            <img class="rounded-t-lg h-60 w-full object-cover" src="images/healthyfood.jpg" alt="healthy food" />
         </a>
         <div class="p-5 h-40">
             <a href="#">
@@ -12,7 +12,7 @@
     </div>
     <div class="transition duration-300 hover:bg-gray-200 m-2 w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-            <img class="rounded-t-lg h-60 w-full object-cover" src="images/exercice.jpg" alt="" />
+            <img class="rounded-t-lg h-60 w-full object-cover" src="images/exercice.jpg" alt="exercise" />
         </a>
         <div class="p-5 h-40">
             <a href="#">
@@ -23,7 +23,7 @@
     </div>
     <div class="transition duration-300 hover:bg-gray-200 m-2 w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-            <img class="rounded-t-lg h-60 w-full object-cover" src="images/news.jpg" alt="" />
+            <img class="rounded-t-lg h-60 w-full object-cover" src="images/news.jpg" alt="news" />
         </a>
         <div class="p-5 h-40">
             <a href="#">
