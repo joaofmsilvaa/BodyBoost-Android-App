@@ -57,6 +57,10 @@
 
 <x-footer/>
 
+@if(session()->has('success'))
+    <x-flash/>
+@endif
+
 </body>
 
 </html>
