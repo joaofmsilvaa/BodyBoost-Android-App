@@ -1,4 +1,4 @@
-@props(['meals'])
+@props(['news'])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -44,13 +44,13 @@
 
 <section class="justify-center p-5 my-8">
     <div class="p-8 overflow-hidden mt-8 w-full">
-        @if($meals->count() > 0)
-            @foreach($meals as $meal)
-                <p class="py-3">{{$meal->name}}</p>
+        @if($news->count() > 0)
+            @foreach($news as $new)
+                <p class="my-3">{{$new->title}}</p>
             @endforeach
 
         @else
-            <p class="my-3">No meals yet</p>
+            <p class="my-3">No news yet</p>
         @endif
 
     </div>
