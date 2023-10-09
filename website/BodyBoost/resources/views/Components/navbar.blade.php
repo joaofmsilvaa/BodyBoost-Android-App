@@ -1,5 +1,5 @@
 <!-- Navbar goes here -->
-<nav class="fixed bg-red-500 z-index-40 shadow-lg right-0 left-0 top-0 w-full">
+<nav class="fixed bg-red-500 shadow-lg right-0 left-0 top-0 w-full">
     <div class="max-w-6xl mx-auto px-4">
         <div class="flex justify-between">
             <div class="flex space-x-7">
@@ -13,7 +13,7 @@
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="/" class="{{request()->is('/') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Home</a>
                     <a href="/nutrition" class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Nutrition</a>
-                    <a href="/news" class="{{request()->is('/news') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">News</a>
+                    <a href="/news" class="{{request()->is('news') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">News</a>
                 </div>
             </div>
 
@@ -21,30 +21,10 @@
             <div class="hidden md:flex items-center space-x-3 ">
 
                 @auth
-                    <x-dropdown>
-                        <x-slot name="trigger">
-                            <button class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Welcome, {{auth()->user()->name}}!</button>
-                        </x-slot>
+                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                        Welcome, {{auth()->user()->name}}!
+                    </a>
 
-                        @can('admin')
-                            <x-dropdown-item href="/admin/posts">Dashboard
-                            </x-dropdown-item>
-                        @endcan
-
-                        <x-dropdown-item href="/profile/{{auth()->user()->id}}">Profile
-                        </x-dropdown-item>
-
-                        <x-dropdown-item href="/bookmarks/">Bookmarks</x-dropdown-item>
-
-                        <x-dropdown-item href="#" x-data="{}"
-                                         @click.prevent="document.querySelector('#logout-form').submit()">Log out
-                        </x-dropdown-item>
-
-
-                        <form id="logout-form" method="POST" action="/logout" class="hidden">
-                            @csrf
-                        </form>
-                    </x-dropdown>
                 @else
                     <a href="/login"
                        class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
@@ -70,30 +50,9 @@
                     </svg>
                 </button>
                 @auth
-                    <x-dropdown>
-                        <x-slot name="trigger">
-                            <button class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Welcome, {{auth()->user()->name}}!</button>
-                        </x-slot>
-
-                        @can('admin')
-                            <x-dropdown-item href="/admin/posts">Dashboard
-                            </x-dropdown-item>
-                        @endcan
-
-                        <x-dropdown-item href="/profile/{{auth()->user()->id}}">Profile
-                        </x-dropdown-item>
-
-                        <x-dropdown-item href="/bookmarks/">Bookmarks</x-dropdown-item>
-
-                        <x-dropdown-item href="#" x-data="{}"
-                                         @click.prevent="document.querySelector('#logout-form').submit()">Log out
-                        </x-dropdown-item>
-
-
-                        <form id="logout-form" method="POST" action="/logout" class="hidden">
-                            @csrf
-                        </form>
-                    </x-dropdown>
+                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                        Welcome, {{auth()->user()->name}}!
+                    </a>
                 @else
                     <a href="/login"
                        class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
