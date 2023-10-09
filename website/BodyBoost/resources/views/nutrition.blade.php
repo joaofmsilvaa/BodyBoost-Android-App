@@ -92,11 +92,11 @@
     <div class="p-8 overflow-hidden mt-8 w-full">
         @if($meals->count() > 0)
             @foreach($meals as $meal)
-                <p>{{$meal->name}}</p>
+                <p class="py-3">{{$meal->name}}</p>
             @endforeach
 
         @else
-            <p>No meals yet</p>
+            <p class="my-3">No meals yet</p>
         @endif
 
     </div>
