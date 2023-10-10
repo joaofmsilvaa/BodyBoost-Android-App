@@ -25,7 +25,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Arrays;
 import java.util.List;
 
-public class RegisterActivity extends AppCompatActivity {
+public class registerActivity extends AppCompatActivity {
 
     private AppDatabase db;
     private UserDao userDao;
