@@ -1,6 +1,6 @@
 <!-- Navbar goes here -->
 <nav class="fixed bg-red-500 shadow-lg right-0 left-0 top-0 w-full">
-    <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-full mx-auto px-4">
         <div class="flex justify-between">
             <div class="flex space-x-7">
                 <div>
@@ -10,7 +10,7 @@
                     </a>
                 </div>
                 <!-- Primary Navbar items -->
-                <div class="hidden md:flex items-center space-x-1">
+                <div class="hidden md:flex items-center space-x-3">
                     <a href="/" class="{{request()->is('/') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Home</a>
                     <a href="/nutrition" class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Nutrition</a>
                     <a href="/news" class="{{request()->is('news') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">News</a>

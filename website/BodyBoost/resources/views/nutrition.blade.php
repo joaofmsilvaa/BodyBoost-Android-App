@@ -80,13 +80,18 @@
 
 <x-navbar/>
 
-<section class="justify-center p-5 my-8">
-    <div class="p-8 overflow-hidden mt-8 w-full">
-        <x-search/>
+<section class="justify-center mt-4">
+    <div class="p-8 overflow-hidden mt-4 w-full">
+        <x-meal_carousel/>
     </div>
 </section>
 
-<x-meal_carousel/>
+<section class="justify-center p-5">
+    <div class="overflow-hidden">
+
+        <x-search content="Find meals, drinks, desserts..."/>
+    </div>
+</section>
 
 <section class="justify-center p-5 my-8">
     <div class="p-8 overflow-hidden mt-8 w-full">
@@ -96,7 +101,7 @@
             @endforeach
 
         @else
-            <p class="my-3">No meals yet</p>
+            <p class="my-3 text-center">No meals yet</p>
         @endif
 
     </div>
