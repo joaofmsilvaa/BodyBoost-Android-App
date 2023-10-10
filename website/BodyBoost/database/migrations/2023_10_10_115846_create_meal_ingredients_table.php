@@ -18,7 +18,6 @@ return new class extends Migration
             $table->float('amount');
             $table->string('measure');
             $table->integer('time')->nullable();
-
             $table->timestamps();
         });
     }

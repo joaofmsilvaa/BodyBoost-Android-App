@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\MealIngredients;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+
 
 class Meal extends Model
 {
@@ -21,5 +24,10 @@ class Meal extends Model
                     ->orWhere('meal_type', 'like', '%' . $search . '%');
             });
         }
+    }
+
+    public function mealIngredients()
+    {
+        return $this->hasMany(MealIngredients::class);
     }
 }

@@ -1,6 +1,6 @@
 @props(['meals'])
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -18,7 +18,8 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
     <!-- JS -->
     <script src="//unpkg.com/alpinejs" defer></script>
@@ -63,7 +64,7 @@
     </style>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('.carousel').slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -94,17 +95,15 @@
 </section>
 
 <section class="justify-center p-5 my-8">
-    <div class="lg:grid lg:grid-cols-3">
-        @if($meals->count() > 0)
+    @if($meals->count() > 0)
+        <div class="lg:grid lg:grid-cols-3">
             @foreach($meals as $meal)
                 <x-meal_card :meal="$meal"/>
             @endforeach
-
-        @else
-            <p class="my-3 text-center">No meals yet</p>
-        @endif
-
-    </div>
+        </div>
+    @else
+        <p class="my-3 text-center">No meals yet</p>
+    @endif
 </section>
 
 

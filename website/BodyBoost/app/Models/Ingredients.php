@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\MealIngredients;
 
-class Ingredient extends Model
+class Ingredients extends Model
 {
     use HasFactory;
 
