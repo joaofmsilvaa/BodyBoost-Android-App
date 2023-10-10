@@ -16,7 +16,7 @@ class MealController extends Controller
             ->paginate(15);
 
 
-        return view('nutricion.index', compact('meals'));
+        return view('nutrition.index', compact('meals'));
     }
 
     public function show(Meal $meal){
@@ -27,6 +27,6 @@ class MealController extends Controller
             return $mealIngredients->ingredients;
         });
 
-        return view('nutricion.show', compact('meal', 'ingredients'));
+        return view('nutrition.show', compact('meal', 'ingredients'));
     }
 }

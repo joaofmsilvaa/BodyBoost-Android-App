@@ -38,6 +38,10 @@
 
 <section class="justify-center p-5 my-8">
     <div class="p-8 overflow-hidden mt-8 w-full">
+        <div class="flex justify-center">
+            <h1 class="text-2xl font-semibold mt-5">Stay up to date with the most <span class="text-red-600">Up-To-Date</span> news related to <span class="text-red-600">Sports</span></h1>
+        </div>
+
         <x-search content="Find news about football, basketball, baseball..."/>
     </div>
 </section>

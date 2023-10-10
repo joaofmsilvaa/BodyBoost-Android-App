@@ -38,57 +38,18 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-    <style>
-        .carousel-container {
-            width: 1000px;
-            height: 500px;
-            margin: 0 auto; /* Center the carousel horizontally */
-            position: relative;
-            z-index: 0;
-        }
-
-        .carousel {
-            width: 100%;
-            height: 100%;
-        }
-
-        .carousel img {
-            width: 1000px;
-            height: 500px;
-            margin: auto;
-        }
-
-        nav {
-            z-index: 40;
-        }
-    </style>
-
-    <script>
-        $(document).ready(function () {
-            $('.carousel').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                arrows: false,
-                dots: true,
-            });
-        });
-    </script>
-
 </head>
 <body class="antialiased">
 
 <x-navbar/>
 
-<section class="justify-center mt-4">
-    <div class="p-8 overflow-hidden mt-4 w-full">
-        <x-meal_carousel/>
-    </div>
-</section>
-
-<section class="justify-center p-5">
-    <div class="overflow-hidden">
+<section class="justify-center p-5 mt-8">
+    <div class="overflow-hidden mt-8">
+        <div class="flex justify-center">
+            <h1 class="text-2xl font-semibold mt-5">We offer you best most
+                <span class="text-red-600">Delicious</span> and
+                <span class="text-red-600">Healthy</span> recipes of the internet !</h1>
+        </div>
 
         <x-search content="Find meals, drinks, desserts..."/>
     </div>
@@ -96,7 +57,7 @@
 
 <section class="justify-center p-5 my-8">
     @if($meals->count() > 0)
-        <div class="lg:grid lg:grid-cols-3">
+        <div class="lg:grid lg:grid-cols-3 px-3">
             @foreach($meals as $meal)
                 <x-meal_card :meal="$meal"/>
             @endforeach
