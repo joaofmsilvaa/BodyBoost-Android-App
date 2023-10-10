@@ -94,10 +94,10 @@
 </section>
 
 <section class="justify-center p-5 my-8">
-    <div class="p-8 overflow-hidden mt-8 w-full">
+    <div class="lg:grid lg:grid-cols-3">
         @if($meals->count() > 0)
             @foreach($meals as $meal)
-                <p class="py-3">{{$meal->name}}</p>
+                <x-meal_card :meal="$meal"/>
             @endforeach
 
         @else
