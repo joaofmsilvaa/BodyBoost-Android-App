@@ -23,6 +23,8 @@ Route::get('/', function () {
 });
 
 Route::get('nutrition', [MealController::class, 'create']);
+Route::get('nutrition/{meal}', [MealController::class, 'show']);
+
 
 Route::get('news', [NewsController::class, 'create']);
 
