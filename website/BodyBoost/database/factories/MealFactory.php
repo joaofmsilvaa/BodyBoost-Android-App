@@ -20,6 +20,7 @@ class MealFactory extends Factory
             'name' => fake()->sentence(2),
             'meal_type' => fake()->word(),
             'dietary_type' => fake()->word(),
+            'excerpt' => fake()->sentence(5),
             'recipe' => fake()->sentence(10),
             'prep_time' => fake()->randomFloat(2, 10, 120),
             'cook_time' => fake()->randomFloat(2, 10, 180),

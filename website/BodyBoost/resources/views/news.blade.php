@@ -38,7 +38,7 @@
 
 <section class="justify-center p-5 my-8">
     <div class="p-8 overflow-hidden mt-8 w-full">
-        <x-search/>
+        <x-search content="Find news about football, basketball, baseball..."/>
     </div>
 </section>
 
@@ -50,7 +50,7 @@
             @endforeach
 
         @else
-            <p class="my-3">No news yet</p>
+            <p class="my-3 text-center">No news yet</p>
         @endif
 
     </div>
