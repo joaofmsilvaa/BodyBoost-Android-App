@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DietaryTypes;
 use Illuminate\Http\Request;
 use App\Models\Meal;
 use App\Models\MealIngredients;
@@ -11,12 +12,13 @@ class MealController extends Controller
     public function create(){
         $filters = request(['search']);
 
+        $dietaryType = DietaryTypes::all();
+
         $meals = Meal::latest()
             ->filter($filters)
             ->paginate(15);
 
-
-        return view('nutrition.index', compact('meals'));
+        return view('nutrition.index', compact('meals', 'dietaryType'));
     }
 
     public function show(Meal $meal){

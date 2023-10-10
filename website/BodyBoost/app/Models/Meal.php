@@ -30,4 +30,9 @@ class Meal extends Model
     {
         return $this->hasMany(MealIngredients::class);
     }
+
+    public function dietaryType()
+    {
+        return $this->belongsTo(DietaryTypes::class);
+    }
 }
