@@ -1,6 +1,6 @@
-@props(['meals'])
+@props(['meals','dietaryType'])
 
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -38,6 +38,9 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+
+
 </head>
 <body class="antialiased">
 
@@ -52,6 +55,14 @@
         </div>
 
         <x-search content="Find meals, drinks, desserts..."/>
+        <div class="flex justify-center">
+            <div class="flex justify-start mt-4 w-3/4">
+                @if($meals->count() > 0)
+                    <x-dropdown :dietary_types="$dietaryType"/>
+                @endif
+            </div>
+        </div>
+
     </div>
 </section>
 

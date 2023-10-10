@@ -53,14 +53,6 @@
             @endforeach
         </div>
 
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-
     </div>
 </section>
 

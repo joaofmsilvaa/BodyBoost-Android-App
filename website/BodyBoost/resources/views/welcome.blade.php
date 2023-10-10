@@ -29,6 +29,45 @@
     <script src="https://cdn.tiny.cloud/1/xjei76kbizfjo1f2974ozkdl8tkdjgb2jrmi8pvkjphg2uob/tinymce/6/tinymce.min.js"
             referrerpolicy="origin"></script>
 
+    <style>
+        .carousel-container {
+            width: 1000px;
+            height: 500px;
+            margin: 0 auto; /* Center the carousel horizontally */
+            position: relative;
+            z-index: 0;
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel img {
+            width: 1000px;
+            height: 500px;
+            margin: auto;
+        }
+
+        nav {
+            z-index: 40;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $('.carousel').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: false,
+                dots: true,
+            });
+        });
+    </script>
+
+
 </head>
 <body class="antialiased">
 
