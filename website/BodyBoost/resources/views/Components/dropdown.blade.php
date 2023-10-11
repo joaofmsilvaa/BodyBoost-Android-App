@@ -15,7 +15,7 @@
     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
         @foreach($dietary_types as $dietary_type)
         <x-dropdown-item
-                    href="/nutrition/?dietary-type={{$dietary_type->slug}}"
+                    href="/nutrition/?dietary-type={{$dietary_type->slug}}&{{ http_build_query(request()->except('dietary-type', 'page'))}}"
                     :active="request('dietary-type') === $dietary_type->slug">
                 {{ucwords($dietary_type->name)}}
             </x-dropdown-item>
