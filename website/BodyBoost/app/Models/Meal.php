@@ -20,10 +20,16 @@ class Meal extends Model
                 $search = $filters['search'];
                 $query->where('name', 'like', '%' . $search . '%')
                     ->orWhere('recipe', 'like', '%' . $search . '%')
-                    ->orWhere('dietary_type', 'like', '%' . $search . '%')
                     ->orWhere('meal_type', 'like', '%' . $search . '%');
             });
         }
+
+        $query->when($filters['dietary-type'] ?? false, fn($query, $dietaryType) =>
+            $query->whereExists(fn($query) => $query->from('dietary_types')
+            ->whereColumn('dietary_types.id', 'meals.dietary_types_id')
+            ->where('dietary_types.slug' , $dietaryType))
+        );
+
     }
 
     public function mealIngredients()

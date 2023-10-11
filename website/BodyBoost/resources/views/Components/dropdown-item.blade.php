@@ -1,7 +1,7 @@
 @props(['active' => false])
 
 @php
-    $classes = 'block text-left px-3 text-sm leading-6 hover:bg-red-600 focus:bg-red-500 rounded-xl text-white focus:text-white';
+    $classes = 'block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white';
 
     if ($active){
         $classes .= ' bg-gray-600 text-white';
