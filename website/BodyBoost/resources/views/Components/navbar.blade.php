@@ -1,20 +1,22 @@
 <!-- Navbar goes here -->
-<nav class="fixed bg-red-500 z-index-40 shadow-lg right-0 left-0 top-0 w-full">
-    <div class="max-w-6xl mx-auto px-4">
+<nav class="fixed bg-red-500 shadow-lg right-0 left-0 top-0 w-full">
+    <div class="max-w-full mx-auto px-4">
         <div class="flex justify-between">
             <div class="flex space-x-7">
                 <div>
                     <!-- Website Logo -->
                     <a href="/" class="flex items-center py-4 px-2">
-                        <img class="w-28 h-auto" src="images/logo.png">
+                        <img class="w-28 h-auto" src="/images/logo.png">
                     </a>
                 </div>
                 <!-- Primary Navbar items -->
-                <div class="hidden md:flex items-center space-x-1">
-                    <a href="/" class="{{request()->is('/') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Home</a>
-                    <a href="/nutrition" class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Nutrition</a>
-                    <a href="" class="{{request()->is('/news') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">News</a>
-                    <a href="" class="{{request()->is('/store') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Store</a>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="/"
+                       class="{{request()->is('/') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Home</a>
+                    <a href="/nutrition"
+                       class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Nutrition</a>
+                    <a href="/news"
+                       class="{{request()->is('news') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">News</a>
                 </div>
             </div>
 
@@ -22,30 +24,11 @@
             <div class="hidden md:flex items-center space-x-3 ">
 
                 @auth
-                    <x-dropdown>
-                        <x-slot name="trigger">
-                            <button class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Welcome, {{auth()->user()->name}}!</button>
-                        </x-slot>
+                    <a href="/dashboard"
+                       class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                        Welcome, {{auth()->user()->name}}!
+                    </a>
 
-                        @can('admin')
-                            <x-dropdown-item href="/admin/posts">Dashboard
-                            </x-dropdown-item>
-                        @endcan
-
-                        <x-dropdown-item href="/profile/{{auth()->user()->id}}">Profile
-                        </x-dropdown-item>
-
-                        <x-dropdown-item href="/bookmarks/">Bookmarks</x-dropdown-item>
-
-                        <x-dropdown-item href="#" x-data="{}"
-                                         @click.prevent="document.querySelector('#logout-form').submit()">Log out
-                        </x-dropdown-item>
-
-
-                        <form id="logout-form" method="POST" action="/logout" class="hidden">
-                            @csrf
-                        </form>
-                    </x-dropdown>
                 @else
                     <a href="/login"
                        class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
@@ -71,30 +54,10 @@
                     </svg>
                 </button>
                 @auth
-                    <x-dropdown>
-                        <x-slot name="trigger">
-                            <button class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Welcome, {{auth()->user()->name}}!</button>
-                        </x-slot>
-
-                        @can('admin')
-                            <x-dropdown-item href="/admin/posts">Dashboard
-                            </x-dropdown-item>
-                        @endcan
-
-                        <x-dropdown-item href="/profile/{{auth()->user()->id}}">Profile
-                        </x-dropdown-item>
-
-                        <x-dropdown-item href="/bookmarks/">Bookmarks</x-dropdown-item>
-
-                        <x-dropdown-item href="#" x-data="{}"
-                                         @click.prevent="document.querySelector('#logout-form').submit()">Log out
-                        </x-dropdown-item>
-
-
-                        <form id="logout-form" method="POST" action="/logout" class="hidden">
-                            @csrf
-                        </form>
-                    </x-dropdown>
+                    <a href="/dashboard"
+                       class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                        Welcome, {{auth()->user()->name}}!
+                    </a>
                 @else
                     <a href="/login"
                        class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
@@ -109,11 +72,12 @@
     <!-- mobile menu -->
     <div class="hidden mobile-menu">
         <ul class="text-right">
-            <li class="active"><a href="/" class="block text-sm px-2 py-4 text-white bg-red-500 font-semibold">Home</a>
+            <li class="{{request()->is('/') ? 'py-4 px-2 text-white text-white font-semibold' : 'py-4 px-2 text-gray-400 font-semibold hover:text-gray-300 transition duration-300'}}"><a href="/">Home</a>
             </li>
-            <li><a href="#services" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">Services</a></li>
-            <li><a href="#about" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">About</a></li>
-            <li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">Contact Us</a></li>
+            <li class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-white font-semibold' : 'py-4 px-2 text-gray-400 font-semibold hover:text-gray-300 transition duration-300'}}"><a href="/nutrition">Nutrition</a>
+            </li>
+            <li class="{{request()->is('news') ? 'py-4 px-2 text-white text-white font-semibold' : 'py-4 px-2 text-gray-400 font-semibold hover:text-gray-300 transition duration-300'}}"><a href="/news">News</a>
+            </li>
         </ul>
     </div>
 
