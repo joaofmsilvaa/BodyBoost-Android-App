@@ -10,7 +10,7 @@ use App\Models\MealIngredients;
 class MealController extends Controller
 {
     public function create(){
-        $filters = request(['search']);
+        $filters = request(['search', 'dietary-type']);
 
         $dietaryType = DietaryTypes::all();
 

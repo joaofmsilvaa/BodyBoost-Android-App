@@ -49,9 +49,9 @@
 <section class="justify-center p-5 mt-8">
     <div class="overflow-hidden mt-8">
         <div class="flex justify-center">
-            <h1 class="text-2xl font-semibold mt-5">We offer you best most
+            <h1 class="text-2xl font-semibold mt-5">We offer you the most
                 <span class="text-red-600">Delicious</span> and
-                <span class="text-red-600">Healthy</span> recipes of the internet !</h1>
+                <span class="text-red-600">Healthy</span> recipes on the internet !</h1>
         </div>
 
         <x-search content="Find meals, drinks, desserts..."/>

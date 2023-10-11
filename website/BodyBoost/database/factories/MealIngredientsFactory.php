@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Ingredients;
+use App\Models\Meal;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,12 +19,8 @@ class MealIngredientsFactory extends Factory
     public function definition(): array
     {
         return [
-            'ingredients_id' => function () {
-                return \App\Models\Ingredients::factory()->create()->id;
-            },
-            'meal_id' => function () {
-                return \App\Models\Meal::factory()->create()->id;
-            },
+            'ingredients_id' => Ingredients::factory(),
+            'meal_id' => Meal::factory(),
             'amount' => $this->faker->randomFloat(2, 0.1, 10.0),
             'measure' => $this->faker->word,
             'time' => $this->faker->optional(0.7)->randomNumber(),
