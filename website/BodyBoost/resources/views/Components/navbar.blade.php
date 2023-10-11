@@ -11,9 +11,12 @@
                 </div>
                 <!-- Primary Navbar items -->
                 <div class="hidden md:flex items-center space-x-3">
-                    <a href="/" class="{{request()->is('/') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Home</a>
-                    <a href="/nutrition" class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Nutrition</a>
-                    <a href="/news" class="{{request()->is('news') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">News</a>
+                    <a href="/"
+                       class="{{request()->is('/') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Home</a>
+                    <a href="/nutrition"
+                       class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Nutrition</a>
+                    <a href="/news"
+                       class="{{request()->is('news') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">News</a>
                 </div>
             </div>
 
@@ -21,7 +24,8 @@
             <div class="hidden md:flex items-center space-x-3 ">
 
                 @auth
-                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                    <a href="/dashboard"
+                       class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
                         Welcome, {{auth()->user()->name}}!
                     </a>
 
@@ -50,7 +54,8 @@
                     </svg>
                 </button>
                 @auth
-                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                    <a href="/dashboard"
+                       class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
                         Welcome, {{auth()->user()->name}}!
                     </a>
                 @else
@@ -67,11 +72,12 @@
     <!-- mobile menu -->
     <div class="hidden mobile-menu">
         <ul class="text-right">
-            <li class="active"><a href="/" class="block text-sm px-2 py-4 text-white bg-red-500 font-semibold">Home</a>
+            <li class="{{request()->is('/') ? 'py-4 px-2 text-white text-white font-semibold' : 'py-4 px-2 text-gray-400 font-semibold hover:text-gray-300 transition duration-300'}}"><a href="/">Home</a>
             </li>
-            <li><a href="#services" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">Services</a></li>
-            <li><a href="#about" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">About</a></li>
-            <li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">Contact Us</a></li>
+            <li class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-white font-semibold' : 'py-4 px-2 text-gray-400 font-semibold hover:text-gray-300 transition duration-300'}}"><a href="/nutrition">Nutrition</a>
+            </li>
+            <li class="{{request()->is('news') ? 'py-4 px-2 text-white text-white font-semibold' : 'py-4 px-2 text-gray-400 font-semibold hover:text-gray-300 transition duration-300'}}"><a href="/news">News</a>
+            </li>
         </ul>
     </div>
 
