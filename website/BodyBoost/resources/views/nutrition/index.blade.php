@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+@props(['meals','dietaryType'])
+
+        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -15,6 +17,10 @@
     <!-- Styles -->
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
     <!-- JS -->
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -29,43 +35,10 @@
     <script src="https://cdn.tiny.cloud/1/xjei76kbizfjo1f2974ozkdl8tkdjgb2jrmi8pvkjphg2uob/tinymce/6/tinymce.min.js"
             referrerpolicy="origin"></script>
 
-    <style>
-        .carousel-container {
-            width: 1000px;
-            height: 500px;
-            margin: 0 auto; /* Center the carousel horizontally */
-            position: relative;
-            z-index: 0;
-        }
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-        .carousel {
-            width: 100%;
-            height: 100%;
-        }
-
-        .carousel img {
-            width: 1000px;
-            height: 500px;
-            margin: auto;
-        }
-
-        nav {
-            z-index: 40;
-        }
-    </style>
-
-    <script>
-        $(document).ready(function () {
-            $('.carousel').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                arrows: false,
-                dots: true,
-            });
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 
 
 </head>
@@ -73,32 +46,40 @@
 
 <x-navbar/>
 
-<x-main-section/>
-
-<section class="justify-center p-5 my-8">
-    <div class="p-8 overflow-hidden w-full">
-        <div>
-            <h1 class="text-4xl font-bold text-center my-5 w-">Services</h1>
+<section class="justify-center p-5 mt-8">
+    <div class="overflow-hidden mt-8">
+        <div class="flex justify-center">
+            <h1 class="text-2xl font-semibold mt-5">We offer you best most
+                <span class="text-red-600">Delicious</span> and
+                <span class="text-red-600">Healthy</span> recipes of the internet !</h1>
         </div>
-        <x-services/>
+
+        <x-search content="Find meals, drinks, desserts..."/>
+        <div class="flex justify-center">
+            <div class="flex justify-start mt-4 w-3/4">
+                @if($meals->count() > 0)
+                    <x-dropdown :dietary_types="$dietaryType"/>
+                @endif
+            </div>
+        </div>
+
     </div>
 </section>
 
-
 <section class="justify-center p-5 my-8">
-    <div class="p-8 overflow-hidden w-full">
-        <div>
-            <h1 class="text-4xl font-bold text-center my-5 w-">About us</h1>
+    @if($meals->count() > 0)
+        <div class="lg:grid lg:grid-cols-3 px-3">
+            @foreach($meals as $meal)
+                <x-meal_card :meal="$meal"/>
+            @endforeach
         </div>
-        <x-about-us/>
-    </div>
+    @else
+        <p class="my-3 text-center">No meals yet</p>
+    @endif
 </section>
+
 
 <x-footer/>
-
-@if(session()->has('success'))
-    <x-flash/>
-@endif
 
 </body>
 

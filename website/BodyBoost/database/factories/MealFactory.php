@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\DietaryTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,9 +18,10 @@ class MealFactory extends Factory
     public function definition(): array
     {
         return [
+            'dietary_types_id' => DietaryTypes::factory(),
             'name' => fake()->sentence(2),
             'meal_type' => fake()->word(),
-            'dietary_type' => fake()->word(),
+            'excerpt' => fake()->sentence(5),
             'recipe' => fake()->sentence(10),
             'prep_time' => fake()->randomFloat(2, 10, 120),
             'cook_time' => fake()->randomFloat(2, 10, 180),
