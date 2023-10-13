@@ -23,13 +23,15 @@ class Meal extends Model
             });
         }
 
-        if (isset($filters['dietary-type']) && $filters['dietary-type'] !== '') {
-            $query->when($filters['dietary-type'] ?? false, fn($query, $dietaryType) => $query->whereExists(fn($query) => $query->from('dietary_types')
-                ->whereColumn('dietary_types.id', 'meals.dietary_types_id')
-                ->where('dietary_types.slug', $dietaryType))
-            );
-        }
+        $query->when($filters['dietary-type'] ?? false, fn($query, $dietaryType) => $query->whereExists(fn($query) => $query->from('dietary_types')
+            ->whereColumn('dietary_types.id', 'meals.dietary_types_id')
+            ->where('dietary_types.slug', $dietaryType))
+        );
 
+        $query->when($filters['meal-type'] ?? false, fn($query, $mealType) => $query->whereExists(fn($query) => $query->from('meal_types')
+            ->whereColumn('meal_types.id', 'meals.meal_types_id')
+            ->where('meal_types.slug', $mealType))
+        );
 
     }
 
@@ -41,5 +43,10 @@ class Meal extends Model
     public function dietaryType()
     {
         return $this->belongsTo(DietaryTypes::class);
+    }
+
+    public function mealType()
+    {
+        return $this->belongsTo(mealType::class);
     }
 }

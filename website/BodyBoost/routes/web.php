@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 Route::get('nutrition', [MealController::class, 'create']);
 Route::get('nutrition/{meal}', [MealController::class, 'show']);
-Route::get('nutrition/diet/{dietaryType:slug}', [MealController::class, 'create']);
 
 
 Route::get('news', [NewsController::class, 'create']);
