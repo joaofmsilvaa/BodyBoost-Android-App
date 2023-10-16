@@ -42,11 +42,11 @@ class Meal extends Model
 
     public function dietaryType()
     {
-        return $this->belongsTo(DietaryTypes::class);
+        return $this->belongsTo(DietaryTypes::class, 'dietary_types_id');
     }
 
     public function mealType()
     {
-        return $this->belongsTo(mealType::class);
+        return $this->belongsTo(mealType::class, 'meal_types_id');
     }
 }

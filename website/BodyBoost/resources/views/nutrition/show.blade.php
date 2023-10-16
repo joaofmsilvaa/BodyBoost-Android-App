@@ -1,65 +1,77 @@
-@props(['meal', 'ingredients'])
-
-        <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BodyBoost</title>
+    <meta name="author" content="David Grzyb">
+    <meta name="description" content="">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+    </style>
 
-    <!-- Styles -->
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
-    <!-- JS -->
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/xjei76kbizfjo1f2974ozkdl8tkdjgb2jrmi8pvkjphg2uob/tinymce/6/tinymce.min.js"
-            referrerpolicy="origin"></script>
-
-    <!-- JS -->
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <!-- ... Tinymce ... -->
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/xjei76kbizfjo1f2974ozkdl8tkdjgb2jrmi8pvkjphg2uob/tinymce/6/tinymce.min.js"
-            referrerpolicy="origin"></script>
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- AlpineJS -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+            integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </head>
-<body class="antialiased">
-
+<body class="bg-white">
 
 <x-navbar/>
 
-<section class="justify-center p-8 mt-8">
-    <div class="overflow-hidden mt-8">
-        <h1 class="text-3xl">{{$meal->name}}</h1>
-        <div>
-            <p class="text-xl">Ingredients</p>
-            @foreach($ingredients as $ingredient)
-                <p>{{$ingredient->name}}</p>
+<div class="container w-full flex flex-wrap py-6 justify-center mt-8">
+
+    <!-- Post Section -->
+    <section class="w-full md:w-2/3 flex flex-col items-center mt-8 px-2">
+
+        <article class="flex flex-col w-full shadow my-4">
+            <!-- Article Image -->
+            <a class="px-2">
+                <img src="/{{$meal->thumbnail}}">
+            </a>
+            <div class="bg-white flex flex-col justify-start p-6">
+                <div class="flex">
+                    <a href="/nutrition/?meal-type={{$meal->dietaryType->slug}}"
+                       class="text-red-700 hover:text-red-300 text-sm font-bold uppercase pb-4">{{$meal->dietaryType->name}}</a>
+                    <a href="/nutrition/?meal-type={{$meal->mealType->slug}}"
+                       class="text-red-700 hover:text-red-300 text-sm font-bold uppercase pb-4 pl-4">{{$meal->mealType->name}}</a>
+                </div>
+                <p class="text-3xl font-bold hover:text-gray-700 pb-4">{{$meal->name}}</p>
+                <h1 class="text-2xl font-bold pb-3">Recipe:</h1>
+                <p class="pb-3">{{$meal->recipe}}</p>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- Sidebar Section -->
+    <aside class="w-full md:w-1/3 flex flex-col items-center px-2 mt-8">
+
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+
+            <p class="text-xl font-semibold pb-5">Ingredients:</p>
+            @foreach($mealIngredients as $mealIngredient)
+                <div class="flex">
+                    <p class="pb-2">{{$mealIngredient->ingredients->name}}</p>
+                    @if(isset($mealIngredient->amount))
+                        <p class="pb-2 ml-2">{{$mealIngredient->amount}}</p>
+
+                    @else
+                        <p class="pb-2 ml-2">{{$mealIngredient->measure}}</p>
+                    @endif
+
+                </div>
             @endforeach
         </div>
 
-    </div>
-</section>
+    </aside>
 
+</div>
 
 <x-footer/>
-
 </body>
-
 </html>
-
