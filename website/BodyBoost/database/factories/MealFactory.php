@@ -23,7 +23,7 @@ class MealFactory extends Factory
             'meal_types_id' => MealType::factory(),
             'name' => fake()->sentence(2),
             'excerpt' => fake()->sentence(5),
-            'recipe' => fake()->sentence(10),
+            'recipe' => fake()->paragraphs(6),
             'prep_time' => fake()->randomFloat(2, 10, 120),
             'cook_time' => fake()->randomFloat(2, 10, 180),
             'servings' => fake()->numberBetween(1, 10),

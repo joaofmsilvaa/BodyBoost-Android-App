@@ -11,6 +11,6 @@ class MealType extends Model
 
     public function meal()
     {
-        return $this->belongsTo(Meal::class);
+        return $this->hasMany(Meal::class);
     }
 }

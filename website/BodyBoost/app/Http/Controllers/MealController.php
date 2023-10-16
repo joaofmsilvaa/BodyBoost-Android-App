@@ -31,11 +31,8 @@ class MealController extends Controller
     {
 
         $mealIngredients = $meal->mealIngredients()->orderBy('created_at', 'asc')->get();;
+        
 
-        $ingredients = $mealIngredients->map(function ($mealIngredients) {
-            return $mealIngredients->ingredients;
-        });
-
-        return view('nutrition.show', compact('meal', 'ingredients'));
+        return view('nutrition.show', compact('meal',  'mealIngredients'));
     }
 }

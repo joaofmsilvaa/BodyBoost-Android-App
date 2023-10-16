@@ -10,5 +10,8 @@ class Ingredients extends Model
 {
     use HasFactory;
 
-
+    public function mealIngredients()
+    {
+        return $this->hasMany(MealIngredients::class);
+    }
 }
