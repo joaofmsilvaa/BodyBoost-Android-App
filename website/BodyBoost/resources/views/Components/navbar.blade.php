@@ -28,7 +28,7 @@
                         </x-slot>
 
                         @can('admin')
-                            <x-dropdown-item href="/admin/meals" :active="request()->is('admin')">Dashboard
+                            <x-dropdown-item href="/admin/users" :active="request()->is('admin')">Dashboard
                             </x-dropdown-item>
                         @endcan
 
@@ -69,7 +69,7 @@
                     </svg>
                 </button>
                 @auth
-                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                    <a href="/admin" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
                         Welcome, {{auth()->user()->name}}!
                     </a>
                 @else
