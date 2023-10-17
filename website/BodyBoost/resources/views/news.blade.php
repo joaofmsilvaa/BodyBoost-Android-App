@@ -1,4 +1,4 @@
-@props(['meals'])
+@props(['news'])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -38,19 +38,23 @@
 
 <section class="justify-center p-5 my-8">
     <div class="p-8 overflow-hidden mt-8 w-full">
-        <x-search/>
+        <div class="flex justify-center">
+            <h1 class="text-2xl font-semibold mt-5">Stay up to date with the most <span class="text-red-600">Up-To-Date</span> news related to <span class="text-red-600">Sports</span></h1>
+        </div>
+
+        <x-search content="Find news about football, basketball, baseball..."/>
     </div>
 </section>
 
 <section class="justify-center p-5 my-8">
     <div class="p-8 overflow-hidden mt-8 w-full">
-        @if($meals->count() > 0)
-            @foreach($meals as $meal)
-                <p>{{$meal->name}}</p>
+        @if($news->count() > 0)
+            @foreach($news as $new)
+                <p class="my-3">{{$new->title}}</p>
             @endforeach
 
         @else
-            <p>No meals yet</p>
+            <p class="my-3 text-center">No news yet</p>
         @endif
 
     </div>
