@@ -36,22 +36,35 @@ class AdminController extends Controller
         ]);
     }
 
+
     public function destroyUser(User $user){
         $user->delete();
 
         return back()->with('success', 'User Deleted');
     }
-
     public function destroyMeal(Meal $meal){
         $meal->delete();
 
         return back()->with('success', 'Meal Deleted');
     }
-
     public function destroyNews(News $news){
         $news->delete();
 
         return back()->with('success', 'News Deleted');
     }
+
+
+    public function editUser(User $user){
+        return view('admin.users.edit', ['user' => $user]);
+    }
+    public function editMeal(Meal $meal){
+        return view('admin.meals.edit', ['meal' => $meal]);
+    }
+    public function editNews(News $news){
+        return view('admin.news.edit', ['news' => $news]);
+    }
+
+
+
 }
 

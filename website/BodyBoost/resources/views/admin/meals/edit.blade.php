@@ -1,0 +1,80 @@
+@extends ('components.nutricion-layout')
+
+@section('header')
+    <x-navbar/>
+@endsection
+
+@section('content')
+
+    <div class="flex justify-center mt-8 p-8">
+        <div class="p-8 w-3/4 justify-center bg-gray-50 rounded-xl">
+            <h1 class="text-xl text-red-500" >Edit meal</h1>
+            <form method="POST" action="/admin/meals/{{$meal->id}}" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                <x-form.formInput name="name" value="{{$meal->name}}"/>
+
+                <div class="mt-3">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Excerpt</label>
+                    <x-form.textarea name="excerpt">{{$meal->excerpt}}</x-form.textarea>
+                </div>
+
+                <div class="mt-3">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Recipe</label>
+                    <x-form.textarea name="recipe">{{$meal->recipe}}</x-form.textarea>
+                </div>
+
+                <div class="mr-2">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dietary Type</label>
+                    <select name="dietary_types_id" id="dietary_types_id">
+                        @php
+                            $dietaryTypes = App\Models\DietaryTypes::all();
+                        @endphp
+
+                        @foreach($dietaryTypes as $dietaryType)
+                            <option value="{{$dietaryType->id}}"
+                                {{old('dietary_types_id', $meal->dietary_types_id) == $dietaryType->id ? 'selected' : ''}}>
+                                {{ucwords($dietaryType->name)}}</option>
+                        @endforeach
+
+                    </select>
+
+                    @error('dietary_types_id')
+                    <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div class="mr-2">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meal Type</label>
+                    <select name="meal_types_id" id="meal_types_id">
+                        @php
+                            $mealTypes = App\Models\MealType::all();
+                        @endphp
+
+                        @foreach($mealTypes as $mealType)
+                            <option value="{{$mealType->id}}"
+                                {{old('category_id', $meal->meal_types_id) == $mealType->id ? 'selected' : ''}}>
+                                {{ucwords($mealType->name)}}</option>
+                        @endforeach
+
+                    </select>
+
+                    @error('category')
+                    <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div class="flex justify-end mt-2 border-t border-gray-300">
+                    <button type="submit"
+                            class="bg-red-500 mt-2 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-red-600">
+                        Update
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+@endsection
+
