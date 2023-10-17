@@ -1,4 +1,4 @@
-@extends ('Components.layout')
+@extends ('components.nutricion-layout')
 
 @section('header')
     <x-navbar/>
@@ -7,7 +7,6 @@
 @section('content')
     <div class="mt-8">
         <x-settings heading="Manage Meals">
-
             <div class="overflow-x-auto">
                 @if($meals->count() > 0)
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
