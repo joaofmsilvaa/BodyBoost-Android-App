@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Meal;
 use App\Models\User;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -26,8 +27,6 @@ class AdminController extends Controller
             'users' => $users
         ]);
     }
-<<<<<<< Updated upstream
-=======
     public function createNews(){
         $news = News::latest()
             ->paginate(10);
@@ -54,6 +53,5 @@ class AdminController extends Controller
 
         return back()->with('success', 'News Deleted');
     }
->>>>>>> Stashed changes
 }
 

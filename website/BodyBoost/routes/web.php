@@ -31,6 +31,7 @@ Route::get('news', [NewsController::class, 'create']);
 
 Route::get('admin/users', [AdminController::class, 'createUsers'])->middleware(['auth', 'admin'])->name('admin');;
 Route::get('admin/meals', [AdminController::class, 'createMeals'])->middleware(['auth', 'admin'])->name('admin');;
+Route::get('admin/news', [AdminController::class, 'createNews'])->middleware(['auth', 'admin'])->name('admin');;
 
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->middleware('admin');
 Route::delete('/admin/meals/{meal}', [AdminController::class, 'destroyMeal'])->middleware('admin');
