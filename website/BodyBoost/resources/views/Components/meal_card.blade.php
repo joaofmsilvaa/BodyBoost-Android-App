@@ -3,7 +3,7 @@
 <div
     class="transition duration-300 hover:bg-gray-200 m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="/nutrition/{{$meal->id}}">
-        <img class="rounded-t-lg h-60 w-full object-cover rounded" src="/{{$meal->thumbnail}}" alt="">
+        <img class="rounded-t-lg h-60 w-full object-cover rounded" src="{{ asset('storage/' . $meal->thumbnail) }}" alt="">
     </a>
     <div class="p-5 h-40">
         <a href="/nutrition/{{$meal->id}}">

@@ -37,6 +37,15 @@ Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->m
 Route::delete('/admin/meals/{meal}', [AdminController::class, 'destroyMeal'])->middleware('admin');
 Route::delete('/admin/news/{news}', [AdminController::class, 'destroyNews'])->middleware('admin');
 
+Route::get('/admin/users/{user}/edit', [AdminController::class, 'editUser'])->middleware('admin');
+Route::get('/admin/meals/{meal}/edit', [AdminController::class, 'editMeal'])->middleware('admin');
+Route::get('/admin/news/{news}/edit', [AdminController::class, 'editNews'])->middleware('admin');
+
+Route::patch('/admin/users/{user}', [AdminController::class, 'updateUser'])->middleware('admin');
+Route::patch('/admin/meals/{meal}', [AdminController::class, 'updateMeal'])->middleware('admin');
+Route::patch('/admin/news/{news}', [AdminController::class, 'updateNews'])->middleware('admin');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
