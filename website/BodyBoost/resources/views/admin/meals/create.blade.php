@@ -55,7 +55,6 @@
                                     <a href="/meals/{{$meal->slug}}">{{$meal->mealType->name}}</a>
                                 </td>
                                 <td class="w-1/12 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <!-- Largura personalizada para Excerpt -->
                                     <a href="/meals/{{$meal->slug}}">{{$meal->excerpt}}</a>
                                 </td>
                                 <td class="w-1/6 px-6 py-4">
