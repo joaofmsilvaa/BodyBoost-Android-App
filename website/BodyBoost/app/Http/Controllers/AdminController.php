@@ -22,7 +22,7 @@ class AdminController extends Controller
         $users = User::latest()
             ->paginate(10);
 
-        
+
         return view('admin.users.create', [
             'users' => $users
         ]);
