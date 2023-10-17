@@ -14,7 +14,7 @@
                     <span class="text-red-600">Healthy</span> recipes on the internet !</h1>
             </div>
 
-            <x-search content="Find meals, drinks, desserts..."/>
+            <x-search :content="$searchContent"/>
 
             <x-dropdown-div :dietary_Types="$dietary_Types" :meal_Types="$meal_Types"/>
 

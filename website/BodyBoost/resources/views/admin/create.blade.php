@@ -1,4 +1,4 @@
-@extends ('components.layout')
+@extends ('Components.layout')
 
 @section('header')
     <x-navbar/>
@@ -11,7 +11,8 @@
             <div class="overflow-x-auto">
                 @if($meals->count() > 0)
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 flex-1">
+                        <thead
+                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 flex-1">
                         <tr>
                             <th scope="col" class="w-1/6 px-6 py-3">
                                 Name
@@ -48,7 +49,8 @@
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <a href="/meals/{{$meal->slug}}">{{$meal->mealType->name}}</a>
                                 </td>
-                                <td class="w-1/12 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"> <!-- Largura personalizada para Excerpt -->
+                                <td class="w-1/12 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <!-- Largura personalizada para Excerpt -->
                                     <a href="/meals/{{$meal->slug}}">{{$meal->excerpt}}</a>
                                 </td>
                                 <td class="w-1/6 px-6 py-4">
@@ -66,7 +68,8 @@
 
                                         <button class="text-red-500 hover:text-red-600"
                                                 onclick="return confirm('By clicking \'ok\' you confirm that you are aware that the meal \'{{$meal->name}}\' will be permanently deleted?')">
-                                            Delete</button>
+                                            Delete
+                                        </button>
 
                                     </form>
                                 </td>

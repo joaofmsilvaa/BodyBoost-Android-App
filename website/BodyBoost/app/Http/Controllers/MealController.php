@@ -12,6 +12,8 @@ class MealController extends Controller
 {
     public function create()
     {
+        $searchContent = "Find meals, drinks, desserts...";
+
         $filters = request(['search', 'dietary-type', 'meal-type']);
 
         $dietaryType = DietaryTypes::all();
@@ -23,7 +25,8 @@ class MealController extends Controller
 
         return view('nutrition.index')->with('dietary_Types', $dietaryType)
             ->with('meal_Types', $mealType)
-            ->with('meals', $meals);
+            ->with('meals', $meals)
+            ->with('searchContent', $searchContent);
 
     }
 
@@ -31,7 +34,7 @@ class MealController extends Controller
     {
 
         $mealIngredients = $meal->mealIngredients()->orderBy('created_at', 'asc')->get();;
-        
+
 
         return view('nutrition.show', compact('meal',  'mealIngredients'));
     }
