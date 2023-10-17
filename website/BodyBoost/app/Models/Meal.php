@@ -18,8 +18,7 @@ class Meal extends Model
             $query->where(function ($query) use ($filters) {
                 $search = $filters['search'];
                 $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('recipe', 'like', '%' . $search . '%')
-                    ->orWhere('meal_type', 'like', '%' . $search . '%');
+                    ->orWhere('recipe', 'like', '%' . $search . '%');
             });
         }
 
