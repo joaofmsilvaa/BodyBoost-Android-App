@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('dietary_types_id')->constrained()->cascadeOnDelete();
             $table->foreignId('meal_types_id')->constrained()->cascadeOnDelete();
             $table->string('excerpt');
-            $table->string('recipe');
+            $table->text('recipe');
             $table->decimal('prep_time', 5, 2);
             $table->decimal('cook_time', 5, 2);
             $table->integer('servings');

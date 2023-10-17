@@ -6,6 +6,17 @@ use App\Models\Meal;
 use App\Models\User;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use Illuminate\View\View;
+
 
 class AdminController extends Controller
 {
@@ -65,6 +76,46 @@ class AdminController extends Controller
     }
 
 
+    public function updateUser(User $user){
+
+        $attributes = request()->validate([
+            'name' => ['required','max:30'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
+            'password' => [Rules\Password::defaults()],
+        ]);
+
+
+        $user->update($attributes);
+
+        return back()->with('success', 'User Updated');
+
+    }
+
+    public function updateMeal(Meal $meal){
+        $attributes = request()->validate([
+            'name'=>'required',
+            'thumbnail' => ['image'],
+            'excerpt'=>['required', 'min:20', 'max:255' ],
+            'recipe'=>['required', 'min:20'],
+            'prep_time'=>'required',
+            'cook_time'=>'required',
+            'servings'=>['required', 'min:1'],
+            'dietary_types_id' => ['required', Rule::exists('dietary_types', 'id')],
+            'meal_types_id' => ['required', Rule::exists('meal_types', 'id')],
+        ]);
+
+        if(isset($attributes['thumbnail'])){
+            $storingPath = request()->file('thumbnail')->store('public/thumbnails');
+            $attributes['thumbnail'] = str_replace("public/", "",$storingPath);
+
+        }
+
+
+        $meal->update($attributes);
+
+        return back()->with('success', 'Meal Updated');
+
+    }
 
 }
 
