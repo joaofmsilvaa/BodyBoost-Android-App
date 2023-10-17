@@ -27,7 +27,6 @@ Route::get('/', function () {
 Route::get('nutrition', [MealController::class, 'create']);
 Route::get('nutrition/{meal}', [MealController::class, 'show']);
 
-
 Route::get('news', [NewsController::class, 'create']);
 
 Route::get('admin/meals', [AdminController::class, 'create'])->middleware(['auth', 'admin'])->name('admin');;

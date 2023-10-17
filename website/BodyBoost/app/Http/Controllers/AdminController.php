@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function create(){
+
         $meals = Meal::latest()
             ->paginate(15);
 
