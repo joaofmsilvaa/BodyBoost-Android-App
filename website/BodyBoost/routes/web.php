@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -28,10 +30,7 @@ Route::get('nutrition/{meal}', [MealController::class, 'show']);
 
 Route::get('news', [NewsController::class, 'create']);
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('admin/meals', [AdminController::class, 'create'])->middleware(['auth', 'admin'])->name('admin');;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

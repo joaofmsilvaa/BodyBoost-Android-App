@@ -1,4 +1,4 @@
-@extends ('components.nutricion-layout')
+@extends ('components.layout')
 
 @section('header')
     <x-navbar/>
