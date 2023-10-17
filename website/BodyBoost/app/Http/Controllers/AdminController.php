@@ -8,12 +8,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-<<<<<<< Updated upstream
-    public function create(){
-=======
     public function createMeals(){
 
->>>>>>> Stashed changes
         $meals = Meal::latest()
             ->paginate(10);
 
@@ -31,3 +27,4 @@ class AdminController extends Controller
         ]);
     }
 }
+
