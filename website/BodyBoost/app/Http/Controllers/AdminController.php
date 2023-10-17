@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Meal;
 use App\Models\User;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -25,6 +26,15 @@ class AdminController extends Controller
 
         return view('admin.users.create', [
             'users' => $users
+        ]);
+    }
+
+    public function createNews(){
+        $news = News::latest()
+            ->paginate(10);
+
+        return view('admin.news.create', [
+            'news' => $news
         ]);
     }
 }

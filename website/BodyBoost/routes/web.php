@@ -31,6 +31,7 @@ Route::get('news', [NewsController::class, 'create']);
 
 Route::get('admin/users', [AdminController::class, 'createUsers'])->middleware(['auth', 'admin'])->name('admin');;
 Route::get('admin/meals', [AdminController::class, 'createMeals'])->middleware(['auth', 'admin'])->name('admin');;
+Route::get('admin/news', [AdminController::class, 'createNews'])->middleware(['auth', 'admin'])->name('admin');;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

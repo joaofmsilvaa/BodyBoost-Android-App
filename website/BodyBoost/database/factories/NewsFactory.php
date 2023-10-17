@@ -21,8 +21,8 @@ class NewsFactory extends Factory
             'category_id' => Category::factory(),
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(),
-            'excerpt' => $this->faker->paragraphs(2),
-            'body' => $this->faker->paragraphs(6)
+            'excerpt' => $this->faker->sentence(10),
+            'body' => $this->faker->sentence(20)
         ];
     }
 }
