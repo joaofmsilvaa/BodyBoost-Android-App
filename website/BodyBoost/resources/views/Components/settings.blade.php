@@ -1,4 +1,4 @@
-<section class="py-8 py-8 max-w-full mx-auto">
+<section class="py-8 py-8 max-w-full mt-12">
 
     <h1 class="text-lg font-bold mb-8 pb-2 border-b">
         {{$heading}}
@@ -13,6 +13,9 @@
                 </li>
                 <li class="px-3">
                     <a href="/admin/meals" class="{{request()->is('admin/meals') ? 'text-red-500' : ''}}">All Meals</a>
+                </li>
+                <li class="px-3">
+                    <a href="/admin/ingredients" class="{{request()->is('admin/ingredients') ? 'text-red-500' : ''}}">All Ingredients</a>
                 </li>
                 <li class="px-3">
                     <a href="/admin/news" class="{{request()->is('admin/news') ? 'text-red-500' : ''}}">All News</a>

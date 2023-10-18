@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Meal;
 use App\Models\User;
 use App\Models\News;
+use App\Models\Ingredients;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -46,6 +47,14 @@ class AdminController extends Controller
             'news' => $news
         ]);
     }
+    public function createIngredients(){
+        $ingredients = Ingredients::latest()
+            ->paginate(10);
+
+        return view('admin.ingredients.create', [
+            'ingredients' => $ingredients
+        ]);
+    }
 
 
     public function destroyUser(User $user){
@@ -63,6 +72,11 @@ class AdminController extends Controller
 
         return back()->with('success', 'News Deleted');
     }
+    public function destroyIngredient(Ingredients $ingredient){
+        $ingredient->delete();
+
+        return back()->with('success', 'Ingredient Deleted');
+    }
 
 
     public function editUser(User $user){
@@ -73,6 +87,9 @@ class AdminController extends Controller
     }
     public function editNews(News $news){
         return view('admin.news.edit', ['news' => $news]);
+    }
+    public function editIngredient(Ingredients $ingredient){
+        return view('admin.ingredients.edit', ['ingredient' => $ingredient]);
     }
 
 
@@ -90,7 +107,6 @@ class AdminController extends Controller
         return back()->with('success', 'User Updated');
 
     }
-
     public function updateMeal(Meal $meal){
         $attributes = request()->validate([
             'name'=>'required',
@@ -114,6 +130,16 @@ class AdminController extends Controller
         $meal->update($attributes);
 
         return back()->with('success', 'Meal Updated');
+
+    }
+    public function updateIngredient(Ingredients $ingredient){
+        $attributes = request()->validate([
+            'name'=>['required', 'min:4'],
+        ]);
+
+        $ingredient->update($attributes);
+
+        return back()->with('success', 'Ingredient Updated');
 
     }
 

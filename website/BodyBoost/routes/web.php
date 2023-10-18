@@ -29,20 +29,24 @@ Route::get('nutrition/{meal}', [MealController::class, 'show']);
 
 Route::get('news', [NewsController::class, 'create']);
 
-Route::get('admin/users', [AdminController::class, 'createUsers'])->middleware(['auth', 'admin'])->name('admin');;
-Route::get('admin/meals', [AdminController::class, 'createMeals'])->middleware(['auth', 'admin'])->name('admin');;
-Route::get('admin/news', [AdminController::class, 'createNews'])->middleware(['auth', 'admin'])->name('admin');;
+Route::get('admin/users', [AdminController::class, 'createUsers'])->middleware(['auth', 'admin'])->name('adminUsers');
+Route::get('admin/meals', [AdminController::class, 'createMeals'])->middleware(['auth', 'admin'])->name('adminMeals');
+Route::get('admin/ingredients', [AdminController::class, 'createIngredients'])->middleware(['auth', 'admin'])->name('adminIngredients');
+Route::get('admin/news', [AdminController::class, 'createNews'])->middleware(['auth', 'admin'])->name('adminNews');
 
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->middleware('admin');
 Route::delete('/admin/meals/{meal}', [AdminController::class, 'destroyMeal'])->middleware('admin');
+Route::delete('/admin/ingredients/{ingredient}', [AdminController::class, 'destroyIngredient'])->middleware('admin');
 Route::delete('/admin/news/{news}', [AdminController::class, 'destroyNews'])->middleware('admin');
 
 Route::get('/admin/users/{user}/edit', [AdminController::class, 'editUser'])->middleware('admin');
 Route::get('/admin/meals/{meal}/edit', [AdminController::class, 'editMeal'])->middleware('admin');
+Route::get('/admin/ingredients/{ingredient}/edit', [AdminController::class, 'editIngredient'])->middleware('admin');
 Route::get('/admin/news/{news}/edit', [AdminController::class, 'editNews'])->middleware('admin');
 
 Route::patch('/admin/users/{user}', [AdminController::class, 'updateUser'])->middleware('admin');
 Route::patch('/admin/meals/{meal}', [AdminController::class, 'updateMeal'])->middleware('admin');
+Route::patch('/admin/ingredients/{ingredient}', [AdminController::class, 'updateIngredient'])->middleware('admin');
 Route::patch('/admin/news/{news}', [AdminController::class, 'updateNews'])->middleware('admin');
 
 
