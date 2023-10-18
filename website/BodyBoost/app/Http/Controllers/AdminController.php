@@ -175,5 +175,20 @@ class AdminController extends Controller
         return back()->with('success', 'Meal Updated');
 
     }
+
+
+    public function newIngredient(){
+        return view('admin.Ingredients.new');
+    }
+
+    public function storeNewIngredient(){
+        $attributes = request()->validate([
+            'name'=>['required', 'min:4'],
+        ]);
+
+        Ingredients::create($attributes);
+
+        return back()->with('success', 'Ingredient created');
+    }
 }
 

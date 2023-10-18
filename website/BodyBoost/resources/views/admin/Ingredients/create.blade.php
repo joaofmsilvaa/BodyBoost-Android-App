@@ -7,11 +7,23 @@
 @section('content')
     <div class="mt-8">
         <x-settings heading="Manage Ingredients">
-            <div class="overflow-x-auto">
+            <div class="bg-red-500 p-2 rounded-full text-white mb-2 flex justify-center w-1/6">
+                <a href="/admin/ingredients/create">
+                    Create Ingredient
+                </a>
+                <div class="ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         style="fill: rgb(255,255,255);">
+                        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path>
+                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="overflow-x-auto mt-4">
                 @if($ingredients->count() > 0)
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead
-                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 flex-1">
+                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 flex-1">
                         <tr>
                             <th scope="col" class="w-1/6 px-6 py-3">
                                 Id
@@ -34,7 +46,7 @@
                         @foreach($ingredients as $ingredient)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p >{{$ingredient->id}}</p>
+                                    <p>{{$ingredient->id}}</p>
                                 </td>
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <p>{{$ingredient->name}}</p>
@@ -67,11 +79,9 @@
                     <p class="text-center text-lg text-gray-500">No Ingredients yet. Come back later</p>
                 @endif
             </div>
-
             <div class="p-3">
                 {{$ingredients->links()}}
             </div>
-
         </x-settings>
     </div>
 

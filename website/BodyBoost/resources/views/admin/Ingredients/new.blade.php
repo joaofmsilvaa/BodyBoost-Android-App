@@ -8,13 +8,13 @@
 
     <div class="flex justify-center mt-8 p-8">
         <div class="p-8 w-3/4 justify-center bg-gray-50 rounded-xl">
-            <h1 class="text-xl text-red-500">Edit Ingredient</h1>
-            <form method="POST" action="/admin/ingredients/{{$ingredient->id}}" enctype="multipart/form-data">
+            <h1 class="text-xl text-red-500">Create Ingredient</h1>
+            <form method="POST" action="/admin/ingredients/create" enctype="multipart/form-data">
                 @csrf
-                @method('PATCH')
+                @method('POST')
 
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                <x-form.formInput name="name" value="{{$ingredient->name}}"/>
+                <x-form.formInput name="name" placeholder="Ingredient name..."/>
 
                 <div class="flex justify-end mt-2 border-t border-gray-300">
                     <button type="submit"
