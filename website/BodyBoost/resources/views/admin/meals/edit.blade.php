@@ -24,7 +24,7 @@
                                     <a href="/nutrition/{{$meal->id}}">
                                         <img id="image_preview"
                                              alt="Meal thumbnail" class="rounded-t-lg h-60 w-full object-cover rounded"
-                                             src="/{{$meal->thumbnail}}" alt="">
+                                             src="{{ asset('storage/' . $meal->thumbnail) }}" alt="">
                                     </a>
                                 </div>
                             @else
