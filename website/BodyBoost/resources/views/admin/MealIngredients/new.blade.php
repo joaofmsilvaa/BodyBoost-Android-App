@@ -14,7 +14,7 @@
                 @method('POST')
 
                 <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount</label>
-                <x-form.formInput name="amount" placeholder="Amount of the chosen ingredient" type="number"/>
+                <x-form.formInput name="amount" placeholder="Amount of the chosen ingredient" type="number" step="any"/>
                 @error('amount')
                 <p class="text-red-500 text-xs mt-2">{{$message}}</p>
                 @enderror
@@ -29,7 +29,7 @@
 
                 <div class="mt-3">
                     <label for="time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time ( minutes )</label>
-                    <x-form.formInput name="time" placeholder="The time it takes to cook the ingredient" type="number"/>
+                    <x-form.formInput name="time" placeholder="The time it takes to cook the ingredient" type="number" step="any"/>
                     @error('time')
                     <p class="text-red-500 text-xs mt-2">{{$message}}</p>
                     @enderror

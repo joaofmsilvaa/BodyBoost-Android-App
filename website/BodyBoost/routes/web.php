@@ -55,9 +55,12 @@ Route::patch('/admin/news/{news}', [AdminController::class, 'updateNews'])->midd
 
 Route::get('/admin/ingredients/create', [AdminController::class, 'newIngredient'])->middleware('admin');
 Route::get('/admin/meal-ingredients/create', [AdminController::class, 'newMealIngredient'])->middleware('admin');
+Route::get('/admin/meals/create', [AdminController::class, 'newMeal'])->middleware('admin');
+
 
 Route::post('/admin/ingredients/create', [AdminController::class, 'storeNewIngredient'])->middleware('admin');
 Route::post('/admin/meal-ingredients/create', [AdminController::class, 'storeNewMealIngredient'])->middleware('admin');
+Route::post('/admin/meals/create', [AdminController::class, 'storeNewMeal'])->middleware('admin');
 
 
 Route::middleware('auth')->group(function () {
