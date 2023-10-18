@@ -15,6 +15,9 @@
                     <a href="/admin/meals" class="{{request()->is('admin/meals') ? 'text-red-500' : ''}}">All Meals</a>
                 </li>
                 <li class="px-3">
+                    <a href="/admin/meal-ingredients" class="{{request()->is('admin/meal-ingredients') ? 'text-red-500' : ''}}">All Meal Ingredients</a>
+                </li>
+                <li class="px-3">
                     <a href="/admin/ingredients" class="{{request()->is('admin/ingredients') ? 'text-red-500' : ''}}">All Ingredients</a>
                 </li>
                 <li class="px-3">

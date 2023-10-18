@@ -6,6 +6,7 @@ use App\Models\Meal;
 use App\Models\User;
 use App\Models\News;
 use App\Models\Ingredients;
+use App\Models\MealIngredients;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -55,6 +56,14 @@ class AdminController extends Controller
             'ingredients' => $ingredients
         ]);
     }
+    public function createMealIngredients(){
+        $mealIngredients = MealIngredients::latest()
+            ->paginate(10);
+
+        return view('admin.mealIngredients.create', [
+            'mealIngredients' => $mealIngredients
+        ]);
+    }
 
 
     public function destroyUser(User $user){
@@ -77,6 +86,11 @@ class AdminController extends Controller
 
         return back()->with('success', 'Ingredient Deleted');
     }
+    public function destroyMealIngredients(MealIngredients $mealIngredient){
+        $mealIngredient->delete();
+
+        return back()->with('success', 'Ingredient removed from meal');
+    }
 
 
     public function editUser(User $user){
@@ -90,6 +104,9 @@ class AdminController extends Controller
     }
     public function editIngredient(Ingredients $ingredient){
         return view('admin.ingredients.edit', ['ingredient' => $ingredient]);
+    }
+    public function editMealIngredients(MealIngredients $mealIngredient){
+        return view('admin.mealIngredients.edit', ['mealIngredient' => $mealIngredient]);
     }
 
 
@@ -142,6 +159,21 @@ class AdminController extends Controller
         return back()->with('success', 'Ingredient Updated');
 
     }
+    public function updateMealIngredients(MealIngredients $mealIngredient){
 
+        $attributes = request()->validate([
+            'amount'=>'required',
+            'measure'=>'required',
+            'time'=>'required',
+            'ingredients_id' => ['required', Rule::exists('ingredients', 'id')],
+            'meal_id' => ['required', Rule::exists('meals', 'id')],
+        ]);
+
+
+        $mealIngredient->update($attributes);
+
+        return back()->with('success', 'Meal Updated');
+
+    }
 }
 
