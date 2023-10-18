@@ -56,9 +56,15 @@
             <p class="text-xl font-semibold pb-5">Ingredients:</p>
             @foreach($mealIngredients as $mealIngredient)
                 <div class="flex">
+<<<<<<< Updated upstream
                     <p class="pb-2">{{$mealIngredient->ingredients->name}}</p>
                     @if(isset($mealIngredient->amount))
                         <p class="pb-2 ml-2">{{$mealIngredient->amount}}</p>
+=======
+                    <p class="pb-2">{{$mealIngredient->ingredients->name}} :</p>
+                    @if($mealIngredient->amount > 0)
+                        <p class="pb-2 ml-2">{{$mealIngredient->amount}} kg</p>
+>>>>>>> Stashed changes
 
                     @else
                         <p class="pb-2 ml-2">{{$mealIngredient->measure}}</p>

@@ -184,6 +184,11 @@ class AdminController extends Controller
         return view('admin.MealIngredients.new');
     }
 
+    public function newMeal(){
+        return view('admin.Meals.new');
+    }
+
+
     public function storeNewIngredient(){
         $attributes = request()->validate([
             'name'=>['required', 'min:4'],
@@ -207,6 +212,31 @@ class AdminController extends Controller
         MealIngredients::create($attributes);
 
         return back()->with('success', 'Ingredient added to meal');
+
+    }
+    public function storeNewMeal(){
+        $attributes = request()->validate([
+            'name'=>'required',
+            'thumbnail' => ['image'],
+            'excerpt'=>['required', 'min:20', 'max:255' ],
+            'recipe'=>['required', 'min:20'],
+            'prep_time'=>'required',
+            'cook_time'=>'required',
+            'servings'=>['required', 'min:1'],
+            'dietary_types_id' => ['required', Rule::exists('dietary_types', 'id')],
+            'meal_types_id' => ['required', Rule::exists('meal_types', 'id')],
+        ]);
+
+        if(isset($attributes['thumbnail'])){
+            $storingPath = request()->file('thumbnail')->store('public/thumbnails');
+            $attributes['thumbnail'] = str_replace("public/", "",$storingPath);
+
+        }
+
+
+        Meal::create($attributes);
+
+        return back()->with('success', 'Meal created');
 
     }
 
