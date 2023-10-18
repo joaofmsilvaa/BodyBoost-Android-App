@@ -21,9 +21,28 @@
             <div class="hidden md:flex items-center space-x-3 ">
 
                 @auth
-                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
-                        Welcome, {{auth()->user()->name}}!
-                    </a>
+
+                    <x-userdropdown>
+                        <x-slot name="trigger">
+                            <button class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Welcome, {{auth()->user()->name}}!</button>
+                        </x-slot>
+
+                        @can('admin')
+                            <x-dropdown-item href="/admin/users" :active="request()->is('admin')">Dashboard
+                            </x-dropdown-item>
+                        @endcan
+
+                        <x-dropdown-item href="/profile/{{auth()->user()->id}}" :active="request()->is('profile')">Profile
+                        </x-dropdown-item>
+                        <x-dropdown-item href="#" x-data="{}"
+                                         @click.prevent="document.querySelector('#logout-form').submit()">Log out
+                        </x-dropdown-item>
+
+
+                        <form id="logout-form" method="POST" action="/logout" class="hidden">
+                            @csrf
+                        </form>
+                    </x-userdropdown>
 
                 @else
                     <a href="/login"
@@ -50,7 +69,7 @@
                     </svg>
                 </button>
                 @auth
-                    <a href="/dashboard" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
+                    <a href="/admin" class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">
                         Welcome, {{auth()->user()->name}}!
                     </a>
                 @else
@@ -84,3 +103,4 @@
         });
     </script>
 </nav>
+

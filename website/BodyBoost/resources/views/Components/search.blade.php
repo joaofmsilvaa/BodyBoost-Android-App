@@ -10,7 +10,7 @@
                     @endif
                     <input type="text"
                            name="search"
-                           placeholder="{{$content}}"
+                           placeholder="Find Something Unique..."
                            class="bg-transparent placeholder-black font-semibold text-sm w-full"
                            value="{{request('search')}}"
                     >
