@@ -30,8 +30,13 @@
 
         <article class="flex flex-col w-full shadow my-4">
             <!-- Article Image -->
+<<<<<<< Updated upstream
             <a class="px-2">
                 <img src="/{{$meal->thumbnail}}">
+=======
+            <a class="px-2 mt-2">
+                <img class="max-h-96 w-full object-cover rounded" src="{{ asset('storage/' . $meal->thumbnail) }}">
+>>>>>>> Stashed changes
             </a>
             <div class="bg-white flex flex-col justify-start p-6">
                 <div class="flex">
@@ -52,20 +57,46 @@
     <aside class="w-full md:w-1/3 flex flex-col items-center px-2 mt-8">
 
         <div class="w-full bg-white shadow flex flex-col my-4 p-6">
-
             <p class="text-xl font-semibold pb-5">Ingredients:</p>
             @foreach($mealIngredients as $mealIngredient)
                 <div class="flex">
-                    <p class="pb-2">{{$mealIngredient->ingredients->name}}</p>
+                    <p class="pb-2">{{$mealIngredient->ingredients->name}} :</p>
                     @if(isset($mealIngredient->amount))
                         <p class="pb-2 ml-2">{{$mealIngredient->amount}}</p>
 
                     @else
-                        <p class="pb-2 ml-2">{{$mealIngredient->measure}}</p>
+                        <p class="pb-2 ml-2">{{$mealIngredient->measure}} kg</p>
                     @endif
 
                 </div>
             @endforeach
+        </div>
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+            <p class="text-xl font-semibold pb-5">Cook and Preparation time:</p>
+            <div class="flex">
+                <div class="flex mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         style="fill: rgba(0, 0, 0, 1);">
+                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                        <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path>
+                    </svg>
+                    <p class="pb-2 ml-1"> {{$meal->prep_time}} minutes</p>
+                </div>
+                <div class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         style="fill: rgba(0, 0, 0, 1);">
+                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                        <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path>
+                    </svg>
+                    <p class="pb-2 ml-1"> {{$meal->cook_time}} minutes</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+            <p class="text-xl font-semibold pb-5">Serving:</p>
+            <div class="flex">
+                <p class="pb-2">{{$meal->servings}}</p>
+            </div>
         </div>
 
     </aside>
