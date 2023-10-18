@@ -6,9 +6,9 @@
 
 @section('content')
     <div class="mt-8">
-        <x-settings heading="Manage News">
+        <x-settings heading="Manage Ingredients">
             <div class="overflow-x-auto">
-                @if($news->count() > 0)
+                @if($ingredients->count() > 0)
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead
                             class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 flex-1">
@@ -17,13 +17,7 @@
                                 Id
                             </th>
                             <th scope="col" class="w-1/6 px-6 py-3">
-                                Title
-                            </th>
-                            <th scope="col" class="w-1/6 px-6 py-3">
-                                Category
-                            </th>
-                            <th scope="col" class="px-6 py-3" style="width:30%;">
-                                Excerpt
+                                Name
                             </th>
                             <th scope="col" class="w-1/6 px-6 py-3">
                                 Created At
@@ -37,35 +31,29 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($news as $new)
+                        @foreach($ingredients as $ingredient)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p >{{$new->id}}</p>
+                                    <p >{{$ingredient->id}}</p>
                                 </td>
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <a href="/news/{{$new->slug}}">{{$new->title}}</a>
-                                </td>
-                                <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <a href="/news/{{$new->slug}}">{{$new->category->name}}</a>
-                                </td>
-                                <td class="w-1/12 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <a href="/news/{{$new->slug}}">{{$new->excerpt}}</a>
+                                    <p>{{$ingredient->name}}</p>
                                 </td>
                                 <td class="w-1/6 px-6 py-4">
-                                    <p class="text-sm">{{$new->created_at}}</p>
+                                    <p class="text-sm">{{$ingredient->created_at}}</p>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="/admin/news/{{$new->id}}/edit"
+                                    <a href="/admin/ingredients/{{$ingredient->id}}/edit"
                                        class="text-blue-500 hover:text-blue-600">Edit</a>
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    <form action="/admin/news/{{$new->id}}" method="post">
+                                    <form action="/admin/ingredients/{{$ingredient->id}}" method="post">
                                         @csrf
                                         @method('DELETE')
 
                                         <button class="text-red-500 hover:text-red-600"
-                                                onclick="return confirm('By clicking \'ok\' you confirm that you are aware that the new \'{{$new->title}}\' will be permanently deleted?')">
+                                                onclick="return confirm('By clicking \'ok\' you confirm that you are aware that the ingredient \'{{$ingredient->name}}\' will be permanently deleted?')">
                                             Delete
                                         </button>
 
@@ -76,12 +64,12 @@
                         </tbody>
                     </table>
                 @else
-                    <p class="text-center text-lg text-gray-500 mt-14">No News yet. Come back later</p>
+                    <p class="text-center text-lg text-gray-500">No Ingredients yet. Come back later</p>
                 @endif
             </div>
 
             <div class="p-3">
-                {{$news->links()}}
+                {{$ingredients->links()}}
             </div>
 
         </x-settings>
