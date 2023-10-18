@@ -180,6 +180,9 @@ class AdminController extends Controller
     public function newIngredient(){
         return view('admin.Ingredients.new');
     }
+    public function newMealIngredient(){
+        return view('admin.MealIngredients.new');
+    }
 
     public function storeNewIngredient(){
         $attributes = request()->validate([
@@ -190,5 +193,22 @@ class AdminController extends Controller
 
         return back()->with('success', 'Ingredient created');
     }
+    public function storeNewMealIngredient(){
+
+        $attributes = request()->validate([
+            'amount'=>'required',
+            'measure'=>'required',
+            'time'=>'required',
+            'ingredients_id' => ['required', Rule::exists('ingredients', 'id')],
+            'meal_id' => ['required', Rule::exists('meals', 'id')],
+        ]);
+
+
+        MealIngredients::create($attributes);
+
+        return back()->with('success', 'Ingredient added to meal');
+
+    }
+
 }
 

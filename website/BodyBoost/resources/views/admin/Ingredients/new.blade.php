@@ -19,7 +19,7 @@
                 <div class="flex justify-end mt-2 border-t border-gray-300">
                     <button type="submit"
                             class="bg-red-500 mt-2 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-red-600">
-                        Update
+                        Create
                     </button>
                 </div>
 

@@ -7,6 +7,18 @@
 @section('content')
     <div class="mt-8">
         <x-settings heading="Manage Meal Ingredients">
+            <div class="bg-red-500 p-2 rounded-full text-white mb-2 flex justify-center w-1/6">
+                <a href="/admin/meal-ingredients/create">
+                    Create Meal Ingredient
+                </a>
+                <div class="ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         style="fill: rgb(255,255,255);">
+                        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path>
+                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                    </svg>
+                </div>
+            </div>
             <div class="overflow-x-auto">
                 @if($mealIngredients->count() > 0)
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
