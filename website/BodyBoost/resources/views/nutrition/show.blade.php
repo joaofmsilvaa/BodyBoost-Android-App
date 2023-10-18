@@ -30,13 +30,8 @@
 
         <article class="flex flex-col w-full shadow my-4">
             <!-- Article Image -->
-<<<<<<< Updated upstream
-            <a class="px-2">
-                <img src="/{{$meal->thumbnail}}">
-=======
             <a class="px-2 mt-2">
                 <img class="max-h-96 w-full object-cover rounded" src="{{ asset('storage/' . $meal->thumbnail) }}">
->>>>>>> Stashed changes
             </a>
             <div class="bg-white flex flex-col justify-start p-6">
                 <div class="flex">
@@ -47,7 +42,7 @@
                 </div>
                 <p class="text-3xl font-bold hover:text-gray-700 pb-4">{{$meal->name}}</p>
                 <h1 class="text-2xl font-bold pb-3">Recipe:</h1>
-                <p class="pb-3">{{$meal->recipe}}</p>
+                <p class="pb-3 text-lg">{{$meal->recipe}}</p>
             </div>
         </article>
 
