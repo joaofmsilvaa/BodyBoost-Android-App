@@ -29,20 +29,19 @@
     <section class="w-full md:w-2/3 flex flex-col items-center mt-8 px-2">
 
         <article class="flex flex-col w-full shadow my-4">
-            <!-- Article Image -->
             <a class="px-2 mt-2">
                 <img class="max-h-96 w-full object-cover rounded" src="{{ asset('storage/' . $meal->thumbnail) }}">
             </a>
             <div class="bg-white flex flex-col justify-start p-6">
                 <div class="flex">
-                    <a href="/nutrition/?meal-type={{$meal->dietaryType->slug}}"
-                       class="text-red-700 hover:text-red-300 text-sm font-bold uppercase pb-4">{{$meal->dietaryType->name}}</a>
-                    <a href="/nutrition/?meal-type={{$meal->mealType->slug}}"
-                       class="text-red-700 hover:text-red-300 text-sm font-bold uppercase pb-4 pl-4">{{$meal->mealType->name}}</a>
+                    <a href="/nutrition/?meal-type={{ $meal->dietaryType->slug }}"
+                       class="text-red-700 hover:text-red-300 text-sm font-bold uppercase pb-4">{{ $meal->dietaryType->name }}</a>
+                    <a href="/nutrition/?meal-type={{ $meal->mealType->slug }}"
+                       class="text-red-700 hover:text-red-300 text-sm font-bold uppercase pb-4 pl-4">{{ $meal->mealType->name }}</a>
                 </div>
-                <p class="text-3xl font-bold hover:text-gray-700 pb-4">{{$meal->name}}</p>
+                <p class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $meal->name }}</p>
                 <h1 class="text-2xl font-bold pb-3">Recipe:</h1>
-                <p class="pb-3 text-lg">{{$meal->recipe}}</p>
+                <p class="pb-3 text-lg">{!! nl2br($meal->recipe) !!}</p>
             </div>
         </article>
 

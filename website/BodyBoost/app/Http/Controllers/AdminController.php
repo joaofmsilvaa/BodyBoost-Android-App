@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Models\News;
 use App\Models\Ingredients;
 use App\Models\MealIngredients;
+use App\Models\MealType;
+use App\Models\DietaryTypes;
+
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -65,6 +68,25 @@ class AdminController extends Controller
         ]);
     }
 
+    public function createMealTypes(){
+
+        $mealTypes = MealType::latest()
+            ->paginate(10);
+
+        return view('admin.MealTypes.create', [
+            'mealTypes' => $mealTypes
+        ]);
+    }
+
+    public function createDietaryTypes(){
+
+        $dietaryTypes = DietaryTypes::latest()
+            ->paginate(10);
+
+        return view('admin.dietaryTypes.create', [
+            'dietaryTypes' => $dietaryTypes
+        ]);
+    }
 
     public function destroyUser(User $user){
         $user->delete();
@@ -92,6 +114,18 @@ class AdminController extends Controller
         return back()->with('success', 'Ingredient removed from meal');
     }
 
+    public function destroyMealType(MealType $mealType){
+        $mealType->delete();
+
+        return back()->with('success', 'Meal type deleted');
+    }
+
+    public function destroyDietaryType(DietaryTypes $dietaryType){
+        $dietaryType->delete();
+
+        return back()->with('success', 'Dietary type deleted');
+    }
+
 
     public function editUser(User $user){
         return view('admin.users.edit', ['user' => $user]);
@@ -107,6 +141,14 @@ class AdminController extends Controller
     }
     public function editMealIngredients(MealIngredients $mealIngredient){
         return view('admin.mealIngredients.edit', ['mealIngredient' => $mealIngredient]);
+    }
+
+    public function editMealType(MealType $mealType){
+        return view('admin.MealTypes.edit', ['mealType' => $mealType]);
+    }
+
+    public function editDietaryType(DietaryTypes $dietaryType){
+        return view('admin.dietaryTypes.edit', ['dietaryType' => $dietaryType]);
     }
 
 
@@ -176,6 +218,33 @@ class AdminController extends Controller
 
     }
 
+    public function updateMealType(MealType $mealType){
+
+        $attributes = request()->validate([
+            'name'=>['required', 'min:4'],
+            'slug'=>['required'],
+        ]);
+
+
+        $mealType->update($attributes);
+
+        return back()->with('success', 'Meal type Updated');
+
+    }
+
+    public function updateDietaryType(DietaryTypes $dietaryType){
+
+        $attributes = request()->validate([
+            'name'=>['required', 'min:4'],
+            'slug'=>['required'],
+        ]);
+
+
+        $dietaryType->update($attributes);
+
+        return back()->with('success', 'Dietary type Updated');
+
+    }
 
     public function newIngredient(){
         return view('admin.Ingredients.new');
@@ -186,6 +255,14 @@ class AdminController extends Controller
 
     public function newMeal(){
         return view('admin.Meals.new');
+    }
+
+    public function newMealType(){
+        return view('admin.MealTypes.new');
+    }
+
+    public function newDietaryType(){
+        return view('admin.DietaryTypes.new');
     }
 
 
@@ -238,6 +315,29 @@ class AdminController extends Controller
 
         return back()->with('success', 'Meal created');
 
+    }
+
+    public function storeNewMealType(){
+        $attributes = request()->validate([
+            'name'=>['required', 'min:4'],
+            'slug'=>['required']
+        ]);
+
+        MealType::create($attributes);
+
+        return back()->with('success', 'Meal type created');
+    }
+
+    public function storeNewDietaryType(){
+        $attributes = request()->validate([
+            'name'=>['required', 'min:4'],
+            'slug'=>['required']
+        ]);
+
+
+        DietaryTypes::create($attributes);
+
+        return back()->with('success', 'Dietary type created');
     }
 
 }
