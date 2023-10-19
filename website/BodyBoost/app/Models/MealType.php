@@ -9,6 +9,8 @@ class MealType extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function meal()
     {
         return $this->hasMany(Meal::class);
