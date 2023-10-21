@@ -28,6 +28,7 @@ Route::get('nutrition', [MealController::class, 'create']);
 Route::get('nutrition/{meal}', [MealController::class, 'show']);
 
 Route::get('news', [NewsController::class, 'create']);
+Route::get('news/{news}', [NewsController::class, 'show']);
 
 Route::get('admin/users', [AdminController::class, 'createUsers'])->middleware(['auth', 'admin'])->name('adminUsers');
 Route::get('admin/meals', [AdminController::class, 'createMeals'])->middleware(['auth', 'admin'])->name('adminMeals');
@@ -36,6 +37,7 @@ Route::get('admin/meal-ingredients', [AdminController::class, 'createMealIngredi
 Route::get('admin/news', [AdminController::class, 'createNews'])->middleware(['auth', 'admin'])->name('adminNews');
 Route::get('admin/meal-types', [AdminController::class, 'createMealTypes'])->middleware(['auth', 'admin'])->name('adminNews');
 Route::get('admin/dietary-types', [AdminController::class, 'createDietaryTypes'])->middleware(['auth', 'admin'])->name('adminNews');
+Route::get('admin/categories', [AdminController::class, 'createCategories'])->middleware(['auth', 'admin'])->name('adminNews');
 
 
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->middleware('admin');
@@ -45,6 +47,7 @@ Route::delete('/admin/meal-ingredients/{mealIngredient}', [AdminController::clas
 Route::delete('/admin/news/{news}', [AdminController::class, 'destroyNews'])->middleware('admin');
 Route::delete('/admin/meal-types/{mealType}', [AdminController::class, 'destroyMealType'])->middleware('admin');
 Route::delete('/admin/dietary-types/{dietaryType}', [AdminController::class, 'destroyDietaryType'])->middleware('admin');
+Route::delete('/admin/categories/{category}', [AdminController::class, 'destroyCategory'])->middleware('admin');
 
 
 Route::get('/admin/users/{user}/edit', [AdminController::class, 'editUser'])->middleware('admin');
@@ -54,6 +57,7 @@ Route::get('/admin/meal-ingredients/{mealIngredient}/edit', [AdminController::cl
 Route::get('/admin/news/{news}/edit', [AdminController::class, 'editNews'])->middleware('admin');
 Route::get('/admin/meal-types/{mealType}/edit', [AdminController::class, 'editMealType'])->middleware('admin');
 Route::get('/admin/dietary-types/{dietaryType}/edit', [AdminController::class, 'editDietaryType'])->middleware('admin');
+Route::get('/admin/categories/{category}/edit', [AdminController::class, 'editCategory'])->middleware('admin');
 
 
 Route::patch('/admin/users/{user}', [AdminController::class, 'updateUser'])->middleware('admin');
@@ -63,20 +67,25 @@ Route::patch('/admin/meal-ingredients/{mealIngredient}', [AdminController::class
 Route::patch('/admin/news/{news}', [AdminController::class, 'updateNews'])->middleware('admin');
 Route::patch('/admin/meal-types/{mealType}', [AdminController::class, 'updateMealType'])->middleware('admin');
 Route::patch('/admin/dietary-types/{dietaryType}', [AdminController::class, 'updateDietaryType'])->middleware('admin');
+Route::patch('/admin/categories/{category}', [AdminController::class, 'updateCategory'])->middleware('admin');
 
 
 Route::get('/admin/ingredients/create', [AdminController::class, 'newIngredient'])->middleware('admin');
 Route::get('/admin/meal-ingredients/create', [AdminController::class, 'newMealIngredient'])->middleware('admin');
 Route::get('/admin/meals/create', [AdminController::class, 'newMeal'])->middleware('admin');
+Route::get('/admin/news/create', [AdminController::class, 'newNews'])->middleware('admin');
 Route::get('/admin/meal-types/create', [AdminController::class, 'newMealType'])->middleware('admin');
 Route::get('/admin/dietary-types/create', [AdminController::class, 'newDietaryType'])->middleware('admin');
+Route::get('/admin/categories/create', [AdminController::class, 'newCategory'])->middleware('admin');
 
 
 Route::post('/admin/ingredients/create', [AdminController::class, 'storeNewIngredient'])->middleware('admin');
 Route::post('/admin/meal-ingredients/create', [AdminController::class, 'storeNewMealIngredient'])->middleware('admin');
 Route::post('/admin/meals/create', [AdminController::class, 'storeNewMeal'])->middleware('admin');
+Route::post('/admin/news/create', [AdminController::class, 'storeNewNews'])->middleware('admin');
 Route::post('/admin/meal-types/create', [AdminController::class, 'storeNewMealType'])->middleware('admin');
 Route::post('/admin/dietary-types/create', [AdminController::class, 'storeNewDietaryType'])->middleware('admin');
+Route::post('/admin/categories/create', [AdminController::class, 'storeNewCategory'])->middleware('admin');
 
 
 Route::middleware('auth')->group(function () {

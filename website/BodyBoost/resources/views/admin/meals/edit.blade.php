@@ -121,5 +121,30 @@
             </form>
         </div>
     </div>
+
+    <script>
+        const profileImageInput = document.getElementById('thumbnail');
+        const imagePreview = document.getElementById('image_preview1');
+
+
+        profileImageInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = '#';
+                imagePreview.style.display = 'none';
+            }
+        });
+    </script>
+
 @endsection
 
