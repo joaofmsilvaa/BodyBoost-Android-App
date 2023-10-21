@@ -19,10 +19,12 @@ class NewsFactory extends Factory
     {
         return [
             'category_id' => Category::factory(),
+            'thumbnail' => 'images/logo.png',
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(),
             'excerpt' => $this->faker->sentence(10),
-            'body' => $this->faker->sentence(20)
+            'body' => $this->faker->sentence(20),
+            'source' => $this->faker->word()
         ];
     }
 }

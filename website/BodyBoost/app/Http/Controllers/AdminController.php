@@ -9,6 +9,7 @@ use App\Models\Ingredients;
 use App\Models\MealIngredients;
 use App\Models\MealType;
 use App\Models\DietaryTypes;
+use App\Models\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -88,10 +89,26 @@ class AdminController extends Controller
         ]);
     }
 
+    public function createCategories(){
+
+        $categories = Category::latest()
+            ->paginate(10);
+
+        return view('admin.categories.create', [
+            'categories' => $categories
+        ]);
+    }
+
     public function destroyUser(User $user){
         $user->delete();
 
         return back()->with('success', 'User Deleted');
+    }
+
+    public function destroyCategory(Category $category){
+        $category->delete();
+
+        return back()->with('success', 'Category Deleted');
     }
     public function destroyMeal(Meal $meal){
         $meal->delete();
@@ -129,6 +146,9 @@ class AdminController extends Controller
 
     public function editUser(User $user){
         return view('admin.users.edit', ['user' => $user]);
+    }
+    public function editCategory(Category $category){
+        return view('admin.categories.edit', ['category' => $category]);
     }
     public function editMeal(Meal $meal){
         return view('admin.meals.edit', ['meal' => $meal]);
@@ -191,6 +211,32 @@ class AdminController extends Controller
         return back()->with('success', 'Meal Updated');
 
     }
+
+    public function updateNews(News $news){
+
+        $attributes = request()->validate([
+            'title'=>'required',
+            'slug'=>'required',
+            'thumbnail' => ['image'],
+            'excerpt'=>['required', 'min:20', 'max:255' ],
+            'body'=>['required', 'min:20'],
+            'source'=>'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+        ]);
+
+        if(isset($attributes['thumbnail'])){
+            $storingPath = request()->file('thumbnail')->store('public/thumbnails');
+            $attributes['thumbnail'] = str_replace("public/", "",$storingPath);
+
+        }
+
+
+        $news->update($attributes);
+
+        return back()->with('success', 'News Updated');
+
+    }
+
     public function updateIngredient(Ingredients $ingredient){
         $attributes = request()->validate([
             'name'=>['required', 'min:4'],
@@ -199,6 +245,17 @@ class AdminController extends Controller
         $ingredient->update($attributes);
 
         return back()->with('success', 'Ingredient Updated');
+
+    }
+    public function updateCategory(Category $category){
+        $attributes = request()->validate([
+            'name'=>['required', 'min:4'],
+            'slug'=>['required', 'min:4'],
+        ]);
+
+        $category->update($attributes);
+
+        return back()->with('success', 'Category Updated');
 
     }
     public function updateMealIngredients(MealIngredients $mealIngredient){
@@ -249,12 +306,19 @@ class AdminController extends Controller
     public function newIngredient(){
         return view('admin.Ingredients.new');
     }
+    public function newCategory(){
+        return view('admin.categories.new');
+    }
     public function newMealIngredient(){
         return view('admin.MealIngredients.new');
     }
 
     public function newMeal(){
         return view('admin.Meals.new');
+    }
+
+    public function newNews(){
+        return view('admin.News.new');
     }
 
     public function newMealType(){
@@ -274,6 +338,16 @@ class AdminController extends Controller
         Ingredients::create($attributes);
 
         return back()->with('success', 'Ingredient created');
+    }
+    public function storeNewCategory(){
+        $attributes = request()->validate([
+            'name'=>['required', 'min:4'],
+            'slug'=>['required', 'min:4']
+        ]);
+
+        Category::create($attributes);
+
+        return back()->with('success', 'Category created');
     }
     public function storeNewMealIngredient(){
 
@@ -314,6 +388,30 @@ class AdminController extends Controller
         Meal::create($attributes);
 
         return back()->with('success', 'Meal created');
+
+    }
+
+    public function storeNewNews(){
+        $attributes = request()->validate([
+            'title'=>'required',
+            'slug'=>'required',
+            'thumbnail' => ['image'],
+            'excerpt'=>['required', 'min:20', 'max:255' ],
+            'body'=>['required', 'min:20'],
+            'source'=>'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+        ]);
+
+        if(isset($attributes['thumbnail'])){
+            $storingPath = request()->file('thumbnail')->store('public/thumbnails');
+            $attributes['thumbnail'] = str_replace("public/", "",$storingPath);
+
+        }
+
+
+        News::create($attributes);
+
+        return back()->with('success', 'News created');
 
     }
 

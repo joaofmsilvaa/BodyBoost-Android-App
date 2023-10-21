@@ -8,6 +8,14 @@
         <aside class="w-full mb-6">
             <div>
                 <ul class="flex">
+                    <h4 class="font-semibold">Users links:</h4>
+                    <li class="px-3">
+                        <a href="/admin/users" class="{{request()->is('admin/users') ? 'text-red-500' : ''}}">All Users</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="flex">
                     <h4 class="font-semibold">Meals links:</h4>
                     <li class="px-3">
                         <a href="/admin/meals" class="{{request()->is('admin/meals') ? 'text-red-500' : ''}}">All Meals</a>
@@ -28,18 +36,12 @@
             </div>
             <div>
                 <ul class="flex">
-                    <h4 class="font-semibold">Users links:</h4>
-                    <li class="px-3">
-                        <a href="/admin/users" class="{{request()->is('admin/users') ? 'text-red-500' : ''}}">All Users</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <ul class="flex">
                     <h4 class="font-semibold">News links:</h4>
                     <li class="px-3">
                         <a href="/admin/news" class="{{request()->is('admin/news') ? 'text-red-500' : ''}}">All News</a>
+                    </li>
+                    <li class="px-3">
+                        <a href="/admin/categories" class="{{request()->is('admin/categories') ? 'text-red-500' : ''}}">All Categories</a>
                     </li>
                 </ul>
             </div>
