@@ -32,7 +32,7 @@
                             </x-dropdown-item>
                         @endcan
 
-                        <x-dropdown-item href="/profile/{{auth()->user()->id}}" :active="request()->is('profile')">Profile
+                        <x-dropdown-item href="/profile" :active="request()->is('profile')">Profile
                         </x-dropdown-item>
                         <x-dropdown-item href="#" x-data="{}"
                                          @click.prevent="document.querySelector('#logout-form').submit()">Log out
