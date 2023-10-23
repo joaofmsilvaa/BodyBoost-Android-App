@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:gravity="center"
-    tools:context=".ProfileActivity">
+    tools:context=".views.ProfileActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Feed_classes.feedFragment" >
+    tools:context=".views.feedFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feedRecyclerView"

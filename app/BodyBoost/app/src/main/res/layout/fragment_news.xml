@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Exercise_classes.ExerciseFragment">
+    tools:context=".views.ExerciseFragment">
 
     <ImageView
         android:id="@+id/newsImageView2"

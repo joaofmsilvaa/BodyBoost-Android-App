@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.example.bodyboost.Feed_classes.feedFragment"
+        android:name="com.example.bodyboost.views.feedFragment"
         android:label="fragment_feed"
         tools:layout="@layout/fragment_feed" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.bodyboost.HomeFragment"
+        android:name="com.example.bodyboost.views.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <argument
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/nutricionFragment"
-        android:name="com.example.bodyboost.nutricion.nutricionFragment"
+        android:name="com.example.bodyboost.views.nutricionFragment"
         android:label="fragment_nutricion"
         tools:layout="@layout/fragment_nutricion" >
         <action
@@ -40,13 +40,13 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.bodyboost.Report_classes.ReportFragment"
+        android:name="com.example.bodyboost.views.ReportFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_report" />
 
     <fragment
         android:id="@+id/daysFragment"
-        android:name="com.example.bodyboost.Exercise_classes.DaysFragment"
+        android:name="com.example.bodyboost.views.DaysFragment"
         android:label="fragment_days"
         tools:layout="@layout/fragment_days" >
         <action
@@ -56,7 +56,7 @@
 
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.bodyboost.logInFragment"
+        android:name="com.example.bodyboost.views.logInFragment"
         android:label="fragment_logIn"
         tools:layout="@layout/activity_login" >
         <action
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/exerciseFragment"
-        android:name="com.example.bodyboost.Exercise_classes.ExerciseFragment"
+        android:name="com.example.bodyboost.views.ExerciseFragment"
         android:label="fragment_exercise"
         tools:layout="@layout/fragment_exercise" >
         <argument
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.bodyboost.Feed_classes.NewsFragment"
+        android:name="com.example.bodyboost.views.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news">
         <argument
@@ -84,7 +84,7 @@
 
     <fragment
         android:id="@+id/fragment_recipe"
-        android:name="com.example.bodyboost.nutricion.RecipeFragment"
+        android:name="com.example.bodyboost.views.RecipeFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_recipe">
         <argument
