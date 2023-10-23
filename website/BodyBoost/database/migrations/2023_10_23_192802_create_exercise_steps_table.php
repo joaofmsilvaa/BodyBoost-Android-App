@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workout_plan_able', function (Blueprint $table) {
+        Schema::create('exercise_steps', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exercise_id')->constrained()->cascadeOnDelete();
-            $table->integer('dayId');
-            $table->string('type');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workout_plan_able');
+        Schema::dropIfExists('exercise_steps_able');
     }
 };

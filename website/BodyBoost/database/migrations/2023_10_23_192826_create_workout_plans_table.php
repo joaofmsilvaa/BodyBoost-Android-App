@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Exercise;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,10 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exercise_steps_able', function (Blueprint $table) {
+        Schema::create('workout_plans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exercise_id')->constrained()->cascadeOnDelete();
-            $table->string('image');
+            $table->integer('dayId');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exercise_steps_able');
+        Schema::dropIfExists('workout_plan_able');
     }
 };
