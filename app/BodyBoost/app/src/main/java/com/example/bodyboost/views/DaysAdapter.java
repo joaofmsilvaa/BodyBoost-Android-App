@@ -60,7 +60,6 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
 
                 if (eventListener != null) eventListener.onDayClicked(currentDay, v);
 
-
             }
         });
 
