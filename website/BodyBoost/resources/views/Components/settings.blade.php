@@ -46,6 +46,25 @@
                 </ul>
             </div>
 
+
+            <div>
+                <ul class="flex">
+                    <h4 class="font-semibold">Workout links:</h4>
+                    <li class="px-3">
+                        <a href="/admin/exercises" class="{{request()->is('admin/exercises') ? 'text-red-500' : ''}}">All Exercises</a>
+                    </li>
+                    <li class="px-3">
+                        <a href="/admin/exercise-sets" class="{{request()->is('admin/exercise-sets') ? 'text-red-500' : ''}}">All Exercise Sets</a>
+                    </li>
+                    <li class="px-3">
+                        <a href="/admin/exercise-steps" class="{{request()->is('admin/exercise-steps') ? 'text-red-500' : ''}}">All Exercise Steps</a>
+                    </li>
+                    <li class="px-3">
+                        <a href="/admin/workout-plans" class="{{request()->is('admin/workout-plans') ? 'text-red-500' : ''}}">All Workout Plans</a>
+                    </li>
+                </ul>
+            </div>
+
         </aside>
     </div>
 
