@@ -16,11 +16,11 @@ class Exercise extends Model
 
     public function exerciseSet()
     {
-        return $this->belongsTo(ExerciseSet::class);
+        return $this->hasMany(ExerciseSet::class);
     }
 
     public function exerciseSteps()
     {
-        return $this->belongsToMany(ExerciseSteps::class);
+        return $this->hasMany(ExerciseSteps::class);
     }
 }

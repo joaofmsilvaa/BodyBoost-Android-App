@@ -16,7 +16,7 @@ class ExerciseSet extends Model
 
     public function exercises()
     {
-        return $this->hasMany(Exercise::class);
+        return $this->belongsTo(Exercise::class, 'exercise_id');
     }
 
     public function workoutPlan()
