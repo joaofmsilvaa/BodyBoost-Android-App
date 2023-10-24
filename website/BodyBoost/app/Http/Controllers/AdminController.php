@@ -10,6 +10,10 @@ use App\Models\MealIngredients;
 use App\Models\MealType;
 use App\Models\DietaryTypes;
 use App\Models\Category;
+use App\Models\Exercise;
+use App\Models\ExerciseSet;
+use App\Models\ExerciseSteps;
+use App\Models\WorkoutPlan;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -99,6 +103,47 @@ class AdminController extends Controller
         ]);
     }
 
+    public function createExercises(){
+
+        $exercises = Exercise::latest()
+            ->paginate(10);
+
+        return view('admin.exercises.create', [
+            'exercises' => $exercises
+        ]);
+    }
+
+    public function createExerciseSets(){
+
+        $exerciseSets = ExerciseSet::latest()
+            ->paginate(10);
+
+        return view('admin.exerciseSets.create', [
+            'exerciseSets' => $exerciseSets
+        ]);
+    }
+
+    public function createExerciseSteps(){
+
+        $exerciseSteps = ExerciseSteps::latest()
+            ->paginate(10);
+
+        return view('admin.exerciseSteps.create', [
+            'exerciseSteps' => $exerciseSteps
+        ]);
+    }
+
+    public function createWorkoutPlans(){
+
+        $workoutPlans = WorkoutPlan::latest()
+            ->paginate(10);
+
+        return view('admin.workoutPlans.create', [
+            'workoutPlans' => $workoutPlans
+        ]);
+    }
+
+
     public function destroyUser(User $user){
         $user->delete();
 
@@ -143,6 +188,30 @@ class AdminController extends Controller
         return back()->with('success', 'Dietary type deleted');
     }
 
+    public function destroyExercise(Exercise $exercise){
+        $exercise->delete();
+
+        return back()->with('success', 'Exercise deleted');
+    }
+
+    public function destroyExerciseSet(ExerciseSet $exerciseSet){
+        $exerciseSet->delete();
+
+        return back()->with('success', 'Exercise set deleted');
+    }
+
+    public function destroyExerciseStep(ExerciseSteps $exerciseSteps){
+        $exerciseSteps->delete();
+
+        return back()->with('success', 'Exercise steps deleted');
+    }
+
+    public function destroyWorkoutPlan(WorkoutPlan $workoutPlan){
+        $workoutPlan->delete();
+
+        return back()->with('success', 'Workout plan deleted');
+    }
+
 
     public function editUser(User $user){
         return view('admin.users.edit', ['user' => $user]);
@@ -169,6 +238,22 @@ class AdminController extends Controller
 
     public function editDietaryType(DietaryTypes $dietaryType){
         return view('admin.dietaryTypes.edit', ['dietaryType' => $dietaryType]);
+    }
+
+    public function editExercise(Exercise $exercise){
+        return view('admin.exercises.edit', ['exercise' => $exercise]);
+    }
+
+    public function editExerciseSet(ExerciseSet $exerciseSet){
+        return view('admin.exerciseSets.edit', ['exerciseSet' => $exerciseSet]);
+    }
+
+    public function editExerciseStep(ExerciseSteps $exerciseSteps){
+        return view('admin.exerciseSteps.edit', ['exerciseSteps' => $exerciseSteps]);
+    }
+
+    public function editWorkoutPlan(WorkoutPlan $workoutPlan){
+        return view('admin.workoutPlans.edit', ['workoutPlan' => $workoutPlan]);
     }
 
 
@@ -303,6 +388,75 @@ class AdminController extends Controller
 
     }
 
+
+    public function updateExercise(Exercise $exercise){
+
+        $attributes = request()->validate([
+            'exerciseName'=>'required',
+            'exerciseDescription'=>['required', 'min:20', 'max:255' ],
+        ]);
+
+        $exercise->update($attributes);
+
+        return back()->with('success', 'Exercise Updated');
+
+    }
+
+    public function updateExerciseSet(ExerciseSet $exerciseSet){
+
+        $attributes = request()->validate([
+            'dayId'=>['required'],
+            'orderIndex'=>'required',
+            'repetitions' => 'required',
+            'time' => 'required',
+            'exercise_id' => ['required', Rule::exists('exercises', 'id')],
+        ]);
+
+
+
+        $exerciseSet->update($attributes);
+
+        return back()->with('success', 'Exercise Set Updated');
+
+    }
+
+    public function updateExerciseStep(ExerciseSteps $exerciseSteps){
+
+        $attributes = request()->validate([
+            'thumbnail' => ['image'],
+            'exercise_id' => ['required', Rule::exists('exercises', 'id')],
+        ]);
+
+        if(isset($attributes['image'])){
+            $storingPath = request()->file('image')->store('public/thumbnails');
+            $attributes['image'] = str_replace("public/", "",$storingPath);
+
+        }
+
+
+        $exerciseSteps->update($attributes);
+
+        return back()->with('success', 'Exercise Step Updated');
+
+    }
+
+    public function updateWorkoutPlan(WorkoutPlan $workoutPlan){
+
+        $attributes = request()->validate([
+            'dayId'=>['required'],
+            'type'=>'required',
+            'exercise_id' => ['required', Rule::exists('exercises', 'id')],
+        ]);
+
+
+
+        $workoutPlan->update($attributes);
+
+        return back()->with('success', 'Workout plan Updated');
+
+    }
+
+
     public function newIngredient(){
         return view('admin.Ingredients.new');
     }
@@ -327,6 +481,22 @@ class AdminController extends Controller
 
     public function newDietaryType(){
         return view('admin.DietaryTypes.new');
+    }
+
+    public function newExercise(){
+        return view('admin.exercises.new');
+    }
+
+    public function newExerciseSet(){
+        return view('admin.exerciseSets.new');
+    }
+
+    public function newExerciseStep(){
+        return view('admin.exerciseSteps.new');
+    }
+
+    public function newWorkoutPlan(){
+        return view('admin.workoutPlans.new');
     }
 
 
@@ -436,6 +606,73 @@ class AdminController extends Controller
         DietaryTypes::create($attributes);
 
         return back()->with('success', 'Dietary type created');
+    }
+
+
+    public function storeNewExercise(){
+
+        $attributes = request()->validate([
+            'exerciseName'=>'required',
+            'exerciseDescription'=>['required', 'min:20', 'max:255' ],
+        ]);
+
+        Exercise::create($attributes);
+
+        return back()->with('success', 'Exercise created');
+
+    }
+
+    public function storeNewExerciseSet(){
+
+        $attributes = request()->validate([
+            'dayId'=>['required'],
+            'orderIndex'=>'required',
+            'repetitions' => 'required',
+            'time' => 'required',
+            'exercise_id' => ['required', Rule::exists('exercises', 'id')],
+        ]);
+
+
+
+        ExerciseSet::create($attributes);
+
+        return back()->with('success', 'Exercise Set created');
+
+    }
+
+    public function storeNewExerciseStep(){
+
+        $attributes = request()->validate([
+            'thumbnail' => ['image'],
+            'exercise_id' => ['required', Rule::exists('exercises', 'id')],
+        ]);
+
+        if(isset($attributes['image'])){
+            $storingPath = request()->file('image')->store('public/thumbnails');
+            $attributes['image'] = str_replace("public/", "",$storingPath);
+
+        }
+
+
+        ExerciseSteps::create($attributes);
+
+        return back()->with('success', 'Exercise Step created');
+
+    }
+
+    public function storeNewWorkoutPlan(){
+
+        $attributes = request()->validate([
+            'dayId'=>['required'],
+            'type'=>'required',
+            'exercise_id' => ['required', Rule::exists('exercises', 'id')],
+        ]);
+
+
+        WorkoutPlan::create($attributes);
+
+        return back()->with('success', 'Workout plan created');
+
     }
 
 }
