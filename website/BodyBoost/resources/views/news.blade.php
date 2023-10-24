@@ -31,6 +31,36 @@
     <script src="https://cdn.tiny.cloud/1/xjei76kbizfjo1f2974ozkdl8tkdjgb2jrmi8pvkjphg2uob/tinymce/6/tinymce.min.js"
             referrerpolicy="origin"></script>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <style>.carousel-container {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto; /* Center the carousel horizontally */
+            position: relative;
+            z-index: 0;
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel img {
+            object-fit: cover;
+            width: 1000px;
+            height: 300px;
+            margin: 0;
+        }
+
+        nav {
+            z-index: 40;
+        }</style>
+
+
+
 </head>
 <body class="antialiased">
 
@@ -49,10 +79,7 @@
 <section class="justify-center p-5 my-8">
     <div class="p-8 overflow-hidden mt-8 w-full">
         @if($news->count() > 0)
-            @foreach($news as $new)
-                <p class="my-3">{{$new->title}}</p>
-            @endforeach
-
+<x-news_carousel :news="$news"/>
         @else
             <p class="my-3 text-center">No news yet</p>
         @endif
@@ -64,5 +91,21 @@
 <x-footer/>
 
 </body>
+
+<script>
+    $(document).ready(function(){
+        $('.carousel').slick({
+            slidesToShow: 1,
+            slidesToSlide: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: false,
+            dots: true,
+            pauseOnFocus: false,
+            pauseOnHover: false,
+            pauseOnDotsHover: false,
+        });
+    });
+</script>
 
 </html>
