@@ -248,8 +248,8 @@ class AdminController extends Controller
         return view('admin.exerciseSets.edit', ['exerciseSet' => $exerciseSet]);
     }
 
-    public function editExerciseStep(ExerciseSteps $exerciseSteps){
-        return view('admin.exerciseSteps.edit', ['exerciseSteps' => $exerciseSteps]);
+    public function editExerciseStep(ExerciseSteps $exerciseStep){
+        return view('admin.exerciseSteps.edit', ['exerciseStep' => $exerciseStep]);
     }
 
     public function editWorkoutPlan(WorkoutPlan $workoutPlan){
@@ -641,9 +641,9 @@ class AdminController extends Controller
     }
 
     public function storeNewExerciseStep(){
-
+        dd(request());
         $attributes = request()->validate([
-            'thumbnail' => ['image'],
+            'image' => ['image'],
             'exercise_id' => ['required', Rule::exists('exercises', 'id')],
         ]);
 

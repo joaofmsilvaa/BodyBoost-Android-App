@@ -6,9 +6,9 @@
 
 @section('content')
     <div class="mt-8">
-        <x-settings heading="Manage Exercise Sets">
+        <x-settings heading="Manage Exercise steps">
             <div class="bg-red-500 p-2 rounded-full text-white mb-2 flex justify-center w-1/6">
-                <a href="/admin/exercise-sets/create">
+                <a href="/admin/exercise-steps/create">
                     Create Exercise Set
                 </a>
                 <div class="ml-2">
@@ -19,29 +19,17 @@
                     </svg>
                 </div>
             </div>
-            <div class="overflow-x-auto mt-4">
-                @if($exerciseSets->count() > 0)
+            <div class="overflow-x-auto">
+                @if($exerciseSteps->count() > 0)
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead
-                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 flex-1">
+                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 flex-1">
                         <tr>
                             <th scope="col" class="w-1/6 px-6 py-3">
                                 Id
                             </th>
                             <th scope="col" class="w-1/6 px-6 py-3">
                                 Exercise Id
-                            </th>
-                            <th scope="col" class="w-1/6 px-6 py-3">
-                                Day Id
-                            </th>
-                            <th scope="col" class="w-1/6 px-6 py-3">
-                                Order Index
-                            </th>
-                            <th scope="col" class="w-1/6 px-6 py-3">
-                                Repetitions
-                            </th>
-                            <th scope="col" class="w-1/6 px-6 py-3">
-                                Time
                             </th>
                             <th scope="col" class="w-1/6 px-6 py-3">
                                 Created At
@@ -55,41 +43,29 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($exerciseSets as $exerciseSet)
+                        @foreach($exerciseSteps as $exerciseStep)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p>{{$exerciseSet->id}}</p>
+                                    <p >{{$exerciseStep->id}}</p>
                                 </td>
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p>{{$exerciseSet->exercise_id}}</p>
+                                    <p>{{$exerciseStep->exercise_id}}</p>
                                 </td>
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p>{{$exerciseSet->dayId}}</p>
-                                </td>
-                                <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p>{{$exerciseSet->orderIndex}}</p>
-                                </td>
-                                <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p>{{$exerciseSet->repetitions}}</p>
-                                </td>
-                                <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p>{{$exerciseSet->time}}</p>
-                                </td>
-                                <td class="w-1/6 px-6 py-4">
-                                    <p class="text-sm">{{$exerciseSet->created_at}}</p>
+                                    <p>{{$exerciseStep->created_at}}</p>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="/admin/exercise-sets/{{$exerciseSet->id}}/edit"
+                                    <a href="/admin/exercise-steps/{{$exerciseStep->id}}/edit"
                                        class="text-blue-500 hover:text-blue-600">Edit</a>
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    <form action="/admin/exercise-sets/{{$exerciseSet->id}}" method="post">
+                                    <form action="/admin/exercise-steps/{{$exerciseStep->id}}" method="post">
                                         @csrf
                                         @method('DELETE')
 
                                         <button class="text-red-500 hover:text-red-600"
-                                                onclick="return confirm('By clicking \'ok\' you confirm that you are aware that the exercise \'{{$exerciseSet->exercises->name}} \'  will be removed from the exercise set \'{{$exerciseSet->id}}\'')">
+                                                onclick="return confirm('By clicking \'ok\' you confirm that you are aware that the step for the exercise \'{{$exerciseStep->exercises->name}}\' will be removed?')">
                                             Delete
                                         </button>
 
@@ -100,12 +76,14 @@
                         </tbody>
                     </table>
                 @else
-                    <p class="text-center text-lg text-gray-500">No Exercise sets yet. Come back later</p>
+                    <p class="text-center text-lg text-gray-500">No Meal steps yet. Come back later</p>
                 @endif
             </div>
+
             <div class="p-3">
-                {{$exerciseSets->links()}}
+                {{$exerciseSteps->links()}}
             </div>
+
         </x-settings>
     </div>
 
