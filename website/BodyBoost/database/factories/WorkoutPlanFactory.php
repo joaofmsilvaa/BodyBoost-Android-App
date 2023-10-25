@@ -22,6 +22,7 @@ class WorkoutPlanFactory extends Factory
             'exercise_id' => Exercise::factory(),
             'dayId' => fake()->numberBetween(1, 7),
             'type' => $this->faker->word(),
-            ];
+            'workoutId' => fake()->numberBetween(1, 100),
+        ];
     }
 }

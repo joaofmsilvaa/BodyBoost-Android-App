@@ -35,6 +35,14 @@
                 </div>
 
                 <div class="mt-3">
+                    <label for="workoutId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Workout plan id</label>
+                    <x-form.formInput name="workoutId" type="number" placeholder="1, 2, 3..."/>
+                    @error('workoutId')
+                    <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div class="mt-3">
                     <label for="dayId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Day Id</label>
                     <x-form.formInput name="dayId" type="number" placeholder="1 ( monday ), 2 ( tuesday )..."/>
                     @error('dayId')
