@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\ExerciseSet;
 use App\Models\ExerciseSteps;
+use App\Models\WorkoutPlan;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,5 +23,10 @@ class Exercise extends Model
     public function exerciseSteps()
     {
         return $this->hasMany(ExerciseSteps::class);
+    }
+
+    public function workoutPlans()
+    {
+        return $this->hasMany(WorkoutPlan::class);
     }
 }
