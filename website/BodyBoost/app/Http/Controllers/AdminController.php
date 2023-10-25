@@ -249,6 +249,7 @@ class AdminController extends Controller
     }
 
     public function editExerciseStep(ExerciseSteps $exerciseStep){
+
         return view('admin.exerciseSteps.edit', ['exerciseStep' => $exerciseStep]);
     }
 
@@ -641,7 +642,6 @@ class AdminController extends Controller
     }
 
     public function storeNewExerciseStep(){
-        dd(request());
         $attributes = request()->validate([
             'image' => ['image'],
             'exercise_id' => ['required', Rule::exists('exercises', 'id')],

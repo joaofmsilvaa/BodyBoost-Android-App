@@ -8,7 +8,7 @@
 
     <div class="flex justify-center mt-8 p-8">
         <div class="p-8 w-3/4 justify-center bg-gray-50 rounded-xl">
-            <h1 class="text-xl text-red-500">Edit meal</h1>
+            <h1 class="text-xl text-red-500">Edit Exercise step</h1>
             <form method="POST" action="/admin/exercise-steps/{{$exerciseStep->id}}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')

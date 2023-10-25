@@ -71,7 +71,7 @@ Route::get('/admin/categories/{category}/edit', [AdminController::class, 'editCa
 
 Route::get('/admin/exercises/{exercise}/edit', [AdminController::class, 'editExercise'])->middleware('admin');
 Route::get('/admin/exercise-sets/{exerciseSet}/edit', [AdminController::class, 'editExerciseSet'])->middleware('admin');
-Route::get('/admin/exercise-steps/{exerciseSteps}/edit', [AdminController::class, 'editExerciseStep'])->middleware('admin');
+Route::get('/admin/exercise-steps/{exerciseStep}/edit', [AdminController::class, 'editExerciseStep'])->middleware('admin');
 Route::get('/admin/workout-plans/{workoutPlan}/edit', [AdminController::class, 'editWorkoutPlan'])->middleware('admin');
 
 
