@@ -1,6 +1,6 @@
 @props(['news'])
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -32,7 +32,8 @@
             referrerpolicy="origin"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <style>.carousel-container {
@@ -60,26 +61,29 @@
         }</style>
 
 
-
 </head>
 <body class="antialiased">
 
 <x-navbar/>
 
-<section class="justify-center p-5 my-8">
-    <div class="p-8 overflow-hidden mt-8 w-full">
-        <div class="flex justify-center">
-            <h1 class="text-2xl font-semibold mt-5">Stay up to date with the most <span class="text-red-600">Up-To-Date</span> news related to <span class="text-red-600">Sports</span></h1>
-        </div>
+<section class="justify-center p-5 mt-8">
+    <div class="overflow-hidden w-full">
 
+        @if($news->count() > 1)
+            <x-news_carousel :news="$news"/>
+        @endif
         <x-search content="Find news about football, basketball, baseball..."/>
     </div>
 </section>
 
-<section class="justify-center p-5 my-8">
-    <div class="p-8 overflow-hidden mt-8 w-full">
+<section class="justify-center pb-5 px-5">
+    <div class="px-4 w-full">
         @if($news->count() > 0)
-<x-news_carousel :news="$news"/>
+            <div class="lg:grid lg:grid-cols-3 px-3">
+                @foreach($news as $new)
+                    <x-news_card :news="$new"/>
+                @endforeach
+            </div>
         @else
             <p class="my-3 text-center">No news yet</p>
         @endif
@@ -93,7 +97,7 @@
 </body>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.carousel').slick({
             slidesToShow: 1,
             slidesToSlide: 1,
