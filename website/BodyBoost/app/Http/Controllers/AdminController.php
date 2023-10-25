@@ -445,6 +445,7 @@ class AdminController extends Controller
 
         $attributes = request()->validate([
             'dayId'=>['required'],
+            'workoutId'=>['required'],
             'type'=>'required',
             'exercise_id' => ['required', Rule::exists('exercises', 'id')],
         ]);
@@ -664,6 +665,7 @@ class AdminController extends Controller
 
         $attributes = request()->validate([
             'dayId'=>['required'],
+            'workoutId'=>['required'],
             'type'=>'required',
             'exercise_id' => ['required', Rule::exists('exercises', 'id')],
         ]);
