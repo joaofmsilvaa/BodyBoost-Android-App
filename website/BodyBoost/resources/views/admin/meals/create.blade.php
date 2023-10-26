@@ -66,7 +66,7 @@
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <a href="/meals/{{$meal->slug}}">{{$meal->mealType->name}}</a>
                                 </td>
-                                <td class="w-1/12 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td class="w-6/12 px-6 py-4 font-medium text-gray-900 dark:text-white">
                                     <a href="/meals/{{$meal->slug}}">{{$meal->excerpt}}</a>
                                 </td>
                                 <td class="w-1/6 px-6 py-4">

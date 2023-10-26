@@ -8,8 +8,8 @@
 
     <div class="flex justify-center mt-8 p-8">
         <div class="p-8 w-3/4 justify-center bg-gray-50 rounded-xl">
-            <h1 class="text-xl text-red-500">Create Dietary type</h1>
-            <form method="POST" action="/admin/dietary-types/create" enctype="multipart/form-data">
+            <h1 class="text-xl text-red-500">Create Meal type</h1>
+            <form method="POST" action="/admin/meal-types/create" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
 
