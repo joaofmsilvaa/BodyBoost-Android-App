@@ -27,6 +27,7 @@ class MealFactory extends Factory
             'prep_time' => fake()->randomFloat(2, 10, 120),
             'cook_time' => fake()->randomFloat(2, 10, 180),
             'servings' => fake()->numberBetween(1, 10),
+            'calories' => fake()->numberBetween(1, 1000),
             'thumbnail' => 'images/logo.png',
             ];
     }

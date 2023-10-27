@@ -281,6 +281,7 @@ class AdminController extends Controller
             'prep_time'=>'required',
             'cook_time'=>'required',
             'servings'=>['required', 'min:1'],
+            'calories' => ['required', 'min:1'],
             'dietary_types_id' => ['required', Rule::exists('dietary_types', 'id')],
             'meal_types_id' => ['required', Rule::exists('meal_types', 'id')],
         ]);
@@ -546,6 +547,7 @@ class AdminController extends Controller
             'prep_time'=>'required',
             'cook_time'=>'required',
             'servings'=>['required', 'min:1'],
+            'calories' => ['required', 'min:1'],
             'dietary_types_id' => ['required', Rule::exists('dietary_types', 'id')],
             'meal_types_id' => ['required', Rule::exists('meal_types', 'id')],
         ]);

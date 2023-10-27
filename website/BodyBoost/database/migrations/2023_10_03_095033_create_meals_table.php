@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('prep_time', 5, 2);
             $table->decimal('cook_time', 5, 2);
             $table->integer('servings');
+            $table->integer('calories');
             $table->string('thumbnail');
             $table->timestamps();
         });

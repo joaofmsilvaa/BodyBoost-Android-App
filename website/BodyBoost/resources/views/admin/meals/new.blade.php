@@ -58,6 +58,8 @@
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Servings</label>
                 <x-form.formInput name="servings" placeholder="2,4,8..." type="number"/>
 
+                <label for="calories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Calories</label>
+                <x-form.formInput name="calories" placeholder="300,400..." type="number"/>
 
                 <div class="mr-2">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dietary

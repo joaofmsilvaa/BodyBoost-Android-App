@@ -68,6 +68,8 @@
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Servings</label>
                 <x-form.formInput name="servings" value="{{$meal->servings}}" type="number"/>
 
+                <label for="calories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">calories</label>
+                <x-form.formInput name="calories" value="{{$meal->calories}}" type="number"/>
 
                 <div class="mr-2">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dietary
