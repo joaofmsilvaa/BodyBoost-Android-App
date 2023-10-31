@@ -1,5 +1,6 @@
-package com.example.bodyboost.viewmodels;
+package com.example.bodyboost.models.databaseModels;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -14,7 +15,7 @@ import java.util.List;
 public interface ReportDao {
 
     @Query("SELECT * FROM report WHERE userId = :userId ORDER BY date DESC")
-    List<Report> getAll(int userId);
+    LiveData<List<Report>> getAll(int userId);
 
     @Query("SELECT * FROM report WHERE reportID = :id")
     Report getById(int id);

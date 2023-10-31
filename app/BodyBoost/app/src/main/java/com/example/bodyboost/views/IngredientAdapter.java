@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bodyboost.models.AppDatabase;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.Ingredients;
 import com.example.bodyboost.R;
 

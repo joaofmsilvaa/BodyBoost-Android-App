@@ -12,11 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bodyboost.models.AppDatabase;
-import com.example.bodyboost.viewmodels.DayWorkoutDao;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
+import com.example.bodyboost.models.databaseModels.DayWorkoutDao;
 import com.example.bodyboost.models.Days;
 import com.example.bodyboost.R;
-import com.example.bodyboost.viewmodels.UserCompletedDao;
+import com.example.bodyboost.models.databaseModels.UserCompletedDao;
 
 import java.util.List;
 

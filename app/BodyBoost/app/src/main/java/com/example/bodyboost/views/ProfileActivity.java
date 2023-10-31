@@ -19,15 +19,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.bodyboost.models.AppDatabase;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.R;
 import com.example.bodyboost.models.User;
 import com.example.bodyboost.models.UserCompleted;
-import com.example.bodyboost.viewmodels.UserCompletedDao;
-import com.example.bodyboost.viewmodels.UserDao;
+import com.example.bodyboost.models.databaseModels.UserCompletedDao;
+import com.example.bodyboost.models.databaseModels.UserDao;
 import com.example.bodyboost.models.UserPlan;
-import com.example.bodyboost.viewmodels.UserPlanDao;
-import com.example.bodyboost.viewmodels.WorkoutPlanDao;
+import com.example.bodyboost.models.databaseModels.UserPlanDao;
+import com.example.bodyboost.models.databaseModels.WorkoutPlanDao;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Arrays;

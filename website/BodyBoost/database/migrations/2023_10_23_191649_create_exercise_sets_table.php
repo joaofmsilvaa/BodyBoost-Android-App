@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('exercise_id')->constrained()->cascadeOnDelete();
             $table->integer('dayId');
+            $table->integer('exerciseSet_id');
             $table->integer('orderIndex');
             $table->integer('repetitions');
             $table->string('time')->nullable();

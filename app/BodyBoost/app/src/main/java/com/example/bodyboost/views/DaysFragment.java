@@ -14,10 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bodyboost.models.AppDatabase;
-import com.example.bodyboost.viewmodels.DaysDao;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
+import com.example.bodyboost.models.databaseModels.DaysDao;
 import com.example.bodyboost.R;
-import com.example.bodyboost.viewmodels.UserPlanDao;
+import com.example.bodyboost.models.databaseModels.UserPlanDao;
 
 /**
  * A simple {@link Fragment} subclass.

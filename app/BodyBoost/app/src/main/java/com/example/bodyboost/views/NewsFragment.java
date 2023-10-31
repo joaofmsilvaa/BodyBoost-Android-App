@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.bodyboost.models.AppDatabase;
-import com.example.bodyboost.viewmodels.FeedDao;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
+import com.example.bodyboost.models.databaseModels.FeedDao;
 import com.example.bodyboost.R;
 
 public class NewsFragment extends Fragment{

@@ -14,10 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.bodyboost.models.AppDatabase;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.Ingredients;
-import com.example.bodyboost.viewmodels.IngredientsDao;
-import com.example.bodyboost.viewmodels.MealsDao;
+import com.example.bodyboost.models.databaseModels.IngredientsDao;
+import com.example.bodyboost.models.databaseModels.MealsDao;
 import com.example.bodyboost.R;
 
 import java.util.List;

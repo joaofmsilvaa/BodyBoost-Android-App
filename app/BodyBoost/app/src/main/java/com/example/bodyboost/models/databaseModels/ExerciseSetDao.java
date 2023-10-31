@@ -1,4 +1,4 @@
-package com.example.bodyboost.viewmodels;
+package com.example.bodyboost.models.databaseModels;
 
 import androidx.room.Dao;
 import androidx.room.Query;

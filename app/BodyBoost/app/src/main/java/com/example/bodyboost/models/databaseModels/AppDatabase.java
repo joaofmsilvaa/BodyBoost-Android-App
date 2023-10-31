@@ -1,4 +1,4 @@
-package com.example.bodyboost.models;
+package com.example.bodyboost.models.databaseModels;
 
 import android.content.Context;
 
@@ -8,22 +8,23 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.bodyboost.viewmodels.DayWorkoutDao;
-import com.example.bodyboost.viewmodels.DaysDao;
-import com.example.bodyboost.viewmodels.ExerciseSetDao;
-import com.example.bodyboost.viewmodels.ExerciseStepsDao;
-import com.example.bodyboost.viewmodels.FeedDao;
-import com.example.bodyboost.viewmodels.IngredientsDao;
-import com.example.bodyboost.viewmodels.MealIngredientsDao;
-import com.example.bodyboost.viewmodels.MealsDao;
+import com.example.bodyboost.models.DayWorkout;
+import com.example.bodyboost.models.Days;
+import com.example.bodyboost.models.Exercise;
+import com.example.bodyboost.models.ExerciseSet;
+import com.example.bodyboost.models.ExerciseSteps;
+import com.example.bodyboost.models.Feed;
+import com.example.bodyboost.models.Ingredients;
+import com.example.bodyboost.models.MealIngredients;
+import com.example.bodyboost.models.Meals;
+import com.example.bodyboost.models.Report;
+import com.example.bodyboost.models.User;
+import com.example.bodyboost.models.UserCompleted;
+import com.example.bodyboost.models.UserPlan;
+import com.example.bodyboost.models.WorkoutPlan;
 import com.example.bodyboost.R;
-import com.example.bodyboost.viewmodels.ReportDao;
-import com.example.bodyboost.viewmodels.UserCompletedDao;
-import com.example.bodyboost.viewmodels.UserDao;
-import com.example.bodyboost.viewmodels.UserPlanDao;
-import com.example.bodyboost.viewmodels.WorkoutPlanDao;
 
-@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSteps.class ,ExerciseSet.class, WorkoutPlan.class, DayWorkout.class ,Feed.class, Meals.class, Ingredients.class, MealIngredients.class,User.class, UserPlan.class, UserCompleted.class}, version = 1)
+@Database(entities = {Report.class, Days.class, Exercise.class, ExerciseSteps.class , ExerciseSet.class, WorkoutPlan.class, DayWorkout.class , Feed.class, Meals.class, Ingredients.class, MealIngredients.class, User.class, UserPlan.class, UserCompleted.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ReportDao getReportDao();

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,15 +20,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bodyboost.models.AppDatabase;
 import com.example.bodyboost.R;
 import com.example.bodyboost.models.Report;
-import com.example.bodyboost.viewmodels.ReportDao;
-
+import com.example.bodyboost.viewmodels.ReportViewModel;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,17 +34,14 @@ import java.util.List;
 public class ReportFragment extends Fragment implements ReportAdapter.ReportAdapterEventListener {
 
     private ReportAdapter adapter;
-    private AppDatabase db;
-    private ReportDao reportDao;
+    private ReportViewModel viewModel;
+
     private TextView messageTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Obtain an instance of ReportDatabase and ReportDao
-        db = AppDatabase.getInstance(getContext());
-        reportDao = db.getReportDao();
-
+        viewModel = new ViewModelProvider(this).get(ReportViewModel.class);
     }
 
     @Override
@@ -59,14 +53,19 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
     public void onStart() {
         super.onStart();
 
-        List<Report> getAll = reportDao.getAll(HomeFragment.userId);
+        // Observe
+        viewModel.getReports(HomeFragment.userId).observe(this, reports -> {
 
-        if(getAll.size() > 0){
-            messageTextView.setText("");
-        }
-        else{
-            messageTextView.setText("You haven't inserted any weight");
-        }
+            if(reports.size() > 0){
+                messageTextView.setText("");
+            }
+            else{
+                messageTextView.setText("You haven't inserted any weight");
+            }
+
+
+            adapter.updateData(reports);
+        });
 
     }
 
@@ -93,7 +92,10 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                     String currentDate = sdf.format(new Date(currentDateMillis));
 
-                    reportDao.insert(new Report(0, HomeFragment.userId, weight, currentDateMillis));
+                    // Setup viewModel
+                    viewModel = new ViewModelProvider(getActivity()).get(ReportViewModel.class);
+
+                    viewModel.createReport(new Report(0, HomeFragment.userId, weight, currentDateMillis));
                     weightInput.setText("");
 
                     Toast.makeText(getContext(), "Report added", Toast.LENGTH_SHORT).show();
@@ -110,40 +112,43 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
 
         recyclerView.setLayoutManager(layoutManager);
 
-        List<Report> getAll = reportDao.getAll(HomeFragment.userId);
+        // Observe
+        viewModel.getReports(HomeFragment.userId).observe(getViewLifecycleOwner(), reports -> {
 
-        if(getAll.size() > 0){
-            messageTextView.setText("");
-        }
-        else{
-            messageTextView.setText("You haven't inserted any weight");
-        }
+            if(reports.size() > 0){
+                messageTextView.setText("");
+            }
+            else{
+                messageTextView.setText("You haven't inserted any weight");
+            }
 
-        adapter = new ReportAdapter(this, getAll);
+            adapter = new ReportAdapter(this, reports);
+            recyclerView.setAdapter(adapter);
+        });
 
-        recyclerView.setAdapter(adapter);
     }
 
     public void refreshFragment() {
+        // Observe
+        viewModel.getReports(HomeFragment.userId).observe(getViewLifecycleOwner(), reports -> {
 
-        adapter.updateData(reportDao.getAll(HomeFragment.userId));
+            if(reports.size() > 0){
+                messageTextView.setText("");
+            }
+            else{
+                messageTextView.setText("You haven't inserted any weight");
+            }
 
-        List<Report> getAll = reportDao.getAll(HomeFragment.userId);
+            adapter.updateData(reports);
+            adapter.notifyDataSetChanged();
 
-        if(getAll.size() > 0){
-            messageTextView.setText("");
-        }
-        else{
-            messageTextView.setText("You haven't inserted any weight");
-        }
-
-        adapter.notifyDataSetChanged();
+        });
     }
 
     @Override
     public void onCardLongClick(int reportId) {
-        this.reportDao = AppDatabase.getInstance(getActivity()).getReportDao();
-        Report report = this.reportDao.getById(reportId);
+
+        Report report = viewModel.getById(reportId);
 
         // 1. Instantiate an <code><a href="/reference/android/app/AlertDialog.Builder.html">AlertDialog.Builder</a></code> with its constructor
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -158,8 +163,7 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
 
                 Toast.makeText(getContext(),"Report deleted",Toast.LENGTH_SHORT).show();
 
-                reportDao.delete(report);
-                List<Report> newList = reportDao.getAll(report.getReportID());
+                viewModel.deleteReport(report);
                 refreshFragment();
                 dialog.dismiss();
             }

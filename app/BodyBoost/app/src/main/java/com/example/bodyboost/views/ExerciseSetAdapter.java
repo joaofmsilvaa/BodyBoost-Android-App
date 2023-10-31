@@ -14,13 +14,13 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.bodyboost.models.AppDatabase;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.Exercise;
 import com.example.bodyboost.models.ExerciseSet;
-import com.example.bodyboost.viewmodels.ExerciseSetDao;
-import com.example.bodyboost.viewmodels.ExerciseStepsDao;
+import com.example.bodyboost.models.databaseModels.ExerciseSetDao;
+import com.example.bodyboost.models.databaseModels.ExerciseStepsDao;
 import com.example.bodyboost.R;
-import com.example.bodyboost.viewmodels.UserCompletedDao;
+import com.example.bodyboost.models.databaseModels.UserCompletedDao;
 
 import java.util.List;
 

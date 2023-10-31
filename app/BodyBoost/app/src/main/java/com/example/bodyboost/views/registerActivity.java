@@ -1,6 +1,6 @@
 package com.example.bodyboost.views;
 
-import static com.example.bodyboost.viewmodels.Hash.hashPassword;
+import static com.example.bodyboost.models.databaseModels.Hash.hashPassword;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,15 +19,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bodyboost.models.AppDatabase;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.R;
 import com.example.bodyboost.models.User;
 import com.example.bodyboost.models.UserCompleted;
-import com.example.bodyboost.viewmodels.UserCompletedDao;
-import com.example.bodyboost.viewmodels.UserDao;
+import com.example.bodyboost.models.databaseModels.UserCompletedDao;
+import com.example.bodyboost.models.databaseModels.UserDao;
 import com.example.bodyboost.models.UserPlan;
-import com.example.bodyboost.viewmodels.UserPlanDao;
-import com.example.bodyboost.viewmodels.WorkoutPlanDao;
+import com.example.bodyboost.models.databaseModels.UserPlanDao;
+import com.example.bodyboost.models.databaseModels.WorkoutPlanDao;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Arrays;

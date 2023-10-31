@@ -13,14 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.bodyboost.models.AppDatabase;
-import com.example.bodyboost.viewmodels.DaysDao;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
+import com.example.bodyboost.models.databaseModels.DaysDao;
 import com.example.bodyboost.models.Exercise;
-import com.example.bodyboost.viewmodels.ExerciseSetDao;
+import com.example.bodyboost.models.databaseModels.ExerciseSetDao;
 import com.example.bodyboost.R;
-import com.example.bodyboost.viewmodels.UserCompletedDao;
-import com.example.bodyboost.viewmodels.UserPlanDao;
-import com.example.bodyboost.viewmodels.WorkoutPlanDao;
+import com.example.bodyboost.models.databaseModels.UserCompletedDao;
+import com.example.bodyboost.models.databaseModels.UserPlanDao;
+import com.example.bodyboost.models.databaseModels.WorkoutPlanDao;
 
 import java.util.List;
 

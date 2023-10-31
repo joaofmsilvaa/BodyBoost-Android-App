@@ -21,6 +21,7 @@ class ExerciseSetFactory extends Factory
             'exercise_id' => Exercise::factory(),
             'dayId' => fake()->numberBetween(1, 7),
             'orderIndex' => fake()->numberBetween(1, 20),
+            'exerciseSet_id' => fake()->numberBetween(1,20),
             'repetitions' => fake()->numberBetween(1, 20),
             'time' => fake()->numberBetween(1, 200),
         ];

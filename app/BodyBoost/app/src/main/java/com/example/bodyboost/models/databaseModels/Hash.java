@@ -1,4 +1,4 @@
-package com.example.bodyboost.viewmodels;
+package com.example.bodyboost.models.databaseModels;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

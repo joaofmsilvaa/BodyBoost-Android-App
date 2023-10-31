@@ -1,6 +1,6 @@
 package com.example.bodyboost.views;
 
-import static com.example.bodyboost.viewmodels.Hash.hashPassword;
+import static com.example.bodyboost.models.databaseModels.Hash.hashPassword;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,9 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bodyboost.models.AppDatabase;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.R;
-import com.example.bodyboost.viewmodels.UserDao;
+import com.example.bodyboost.models.databaseModels.UserDao;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {

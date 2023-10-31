@@ -12,9 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bodyboost.models.AppDatabase;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.Meals;
-import com.example.bodyboost.viewmodels.MealsDao;
+import com.example.bodyboost.models.databaseModels.MealsDao;
 import com.example.bodyboost.R;
 
 import java.util.List;

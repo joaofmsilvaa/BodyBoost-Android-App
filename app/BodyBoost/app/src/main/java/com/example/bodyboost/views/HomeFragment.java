@@ -17,10 +17,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.bodyboost.models.AppDatabase;
-import com.example.bodyboost.viewmodels.DaysDao;
+import com.example.bodyboost.models.databaseModels.AppDatabase;
+import com.example.bodyboost.models.databaseModels.DaysDao;
 import com.example.bodyboost.R;
-import com.example.bodyboost.viewmodels.UserCompletedDao;
+import com.example.bodyboost.models.databaseModels.UserCompletedDao;
 
 import java.util.Calendar;
 
