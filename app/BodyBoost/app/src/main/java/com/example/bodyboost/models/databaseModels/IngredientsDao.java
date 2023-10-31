@@ -1,5 +1,6 @@
 package com.example.bodyboost.models.databaseModels;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Query;
 
@@ -11,6 +12,6 @@ import java.util.List;
 public interface IngredientsDao {
 
     @Query("SELECT ingredients.* FROM ingredients, MealIngredients WHERE mealsId = :mealsId AND MealIngredients.ingredientsId = ingredients.ingredientsId")
-    List<Ingredients> getIngredientsById(int mealsId);
+    LiveData<List<Ingredients>> getIngredientsById(int mealsId);
 
 }

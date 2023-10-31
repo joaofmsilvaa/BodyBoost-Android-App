@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,8 @@ import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.models.databaseModels.MealsDao;
 import com.example.bodyboost.R;
+import com.example.bodyboost.viewmodels.MealsViewModel;
+import com.example.bodyboost.viewmodels.ReportViewModel;
 
 import java.util.List;
 
@@ -27,18 +30,14 @@ import java.util.List;
 public class nutricionFragment extends Fragment {
 
     private MealsAdapter adapter;
-    private AppDatabase db;
 
-    private MealsDao mealsDao;
-
+    private MealsViewModel viewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Obtain an instance of AppDatabase and DaysDao
-        db = AppDatabase.getInstance(getContext());
 
-        mealsDao = db.getMealsDao();
+        viewModel = new ViewModelProvider(this).get(MealsViewModel.class);
 
     }
 
@@ -59,9 +58,12 @@ public class nutricionFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        List<Meals> getAll = mealsDao.getAll();
-        adapter = new MealsAdapter(getAll);
 
-        recyclerView.setAdapter(adapter);
+        viewModel.getMeals().observe(getViewLifecycleOwner(), meals -> {
+
+            adapter = new MealsAdapter(meals);
+            recyclerView.setAdapter(adapter);
+        });
+
     }
 }

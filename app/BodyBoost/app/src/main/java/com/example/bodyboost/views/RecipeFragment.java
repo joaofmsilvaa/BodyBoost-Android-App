@@ -1,9 +1,12 @@
 package com.example.bodyboost.views;
+
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,20 +17,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.Ingredients;
 import com.example.bodyboost.models.databaseModels.IngredientsDao;
 import com.example.bodyboost.models.databaseModels.MealsDao;
 import com.example.bodyboost.R;
+import com.example.bodyboost.viewmodels.IngredientsViewModel;
+import com.example.bodyboost.viewmodels.MealsViewModel;
 
 import java.util.List;
 
-public class RecipeFragment extends Fragment{
+public class RecipeFragment extends Fragment {
 
-    private AppDatabase db;
-    private MealsDao mealsDao;
     private IngredientAdapter adapter;
-    private IngredientsDao ingredientsDao;
+    private MealsViewModel mealsViewModel;
+    private IngredientsViewModel ingredientsViewModel;
     Context context;
 
     @Override
@@ -35,11 +40,10 @@ public class RecipeFragment extends Fragment{
         super.onCreate(savedInstanceState);
 
         this.context = this.getContext();
+        mealsViewModel = new ViewModelProvider(this).get(MealsViewModel.class);
+        ingredientsViewModel = new ViewModelProvider(this).get(IngredientsViewModel.class);
 
-        // Obtain an instance of AppDatabase and DaysDao
-        db = AppDatabase.getInstance(getContext());
-        mealsDao = db.getMealsDao();
-        ingredientsDao = db.getIngredientsDao();
+
     }
 
     @Override
@@ -62,11 +66,12 @@ public class RecipeFragment extends Fragment{
         TextView fullRecipe = view.findViewById(R.id.recipeTextView);
         TextView caloriesTextView = view.findViewById(R.id.caloriesTextView2);
 
-        Glide.with(context).load(mealsDao.getMealsImgById(mealsId)).into(mealImageView);
-        recipeName.setText(mealsDao.getMealsNameById(mealsId));
-        fullRecipe.setText(mealsDao.getRecipeById(mealsId));
-        caloriesTextView.setText(mealsDao.getCaloriesById(mealsId) + " cal");
+        Meals meal = mealsViewModel.getById(mealsId);
 
+        Glide.with(context).load(meal.getMealImage()).into(mealImageView);
+        recipeName.setText(meal.getMealName());
+        fullRecipe.setText(meal.getMealRecipe());
+        caloriesTextView.setText(meal.getCalories() + " cal");
 
         RecyclerView recyclerView = view.findViewById(R.id.ingredientsRecyclerView);
 
@@ -74,11 +79,13 @@ public class RecipeFragment extends Fragment{
 
         recyclerView.setLayoutManager(layoutManager);
 
-        List<Ingredients> allIngredientsInMeal = ingredientsDao.getIngredientsById(mealsId);
-        adapter = new IngredientAdapter(allIngredientsInMeal);
+        ingredientsViewModel.getIngredientsForMeal(mealsId).observe(getViewLifecycleOwner(), ingredients -> {
 
-        recyclerView.setAdapter(adapter);
+            adapter = new IngredientAdapter(ingredients);
 
+            recyclerView.setAdapter(adapter);
+
+        });
 
     }
 
