@@ -43,4 +43,13 @@ public class Feed {
     public String getNewsImg() {
         return newsImg;
     }
+    public String getNewsDate(){
+        return newsDate;
+    }
+    public String getSourceWebsite(){
+        return sourceWebsite;
+    }
+    public String getSourceLink(){
+        return sourceLink;
+    }
 }

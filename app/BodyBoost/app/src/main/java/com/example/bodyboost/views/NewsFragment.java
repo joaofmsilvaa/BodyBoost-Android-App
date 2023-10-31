@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,35 +16,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.bodyboost.models.Feed;
+import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.databaseModels.FeedDao;
 import com.example.bodyboost.R;
+import com.example.bodyboost.viewmodels.NewsViewModel;
 
 public class NewsFragment extends Fragment{
 
-    private AppDatabase db;
-    private FeedDao feedDao;
-
-
     Context context;
+    private NewsViewModel viewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         this.context = this.getContext();
-
-        // Obtain an instance of AppDatabase and DaysDao
-        db = AppDatabase.getInstance(getContext());
-        feedDao = db.getFeedDao();
+        viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_news, container, false);
     }
@@ -61,21 +58,22 @@ public class NewsFragment extends Fragment{
         TextView newsDateTextView = view.findViewById(R.id.newsDateTextView2);
         TextView newsWebsiteNameTextView = view.findViewById(R.id.websiteNameTextView);
 
-        Glide.with(context).load(feedDao.getNewsImgById(newsId)).into(newsImageView);
-        newsTitle.setText(feedDao.getNewsTitleById(newsId));
-        newsSmallDescription.setText(feedDao.getNewsSmallDesById(newsId));
-        newsFullDescription.setText(feedDao.getFullDesById(newsId));
-        newsDateTextView.setText(feedDao.getNewsDateById(newsId));
-        newsWebsiteNameTextView.setText("Source: " + feedDao.getWebsiteById(newsId));
+        Feed news = viewModel.getById(newsId);
+
+        Glide.with(context).load(news.getNewsImg()).into(newsImageView);
+        newsTitle.setText(news.getNewsTitle());
+        newsSmallDescription.setText(news.getNewsSmallDescription());
+        newsFullDescription.setText(news.getNewsFullDescription());
+        newsDateTextView.setText(news.getNewsDate());
+        newsWebsiteNameTextView.setText("Source: " + news.getSourceWebsite());
 
         newsWebsiteNameTextView.setPaintFlags(newsWebsiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-
 
         newsWebsiteNameTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent viewIntent =
                         new Intent("android.intent.action.VIEW",
-                                Uri.parse(feedDao.getSourceLinkById(newsId)));
+                                Uri.parse(news.getSourceLink()));
                 context.startActivity(viewIntent);
             }
         });
@@ -84,7 +82,7 @@ public class NewsFragment extends Fragment{
             public void onClick(View v) {
                 Intent viewIntent =
                         new Intent("android.intent.action.VIEW",
-                                Uri.parse(feedDao.getSourceLinkById(newsId)));
+                                Uri.parse(news.getSourceLink()));
                 context.startActivity(viewIntent);
             }
         });
