@@ -43,7 +43,6 @@ public class RecipeFragment extends Fragment {
         mealsViewModel = new ViewModelProvider(this).get(MealsViewModel.class);
         ingredientsViewModel = new ViewModelProvider(this).get(IngredientsViewModel.class);
 
-
     }
 
     @Override

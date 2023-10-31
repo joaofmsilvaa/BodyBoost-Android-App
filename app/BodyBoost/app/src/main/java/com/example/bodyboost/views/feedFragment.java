@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.Feed;
 import com.example.bodyboost.models.databaseModels.FeedDao;
 import com.example.bodyboost.R;
+import com.example.bodyboost.viewmodels.MealsViewModel;
+import com.example.bodyboost.viewmodels.NewsViewModel;
 
 import java.util.List;
 
@@ -27,15 +30,13 @@ import java.util.List;
 public class feedFragment extends Fragment {
 
     private FeedAdapter adapter;
-    private AppDatabase db;
-    private FeedDao feedDao;
+    private NewsViewModel viewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Obtain an instance of ReportDatabase and ReportDao
-        db = AppDatabase.getInstance(getContext());
-        feedDao = db.getFeedDao();
+
+        viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
 
     }
 
@@ -60,9 +61,10 @@ public class feedFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        List<Feed> getAll = feedDao.getAll();
-        adapter = new FeedAdapter(getAll);
+        viewModel.getNews().observe(getViewLifecycleOwner(), news -> {
 
-        recyclerView.setAdapter(adapter);
+            adapter = new FeedAdapter(news);
+            recyclerView.setAdapter(adapter);
+        });
     }
 }

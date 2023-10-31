@@ -1,9 +1,11 @@
 package com.example.bodyboost.models.databaseModels;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Query;
 
 import com.example.bodyboost.models.Feed;
+import com.example.bodyboost.models.Meals;
 
 import java.util.List;
 
@@ -11,20 +13,10 @@ import java.util.List;
 public interface FeedDao {
 
     @Query("SELECT * FROM feed")
-    List<Feed> getAll();
+    LiveData<List<Feed>> getAll();
 
-
-    @Query("SELECT newsTitle FROM feed WHERE feedId = :newsId")
-    String getNewsTitleById(int newsId);
-
-    @Query("SELECT newsSmallDescription FROM feed WHERE feedId = :newsId")
-    String getNewsSmallDesById(int newsId);
-
-    @Query("SELECT newsFullDescription FROM feed WHERE feedId = :newsId")
-    String getFullDesById(int newsId);
-
-    @Query("SELECT newsImg FROM feed WHERE feedId = :newsId")
-    String getNewsImgById(int newsId);
+    @Query("SELECT * FROM feed WHERE feedId = :id")
+    Feed getById(int id);
 
     @Query("SELECT newsDate FROM feed WHERE feedId = :newsId")
     String getNewsDateById(int newsId);
