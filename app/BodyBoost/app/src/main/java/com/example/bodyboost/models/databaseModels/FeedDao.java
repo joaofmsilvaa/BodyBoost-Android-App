@@ -18,13 +18,4 @@ public interface FeedDao {
     @Query("SELECT * FROM feed WHERE feedId = :id")
     Feed getById(int id);
 
-    @Query("SELECT newsDate FROM feed WHERE feedId = :newsId")
-    String getNewsDateById(int newsId);
-
-    @Query("SELECT sourceWebsite FROM feed WHERE feedId = :newsId")
-    String getWebsiteById(int newsId);
-
-    @Query("SELECT sourceLink FROM feed WHERE feedId = :newsId")
-    String getSourceLinkById(int newsId);
-
 }

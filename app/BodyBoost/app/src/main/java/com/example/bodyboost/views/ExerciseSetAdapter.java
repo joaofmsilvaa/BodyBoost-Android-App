@@ -11,16 +11,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.Exercise;
 import com.example.bodyboost.models.ExerciseSet;
-import com.example.bodyboost.models.databaseModels.ExerciseSetDao;
-import com.example.bodyboost.models.databaseModels.ExerciseStepsDao;
 import com.example.bodyboost.R;
-import com.example.bodyboost.models.databaseModels.UserCompletedDao;
+import com.example.bodyboost.viewmodels.ExerciseSetViewModel;
+import com.example.bodyboost.viewmodels.ExerciseStepsViewModel;
+import com.example.bodyboost.viewmodels.UserCompletedViewModel;
 
 import java.util.List;
 
@@ -30,10 +31,18 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
     private List<Exercise> exerciseList;
     private Context context;
     private ExerciseSetAdapterEventListener eventListener;
+    private UserCompletedViewModel userCompletedViewModel;
+    private ExerciseSetViewModel exerciseSetViewModel;
+    private ExerciseStepsViewModel exerciseStepsViewModel;
 
     private int currentImg = 0;
 
     public ExerciseSetAdapter(ExerciseSetAdapterEventListener eventListener, int dayId ,List<Exercise> exerciseList, Context context) {
+        userCompletedViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(UserCompletedViewModel.class);
+        exerciseSetViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(ExerciseSetViewModel.class);
+        userCompletedViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(UserCompletedViewModel.class);
+        exerciseStepsViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(ExerciseStepsViewModel.class);
+
         this.eventListener = eventListener;
         this.day = dayId;
         this.exerciseList = exerciseList;
@@ -49,19 +58,14 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ExerciseSetAdapter.MyViewHolder holder, int position) {
-        AppDatabase db = AppDatabase.getInstance(context);
-        UserCompletedDao userCompletedDao = db.getUserCompletedDao();
-        ExerciseSetDao exerciseSetDao = db.getExerciseSetDao();
-        ExerciseStepsDao exerciseStepsDao = db.getExerciseStepsDao();
-
         Exercise exercise = exerciseList.get(position);
 
-        ExerciseSet getExerciseInfos = exerciseSetDao.getInfosForExercise(exercise.getExerciseId());
+        ExerciseSet getExerciseInfos = exerciseSetViewModel.getInfosForExercise(exercise.getExerciseId());
 
         holder.exerciseNameTextView.setText(exercise.getExerciseName());
         holder.exerciseDescTextView.setText(exercise.getExerciseDescription());
 
-        List<String> exerciseStepImages = exerciseStepsDao.getExerciseSteps(exercise.getExerciseId());
+        List<String> exerciseStepImages = exerciseStepsViewModel.getExerciseSteps(exercise.getExerciseId());
 
         Glide.with(holder.context).load(R.drawable.chairdips_1).into(holder.exerciseImageView);
         holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow_disabled));
@@ -78,7 +82,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         }
 
         if (holder.weightCard != null) {
-            if (userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId()) == 1) {
+            if (userCompletedViewModel.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId()) == 1) {
                 holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_completed) );
             } else {
                 holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_uncompleted) );
@@ -88,15 +92,15 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
         holder.exerciseDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int test = userCompletedDao.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId());
+                int test = userCompletedViewModel.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId());
 
                 if (test == 1) {
 
-                    userCompletedDao.updateExerciseCompleted(0,day,HomeFragment.userId,exercise.getExerciseId());
+                    userCompletedViewModel.updateExerciseCompleted(0,day,HomeFragment.userId,exercise.getExerciseId());
                     eventListener.onExerciseCompleted();
                 } else {
 
-                    userCompletedDao.updateExerciseCompleted(1,day,HomeFragment.userId,exercise.getExerciseId());
+                    userCompletedViewModel.updateExerciseCompleted(1,day,HomeFragment.userId,exercise.getExerciseId());
                     eventListener.onExerciseCompleted();
                 }
             }

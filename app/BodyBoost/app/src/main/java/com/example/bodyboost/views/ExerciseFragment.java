@@ -24,6 +24,8 @@ import com.example.bodyboost.models.databaseModels.WorkoutPlanDao;
 
 import java.util.List;
 
+// To-do Convert to MVVM
+
 public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.ExerciseSetAdapterEventListener {
     private int userId;
     private ExerciseSetAdapter adapter;
@@ -73,7 +75,7 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
 
         int planId = userPlanDao.getUserPlanById(userId);
 
-        List<Exercise> getExercisesForUser = userCompletedDao.getExercisesForUser(userId, day, planId);
+        List<Exercise> getExercisesForUser = userCompletedDao.getExercisesForUser2(userId, day, planId);
         adapter = new ExerciseSetAdapter(this, day ,getExercisesForUser, getContext());
         recyclerView.setAdapter(adapter);
     }
