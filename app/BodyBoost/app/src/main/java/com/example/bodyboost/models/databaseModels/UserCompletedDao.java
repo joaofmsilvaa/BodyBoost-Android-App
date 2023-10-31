@@ -1,4 +1,5 @@
 package com.example.bodyboost.models.databaseModels;
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -16,7 +17,14 @@ public interface UserCompletedDao {
             "WHERE userId = :userId AND usercompleted.dayId = :dayId AND exercise.exerciseId = usercompleted.exerciseId " +
             "AND workoutplan.exerciseId = exercise.exerciseId AND workoutplan.planId = :planId " +
             "AND workoutplan.dayId = userCompleted.dayId AND workoutplan.exerciseId = userCompleted.exerciseId")
-    List<Exercise> getExercisesForUser(int userId, int dayId, int planId);
+    LiveData<List<Exercise>> getExercisesForUser(int userId, int dayId, int planId);
+
+    @Query("SELECT exercise.* " +
+            "FROM exercise, usercompleted, workoutplan " +
+            "WHERE userId = :userId AND usercompleted.dayId = :dayId AND exercise.exerciseId = usercompleted.exerciseId " +
+            "AND workoutplan.exerciseId = exercise.exerciseId AND workoutplan.planId = :planId " +
+            "AND workoutplan.dayId = userCompleted.dayId AND workoutplan.exerciseId = userCompleted.exerciseId")
+    List<Exercise> getExercisesForUser2(int userId, int dayId, int planId);
 
     @Query("SELECT count(userCompletedId) FROM exercise,UserCompleted WHERE userId = :userId AND dayId = :dayId AND exercise.exerciseId = UserCompleted.exerciseId")
     int countExercisesForUser(int userId, int dayId);

@@ -1,5 +1,6 @@
 package com.example.bodyboost.models.databaseModels;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Query;
 
