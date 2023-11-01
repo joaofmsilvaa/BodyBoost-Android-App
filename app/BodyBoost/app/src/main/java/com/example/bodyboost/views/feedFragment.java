@@ -12,21 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bodyboost.models.databaseModels.AppDatabase;
-import com.example.bodyboost.models.Feed;
-import com.example.bodyboost.models.databaseModels.FeedDao;
 import com.example.bodyboost.R;
-import com.example.bodyboost.viewmodels.MealsViewModel;
 import com.example.bodyboost.viewmodels.NewsViewModel;
 
-import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link feedFragment} factory method to
- * create an instance of this fragment.
- */
 public class feedFragment extends Fragment {
 
     private FeedAdapter adapter;

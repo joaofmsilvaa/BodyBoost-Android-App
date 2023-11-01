@@ -18,16 +18,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.R;
 import com.example.bodyboost.models.User;
 import com.example.bodyboost.models.UserCompleted;
-import com.example.bodyboost.models.databaseModels.UserCompletedDao;
-import com.example.bodyboost.models.databaseModels.UserDao;
 import com.example.bodyboost.models.UserPlan;
-import com.example.bodyboost.models.databaseModels.UserPlanDao;
-import com.example.bodyboost.models.databaseModels.WorkoutPlanDao;
+import com.example.bodyboost.viewmodels.UserCompletedViewModel;
+import com.example.bodyboost.viewmodels.UserPlanViewModel;
+import com.example.bodyboost.viewmodels.UserViewModel;
+import com.example.bodyboost.viewmodels.WorkoutViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Arrays;
@@ -36,10 +37,11 @@ import java.util.List;
 public class ProfileActivity extends AppCompatActivity {
 
     private AppDatabase db;
-    private UserDao userDao;
-    private UserPlanDao userPlanDao;
-    private UserCompletedDao userCompletedDao;
-    private WorkoutPlanDao workoutPlanDao;
+    private UserViewModel userViewModel;
+    private UserPlanViewModel userPlanViewModel;
+    private UserCompletedViewModel userCompletedViewModel;
+    private WorkoutViewModel workoutViewModel;
+
     private EditText username;
     private AutoCompleteTextView goal;
     private EditText weight;
@@ -51,11 +53,10 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        db = AppDatabase.getInstance(this);
-        userDao = db.getUserDao();
-        userPlanDao = db.getUserPlanDao();
-        userCompletedDao = db.getUserCompletedDao();
-        workoutPlanDao = db.getWorkoutPlanDao();
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        userPlanViewModel = new ViewModelProvider(this).get(UserPlanViewModel.class);
+        userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
+        workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
 
         username = findViewById(R.id.usernameEditText);
         goal = findViewById(R.id.goalsACT);
@@ -63,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
         height = findViewById(R.id.heightEditText);
         saveChangesBtn = findViewById(R.id.button3);
 
-        User user = userDao.getUserById(userId);
+        User user = userViewModel.getUserById(userId);
         username.setText(user.getUsername());
 
         String[] goalsArray = {"Lose weight", "Gain mass"};
@@ -126,8 +127,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if (isSidebarVisible) {
                     navigationView.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     navigationView.setVisibility(View.GONE);
                 }
             }
@@ -155,44 +155,42 @@ public class ProfileActivity extends AppCompatActivity {
                 float updatedWeight = Float.parseFloat(weight.getText().toString());
                 float updatedHeight = Float.parseFloat(height.getText().toString());
 
-                int usernameExists = userDao.isUsernameAvailable(updatedUsername);
+                int usernameExists = userViewModel.isUsernameAvailable(updatedUsername);
 
                 if (usernameExists < 1 || updatedUsername.equals(user.getUsername())) {
                     user.setUsername(updatedUsername);
-                }
-                else if(usernameExists == 1){
+                } else if (usernameExists == 1) {
                     Toast.makeText(ProfileActivity.this, "This username is already taken", Toast.LENGTH_SHORT).show();
                 }
 
                 user.setWeight(updatedWeight);
                 user.setHeight(updatedHeight);
 
-                if(!updatedGoal.equals(userDao.userGoal(userId))){
+                if (!updatedGoal.equals(userViewModel.userGoal(userId))) {
 
                     user.setObjective(updatedGoal);
-                    userDao.updateUser(user);
+                    userViewModel.updateUser(user);
 
-                    userCompletedDao.deleteByUserId(userId);
-                    userPlanDao.deletePlanByUserId(userId);
+                    userCompletedViewModel.deleteByUserId(userId);
+                    userPlanViewModel.deletePlanByUserId(userId);
 
                     int planValue = updatedGoal.equalsIgnoreCase("lose weight") ? 1 : 2;
 
                     UserPlan userPlan = new UserPlan(userId, planValue);
-                    userPlanDao.insert(userPlan);
+                    userPlanViewModel.insert(userPlan);
 
                     List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
                     for (int day : daysOfWeek) {
-                        List<Integer> exerciseIds = workoutPlanDao.getExercisesInDay(planValue, day);
+                        List<Integer> exerciseIds = workoutViewModel.getExercisesInDay(planValue, day);
                         for (int exerciseId : exerciseIds) {
                             UserCompleted userCompleted = new UserCompleted(0, userId, day, exerciseId, false);
-                            userCompletedDao.insert(userCompleted);
+                            userCompletedViewModel.insert(userCompleted);
                         }
                     }
 
-                }
-                else{
+                } else {
 
-                    userDao.updateUser(user);
+                    userViewModel.updateUser(user);
                 }
 
                 Toast.makeText(ProfileActivity.this, "Changes saved", Toast.LENGTH_SHORT).show();
@@ -213,4 +211,4 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    }
+}

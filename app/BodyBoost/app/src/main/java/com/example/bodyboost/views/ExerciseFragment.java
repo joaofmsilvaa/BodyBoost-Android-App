@@ -14,29 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.bodyboost.models.User;
 import com.example.bodyboost.models.databaseModels.AppDatabase;
-import com.example.bodyboost.models.databaseModels.DaysDao;
 import com.example.bodyboost.models.Exercise;
-import com.example.bodyboost.models.databaseModels.ExerciseSetDao;
 import com.example.bodyboost.R;
-import com.example.bodyboost.models.databaseModels.UserCompletedDao;
-import com.example.bodyboost.models.databaseModels.UserPlanDao;
-import com.example.bodyboost.models.databaseModels.WorkoutPlanDao;
 import com.example.bodyboost.viewmodels.DaysViewModel;
-import com.example.bodyboost.viewmodels.MealsViewModel;
 import com.example.bodyboost.viewmodels.UserCompletedViewModel;
 import com.example.bodyboost.viewmodels.UserPlanViewModel;
 import com.example.bodyboost.viewmodels.WorkoutViewModel;
-
 import java.util.List;
 
-// Todo: Convert to MVVM
 
 public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.ExerciseSetAdapterEventListener {
     private int userId;
     private ExerciseSetAdapter adapter;
-    private AppDatabase db;
     private int day;
     private DaysViewModel daysViewModel;
     private WorkoutViewModel workoutViewModel;
@@ -47,8 +37,6 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Obtain an instance of AppDatabase and DaysDao
-        db = AppDatabase.getInstance(getContext());
         userPlanViewModel = new ViewModelProvider(this).get(UserPlanViewModel.class);
         userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
         workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);

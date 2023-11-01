@@ -25,6 +25,14 @@ public class UserPlanViewModel extends AndroidViewModel {
     public int getUserPlanById(int userId) {
         return repository.getUserPlanById(userId);
     }
+
+    public void deletePlanByUserId(int userId){
+        repository.deletePlanByUserId(userId);
+    }
+
+    public void insert(UserPlan userPlan){
+        repository.insert(userPlan);
+    }
 }
 
 

@@ -18,9 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.R;
-import com.example.bodyboost.models.databaseModels.UserDao;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -33,8 +31,6 @@ public class homeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppDatabase db = AppDatabase.getInstance(this);
-        UserDao userDao = db.getUserDao();
         int userId = HomeFragment.userId;
 
         final NavigationView navigationView = findViewById(R.id.nav_view);

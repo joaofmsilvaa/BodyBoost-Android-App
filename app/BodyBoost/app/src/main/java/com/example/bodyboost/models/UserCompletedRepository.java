@@ -33,6 +33,26 @@ public class UserCompletedRepository {
         this.userCompletedDao.updateExerciseCompleted(value,dayId,userId,exerciseId);
     }
 
+    public int countExercisesForUser(int userId, int dayId) {
+        return this.userCompletedDao.countExercisesForUser(userId, dayId);
+    }
+
+    public int ammountCompleted(int userId, int dayId) {
+        return this.userCompletedDao.ammountCompleted(userId, dayId);
+    }
+
+    public int ammountOfExercisesInDay(int userId, int dayId) {
+        return this.userCompletedDao.ammountOfExercisesInDay(userId, dayId);
+    }
+
+    public void deleteByUserId(int userId){
+        this.userCompletedDao.deleteByUserId(userId);
+    }
+
+    public void insert(UserCompleted userCompleted){
+        this.userCompletedDao.insert(userCompleted);
+    }
+
 }
 
 

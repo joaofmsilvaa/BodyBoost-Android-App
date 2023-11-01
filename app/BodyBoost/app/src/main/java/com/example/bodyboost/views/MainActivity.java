@@ -3,6 +3,7 @@ package com.example.bodyboost.views;
 import static com.example.bodyboost.models.databaseModels.Hash.hashPassword;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,9 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.R;
-import com.example.bodyboost.models.databaseModels.UserDao;
+import com.example.bodyboost.viewmodels.UserViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     String usernameString;
     String passwordString;
 
+    private UserViewModel userViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is already logged in
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         if (isLoggedIn) {
 
@@ -71,18 +75,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signIn(View view) {
-        AppDatabase db = AppDatabase.getInstance(this);
-        UserDao userDao = db.getUserDao();
 
         usernameString = username.getText().toString();
         passwordString = password.getText().toString();
 
         if (usernameString.trim().length() > 0 && passwordString.trim().length() > 0) {
-            int userId = userDao.getUserId(usernameString);
+            int userId = userViewModel.getUserId(usernameString);
 
             String hashedInputPassword = hashPassword(passwordString);
 
-            int amountOfUsersWithCred = userDao.correspondingUsers(usernameString, hashedInputPassword);
+            int amountOfUsersWithCred = userViewModel.correspondingUsers(usernameString, hashedInputPassword);
 
             if (amountOfUsersWithCred == 1) {
 

@@ -13,20 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bodyboost.models.databaseModels.AppDatabase;
-import com.example.bodyboost.models.Meals;
-import com.example.bodyboost.models.databaseModels.MealsDao;
 import com.example.bodyboost.R;
 import com.example.bodyboost.viewmodels.MealsViewModel;
-import com.example.bodyboost.viewmodels.ReportViewModel;
 
-import java.util.List;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link nutricionFragment#} factory method to
- * create an instance of this fragment.
- */
 public class nutricionFragment extends Fragment {
 
     private MealsAdapter adapter;

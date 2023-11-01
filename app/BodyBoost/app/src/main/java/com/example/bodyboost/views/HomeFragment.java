@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +22,8 @@ import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.databaseModels.DaysDao;
 import com.example.bodyboost.R;
 import com.example.bodyboost.models.databaseModels.UserCompletedDao;
+import com.example.bodyboost.viewmodels.DaysViewModel;
+import com.example.bodyboost.viewmodels.UserCompletedViewModel;
 
 import java.util.Calendar;
 
@@ -35,9 +38,9 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     public ProgressBar progressBar;
     public TextView percentage;
 
+    private DaysViewModel daysViewModel;
+    private UserCompletedViewModel userCompletedViewModel;
 
-    private DaysDao daysDao;
-    private UserCompletedDao userCompletedDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,8 +52,8 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         this.userId = bundle.getInt(KEY_USER_ID, 0);
 
         AppDatabase db = AppDatabase.getInstance(requireContext());
-        daysDao = db.getDaysDao();
-        userCompletedDao = db.getUserCompletedDao();
+        daysViewModel = new ViewModelProvider(this).get(DaysViewModel.class);
+        userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
 
     }
 
@@ -64,8 +67,8 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        int ammountCompleted = userCompletedDao.ammountCompleted(userId,getCurrentDay());
-        int ammountOfExercisesInDay = userCompletedDao.ammountOfExercisesInDay(userId,getCurrentDay());
+        int ammountCompleted = userCompletedViewModel.ammountCompleted(userId,getCurrentDay());
+        int ammountOfExercisesInDay = userCompletedViewModel.ammountOfExercisesInDay(userId,getCurrentDay());
 
         percentage = view.findViewById(R.id.percentage);
         progressBar = view.findViewById(R.id.percentageBar);
@@ -85,7 +88,7 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
         daysRecyclerView.setLayoutManager(layoutManager);
 
-        DaysAdapter adapter = new DaysAdapter(this, daysDao.getCurrentDay(getCurrentDay()));
+        DaysAdapter adapter = new DaysAdapter(this, daysViewModel.getCurrentDay(getCurrentDay()));
 
         daysRecyclerView.setAdapter(adapter);
     }
@@ -138,13 +141,11 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
 
     public void updatePercentage() {
-        AppDatabase db = AppDatabase.getInstance(this.getContext());
-        UserCompletedDao userCompletedDao = db.getUserCompletedDao();
 
         TextView percentage = this.percentage;
 
-        int exercisesInDay = userCompletedDao.ammountOfExercisesInDay(userId, getCurrentDay());
-        int amountCompleted = userCompletedDao.ammountCompleted(userId, getCurrentDay());
+        int exercisesInDay = userCompletedViewModel.ammountOfExercisesInDay(userId, getCurrentDay());
+        int amountCompleted = userCompletedViewModel.ammountCompleted(userId, getCurrentDay());
 
         double percentageValue = (amountCompleted / (double) exercisesInDay) * 100;
         int percentageInt = (int) percentageValue;

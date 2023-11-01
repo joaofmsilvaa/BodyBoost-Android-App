@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,33 +14,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.bodyboost.models.databaseModels.AppDatabase;
-import com.example.bodyboost.models.databaseModels.DaysDao;
 import com.example.bodyboost.R;
-import com.example.bodyboost.models.databaseModels.UserPlanDao;
+import com.example.bodyboost.viewmodels.DaysViewModel;
+import com.example.bodyboost.viewmodels.UserPlanViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DaysFragment} factory method to
- * create an instance of this fragment.
- */
 public class DaysFragment extends Fragment implements DaysAdapter.DaysAdapterEventListener{
 
     private DaysAdapter adapter;
-    private AppDatabase db;
-    private DaysDao daysDao;
-    private UserPlanDao userPlanDao;
+    private DaysViewModel daysViewModel;
+    private UserPlanViewModel userPlanViewModel;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Obtain an instance of AppDatabase and DaysDao
-        db = AppDatabase.getInstance(getContext());
+        daysViewModel = new ViewModelProvider(this).get(DaysViewModel.class);
+        userPlanViewModel = new ViewModelProvider(this).get(UserPlanViewModel.class);
 
-        daysDao = db.getDaysDao();
-        userPlanDao = db.getUserPlanDao();
     }
 
     @Override
@@ -53,7 +44,7 @@ public class DaysFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        int planId = userPlanDao.getUserPlanById(HomeFragment.userId);
+        int planId = userPlanViewModel.getUserPlanById(HomeFragment.userId);
 
         RecyclerView recyclerView = view.findViewById(R.id.dayRecyclerView);
 
@@ -61,7 +52,7 @@ public class DaysFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new DaysAdapter(this,daysDao.getAll());
+        adapter = new DaysAdapter(this,daysViewModel.getAll());
 
         recyclerView.setAdapter(adapter);
     }
