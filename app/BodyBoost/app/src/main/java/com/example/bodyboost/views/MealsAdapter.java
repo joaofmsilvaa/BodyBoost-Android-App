@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
         holder.recipeDescTextView.setText(meals.getMealsShortDescription());
         holder.caloriesTextView.setText(meals.getCalories() + " cal");
 
-        Glide.with(holder.rootView.getContext()).load(meals.getMealImage()).into(holder.mealImageView);
+        Picasso.get().load(meals.getMealImage()).into(holder.mealImageView);
 
         holder.recipeCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

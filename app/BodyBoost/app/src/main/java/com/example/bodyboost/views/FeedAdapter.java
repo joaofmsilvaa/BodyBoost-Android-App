@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bodyboost.models.Feed;
 import com.example.bodyboost.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,9 +46,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         holder.websiteNameTextView.setText("Source: " + news.sourceWebsite);
 
         holder.websiteNameTextView.setPaintFlags(holder.websiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-
-
-        Glide.with(holder.rootView.getContext()).load(news.getNewsImg()).into(holder.newsImageView);
+        
+        Picasso.get().load(news.getNewsImg()).into(holder.newsImageView);
 
         holder.newsCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
