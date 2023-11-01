@@ -20,7 +20,7 @@ public class UserCompletedViewModel extends AndroidViewModel {
         // Initialize repository
         this.repository = new UserCompletedRepository(application.getApplicationContext());
     }
-    public LiveData<List<Exercise>> getExercisesForUser(int userId, int dayId, int planId) {
+    public List<Exercise> getExercisesForUser(int userId, int dayId, int planId) {
         return repository.getExercisesForUser(userId, dayId, planId);
     }
 

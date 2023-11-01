@@ -21,7 +21,7 @@ public class UserCompletedRepository {
         this.userCompletedDao = AppDatabase.getInstance(context).getUserCompletedDao();
     }
 
-    public LiveData<List<Exercise>> getExercisesForUser(int userId, int dayId, int planId) {
+    public List<Exercise> getExercisesForUser(int userId, int dayId, int planId) {
         return this.userCompletedDao.getExercisesForUser(userId, dayId, planId);
     }
 
