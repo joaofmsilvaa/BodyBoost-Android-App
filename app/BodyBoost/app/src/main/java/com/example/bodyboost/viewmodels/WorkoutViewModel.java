@@ -21,6 +21,10 @@ public class WorkoutViewModel extends AndroidViewModel {
     public List<Exercise> getExercises(int userId, int dayId) {
         return repository.getExercises(userId, dayId);
     }
+
+    public List<Integer> getExercisesInDay(int planValue, int dayId){
+        return repository.getExercisesInDay(planValue,dayId);
+    }
 }
 
 

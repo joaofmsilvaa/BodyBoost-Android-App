@@ -18,16 +18,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.R;
 import com.example.bodyboost.models.User;
 import com.example.bodyboost.models.UserCompleted;
-import com.example.bodyboost.models.databaseModels.UserCompletedDao;
-import com.example.bodyboost.models.databaseModels.UserDao;
 import com.example.bodyboost.models.UserPlan;
-import com.example.bodyboost.models.databaseModels.UserPlanDao;
-import com.example.bodyboost.models.databaseModels.WorkoutPlanDao;
+import com.example.bodyboost.viewmodels.UserCompletedViewModel;
+import com.example.bodyboost.viewmodels.UserPlanViewModel;
+import com.example.bodyboost.viewmodels.UserViewModel;
+import com.example.bodyboost.viewmodels.WorkoutViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Arrays;
@@ -35,16 +35,14 @@ import java.util.List;
 
 public class registerActivity extends AppCompatActivity {
 
-    private AppDatabase db;
-    private UserDao userDao;
-    private UserPlanDao userPlanDao;
-    private UserCompletedDao userCompletedDao;
-    private WorkoutPlanDao workoutPlanDao;
+    private UserCompletedViewModel userCompletedViewModel;
+    private WorkoutViewModel workoutViewModel;
+    private UserViewModel userViewModel;
+    private UserPlanViewModel userPlanViewModel;
 
 
     private EditText username;
     private EditText password;
-    private EditText goal;
     private EditText height;
     private EditText weight;
 
@@ -73,11 +71,10 @@ public class registerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        db = AppDatabase.getInstance(this);
-        userDao = db.getUserDao();
-        userPlanDao = db.getUserPlanDao();
-        userCompletedDao = db.getUserCompletedDao();
-        workoutPlanDao = db.getWorkoutPlanDao();
+        userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
+        workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        userPlanViewModel = new ViewModelProvider(this).get(UserPlanViewModel.class);
 
         autoCompleteTextView = findViewById(R.id.goalsACT);
         username = findViewById(R.id.usernameEditText);
@@ -140,7 +137,7 @@ public class registerActivity extends AppCompatActivity {
         heightString = height.getText().toString();
         weightString = weight.getText().toString();
 
-        int usernameAvailable = userDao.isUsernameAvailable(usernameString);
+        int usernameAvailable = userViewModel.isUsernameAvailable(usernameString);
 
         if(usernameString.trim().length() > 0 && passwordString.trim().length() > 0 && goalString.trim().length() > 0 && heightString.trim().length() > 0 && weightString.trim().length() > 0) {
             if (usernameAvailable > 0) {
@@ -153,23 +150,23 @@ public class registerActivity extends AppCompatActivity {
                 String hashedInputPassword = hashPassword(passwordString);
 
                 User user = new User(0, usernameString, hashedInputPassword, weightFloat, heightFloat, goalString);
-                userDao.insert(user);
+                userViewModel.insert(user);
 
-                int userId = userDao.getUserId(usernameString);
+                int userId = userViewModel.getUserId(usernameString);
 
                 int planValue = goalString.equals("lose weight") ? 1 : 2;
 
                 UserPlan userPlan = new UserPlan(userId, planValue);
 
-                userPlanDao.insert(userPlan);
+                userPlanViewModel.insert(userPlan);
 
                 for (int i = 0; i < daysOfWeek.size(); i++) {
-                    List<Integer> getExercisesInDay = workoutPlanDao.getExercisesInDay(planValue, i);
+                    List<Integer> getExercisesInDay = workoutViewModel.getExercisesInDay(planValue, i);
 
                     for (int exerciseId : getExercisesInDay) {
                         UserCompleted userCompleted = new UserCompleted(0, userId, i, exerciseId, false);
 
-                        userCompletedDao.insert(userCompleted);
+                        userCompletedViewModel.insert(userCompleted);
                     }
                 }
 

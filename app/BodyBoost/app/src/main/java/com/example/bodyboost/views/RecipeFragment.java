@@ -18,10 +18,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.bodyboost.models.Meals;
-import com.example.bodyboost.models.databaseModels.AppDatabase;
-import com.example.bodyboost.models.Ingredients;
-import com.example.bodyboost.models.databaseModels.IngredientsDao;
-import com.example.bodyboost.models.databaseModels.MealsDao;
 import com.example.bodyboost.R;
 import com.example.bodyboost.viewmodels.IngredientsViewModel;
 import com.example.bodyboost.viewmodels.MealsViewModel;

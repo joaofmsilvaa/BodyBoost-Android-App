@@ -26,6 +26,14 @@ public class DaysRepository {
         return this.daysDao.getDayByID(dayId);
     }
 
+    public List<Days> getAll(){
+        return this.daysDao.getAll();
+    }
+
+    public List<Days> getCurrentDay(int id){
+        return this.daysDao.getCurrentDay(id);
+    }
+
 }
 
 

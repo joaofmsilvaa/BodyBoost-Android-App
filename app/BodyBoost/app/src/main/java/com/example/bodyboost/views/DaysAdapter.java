@@ -10,13 +10,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bodyboost.models.DayWorkoutRepository;
 import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.databaseModels.DayWorkoutDao;
 import com.example.bodyboost.models.Days;
 import com.example.bodyboost.R;
 import com.example.bodyboost.models.databaseModels.UserCompletedDao;
+import com.example.bodyboost.viewmodels.DayWorkoutViewModel;
+import com.example.bodyboost.viewmodels.UserCompletedViewModel;
+import com.example.bodyboost.viewmodels.UserPlanViewModel;
 
 import java.util.List;
 
@@ -24,6 +30,9 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
 
     private DaysAdapterEventListener eventListener;
     private List<Days> daysList;
+    private UserCompletedViewModel userCompletedViewModel;
+    private UserPlanViewModel userPlanViewModel;
+    private DayWorkoutViewModel dayWorkoutViewModel;
 
     public DaysAdapter(DaysAdapterEventListener eventLister, List<Days> days) {
         this.eventListener = eventLister;
@@ -41,17 +50,17 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
     @Override
     public void onBindViewHolder(@NonNull DaysAdapter.DaysViewHolder holder, int position) {
         Days days = this.daysList.get(position);
-        AppDatabase db = AppDatabase.getInstance(holder.context);
-        UserCompletedDao userCompletedDao = db.getUserCompletedDao();
-        DayWorkoutDao dayWorkoutDao = db.getDayWorkoutDao();
+        userCompletedViewModel = new ViewModelProvider((ViewModelStoreOwner) holder.context).get(UserCompletedViewModel.class);
+        userPlanViewModel = new ViewModelProvider((ViewModelStoreOwner) holder.context).get(UserPlanViewModel.class);
+        dayWorkoutViewModel = new ViewModelProvider((ViewModelStoreOwner) holder.context).get(DayWorkoutViewModel.class);
 
-        int planForUser = db.getUserPlanDao().getUserPlanById(userId);
-        int numOfExercises = userCompletedDao.countExercisesForUser(userId,days.getDayId());
-        int ammountCompleted = userCompletedDao.ammountCompleted(userId, days.getDayId());
+        int planForUser = userPlanViewModel.getUserPlanById(userId);
+        int numOfExercises = userCompletedViewModel.countExercisesForUser(userId,days.getDayId());
+        int ammountCompleted = userCompletedViewModel.ammountCompleted(userId, days.getDayId());
 
         holder.daysTextView.setText(days.getDay());
         holder.countTextView.setText(ammountCompleted + " / " + numOfExercises);
-        holder.descriptionTextView.setText(dayWorkoutDao.getDescriptionByDayPlan(days.getDayId(),planForUser));
+        holder.descriptionTextView.setText(dayWorkoutViewModel.getDescriptionByDayPlan(days.getDayId(),planForUser));
 
         holder.dayCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

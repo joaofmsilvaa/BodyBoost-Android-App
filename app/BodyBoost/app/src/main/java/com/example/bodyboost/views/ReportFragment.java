@@ -26,11 +26,7 @@ import com.example.bodyboost.viewmodels.ReportViewModel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ReportFragment} factory method to
- * create an instance of this fragment.
- */
+
 public class ReportFragment extends Fragment implements ReportAdapter.ReportAdapterEventListener {
 
     private ReportAdapter adapter;

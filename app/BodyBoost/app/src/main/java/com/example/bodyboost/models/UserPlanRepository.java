@@ -28,6 +28,14 @@ public class UserPlanRepository {
         return this.userPlanDao.getUserPlanById(userId);
     }
 
+    public void deletePlanByUserId(int userId){
+        userPlanDao.deletePlanByUserId(userId);
+    }
+
+    public void insert(UserPlan userPlan){
+        userPlanDao.insert(userPlan);
+    }
+
 }
 
 

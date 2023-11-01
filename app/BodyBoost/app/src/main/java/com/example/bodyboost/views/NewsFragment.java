@@ -17,9 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.bodyboost.models.Feed;
-import com.example.bodyboost.models.Meals;
-import com.example.bodyboost.models.databaseModels.AppDatabase;
-import com.example.bodyboost.models.databaseModels.FeedDao;
+
 import com.example.bodyboost.R;
 import com.example.bodyboost.viewmodels.NewsViewModel;
 

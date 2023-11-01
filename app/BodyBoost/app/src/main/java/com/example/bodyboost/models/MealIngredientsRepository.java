@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.bodyboost.models.databaseModels.AppDatabase;
 import com.example.bodyboost.models.databaseModels.DaysDao;
+import com.example.bodyboost.models.databaseModels.MealIngredientsDao;
 import com.example.bodyboost.models.databaseModels.MealsDao;
 import com.example.bodyboost.models.databaseModels.UserCompletedDao;
 import com.example.bodyboost.models.databaseModels.WorkoutPlanDao;
@@ -15,23 +16,20 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class WorkoutRepository {
-    private WorkoutPlanDao workoutPlanDao;
+public class MealIngredientsRepository {
+    private MealIngredientsDao mealIngredientsDao;
     private Executor executor = Executors.newSingleThreadExecutor(); // To handle background tasks
 
-    public WorkoutRepository(Context context) {
-        this.workoutPlanDao = AppDatabase.getInstance(context).getWorkoutPlanDao();
+    public MealIngredientsRepository(Context context) {
+        this.mealIngredientsDao = AppDatabase.getInstance(context).getMealIngredientsDao();
     }
 
-    public List<Exercise> getExercises(int userId, int dayId) {
-        return this.workoutPlanDao.getExercises(userId, dayId);
-    }
-
-    public List<Integer> getExercisesInDay(int planValue, int dayId){
-        return this.workoutPlanDao.getExercisesInDay(planValue,dayId);
+    public String getQuantityById(int ingredientId) {
+        return this.mealIngredientsDao.getQuantityById(ingredientId);
     }
 
 }
+
 
 
 
