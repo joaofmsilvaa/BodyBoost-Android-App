@@ -12,15 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bodyboost.R;
+import com.example.bodyboost.models.MealResponse;
+import com.example.bodyboost.models.Meals;
+import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
+import com.example.bodyboost.models.retrofit.RetrofitClient;
 import com.example.bodyboost.viewmodels.MealsViewModel;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class nutricionFragment extends Fragment {
 
     private MealsAdapter adapter;
 
     private MealsViewModel viewModel;
+
+    private TextView textView18;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,17 +57,40 @@ public class nutricionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         RecyclerView recyclerView = view.findViewById(R.id.mealsRecyclerVIEW);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
         recyclerView.setLayoutManager(layoutManager);
 
+        textView18 = view.findViewById(R.id.textView18);
+        textView18.setText("");
 
-        viewModel.getMeals().observe(getViewLifecycleOwner(), meals -> {
+        JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
 
-            adapter = new MealsAdapter(meals);
-            recyclerView.setAdapter(adapter);
+        Call<MealResponse> call = service.getMeals();
+        call.enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                if (response.isSuccessful()) {
+                    MealResponse mealResponse = response.body();
+                    List<Meals> mealList = mealResponse.getData();
+
+                    adapter = new MealsAdapter(mealList);
+                    recyclerView.setAdapter(adapter);
+
+                    textView18.setText("");
+
+                } else {
+                    textView18.setText("Request failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MealResponse> call, Throwable t) {
+                textView18.setText(t + "");
+            }
         });
 
     }

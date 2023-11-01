@@ -21,7 +21,7 @@ public class MealsViewModel extends AndroidViewModel {
         this.repository = new MealsRepository(application.getApplicationContext());
     }
 
-    public LiveData<List<Meals>> getMeals() {
+    public List<Meals> getMeals() {
         return repository.getMeals();
     }
 
