@@ -10,7 +10,6 @@
     <string name="button6">Button3</string>
     <string name="_75">75%</string>
     <string name="_0">0</string>
-    <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up">SIGN UP</string>
     <string name="sign_in">SIGN IN</string>
     <string name="username">Username</string>
@@ -19,4 +18,18 @@
     <string name="register">REGISTER</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="log_in">LOG-IN</string>
+    <string name="don_t_have_an_account" translatable="false">Don\'t have an account?</string>
+    <string name="welcome_to_your_profile">Welcome to your profile</string>
+    <string name="height_m">height ( m )</string>
+    <string name="goal">Goal</string>
+    <string name="weight_kg">weight ( kg )</string>
+    <string name="your_credentials">Your credentials:</string>
+    <string name="save_changes">Save changes</string>
+    <string name="workout_days">Workout days</string>
+    <string name="news">News</string>
+    <string name="current_day_progress">Current day progress</string>
+    <string name="click_in_the_card_to_check_your_exercises_for_today">Click in the card to check your exercises for today</string>
+    <string name="recipes">Recipes</string>
+    <string name="insert_weight">INSERT WEIGHT</string>
+    <string name="you_haven_t_inserted_any_weight">You haven\'t inserted any weight</string>
 </resources>

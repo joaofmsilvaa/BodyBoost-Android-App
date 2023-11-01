@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BodyBoost</string>
+    <string name="don_t_have_an_account">Não tem uma conta?</string>
+    <string name="username">Nome</string>
+    <string name="password">Palavra-passe</string>
+    <string name="register">REGISTRAR</string>
+    <string name="already_have_an_account">Já tem uma conta?</string>
+    <string name="sign_up">Registrar</string>
+    <string name="sign_in">Entrar</string>
+    <string name="welcome_to_your_profile">Bem-vindo ao seu perfil</string>
+    <string name="height_m">Altura ( m )</string>
+    <string name="goal">Objetivo</string>
+    <string name="weight_kg">Peso ( kg )</string>
+    <string name="your_credentials">As suas credenciais:</string>
+    <string name="save_changes">Salvar alterações</string>
+    <string name="workout_days">Dias de treino</string>
+    <string name="news">Notícias</string>
+    <string name="current_day_progress">Progresso do dia atual</string>
+    <string name="click_in_the_card_to_check_your_exercises_for_today">Clica no cartão para ver os exercícios de hoje</string>
+    <string name="recipes">Receitas</string>
+    <string name="insert_weight">INSERIR PESO</string>
+    <string name="you_haven_t_inserted_any_weight">Ainda não inseriu nenhum peso</string>
+</resources>
