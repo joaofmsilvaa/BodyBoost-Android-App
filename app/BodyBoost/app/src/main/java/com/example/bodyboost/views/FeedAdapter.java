@@ -46,7 +46,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         holder.websiteNameTextView.setText("Source: " + news.sourceWebsite);
 
         holder.websiteNameTextView.setPaintFlags(holder.websiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-        
+
         Picasso.get().load(news.getNewsImg()).into(holder.newsImageView);
 
         holder.newsCard.setOnClickListener(new View.OnClickListener() {
