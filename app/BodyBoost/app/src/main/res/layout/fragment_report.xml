@@ -32,7 +32,7 @@
             android:id="@+id/weightIputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="WEIGHT"
+            android:hint="@string/weight_kg"
             android:textColor="?colorPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,7 +43,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="INSERT WEIGHT"
+        android:text="@string/insert_weight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/WeightTextInput" />
@@ -59,7 +59,7 @@
         android:id="@+id/textView3"
         android:layout_width="300dp"
         android:layout_height="80dp"
-        android:text="You haven't inserted any weight"
+        android:text="@string/you_haven_t_inserted_any_weight"
         android:textAlignment="center"
         android:textColor="@color/mainRed"
         android:textSize="24sp"

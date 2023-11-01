@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Welcome to your profile"
+        android:text="@string/welcome_to_your_profile"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView15"
@@ -102,7 +102,7 @@
             android:layout_gravity="center"
             android:background="#7A7A7A"
             android:gravity="center|fill_horizontal"
-            android:hint="height ( m )"
+            android:hint="@string/height_m"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
@@ -116,7 +116,7 @@
         android:layout_height="60dp"
         android:layout_marginBottom="24dp"
         android:baselineAligned="false"
-        android:hint="Goal"
+        android:hint="@string/goal"
         android:orientation="vertical"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
@@ -154,7 +154,7 @@
             android:gravity="center|fill_horizontal"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
             android:inputType="textFilter"
-            android:hint="Username"
+            android:hint="@string/username"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
@@ -177,7 +177,7 @@
             android:layout_gravity="center"
             android:background="#7A7A7A"
             android:gravity="center|fill_horizontal"
-            android:hint="weight ( kg )"
+            android:hint="@string/weight_kg"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
@@ -188,7 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Your credentials:"
+        android:text="@string/your_credentials"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
         app:layout_constraintEnd_toEndOf="@+id/usernameTextView"
@@ -198,7 +198,7 @@
         android:id="@+id/button3"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:text="Save changes"
+        android:text="@string/save_changes"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toEndOf="parent"

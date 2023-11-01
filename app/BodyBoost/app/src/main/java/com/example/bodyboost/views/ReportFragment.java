@@ -49,18 +49,13 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
     public void onStart() {
         super.onStart();
 
-        // Observe
         viewModel.getReports(HomeFragment.userId).observe(this, reports -> {
 
             if(reports.size() > 0){
                 messageTextView.setText("");
-            }
-            else{
-                messageTextView.setText("You haven't inserted any weight");
+                adapter.updateData(reports);
             }
 
-
-            adapter.updateData(reports);
         });
 
     }
@@ -114,9 +109,7 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
             if(reports.size() > 0){
                 messageTextView.setText("");
             }
-            else{
-                messageTextView.setText("You haven't inserted any weight");
-            }
+
 
             adapter = new ReportAdapter(this, reports);
             recyclerView.setAdapter(adapter);
