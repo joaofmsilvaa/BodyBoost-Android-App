@@ -33,7 +33,7 @@ class MealController extends Controller
     public function show(Meal $meal)
     {
 
-        $mealIngredients = $meal->mealIngredients()->orderBy('created_at', 'asc')->get();;
+        $mealIngredients = $meal->mealIngredients()->orderBy('created_at', 'asc')->get();
 
 
         return view('nutrition.show', compact('meal',  'mealIngredients'));
