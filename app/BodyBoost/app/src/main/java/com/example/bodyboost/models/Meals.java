@@ -2,15 +2,20 @@ package com.example.bodyboost.models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.Relation;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 @Entity
 public class Meals {
 
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
+    @SerializedName("id")
     int mealId;
+
     @SerializedName("name")
     String mealName;
 
@@ -44,9 +49,8 @@ public class Meals {
     }
 
     public String getMealImage() {
-        String baseThumbnailPath = "http://10.0.2.2:8000/storage/";
 
-        return baseThumbnailPath + mealImage;
+        return mealImage;
     }
 
     public int getCalories() {

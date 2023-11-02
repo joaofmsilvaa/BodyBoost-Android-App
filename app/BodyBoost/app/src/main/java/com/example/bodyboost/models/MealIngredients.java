@@ -2,25 +2,38 @@ package com.example.bodyboost.models;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Relation;
 
-@Entity(primaryKeys = {"mealsId", "ingredientsId"})
+import com.google.gson.annotations.SerializedName;
+
+@Entity(primaryKeys = {"mealId", "ingredientsId"})
 public class MealIngredients {
 
 
-    int mealsId;
+    @SerializedName("meal_id")
+    int mealId;
 
+    @SerializedName("ingredients_id")
     int ingredientsId;
 
+    int amount;
+
+    @SerializedName("measure")
     String quantity;
 
-    public MealIngredients(int mealsId, int ingredientsId, String quantity) {
-        this.mealsId = mealsId;
+
+    public MealIngredients() {}
+
+    public MealIngredients(int mealsId, int ingredientsId, int amount ,String quantity) {
+        this.mealId = mealsId;
         this.ingredientsId = ingredientsId;
         this.quantity = quantity;
+        this.amount = amount;
+
     }
 
     public int getMealsId() {
-        return mealsId;
+        return mealId;
     }
 
     public int getIngredientsId() {

@@ -41,11 +41,11 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
         holder.recipeDescTextView.setText(meals.getMealsShortDescription());
         holder.caloriesTextView.setText(meals.getCalories() + " cal");
 
-        Picasso.get().load(meals.getMealImage()).into(holder.mealImageView);
+        Picasso.get().load("http://10.0.2.2:8000/storage/" + meals.getMealImage()).into(holder.mealImageView);
 
         holder.recipeCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int selectedRecipe = holder.getAdapterPosition();
+                int selectedRecipe = meals.getMealId();
                 NavDirections action = com.example.bodyboost.views.nutricionFragmentDirections.actionNutricionFragmentToFragmentRecipe(selectedRecipe);
                 Navigation.findNavController(v).navigate(action);
             }

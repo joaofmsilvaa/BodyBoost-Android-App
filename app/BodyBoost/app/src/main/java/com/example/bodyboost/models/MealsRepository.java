@@ -32,27 +32,24 @@ public class MealsRepository {
         this.service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
     }
 
-    // Doesn't require executor since we're observing the list in our Activity
-    public List<Meals> getMeals() {
+    public void getMeals(Callback<MealResponse> callback) {
+        Call<MealResponse> call = service.getMeals();
+        call.enqueue(callback);
 
-        Call<MealResponse> call = this.service.getMeals();
-        call.enqueue(new Callback<MealResponse>() {
-            @Override
-            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
-                if (response.isSuccessful()) {
-                    MealResponse mealResponse = response.body();
-                    mealsList = mealResponse.getData();
+    }
 
+    public void insertMeals(List<Meals> meals) {
+        executor.execute(() -> {
+            for (Meals meal : meals) {
+                Meals existingMeal = mealsDao.getById(meal.getMealId());
+                if (existingMeal == null) {
+                    mealsDao.insertMeals(meal);
+                } else {
+                    mealsDao.deleteMeal(existingMeal);
+                    mealsDao.insertMeals(meal);
                 }
             }
-
-            @Override
-            public void onFailure(Call<MealResponse> call, Throwable t) {
-                mealsList = new ArrayList<>();
-            }
         });
-
-        return mealsList;
     }
 
     public Meals getById(int mealId){

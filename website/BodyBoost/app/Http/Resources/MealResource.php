@@ -27,8 +27,6 @@ class MealResource extends JsonResource
             'servings' => $this->servings,
             'calories' => $this->calories,
             'thumbnail' => $this->thumbnail,
-            'created_at' => $this->created_at,
-            'ingredients' => MealIngredients::where('meal_id', $this->id)->with('ingredients')->get()
-        ];
+            'created_at' => $this->created_at,];
     }
 }

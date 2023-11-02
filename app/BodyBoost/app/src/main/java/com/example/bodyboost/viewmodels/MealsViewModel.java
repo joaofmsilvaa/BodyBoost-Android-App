@@ -6,10 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.bodyboost.models.MealResponse;
 import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.models.MealsRepository;
 
 import java.util.List;
+
+import retrofit2.Callback;
 
 // Must extend AndroidViewModel since we will be accessing a database
 public class MealsViewModel extends AndroidViewModel {
@@ -21,12 +24,16 @@ public class MealsViewModel extends AndroidViewModel {
         this.repository = new MealsRepository(application.getApplicationContext());
     }
 
-    public List<Meals> getMeals() {
-        return repository.getMeals();
+    public void getMeals(Callback<MealResponse> callback) {
+        repository.getMeals(callback);
     }
 
     public Meals getById(int mealId) {
         return repository.getById(mealId);
+    }
+
+    public void insertMeals(List<Meals> mealsList){
+        repository.insertMeals(mealsList);
     }
 }
 

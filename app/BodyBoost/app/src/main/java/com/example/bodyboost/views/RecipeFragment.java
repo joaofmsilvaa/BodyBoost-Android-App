@@ -21,6 +21,7 @@ import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.R;
 import com.example.bodyboost.viewmodels.IngredientsViewModel;
 import com.example.bodyboost.viewmodels.MealsViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class RecipeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Stores the given argument ( an ID of the selected new ) in the newsId variable
+        // Stores the given argument ( an ID of the selected meal ) in the mealId variable
         int mealsId = com.example.bodyboost.views.RecipeFragmentArgs.fromBundle(getArguments()).getSelectedRecipe();
 
         ImageView mealImageView = view.findViewById(R.id.mealImageView2);
@@ -63,7 +64,8 @@ public class RecipeFragment extends Fragment {
 
         Meals meal = mealsViewModel.getById(mealsId);
 
-        Glide.with(context).load(meal.getMealImage()).into(mealImageView);
+        Picasso.get().load("http://10.0.2.2:8000/storage/" + meal.getMealImage()).into(mealImageView);
+
         recipeName.setText(meal.getMealName());
         fullRecipe.setText(meal.getMealRecipe());
         caloriesTextView.setText(meal.getCalories() + " cal");

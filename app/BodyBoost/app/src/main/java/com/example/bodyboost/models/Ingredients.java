@@ -2,10 +2,15 @@ package com.example.bodyboost.models;
 
 import androidx.room.Entity;
 
+import com.google.gson.annotations.SerializedName;
+
 @Entity(primaryKeys = {"ingredientsId"})
 public class Ingredients {
 
+    @SerializedName("id")
     int ingredientsId;
+
+    @SerializedName("name")
     String ingredientName;
 
     public Ingredients(int ingredientsId, String ingredientName) {
