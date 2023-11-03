@@ -31,6 +31,7 @@ public class Meals {
     @SerializedName("calories")
     int calories;
 
+
     public Meals(int mealId, String mealName, String mealsShortDescription , String mealImage ,String mealRecipe, int calories) {
         this.mealId = mealId;
         this.mealName = mealName;
@@ -38,6 +39,7 @@ public class Meals {
         this.mealImage = mealImage;
         this.mealRecipe = mealRecipe;
         this.calories = calories;
+
     }
 
     public int getMealId() {
@@ -64,4 +66,5 @@ public class Meals {
     public String getMealRecipe() {
         return mealRecipe;
     }
+
 }

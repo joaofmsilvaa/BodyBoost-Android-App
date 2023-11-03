@@ -78,7 +78,7 @@ public class nutricionFragment extends Fragment {
         textView18 = view.findViewById(R.id.textView18);
         textView18.setText("");
 
-        viewModel.getMeals(new Callback<MealResponse>() {
+        viewModel.fetchMeals(new Callback<MealResponse>() {
             @Override
             public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
                 if (response.isSuccessful()) {

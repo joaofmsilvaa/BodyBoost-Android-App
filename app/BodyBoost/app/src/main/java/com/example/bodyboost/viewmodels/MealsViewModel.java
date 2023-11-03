@@ -24,8 +24,12 @@ public class MealsViewModel extends AndroidViewModel {
         this.repository = new MealsRepository(application.getApplicationContext());
     }
 
-    public void getMeals(Callback<MealResponse> callback) {
-        repository.getMeals(callback);
+    public void fetchMeals(Callback<MealResponse> callback) {
+        repository.fetchMeals(callback);
+    }
+
+    public LiveData<List<Meals>> getMeals() {
+        return repository.getMeals();
     }
 
     public Meals getById(int mealId) {

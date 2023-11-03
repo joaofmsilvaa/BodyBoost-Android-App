@@ -32,10 +32,13 @@ public class MealsRepository {
         this.service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
     }
 
-    public void getMeals(Callback<MealResponse> callback) {
+    public void fetchMeals(Callback<MealResponse> callback) {
         Call<MealResponse> call = service.getMeals();
         call.enqueue(callback);
+    }
 
+    public LiveData<List<Meals>> getMeals(){
+        return mealsDao.getAll();
     }
 
     public void insertMeals(List<Meals> meals) {
