@@ -19,6 +19,8 @@ import com.example.bodyboost.R;
 import com.example.bodyboost.models.Ingredients;
 import com.example.bodyboost.models.IngredientsResponse;
 import com.example.bodyboost.models.MealIngredients;
+import com.example.bodyboost.models.MealIngredientsRepository;
+import com.example.bodyboost.models.MealIngredientsResponse;
 import com.example.bodyboost.models.MealResponse;
 import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
@@ -91,8 +93,9 @@ public class nutricionFragment extends Fragment {
                         getIngredientsForMeal(meal);
                     }
 
-                    adapter = new MealsAdapter(mealsList);
-                    recyclerView.setAdapter(adapter);
+                    for(Meals meal : mealsList){
+                        getMealIngredientsForMeal(meal);
+                    }
 
                 } else {
                     Toast.makeText(getContext(), "Request Failed", Toast.LENGTH_SHORT);
@@ -105,13 +108,18 @@ public class nutricionFragment extends Fragment {
             }
         });
 
+        viewModel.getMeals().observe(getViewLifecycleOwner(), meals -> {
+
+            adapter = new MealsAdapter(meals);
+            recyclerView.setAdapter(adapter);
+        });
 
     }
 
     private void getIngredientsForMeal(Meals meal) {
         JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
 
-        Call<IngredientsResponse> call = service.getIngredientsForMeal(meal.getMealId()); // Substitua 'getIngredientsForMeal' pelo endpoint correto da sua API.
+        Call<IngredientsResponse> call = service.getIngredientsForMeal(meal.getMealId());
         call.enqueue(new Callback<IngredientsResponse>() {
             @Override
             public void onResponse(Call<IngredientsResponse> call, Response<IngredientsResponse> response) {
@@ -119,7 +127,7 @@ public class nutricionFragment extends Fragment {
                     IngredientsResponse ingredientResponse = response.body();
                     List<Ingredients> ingredients = ingredientResponse.getData();
 
-                    onIngredientsReceived(ingredients, meal);
+                    onIngredientsReceived(ingredients);
                 } else {
                     Toast.makeText(getContext(), "Request Failed", Toast.LENGTH_SHORT).show();
                 }
@@ -132,27 +140,37 @@ public class nutricionFragment extends Fragment {
         });
     }
 
-    private void onIngredientsReceived(List<Ingredients> ingredients, Meals meal) {
+    private void onIngredientsReceived(List<Ingredients> ingredients) {
         ingredientsViewModel.insertIngredients(ingredients);
 
-        // Todo: Add mealIngredients relation
-        //List<MealIngredients> mealIngredientsList = createMealIngredientsForMeal(meal, ingredients);
-        //mealIngredientsViewModel.insertMealIngredients(mealIngredientsList);
+    }
+    private void onMealIngredientsReceived(List<MealIngredients> mealIngredients) {
+        mealIngredientsViewModel.insert(mealIngredients);
+
     }
 
-    /*private List<MealIngredients> createMealIngredientsForMeal(Meals meal, List<Ingredients> ingredients) {
-        List<MealIngredients> mealIngredientsList = new ArrayList<>();
 
-        for (Ingredients ingredient : ingredients) {
+    private void getMealIngredientsForMeal(Meals meal) {
+        JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
 
-            MealIngredients mealIngredient = new MealIngredients();
-            mealIngredient.setMealId(meal.getMealId());
-            mealIngredient.setIngredientId(ingredient.getIngredientId());
+        Call<MealIngredientsResponse> call = service.getMealIngredientsForMeal(meal.getMealId());
+        call.enqueue(new Callback<MealIngredientsResponse>() {
+            @Override
+            public void onResponse(Call<MealIngredientsResponse> call, Response<MealIngredientsResponse> response) {
+                if (response.isSuccessful()) {
+                    MealIngredientsResponse mealIngredientsResponse = response.body();
+                    List<MealIngredients> mealIngredients = mealIngredientsResponse.getData();
 
+                    onMealIngredientsReceived(mealIngredients);
+                } else {
+                    Toast.makeText(getContext(), "Request Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-            mealIngredientsList.add(mealIngredient);
-        }
-
-        return mealIngredientsList;
-    }*/
+            @Override
+            public void onFailure(Call<MealIngredientsResponse> call, Throwable t) {
+                Toast.makeText(getContext(), t + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

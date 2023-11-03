@@ -14,7 +14,7 @@ import java.util.List;
 @Dao
 public interface MealsDao {
 
-    @Query("SELECT * FROM Meals")
+    @Query("SELECT * FROM Meals ORDER BY mealId DESC")
     LiveData<List<Meals>> getAll();
 
     @Query("SELECT * FROM Meals WHERE mealId = :id")

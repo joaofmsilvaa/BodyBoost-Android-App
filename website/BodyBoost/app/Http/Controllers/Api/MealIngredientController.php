@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Resources\MealIngredientResource;
+use App\Models\MealIngredients;
+use Illuminate\Http\Request;
+
+class MealIngredientController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index($id)
+    {
+        $mealIngredients = MealIngredients::where('meal_Id', $id)->get();
+
+        if ($mealIngredients->isEmpty()) {
+            return response()->json(['message' => 'No mealIngredients found for the given mealId'], 404);
+        }
+
+        return MealIngredientResource::collection($mealIngredients);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(MealIngredients $mealIngredients)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(MealIngredients $mealIngredients)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, MealIngredients $mealIngredients)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(MealIngredients $mealIngredients)
+    {
+        //
+    }
+}

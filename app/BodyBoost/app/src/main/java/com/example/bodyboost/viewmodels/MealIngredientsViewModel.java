@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import com.example.bodyboost.models.Exercise;
+import com.example.bodyboost.models.MealIngredients;
 import com.example.bodyboost.models.MealIngredientsRepository;
 import com.example.bodyboost.models.WorkoutRepository;
 
@@ -21,6 +22,10 @@ public class MealIngredientsViewModel extends AndroidViewModel {
 
     public String getQuantityById(int ingredientsId) {
         return repository.getQuantityById(ingredientsId);
+    }
+
+    public void insert(List<MealIngredients> mealIngredients){
+        repository.insert(mealIngredients);
     }
 }
 

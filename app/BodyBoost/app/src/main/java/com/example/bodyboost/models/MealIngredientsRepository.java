@@ -28,6 +28,21 @@ public class MealIngredientsRepository {
         return this.mealIngredientsDao.getQuantityById(ingredientId);
     }
 
+    public void insert(List<MealIngredients> mealIngredients){
+
+        executor.execute(() -> {
+            for (MealIngredients ingredient : mealIngredients) {
+                MealIngredients existingMealIngred = mealIngredientsDao.getById(ingredient.getId());
+                if (existingMealIngred == null) {
+                    mealIngredientsDao.insert(ingredient);
+                } else {
+                    mealIngredientsDao.delete(existingMealIngred);
+                    mealIngredientsDao.insert(ingredient);
+                }
+            }
+        });
+    }
+
 }
 
 

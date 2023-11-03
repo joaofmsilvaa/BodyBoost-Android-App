@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\MealsController;
 use App\Http\Controllers\Api\IngredientController;
+use App\Http\Controllers\Api\MealIngredientController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,5 @@ Route::apiResource('meals',MealsController::class)->except([
 Route::apiResource('meals/{meal:id}/ingredients',IngredientController::class)->except([
     'create', 'show', 'edit'
 ]);
+
+Route::apiResource('meals/{meal:id}/meal-ingredients', MealIngredientController::class)->except(['create', 'show', 'edit']);
