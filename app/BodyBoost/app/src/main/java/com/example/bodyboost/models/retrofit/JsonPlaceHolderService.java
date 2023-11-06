@@ -3,6 +3,7 @@ package com.example.bodyboost.models.retrofit;
 import com.example.bodyboost.models.IngredientsResponse;
 import com.example.bodyboost.models.MealIngredientsResponse;
 import com.example.bodyboost.models.MealResponse;
+import com.example.bodyboost.models.NewsResponse;
 
 import java.util.List;
 
@@ -21,6 +22,9 @@ public interface JsonPlaceHolderService {
 
     @GET("meals/{id}/meal-ingredients")
     Call<MealIngredientsResponse> getMealIngredientsForMeal(@Path("id") int mealId);
+
+    @GET("news/")
+    Call<NewsResponse> getNews();
 
 }
 

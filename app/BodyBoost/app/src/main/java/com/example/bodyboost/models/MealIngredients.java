@@ -20,7 +20,6 @@ public class MealIngredients {
     @SerializedName("measure")
     public String quantity;
 
-    // Construtor público sem argumentos
     public MealIngredients() {
     }
 

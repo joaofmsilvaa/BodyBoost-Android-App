@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\MealsController;
 use App\Http\Controllers\Api\IngredientController;
 use App\Http\Controllers\Api\MealIngredientController;
+use App\Http\Controllers\Api\NewsController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('meals',MealsController::class)->except([
     'create', 'show', 'edit'
 ]);
-
 Route::apiResource('meals/{meal:id}/ingredients',IngredientController::class)->except([
     'create', 'show', 'edit'
 ]);
-
 Route::apiResource('meals/{meal:id}/meal-ingredients', MealIngredientController::class)->except(['create', 'show', 'edit']);
+
+Route::apiResource('news',NewsController::class)->except([
+    'create', 'show', 'edit'
+]);

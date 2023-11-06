@@ -77,8 +77,6 @@ public class nutricionFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        textView18 = view.findViewById(R.id.textView18);
-        textView18.setText("");
 
         viewModel.fetchMeals(new Callback<MealResponse>() {
             @Override

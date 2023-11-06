@@ -43,16 +43,15 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         holder.newsTitleTextView.setText(news.getNewsTitle());
         holder.newsDescriptionTextView.setText(news.getNewsSmallDescription());
         holder.newsDateTextView.setText(news.newsDate);
-        holder.websiteNameTextView.setText("Source: " + news.sourceWebsite);
+        holder.websiteNameTextView.setText("Read More");
 
         holder.websiteNameTextView.setPaintFlags(holder.websiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
-        Picasso.get().load(news.getNewsImg()).into(holder.newsImageView);
+        Picasso.get().load("http://10.0.2.2:8000/storage/" + news.getNewsImg()).into(holder.newsImageView);
 
         holder.newsCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int selectedNew = holder.getAdapterPosition();
-                selectedNew ++;
+                int selectedNew = news.getFeedId();
                 NavDirections action = com.example.bodyboost.views.feedFragmentDirections.actionFeedFragmentToNewsFragment(selectedNew);
                 Navigation.findNavController(v).navigate(action);
             }

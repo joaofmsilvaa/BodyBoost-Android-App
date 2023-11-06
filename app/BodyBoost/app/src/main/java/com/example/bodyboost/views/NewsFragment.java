@@ -20,6 +20,7 @@ import com.example.bodyboost.models.Feed;
 
 import com.example.bodyboost.R;
 import com.example.bodyboost.viewmodels.NewsViewModel;
+import com.squareup.picasso.Picasso;
 
 public class NewsFragment extends Fragment{
 
@@ -58,12 +59,12 @@ public class NewsFragment extends Fragment{
 
         Feed news = viewModel.getById(newsId);
 
-        Glide.with(context).load(news.getNewsImg()).into(newsImageView);
+        Picasso.get().load("http://10.0.2.2:8000/storage/" + news.getNewsImg()).into(newsImageView);
         newsTitle.setText(news.getNewsTitle());
         newsSmallDescription.setText(news.getNewsSmallDescription());
         newsFullDescription.setText(news.getNewsFullDescription());
         newsDateTextView.setText(news.getNewsDate());
-        newsWebsiteNameTextView.setText("Source: " + news.getSourceWebsite());
+        newsWebsiteNameTextView.setText("Read More");
 
         newsWebsiteNameTextView.setPaintFlags(newsWebsiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 

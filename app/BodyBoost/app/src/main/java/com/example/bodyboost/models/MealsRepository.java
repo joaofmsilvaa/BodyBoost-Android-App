@@ -24,7 +24,7 @@ public class MealsRepository {
     private MealsDao mealsDao;
     private List<Meals> mealsList = new ArrayList<>();
     private JsonPlaceHolderService service;
-    private Executor executor = Executors.newSingleThreadExecutor(); // To handle background tasks
+    private Executor executor = Executors.newSingleThreadExecutor();
 
     public MealsRepository(Context context) {
         // Initialize the DAO
