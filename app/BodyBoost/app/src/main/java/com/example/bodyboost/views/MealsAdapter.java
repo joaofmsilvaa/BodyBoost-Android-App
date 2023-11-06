@@ -17,6 +17,8 @@ import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.R;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHolder> {
@@ -40,6 +42,9 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
         holder.recipeNameTextView.setText(meals.getMealName());
         holder.recipeDescTextView.setText(meals.getMealsShortDescription());
         holder.caloriesTextView.setText(meals.getCalories() + " cal");
+
+        holder.dietaryTypeTV.setText(meals.getDietary_type());
+        holder.mealTypeTv.setText(meals.getMeal_type());
 
         Picasso.get().load("http://10.0.2.2:8000/storage/" + meals.getMealImage()).into(holder.mealImageView);
 
@@ -67,6 +72,8 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
         TextView recipeDescTextView;
         TextView recipeCard;
         TextView caloriesTextView;
+        TextView dietaryTypeTV;
+        TextView mealTypeTv;
         ImageView mealImageView;
 
         public MealsViewHolder(@NonNull View itemView, Context context) {
@@ -78,6 +85,8 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
             mealImageView = rootView.findViewById(R.id.mealImageView);
             recipeCard = rootView.findViewById(R.id.recipeCard);
             caloriesTextView = rootView.findViewById(R.id.caloriesTextView);
+            dietaryTypeTV = rootView.findViewById(R.id.textView17);
+            mealTypeTv = rootView.findViewById(R.id.textView19);
 
         }
     }

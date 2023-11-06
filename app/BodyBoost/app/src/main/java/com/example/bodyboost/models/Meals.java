@@ -16,6 +16,9 @@ public class Meals {
     @SerializedName("id")
     int mealId;
 
+    String dietary_type;
+    String meal_type;
+
     @SerializedName("name")
     String mealName;
 
@@ -32,8 +35,10 @@ public class Meals {
     int calories;
 
 
-    public Meals(int mealId, String mealName, String mealsShortDescription , String mealImage ,String mealRecipe, int calories) {
+    public Meals(int mealId, String dietary_type, String meal_type ,String mealName, String mealsShortDescription , String mealImage ,String mealRecipe, int calories) {
         this.mealId = mealId;
+        this.dietary_type = dietary_type;
+        this.meal_type = meal_type;
         this.mealName = mealName;
         this.mealsShortDescription = mealsShortDescription;
         this.mealImage = mealImage;
@@ -44,6 +49,14 @@ public class Meals {
 
     public int getMealId() {
         return mealId;
+    }
+
+    public String getDietary_type() {
+        return dietary_type;
+    }
+
+    public String getMeal_type() {
+        return meal_type;
     }
 
     public String getMealsShortDescription() {

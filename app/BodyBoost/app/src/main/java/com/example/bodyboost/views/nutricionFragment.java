@@ -46,7 +46,6 @@ public class nutricionFragment extends Fragment {
     private IngredientsViewModel ingredientsViewModel;
     private MealIngredientsViewModel mealIngredientsViewModel;
 
-    private TextView textView18;
 
 
     @Override

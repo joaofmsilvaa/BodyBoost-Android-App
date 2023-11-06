@@ -18,8 +18,8 @@ class MealResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'dietary_types_id' => $this->dietary_types_id,
-            'meal_types_id' => $this->meal_types_id,
+            'dietary_type' => $this->dietaryType->name,
+            'meal_type' => $this->mealType->name,
             'excerpt' => $this->excerpt,
             'recipe' => $this->recipe,
             'prep_time' => $this->prep_time,

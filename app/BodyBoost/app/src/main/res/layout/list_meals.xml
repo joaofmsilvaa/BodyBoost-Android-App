@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="375dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/recipeCard"
         android:layout_width="0dp"
-        android:layout_height="350dp"
+        android:layout_height="400dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_cornors"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,12 +22,15 @@
 
     <ImageView
         android:id="@+id/mealImageView"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/recipeCard"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recipeCard"
         app:layout_constraintTop_toTopOf="@+id/recipeCard"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
@@ -39,6 +44,7 @@
         android:text="TextView"
         android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/recipeCard"
         app:layout_constraintStart_toStartOf="@+id/recipeCard"
         app:layout_constraintTop_toBottomOf="@+id/mealImageView" />
@@ -46,20 +52,21 @@
     <TextView
         android:id="@+id/recipeDescTextView"
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         android:textColor="?android:textColorPrimary"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/recipeNameTextView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/recipeNameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/recipeNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/caloriesTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         android:textColor="@color/mainRed"
         android:textSize="16sp"
@@ -67,5 +74,28 @@
         app:layout_constraintEnd_toEndOf="@+id/recipeDescTextView"
         app:layout_constraintStart_toStartOf="@+id/recipeDescTextView"
         app:layout_constraintTop_toBottomOf="@+id/recipeDescTextView" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="@color/mainRed"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/recipeNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeNameTextView" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="@color/mainRed"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/recipeNameTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
