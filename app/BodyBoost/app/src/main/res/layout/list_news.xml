@@ -3,21 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="500dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/newsCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_cornors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/newsTitleTextView"
@@ -43,12 +45,12 @@
     <TextView
         android:id="@+id/newsDescriptionTextView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="A portuguesa Jessica Inchude venceu este domingo o lançamento do peso no meeting de Bialystok, na Polónia, com o seu melhor registo do ano, 18,65 metros."
         android:textColor="?android:textColorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="@+id/newsCard"
         app:layout_constraintStart_toStartOf="@+id/newsCard"
         app:layout_constraintTop_toBottomOf="@+id/newsDateTextView" />
@@ -68,24 +70,38 @@
         android:id="@+id/newsDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Date"
         android:textColor="?android:textColorPrimary"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/newsCard"
-        app:layout_constraintTop_toBottomOf="@+id/newsTitleTextView" />
+        app:layout_constraintStart_toStartOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:text="TextView"
         android:textColor="@color/mainRed"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/newsCard"
-        app:layout_constraintStart_toStartOf="@+id/newsDescriptionTextView" />
+        app:layout_constraintStart_toStartOf="@+id/newsDescriptionTextView"
+        app:layout_constraintTop_toBottomOf="@+id/newsDescriptionTextView" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="@color/mainRed"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/newsTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/newsTitleTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,7 +44,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         holder.newsDescriptionTextView.setText(news.getNewsSmallDescription());
         holder.newsDateTextView.setText(news.newsDate);
         holder.websiteNameTextView.setText("Read More");
-
+        holder.categoryTextView.setText(news.getCategory());
         holder.websiteNameTextView.setPaintFlags(holder.websiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
         Picasso.get().load("http://10.0.2.2:8000/storage/" + news.getNewsImg()).into(holder.newsImageView);
@@ -66,7 +66,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
             }
         });
 
-
     }
 
     @Override
@@ -83,6 +82,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         TextView newsDateTextView;
         ImageView newsImageView;
         TextView websiteNameTextView;
+        TextView categoryTextView;
         TextView newsCard;
 
         public FeedViewHolder(@NonNull View rootView, Context context) {
@@ -93,6 +93,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
             this.newsDescriptionTextView = rootView.findViewById(R.id.newsDescriptionTextView);
             this.newsDateTextView = rootView.findViewById(R.id.newsDateTextView);
             this.websiteNameTextView = rootView.findViewById(R.id.textView14);
+            this.categoryTextView = rootView.findViewById(R.id.textView18);
             this.newsImageView = rootView.findViewById(R.id.newsImageView);
             this.newsCard = rootView.findViewById(R.id.newsCard);
 

@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.R;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import org.w3c.dom.Text;
 

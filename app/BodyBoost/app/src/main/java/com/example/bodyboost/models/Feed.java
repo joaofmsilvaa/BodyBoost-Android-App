@@ -12,6 +12,7 @@ public class Feed {
     @PrimaryKey(autoGenerate = true)
     int feedId;
 
+    String category;
     @SerializedName("title")
     String newsTitle;
 
@@ -30,8 +31,9 @@ public class Feed {
     @SerializedName("source")
     public String sourceLink;
 
-    public Feed(int feedId, String newsTitle, String newsSmallDescription, String newsFullDescription,String newsImg, String newsDate, String sourceLink) {
+    public Feed(int feedId, String category ,String newsTitle, String newsSmallDescription, String newsFullDescription,String newsImg, String newsDate, String sourceLink) {
         this.feedId = feedId;
+        this.category = category;
         this.newsTitle = newsTitle;
         this.newsSmallDescription = newsSmallDescription;
         this.newsFullDescription = newsFullDescription;
@@ -43,6 +45,11 @@ public class Feed {
     public int getFeedId() {
         return feedId;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
     public String getNewsTitle() {
         return newsTitle;
     }
