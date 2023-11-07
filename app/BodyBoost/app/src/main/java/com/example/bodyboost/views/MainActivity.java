@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             // User is not logged in, proceed with the login screen
             setContentView(R.layout.activity_login);
 
-            username = findViewById(R.id.usernameInput);
+            username = findViewById(R.id.emailInput);
             password = findViewById(R.id.passwordInput);
             textInputLayout1 = findViewById(R.id.textInputLayout1);
             textInputLayout2 = findViewById(R.id.textInputLayout2);

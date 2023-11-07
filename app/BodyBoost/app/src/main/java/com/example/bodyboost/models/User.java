@@ -8,7 +8,6 @@ public class User {
 
     @PrimaryKey(autoGenerate = true)
     public int userId;
-
     String username;
     String password;
     float weight;

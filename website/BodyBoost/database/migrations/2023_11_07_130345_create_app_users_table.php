@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exercise_sets', function (Blueprint $table) {
+        Schema::create('app_users', function (Blueprint $table) {
             $table->id();
-            $table->integer('exercise_id');
-            $table->integer('dayId');
-            $table->integer('exerciseSet_id');
-            $table->integer('orderIndex');
-            $table->integer('repetitions');
-            $table->string('time')->nullable();
+            $table->string('username');
+            $table->string('password');
+            $table->float('weight');
+            $table->float('height');
+            $table->string('objective');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exercise_sets');
+        Schema::dropIfExists('app_users');
     }
 };

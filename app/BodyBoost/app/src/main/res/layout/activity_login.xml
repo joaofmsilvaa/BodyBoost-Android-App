@@ -43,14 +43,14 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/usernameInput"
+            android:id="@+id/emailInput"
             android:layout_width="340dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:background="#7A7A7A"
-            android:gravity="center|fill_horizontal"
-            android:hint="@string/username"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+            android:gravity="center|fill_horizontal"
+            android:hint="Email"
             android:inputType="textFilter"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />

@@ -12,8 +12,7 @@ class CreateWorkoutPlansTable extends Migration
     {
         Schema::create('workout_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('exercise_id')->constrained()->cascadeOnDelete();
-            $table->integer('dayId');
+            $table->integer('exerciseSet_id');
             $table->integer('workoutId');
             $table->string('type');
             $table->timestamps();
