@@ -37,6 +37,9 @@ public interface JsonPlaceHolderService {
     @POST("appUser/store")
     Call<UserResponse> registerUser(@Body User user);
 
+    @GET("appUser/show/{username}/{password}")
+    Call<UserResponse> getUserByUsernameAndPassword(@Path("username") String username, @Path("password") String password);
+
 }
 
 

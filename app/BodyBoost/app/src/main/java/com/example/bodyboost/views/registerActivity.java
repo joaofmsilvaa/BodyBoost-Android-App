@@ -158,51 +158,6 @@ public class RegisterActivity extends AppCompatActivity {
                 float heightFloat = Float.parseFloat(heightString);
 
 
-                //Call<UserResponse> postCall = (usernameString, passwordString, weightFloat, heightFloat, goalString);
-
-                /*postCall.enqueue(new Callback<UserResponse>() {
-                    @Override
-                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                        if (response.isSuccessful()) {
-                            UserResponse userResponse = response.body();
-                            User createdUser = userResponse.getData();
-                            //userViewModel.createUser(createdUser);
-
-                            int planValue = goalString.equals("lose weight") ? 1 : 2;
-
-                            UserPlan userPlan = new UserPlan(createdUser.userId, planValue);
-
-                            userPlanViewModel.insert(userPlan);
-
-                            for (int i = 0; i < daysOfWeek.size(); i++) {
-                                List<Integer> getExercisesInDay = workoutViewModel.getExercisesInDay(planValue, i);
-
-                                for (int exerciseId : getExercisesInDay) {
-                                    UserCompleted userCompleted = new UserCompleted(0, createdUser.getUserId(), i, exerciseId, false);
-
-                                    userCompletedViewModel.insert(userCompleted);
-                                }
-                            }
-
-                            Intent intent = new Intent(RegisterActivity.this, homeActivity.class);
-                            intent.putExtra("userId", createdUser.userId);
-                            startActivity(intent);
-                            finish();
-
-                        } else {
-                            Toast.makeText(RegisterActivity.this, response.code() + response.toString(), Toast.LENGTH_SHORT).show();
-                            Log.i("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR", response.toString());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<UserResponse> call, Throwable t) {
-                        Toast.makeText(RegisterActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
-                        Log.i("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR", t.toString());
-
-                    }
-                });*/
-
                 JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
 
                 User user = new User(0,usernameString,passwordString,weightFloat,heightFloat,goalString);

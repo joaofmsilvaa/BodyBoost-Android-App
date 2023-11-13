@@ -34,6 +34,9 @@ Route::apiResource('meals/{meal:id}/meal-ingredients', MealIngredientController:
 
 
 Route::apiResource('appUser/store',UsersController::class)->except([
-    'create', 'show', 'edit'
+    'create', 'edit'
 ]);
+
+Route::get('appUser/show/{username}/{password}', [UsersController::class, 'show']);
+
 
