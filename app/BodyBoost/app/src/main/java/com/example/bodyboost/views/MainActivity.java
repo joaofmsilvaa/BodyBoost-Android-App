@@ -17,8 +17,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bodyboost.R;
+import com.example.bodyboost.models.Ingredients;
+import com.example.bodyboost.models.IngredientsResponse;
+import com.example.bodyboost.models.User;
+import com.example.bodyboost.models.UserCompleted;
+import com.example.bodyboost.models.UserPlan;
+import com.example.bodyboost.models.UserResponse;
+import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
+import com.example.bodyboost.models.retrofit.RetrofitClient;
+import com.example.bodyboost.viewmodels.UserCompletedViewModel;
+import com.example.bodyboost.viewmodels.UserPlanViewModel;
 import com.example.bodyboost.viewmodels.UserViewModel;
+import com.example.bodyboost.viewmodels.WorkoutViewModel;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,39 +52,32 @@ public class MainActivity extends AppCompatActivity {
     String passwordString;
 
     private UserViewModel userViewModel;
+    private UserCompletedViewModel userCompletedViewModel;
+    private WorkoutViewModel workoutViewModel;
+    private UserPlanViewModel userPlanViewModel;
+
+    private List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Check if user is already logged in
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        setContentView(R.layout.activity_login);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
+        workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
+        userPlanViewModel = new ViewModelProvider(this).get(UserPlanViewModel.class);
 
-        if (isLoggedIn) {
+        username = findViewById(R.id.emailInput);
+        password = findViewById(R.id.passwordInput);
+        textInputLayout1 = findViewById(R.id.textInputLayout1);
+        textInputLayout2 = findViewById(R.id.textInputLayout2);
+        register = findViewById(R.id.signUp);
 
-            // User is logged in, navigate to homeActivity
-            int userId = sharedPreferences.getInt("userId", 0);
-            Intent intent = new Intent(this, homeActivity.class);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
-            finish();
-        } else {
-            // User is not logged in, proceed with the login screen
-            setContentView(R.layout.activity_login);
+        register.setPaintFlags(register.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-            username = findViewById(R.id.emailInput);
-            password = findViewById(R.id.passwordInput);
-            textInputLayout1 = findViewById(R.id.textInputLayout1);
-            textInputLayout2 = findViewById(R.id.textInputLayout2);
-            register = findViewById(R.id.signUp);
-            register.setPaintFlags(register.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-
-
-        }
     }
+
 
     public void signUpMenu(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
@@ -80,42 +91,71 @@ public class MainActivity extends AppCompatActivity {
         passwordString = password.getText().toString();
 
         if (usernameString.trim().length() > 0 && passwordString.trim().length() > 0) {
-            int userId = userViewModel.getUserId(usernameString);
 
-            String hashedInputPassword = hashPassword(passwordString);
+            JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
 
-            int amountOfUsersWithCred = userViewModel.correspondingUsers(usernameString, hashedInputPassword);
+            Call<UserResponse> call = service.getUserByUsernameAndPassword(usernameString, passwordString);
+            call.enqueue(new Callback<UserResponse>() {
+                @Override
+                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                    if (response.isSuccessful()) {
+                        UserResponse userResponse = response.body();
+                        User user = userResponse.getData();
 
-            if (amountOfUsersWithCred == 1) {
+                        int ammountOfUserWithName = userViewModel.getUserId(user.username);
 
-                // Store boolean value in SharedPreferences
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("isLoggedIn", true);
-                editor.putInt("userId", userId);
+                        if(ammountOfUserWithName > 0){
+                            Intent intent = new Intent(MainActivity.this, homeActivity.class);
+                            intent.putExtra("userId", user.userId);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else{
+                            userViewModel.storeUser(user);
 
-                editor.apply();
+                            int planValue = user.getObjective().equals("lose weight") ? 1 : 2;
 
-                Intent intent = new Intent(this, homeActivity.class);
-                intent.putExtra("userId", userId);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(getApplicationContext(), "The credentials don't match any account", Toast.LENGTH_SHORT).show();
-            }
-        }
+                            UserPlan userPlan = new UserPlan(user.userId, planValue);
 
-        else{
-            if(TextUtils.isEmpty(usernameString)){
+                            userPlanViewModel.insert(userPlan);
+
+                            for (int i = 0; i < daysOfWeek.size(); i++) {
+                                List<Integer> getExercisesInDay = workoutViewModel.getExercisesInDay(planValue, i);
+
+                                for (int exerciseId : getExercisesInDay) {
+                                    UserCompleted userCompleted = new UserCompleted(0, user.getUserId(), i, exerciseId, false);
+
+                                    userCompletedViewModel.insert(userCompleted);
+                                }
+                            }
+
+                            Intent intent = new Intent(MainActivity.this, homeActivity.class);
+                            intent.putExtra("userId", user.userId);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                    } else {
+                        Toast.makeText(MainActivity.this, "Request Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<UserResponse> call, Throwable t) {
+                    Toast.makeText(MainActivity.this, t + "", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+        } else {
+            if (TextUtils.isEmpty(usernameString)) {
                 textInputLayout1.setError("Insert a username");
-            }
-            else{
+            } else {
                 textInputLayout1.setError(null);
             }
-            if(TextUtils.isEmpty(passwordString)){
+            if (TextUtils.isEmpty(passwordString)) {
                 textInputLayout2.setError("Insert a password");
-            }
-            else{
+            } else {
                 textInputLayout2.setError(null);
             }
         }

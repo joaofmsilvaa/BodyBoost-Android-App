@@ -56,9 +56,6 @@ public class UserViewModel extends AndroidViewModel {
     }
 
 
-    public void createUser(Callback<UserResponse> requestFailed) {
-    }
-
     public void storeUser(User user){
         repository.insert(user);
     }

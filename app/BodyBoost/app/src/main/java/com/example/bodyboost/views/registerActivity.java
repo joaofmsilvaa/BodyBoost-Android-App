@@ -50,7 +50,6 @@ public class RegisterActivity extends AppCompatActivity {
     private UserViewModel userViewModel;
     private UserPlanViewModel userPlanViewModel;
 
-
     private EditText username;
     private EditText password;
     private EditText height;

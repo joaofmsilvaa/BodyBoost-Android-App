@@ -37,6 +37,6 @@ Route::apiResource('appUser/store',UsersController::class)->except([
     'create', 'edit'
 ]);
 
-Route::get('appUser/show/{username}/{password}', [UsersController::class, 'show']);
+Route::get('appUser/show', [UsersController::class, 'show']);
 
 

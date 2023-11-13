@@ -19,6 +19,7 @@ import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface JsonPlaceHolderService {
 
@@ -37,8 +38,8 @@ public interface JsonPlaceHolderService {
     @POST("appUser/store")
     Call<UserResponse> registerUser(@Body User user);
 
-    @GET("appUser/show/{username}/{password}")
-    Call<UserResponse> getUserByUsernameAndPassword(@Path("username") String username, @Path("password") String password);
+    @GET("appUser/show")
+    Call<UserResponse> getUserByUsernameAndPassword(@Query("username") String username, @Query("password") String password);
 
 }
 

@@ -23,15 +23,13 @@ class UsersController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
-        $user = AppUser::where('username', $username)->first();
+        $user = AppUser::where('username', $username)->where('password', $password)->first();
 
         if ($user) {
-            if (($password == $user->password)) {
-                return new AppUserResource($user);
-            }
+            return new AppUserResource($user);
+        } else {
+            return response()->json(['message' => 'Usuário não encontrado ou senha incorreta'], 404);
         }
-
-        return response()->json(['message' => 'Usuário não encontrado ou senha incorreta'], 404);
     }
 
 }

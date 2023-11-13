@@ -14,7 +14,6 @@ import java.util.List;
 
 import retrofit2.Callback;
 
-// Must extend AndroidViewModel since we will be accessing a database
 public class MealsViewModel extends AndroidViewModel {
     private MealsRepository repository;
 
