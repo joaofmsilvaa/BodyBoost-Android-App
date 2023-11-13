@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\MealsController;
 use App\Http\Controllers\Api\IngredientController;
 use App\Http\Controllers\Api\MealIngredientController;
 use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\Api\UsersController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,8 @@ Route::apiResource('meals/{meal:id}/ingredients',IngredientController::class)->e
 ]);
 Route::apiResource('meals/{meal:id}/meal-ingredients', MealIngredientController::class)->except(['create', 'show', 'edit']);
 
-Route::apiResource('news',NewsController::class)->except([
+
+Route::apiResource('appUser/store',UsersController::class)->except([
     'create', 'show', 'edit'
 ]);
+

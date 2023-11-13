@@ -65,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
         saveChangesBtn = findViewById(R.id.button3);
 
         User user = userViewModel.getUserById(userId);
-        username.setText(user.getUsername());
+        username.setText(user.getappUsername());
 
         String[] goalsArray = {"Lose weight", "Gain mass"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.dropdown_item, goalsArray);
@@ -157,8 +157,8 @@ public class ProfileActivity extends AppCompatActivity {
 
                 int usernameExists = userViewModel.isUsernameAvailable(updatedUsername);
 
-                if (usernameExists < 1 || updatedUsername.equals(user.getUsername())) {
-                    user.setUsername(updatedUsername);
+                if (usernameExists < 1 || updatedUsername.equals(user.getappUsername())) {
+                    user.setappUsername(updatedUsername);
                 } else if (usernameExists == 1) {
                     Toast.makeText(ProfileActivity.this, "This username is already taken", Toast.LENGTH_SHORT).show();
                 }

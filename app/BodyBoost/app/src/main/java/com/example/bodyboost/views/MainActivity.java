@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signUpMenu(View view) {
-        Intent intent = new Intent(this, registerActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
         finish();
     }

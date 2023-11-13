@@ -11,9 +11,12 @@ import com.example.bodyboost.models.User;
 import com.example.bodyboost.models.UserPlan;
 import com.example.bodyboost.models.UserPlanRepository;
 import com.example.bodyboost.models.UserRepository;
+import com.example.bodyboost.models.UserResponse;
 import com.example.bodyboost.models.WorkoutRepository;
 
 import java.util.List;
+
+import retrofit2.Callback;
 
 public class UserViewModel extends AndroidViewModel {
     private UserRepository repository;
@@ -53,6 +56,12 @@ public class UserViewModel extends AndroidViewModel {
     }
 
 
+    public void createUser(Callback<UserResponse> requestFailed) {
+    }
+
+    public void storeUser(User user){
+        repository.insert(user);
+    }
 }
 
 

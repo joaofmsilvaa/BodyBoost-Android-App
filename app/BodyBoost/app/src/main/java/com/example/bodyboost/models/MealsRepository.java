@@ -22,7 +22,6 @@ import retrofit2.Response;
 
 public class MealsRepository {
     private MealsDao mealsDao;
-    private List<Meals> mealsList = new ArrayList<>();
     private JsonPlaceHolderService service;
     private Executor executor = Executors.newSingleThreadExecutor();
 

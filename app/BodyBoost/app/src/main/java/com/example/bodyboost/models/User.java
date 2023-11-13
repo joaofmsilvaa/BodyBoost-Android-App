@@ -3,15 +3,32 @@ package com.example.bodyboost.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 @Entity
 public class User {
 
     @PrimaryKey(autoGenerate = true)
+    @SerializedName("id")
     public int userId;
-    String username;
+
+    public String username;
+
+    @SerializedName("password")
+    @Expose
     String password;
+
+    @SerializedName("weight")
+    @Expose
     float weight;
+
+    @SerializedName("height")
+    @Expose
     float height;
+
+    @SerializedName("objective")
+    @Expose
     String objective;
 
     public User(int userId, String username, String password, float weight, float height, String objective) {
@@ -27,7 +44,7 @@ public class User {
         return userId;
     }
 
-    public String getUsername() {
+    public String getappUsername() {
         return username;
     }
 
@@ -50,8 +67,8 @@ public class User {
         this.userId = userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setappUsername(String appUsername) {
+        this.username = appUsername;
     }
 
     public void setPassword(String password) {
@@ -69,4 +86,6 @@ public class User {
     public void setObjective(String objective) {
         this.objective = objective;
     }
+
+
 }

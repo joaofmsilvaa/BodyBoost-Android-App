@@ -50,7 +50,7 @@
             android:background="#7A7A7A"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
             android:gravity="center|fill_horizontal"
-            android:hint="Email"
+            android:hint="@string/username"
             android:inputType="textFilter"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />

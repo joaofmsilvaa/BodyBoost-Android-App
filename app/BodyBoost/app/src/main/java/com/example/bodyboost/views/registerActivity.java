@@ -1,14 +1,12 @@
 package com.example.bodyboost.views;
 
-import static com.example.bodyboost.models.databaseModels.Hash.hashPassword;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -18,12 +16,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bodyboost.R;
+import com.example.bodyboost.models.MealResponse;
+import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.models.User;
 import com.example.bodyboost.models.UserCompleted;
 import com.example.bodyboost.models.UserPlan;
+import com.example.bodyboost.models.UserResponse;
+import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
+import com.example.bodyboost.models.retrofit.RetrofitClient;
 import com.example.bodyboost.viewmodels.UserCompletedViewModel;
 import com.example.bodyboost.viewmodels.UserPlanViewModel;
 import com.example.bodyboost.viewmodels.UserViewModel;
@@ -33,7 +37,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Arrays;
 import java.util.List;
 
-public class registerActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+public class RegisterActivity extends AppCompatActivity {
 
     private UserCompletedViewModel userCompletedViewModel;
     private WorkoutViewModel workoutViewModel;
@@ -147,41 +157,98 @@ public class registerActivity extends AppCompatActivity {
                 float weightFloat = Float.parseFloat(weightString);
                 float heightFloat = Float.parseFloat(heightString);
 
-                String hashedInputPassword = hashPassword(passwordString);
 
-                User user = new User(0, usernameString, hashedInputPassword, weightFloat, heightFloat, goalString);
-                userViewModel.insert(user);
+                //Call<UserResponse> postCall = (usernameString, passwordString, weightFloat, heightFloat, goalString);
 
-                int userId = userViewModel.getUserId(usernameString);
+                /*postCall.enqueue(new Callback<UserResponse>() {
+                    @Override
+                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                        if (response.isSuccessful()) {
+                            UserResponse userResponse = response.body();
+                            User createdUser = userResponse.getData();
+                            //userViewModel.createUser(createdUser);
 
-                int planValue = goalString.equals("lose weight") ? 1 : 2;
+                            int planValue = goalString.equals("lose weight") ? 1 : 2;
 
-                UserPlan userPlan = new UserPlan(userId, planValue);
+                            UserPlan userPlan = new UserPlan(createdUser.userId, planValue);
 
-                userPlanViewModel.insert(userPlan);
+                            userPlanViewModel.insert(userPlan);
 
-                for (int i = 0; i < daysOfWeek.size(); i++) {
-                    List<Integer> getExercisesInDay = workoutViewModel.getExercisesInDay(planValue, i);
+                            for (int i = 0; i < daysOfWeek.size(); i++) {
+                                List<Integer> getExercisesInDay = workoutViewModel.getExercisesInDay(planValue, i);
 
-                    for (int exerciseId : getExercisesInDay) {
-                        UserCompleted userCompleted = new UserCompleted(0, userId, i, exerciseId, false);
+                                for (int exerciseId : getExercisesInDay) {
+                                    UserCompleted userCompleted = new UserCompleted(0, createdUser.getUserId(), i, exerciseId, false);
 
-                        userCompletedViewModel.insert(userCompleted);
+                                    userCompletedViewModel.insert(userCompleted);
+                                }
+                            }
+
+                            Intent intent = new Intent(RegisterActivity.this, homeActivity.class);
+                            intent.putExtra("userId", createdUser.userId);
+                            startActivity(intent);
+                            finish();
+
+                        } else {
+                            Toast.makeText(RegisterActivity.this, response.code() + response.toString(), Toast.LENGTH_SHORT).show();
+                            Log.i("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR", response.toString());
+                        }
                     }
-                }
 
-                // Store boolean value in SharedPreferences
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("isLoggedIn", true);
-                editor.putInt("userId", userId);
+                    @Override
+                    public void onFailure(Call<UserResponse> call, Throwable t) {
+                        Toast.makeText(RegisterActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
+                        Log.i("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR", t.toString());
 
-                editor.apply();
+                    }
+                });*/
 
-                Intent intent = new Intent(this, homeActivity.class);
-                intent.putExtra("userId", userId);
-                startActivity(intent);
-                finish();
+                JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
+
+                User user = new User(0,usernameString,passwordString,weightFloat,heightFloat,goalString);
+                Call<UserResponse> postCall = service.registerUser(user);
+                postCall.enqueue(new Callback<UserResponse>() {
+                    @Override
+                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                        if (response.isSuccessful()) {
+                            UserResponse userResponse = response.body();
+                            User createdUser = userResponse.getData();
+                            userViewModel.storeUser(createdUser);
+
+                            int planValue = goalString.equals("lose weight") ? 1 : 2;
+
+                            UserPlan userPlan = new UserPlan(createdUser.userId, planValue);
+
+                            userPlanViewModel.insert(userPlan);
+
+                            for (int i = 0; i < daysOfWeek.size(); i++) {
+                                List<Integer> getExercisesInDay = workoutViewModel.getExercisesInDay(planValue, i);
+
+                                for (int exerciseId : getExercisesInDay) {
+                                    UserCompleted userCompleted = new UserCompleted(0, createdUser.getUserId(), i, exerciseId, false);
+
+                                    userCompletedViewModel.insert(userCompleted);
+                                }
+                            }
+
+                            Intent intent = new Intent(RegisterActivity.this, homeActivity.class);
+                            intent.putExtra("userId", createdUser.userId);
+                            startActivity(intent);
+                            finish();
+
+
+                        } else {
+                            Toast.makeText(RegisterActivity.this,"Response not successfull", Toast.LENGTH_SHORT);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserResponse> call, Throwable t) {
+                        Toast.makeText(RegisterActivity.this,t.toString(), Toast.LENGTH_SHORT);
+
+                    }
+                });
+
             }
         }
         else{
@@ -189,7 +256,6 @@ public class registerActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(usernameString)) {
                 textInputLayout3.setError("Insert a username");
                 textInputLayout3.setErrorEnabled(true);
-
 
             } else {
                 textInputLayout3.setErrorEnabled(false);
@@ -224,6 +290,12 @@ public class registerActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void showResponse(String response) {
+
+        Log.e("Response", response);
+
     }
 
 }

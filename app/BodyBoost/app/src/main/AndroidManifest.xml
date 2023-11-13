@@ -24,7 +24,7 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".views.registerActivity"
+            android:name=".views.RegisterActivity"
             android:windowSoftInputMode="adjustNothing"
             android:exported="false"
             android:screenOrientation="portrait"/>

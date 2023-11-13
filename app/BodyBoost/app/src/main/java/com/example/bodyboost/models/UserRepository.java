@@ -12,17 +12,26 @@ import com.example.bodyboost.models.databaseModels.UserCompletedDao;
 import com.example.bodyboost.models.databaseModels.UserDao;
 import com.example.bodyboost.models.databaseModels.UserPlanDao;
 import com.example.bodyboost.models.databaseModels.WorkoutPlanDao;
+import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
+import com.example.bodyboost.models.retrofit.RetrofitClient;
 
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class UserRepository {
     private UserDao userDao;
     private Executor executor = Executors.newSingleThreadExecutor(); // To handle background tasks
 
+    private JsonPlaceHolderService service;
+
     public UserRepository(Context context) {
         this.userDao = AppDatabase.getInstance(context).getUserDao();
+        this.service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
     }
 
     public int getUserId(String username){
