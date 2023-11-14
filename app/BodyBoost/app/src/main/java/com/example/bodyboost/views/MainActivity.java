@@ -25,6 +25,7 @@ import com.example.bodyboost.models.UserPlan;
 import com.example.bodyboost.models.UserResponse;
 import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
 import com.example.bodyboost.models.retrofit.RetrofitClient;
+import com.example.bodyboost.viewmodels.Hash;
 import com.example.bodyboost.viewmodels.UserCompletedViewModel;
 import com.example.bodyboost.viewmodels.UserPlanViewModel;
 import com.example.bodyboost.viewmodels.UserViewModel;
@@ -94,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
             JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
 
-            Call<UserResponse> call = service.getUserByUsernameAndPassword(usernameString, passwordString);
+            String hashedpassword = Hash.hashPassword(passwordString);
+            
+            Call<UserResponse> call = service.getUserByUsernameAndPassword(usernameString, hashedpassword);
             call.enqueue(new Callback<UserResponse>() {
                 @Override
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {

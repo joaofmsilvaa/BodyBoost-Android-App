@@ -28,6 +28,7 @@ import com.example.bodyboost.models.UserPlan;
 import com.example.bodyboost.models.UserResponse;
 import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
 import com.example.bodyboost.models.retrofit.RetrofitClient;
+import com.example.bodyboost.viewmodels.Hash;
 import com.example.bodyboost.viewmodels.UserCompletedViewModel;
 import com.example.bodyboost.viewmodels.UserPlanViewModel;
 import com.example.bodyboost.viewmodels.UserViewModel;
@@ -159,7 +160,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
 
-                User user = new User(0,usernameString,passwordString,weightFloat,heightFloat,goalString);
+                String hashedpassword = Hash.hashPassword(passwordString);
+
+                User user = new User(0,usernameString,hashedpassword,weightFloat,heightFloat,goalString);
                 Call<UserResponse> postCall = service.registerUser(user);
                 postCall.enqueue(new Callback<UserResponse>() {
                     @Override
@@ -192,13 +195,13 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                         } else {
-                            Toast.makeText(RegisterActivity.this,"Response not successfull", Toast.LENGTH_SHORT);
+                            Toast.makeText(RegisterActivity.this,"Response not successfull", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<UserResponse> call, Throwable t) {
-                        Toast.makeText(RegisterActivity.this,t.toString(), Toast.LENGTH_SHORT);
+                        Toast.makeText(RegisterActivity.this,t.toString(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
