@@ -10,12 +10,23 @@ use App\Models\AppUser;
 
 class UsersController extends Controller
 {
-    public function store()
+    public function store(Request $request)
     {
 
-        $user = AppUser::create(request()->all());
+        $newUsername = $request->input('username');
 
-        return new AppUserResource($user);
+        $existingUserWithUsername = AppUser::where('username', $newUsername)->first();
+
+        if ($existingUserWithUsername) {
+            return response()->json(['message' => 'Username not available'], 422);
+        }
+        else{
+            $user = AppUser::create(request()->all());
+
+            return new AppUserResource($user);
+        }
+
+
     }
 
     public function show(Request $request)
@@ -28,8 +39,35 @@ class UsersController extends Controller
         if ($user) {
             return new AppUserResource($user);
         } else {
-            return response()->json(['message' => 'Usuário não encontrado ou senha incorreta'], 404);
+            return response()->json(['message' => 'User not found or wrong password'], 404);
         }
+    }
+
+    public function update(Request $request, $id){
+
+        $user = AppUser::find($id);
+
+        if(isset($user)){
+
+            $newUsername = $request->input('username');
+
+            $existingUserWithUsername = AppUser::where('username', $newUsername)->where('id', '!=', $id)->first();
+
+            if ($existingUserWithUsername) {
+                return response()->json(['message' => 'Username not available'], 422);
+            }
+            else{
+                $user->update($request->all());
+
+                return new AppUserResource($user);
+            }
+
+        }
+        else{
+            return response()->json(['message' => 'User not found with the given Id'], 404);
+
+        }
+
     }
 
 }

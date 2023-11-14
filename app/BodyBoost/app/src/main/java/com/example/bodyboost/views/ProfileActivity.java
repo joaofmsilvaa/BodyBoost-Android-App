@@ -20,11 +20,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bodyboost.models.databaseModels.AppDatabase;
+import com.example.bodyboost.models.UserResponse;
 import com.example.bodyboost.R;
 import com.example.bodyboost.models.User;
 import com.example.bodyboost.models.UserCompleted;
 import com.example.bodyboost.models.UserPlan;
+import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
+import com.example.bodyboost.models.retrofit.RetrofitClient;
 import com.example.bodyboost.viewmodels.UserCompletedViewModel;
 import com.example.bodyboost.viewmodels.UserPlanViewModel;
 import com.example.bodyboost.viewmodels.UserViewModel;
@@ -34,15 +36,19 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Arrays;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ProfileActivity extends AppCompatActivity {
 
-    private AppDatabase db;
     private UserViewModel userViewModel;
     private UserPlanViewModel userPlanViewModel;
     private UserCompletedViewModel userCompletedViewModel;
     private WorkoutViewModel workoutViewModel;
 
     private EditText username;
+    private EditText password;
     private AutoCompleteTextView goal;
     private EditText weight;
     private EditText height;
@@ -63,6 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
         weight = findViewById(R.id.weightEditText);
         height = findViewById(R.id.heightEditText);
         saveChangesBtn = findViewById(R.id.button3);
+        password = findViewById(R.id.passwordEditText);
 
         User user = userViewModel.getUserById(userId);
         username.setText(user.getappUsername());
@@ -150,50 +157,60 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String updatedUsername = username.getText().toString();
+
+                String updatedPassword = password.getText().toString();
+
+                if(updatedPassword.equals("")){
+                    updatedPassword = user.getPassword();
+                }
                 String updatedGoal = goal.getText().toString();
 
                 float updatedWeight = Float.parseFloat(weight.getText().toString());
                 float updatedHeight = Float.parseFloat(height.getText().toString());
 
-                int usernameExists = userViewModel.isUsernameAvailable(updatedUsername);
+                JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
 
-                if (usernameExists < 1 || updatedUsername.equals(user.getappUsername())) {
-                    user.setappUsername(updatedUsername);
-                } else if (usernameExists == 1) {
-                    Toast.makeText(ProfileActivity.this, "This username is already taken", Toast.LENGTH_SHORT).show();
-                }
+                User user = new User(userId,updatedUsername,updatedPassword,updatedWeight,updatedHeight,updatedGoal);
+                Call<UserResponse> postCall = service.updateUser(userId,user);
+                postCall.enqueue(new Callback<UserResponse>() {
+                    @Override
+                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                        if (response.isSuccessful()) {
+                            UserResponse userResponse = response.body();
+                            User updatedUser = userResponse.getData();
+                            userViewModel.updateUser(updatedUser);
 
-                user.setWeight(updatedWeight);
-                user.setHeight(updatedHeight);
+                            userCompletedViewModel.deleteByUserId(userId);
+                            userPlanViewModel.deletePlanByUserId(userId);
 
-                if (!updatedGoal.equals(userViewModel.userGoal(userId))) {
+                            int planValue = updatedGoal.equalsIgnoreCase("lose weight") ? 1 : 2;
 
-                    user.setObjective(updatedGoal);
-                    userViewModel.updateUser(user);
+                            UserPlan userPlan = new UserPlan(userId, planValue);
+                            userPlanViewModel.insert(userPlan);
 
-                    userCompletedViewModel.deleteByUserId(userId);
-                    userPlanViewModel.deletePlanByUserId(userId);
+                            List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
+                            for (int day : daysOfWeek) {
+                                List<Integer> exerciseIds = workoutViewModel.getExercisesInDay(planValue, day);
+                                for (int exerciseId : exerciseIds) {
+                                    UserCompleted userCompleted = new UserCompleted(0, userId, day, exerciseId, false);
+                                    userCompletedViewModel.insert(userCompleted);
+                                }
+                            }
 
-                    int planValue = updatedGoal.equalsIgnoreCase("lose weight") ? 1 : 2;
+                            Toast.makeText(ProfileActivity.this, "Changes saved", Toast.LENGTH_SHORT).show();
 
-                    UserPlan userPlan = new UserPlan(userId, planValue);
-                    userPlanViewModel.insert(userPlan);
-
-                    List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
-                    for (int day : daysOfWeek) {
-                        List<Integer> exerciseIds = workoutViewModel.getExercisesInDay(planValue, day);
-                        for (int exerciseId : exerciseIds) {
-                            UserCompleted userCompleted = new UserCompleted(0, userId, day, exerciseId, false);
-                            userCompletedViewModel.insert(userCompleted);
+                        } else {
+                            Toast.makeText(ProfileActivity.this,response.message(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
-                } else {
+                    @Override
+                    public void onFailure(Call<UserResponse> call, Throwable t) {
+                        Toast.makeText(ProfileActivity.this,t.toString(), Toast.LENGTH_SHORT).show();
 
-                    userViewModel.updateUser(user);
-                }
+                    }
+                });
 
-                Toast.makeText(ProfileActivity.this, "Changes saved", Toast.LENGTH_SHORT).show();
             }
         });
     }

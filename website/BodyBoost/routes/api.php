@@ -39,4 +39,5 @@ Route::apiResource('appUser/store',UsersController::class)->except([
 
 Route::get('appUser/show', [UsersController::class, 'show']);
 
+Route::put('appUser/update/{id}',[UsersController::class,'update']);
 

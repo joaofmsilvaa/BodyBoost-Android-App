@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     } else {
-                        Toast.makeText(MainActivity.this, "Request Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "The given credentials do not match any user in the database", Toast.LENGTH_SHORT).show();
                     }
                 }
 
