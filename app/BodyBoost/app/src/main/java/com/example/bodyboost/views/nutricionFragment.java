@@ -76,34 +76,7 @@ public class nutricionFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
-
-        viewModel.fetchMeals(new Callback<MealResponse>() {
-            @Override
-            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
-                if (response.isSuccessful()) {
-                    MealResponse mealResponse = response.body();
-                    List<Meals> mealsList = mealResponse.getData();
-
-                    viewModel.insertMeals(mealsList);
-
-                    for (Meals meal : mealsList) {
-                        getIngredientsForMeal(meal);
-                    }
-
-                    for(Meals meal : mealsList){
-                        getMealIngredientsForMeal(meal);
-                    }
-
-                } else {
-                    Toast.makeText(getContext(), "Request Failed", Toast.LENGTH_SHORT);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MealResponse> call, Throwable t) {
-                Toast.makeText(getContext(), t + "", Toast.LENGTH_SHORT);
-            }
-        });
+        viewModel.fetchMeals(getContext());
 
         viewModel.getMeals().observe(getViewLifecycleOwner(), meals -> {
 
@@ -111,63 +84,5 @@ public class nutricionFragment extends Fragment {
             recyclerView.setAdapter(adapter);
         });
 
-    }
-
-    private void getIngredientsForMeal(Meals meal) {
-        JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
-
-        Call<IngredientsResponse> call = service.getIngredientsForMeal(meal.getMealId());
-        call.enqueue(new Callback<IngredientsResponse>() {
-            @Override
-            public void onResponse(Call<IngredientsResponse> call, Response<IngredientsResponse> response) {
-                if (response.isSuccessful()) {
-                    IngredientsResponse ingredientResponse = response.body();
-                    List<Ingredients> ingredients = ingredientResponse.getData();
-
-                    onIngredientsReceived(ingredients);
-                } else {
-                    Toast.makeText(getContext(), "Request Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<IngredientsResponse> call, Throwable t) {
-                Toast.makeText(getContext(), t + "", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void onIngredientsReceived(List<Ingredients> ingredients) {
-        ingredientsViewModel.insertIngredients(ingredients);
-
-    }
-    private void onMealIngredientsReceived(List<MealIngredients> mealIngredients) {
-        mealIngredientsViewModel.insert(mealIngredients);
-
-    }
-
-
-    private void getMealIngredientsForMeal(Meals meal) {
-        JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
-
-        Call<MealIngredientsResponse> call = service.getMealIngredientsForMeal(meal.getMealId());
-        call.enqueue(new Callback<MealIngredientsResponse>() {
-            @Override
-            public void onResponse(Call<MealIngredientsResponse> call, Response<MealIngredientsResponse> response) {
-                if (response.isSuccessful()) {
-                    MealIngredientsResponse mealIngredientsResponse = response.body();
-                    List<MealIngredients> mealIngredients = mealIngredientsResponse.getData();
-
-                    onMealIngredientsReceived(mealIngredients);
-                } else {
-                    Toast.makeText(getContext(), "Request Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MealIngredientsResponse> call, Throwable t) {
-                Toast.makeText(getContext(), t + "", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }

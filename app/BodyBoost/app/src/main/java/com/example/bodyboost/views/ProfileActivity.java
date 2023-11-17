@@ -169,50 +169,10 @@ public class ProfileActivity extends AppCompatActivity {
                 float updatedWeight = Float.parseFloat(weight.getText().toString());
                 float updatedHeight = Float.parseFloat(height.getText().toString());
 
-                JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
-
                 String hashPassword = Hash.hashPassword(updatedPassword);
 
                 User user = new User(userId,updatedUsername,hashPassword,updatedWeight,updatedHeight,updatedGoal);
-                Call<UserResponse> postCall = service.updateUser(userId,user);
-                postCall.enqueue(new Callback<UserResponse>() {
-                    @Override
-                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                        if (response.isSuccessful()) {
-                            UserResponse userResponse = response.body();
-                            User updatedUser = userResponse.getData();
-                            userViewModel.updateUser(updatedUser);
-
-                            userCompletedViewModel.deleteByUserId(userId);
-                            userPlanViewModel.deletePlanByUserId(userId);
-
-                            int planValue = updatedGoal.equalsIgnoreCase("lose weight") ? 1 : 2;
-
-                            UserPlan userPlan = new UserPlan(userId, planValue);
-                            userPlanViewModel.insert(userPlan);
-
-                            List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
-                            for (int day : daysOfWeek) {
-                                List<Integer> exerciseIds = workoutViewModel.getExercisesInDay(planValue, day);
-                                for (int exerciseId : exerciseIds) {
-                                    UserCompleted userCompleted = new UserCompleted(0, userId, day, exerciseId, false);
-                                    userCompletedViewModel.insert(userCompleted);
-                                }
-                            }
-
-                            Toast.makeText(ProfileActivity.this, "Changes saved", Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Toast.makeText(ProfileActivity.this,response.message(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<UserResponse> call, Throwable t) {
-                        Toast.makeText(ProfileActivity.this,t.toString(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+                userViewModel.updateUserAPI(user, ProfileActivity.this, updatedGoal);
 
             }
         });

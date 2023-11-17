@@ -21,7 +21,11 @@ class UsersController extends Controller
             return response()->json(['message' => 'Username not available'], 422);
         }
         else{
-            $user = AppUser::create(request()->all());
+            $nextTransactionId = AppUser::orderBy('id','desc')->first()->id + 1;
+            $createdUser = request()->all();
+            $createdUser["id"] = $nextTransactionId;
+
+            $user = AppUser::create($createdUser);
 
             return new AppUserResource($user);
         }
@@ -51,13 +55,22 @@ class UsersController extends Controller
 
             $newUsername = $request->input('username');
 
-            $existingUserWithUsername = AppUser::where('username', $newUsername)->where('id', '!=', $id)->first();
+            $existingUserWithUsername = AppUser::where('username', $newUsername)->first();
 
             if ($existingUserWithUsername) {
                 return response()->json(['message' => 'Username not available'], 422);
             }
             else{
-                $user->update($request->all());
+
+                $attributes = $request->validate([
+                    'username' => ['required'],
+                    'password' => ['required'],
+                    'weight' => ['required'],
+                    'height' => ['required'],
+                    'objective' => ['required'],
+                ]);
+
+                $user->update($attributes);
 
                 return new AppUserResource($user);
             }

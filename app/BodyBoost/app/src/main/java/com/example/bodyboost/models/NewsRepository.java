@@ -1,6 +1,7 @@
 package com.example.bodyboost.models;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -17,6 +18,7 @@ import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NewsRepository {
     private FeedDao newsDao;
@@ -29,12 +31,30 @@ public class NewsRepository {
         this.service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
     }
 
-    public void fetchNews(Callback<NewsResponse> callback) {
+    public void fetchNews(Context context) {
         Call<NewsResponse> call = service.getNews();
-        call.enqueue(callback);
+        call.enqueue(new Callback<NewsResponse>() {
+            @Override
+            public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
+                if (response.isSuccessful()) {
+                    NewsResponse mealResponse = response.body();
+                    List<Feed> mealsList = mealResponse.getData();
+
+                    insertNews(mealsList);
+
+                } else {
+                    Toast.makeText(context, "Request Failed", Toast.LENGTH_SHORT);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NewsResponse> call, Throwable t) {
+                Toast.makeText(context, t + "", Toast.LENGTH_SHORT);
+            }
+        });
+
     }
 
-    // Doesn't require executor since we're observing the list in our Activity
     public LiveData<List<Feed>> getNews() {
         return this.newsDao.getAll();
     }

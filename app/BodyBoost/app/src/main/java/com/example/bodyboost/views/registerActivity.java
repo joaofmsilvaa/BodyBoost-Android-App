@@ -25,7 +25,9 @@ import com.example.bodyboost.models.Meals;
 import com.example.bodyboost.models.User;
 import com.example.bodyboost.models.UserCompleted;
 import com.example.bodyboost.models.UserPlan;
+import com.example.bodyboost.models.UserRepository;
 import com.example.bodyboost.models.UserResponse;
+import com.example.bodyboost.models.databaseModels.UserDao;
 import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
 import com.example.bodyboost.models.retrofit.RetrofitClient;
 import com.example.bodyboost.viewmodels.Hash;
@@ -37,6 +39,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -157,54 +160,19 @@ public class RegisterActivity extends AppCompatActivity {
                 float weightFloat = Float.parseFloat(weightString);
                 float heightFloat = Float.parseFloat(heightString);
 
-
-                JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
-
                 String hashedpassword = Hash.hashPassword(passwordString);
 
                 User user = new User(0,usernameString,hashedpassword,weightFloat,heightFloat,goalString);
-                Call<UserResponse> postCall = service.registerUser(user);
-                postCall.enqueue(new Callback<UserResponse>() {
-                    @Override
-                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                        if (response.isSuccessful()) {
-                            UserResponse userResponse = response.body();
-                            User createdUser = userResponse.getData();
-                            userViewModel.storeUser(createdUser);
+                userViewModel.registerUser(RegisterActivity.this, user, daysOfWeek);
 
-                            int planValue = goalString.equals("lose weight") ? 1 : 2;
+                int userId = userViewModel.getUserId();
 
-                            UserPlan userPlan = new UserPlan(createdUser.userId, planValue);
-
-                            userPlanViewModel.insert(userPlan);
-
-                            for (int i = 0; i < daysOfWeek.size(); i++) {
-                                List<Integer> getExercisesInDay = workoutViewModel.getExercisesInDay(planValue, i);
-
-                                for (int exerciseId : getExercisesInDay) {
-                                    UserCompleted userCompleted = new UserCompleted(0, createdUser.getUserId(), i, exerciseId, false);
-
-                                    userCompletedViewModel.insert(userCompleted);
-                                }
-                            }
-
-                            Intent intent = new Intent(RegisterActivity.this, homeActivity.class);
-                            intent.putExtra("userId", createdUser.userId);
-                            startActivity(intent);
-                            finish();
-
-
-                        } else {
-                            Toast.makeText(RegisterActivity.this,"Response not successfull", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<UserResponse> call, Throwable t) {
-                        Toast.makeText(RegisterActivity.this,t.toString(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+                if(userId > 0){
+                    Intent intent = new Intent(RegisterActivity.this, homeActivity.class);
+                    intent.putExtra("userId", userId);
+                    startActivity(intent);
+                    finish();
+                }
 
             }
         }

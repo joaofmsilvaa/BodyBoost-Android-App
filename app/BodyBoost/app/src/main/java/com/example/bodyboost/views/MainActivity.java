@@ -1,5 +1,6 @@
 package com.example.bodyboost.views;
 
+import static androidx.core.content.ContextCompat.startActivity;
 import static com.example.bodyboost.models.databaseModels.Hash.hashPassword;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -93,61 +94,17 @@ public class MainActivity extends AppCompatActivity {
 
         if (usernameString.trim().length() > 0 && passwordString.trim().length() > 0) {
 
-            JsonPlaceHolderService service = RetrofitClient.getClient().create(JsonPlaceHolderService.class);
-
             String hashedpassword = Hash.hashPassword(passwordString);
-            
-            Call<UserResponse> call = service.getUserByUsernameAndPassword(usernameString, hashedpassword);
-            call.enqueue(new Callback<UserResponse>() {
-                @Override
-                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                    if (response.isSuccessful()) {
-                        UserResponse userResponse = response.body();
-                        User user = userResponse.getData();
+            userViewModel.loginUser(MainActivity.this, usernameString, hashedpassword, daysOfWeek);
 
-                        int ammountOfUserWithName = userViewModel.getUserId(user.username);
+            int userId = userViewModel.getUserIdAPI();
 
-                        if(ammountOfUserWithName > 0){
-                            Intent intent = new Intent(MainActivity.this, homeActivity.class);
-                            intent.putExtra("userId", user.userId);
-                            startActivity(intent);
-                            finish();
-                        }
-                        else{
-                            userViewModel.storeUser(user);
-
-                            int planValue = user.getObjective().equals("lose weight") ? 1 : 2;
-
-                            UserPlan userPlan = new UserPlan(user.userId, planValue);
-
-                            userPlanViewModel.insert(userPlan);
-
-                            for (int i = 0; i < daysOfWeek.size(); i++) {
-                                List<Integer> getExercisesInDay = workoutViewModel.getExercisesInDay(planValue, i);
-
-                                for (int exerciseId : getExercisesInDay) {
-                                    UserCompleted userCompleted = new UserCompleted(0, user.getUserId(), i, exerciseId, false);
-
-                                    userCompletedViewModel.insert(userCompleted);
-                                }
-                            }
-
-                            Intent intent = new Intent(MainActivity.this, homeActivity.class);
-                            intent.putExtra("userId", user.userId);
-                            startActivity(intent);
-                            finish();
-                        }
-
-                    } else {
-                        Toast.makeText(MainActivity.this, "The given credentials do not match any user in the database", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<UserResponse> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, t + "", Toast.LENGTH_SHORT).show();
-                }
-            });
+            if(userId > 0){
+                Intent intent = new Intent(MainActivity.this, homeActivity.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
+                finish();
+            }
 
 
         } else {
@@ -163,6 +120,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 
 }

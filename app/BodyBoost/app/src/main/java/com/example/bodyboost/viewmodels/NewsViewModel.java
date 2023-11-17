@@ -1,6 +1,7 @@
 package com.example.bodyboost.viewmodels;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -24,8 +25,8 @@ public class NewsViewModel extends AndroidViewModel {
         this.repository = new NewsRepository(application.getApplicationContext());
     }
 
-    public void fetchNews(Callback<NewsResponse> callback) {
-        repository.fetchNews(callback);
+    public void fetchNews(Context context) {
+        repository.fetchNews(context);
     }
 
     public LiveData<List<Feed>> getNews() {
@@ -36,9 +37,6 @@ public class NewsViewModel extends AndroidViewModel {
         return repository.getById(newsId);
     }
 
-    public void insertNews(List<Feed> newsList){
-        repository.insertNews(newsList);
-    }
 }
 
 

@@ -27,6 +27,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('meals',MealsController::class)->except([
     'create', 'show', 'edit'
 ]);
+
+Route::apiResource('news', NewsController::class)->except([
+    'create', 'show', 'edit'
+]);
+
 Route::apiResource('meals/{meal:id}/ingredients',IngredientController::class)->except([
     'create', 'show', 'edit'
 ]);

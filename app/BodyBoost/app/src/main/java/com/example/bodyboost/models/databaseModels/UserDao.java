@@ -30,6 +30,10 @@ public interface UserDao {
     @Query("SELECT * FROM User WHERE userId = :id")
     User getUserById(int id);
 
+    @Query("SELECT * FROM User WHERE username = :username")
+    User getUserByName(String username);
+
+
     @Query("SELECT objective FROM User WHERE userId = :userId")
     String userGoal(int userId);
 

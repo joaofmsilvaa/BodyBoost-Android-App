@@ -25,4 +25,8 @@ public class UserResponse {
         return data;
     }
 
+    public int getUserId() {
+        return data.getUserId();
+    }
+
 }

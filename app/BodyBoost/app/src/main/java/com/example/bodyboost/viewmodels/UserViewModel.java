@@ -1,10 +1,13 @@
 package com.example.bodyboost.viewmodels;
 
 import android.app.Application;
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.bodyboost.models.Days;
 import com.example.bodyboost.models.DaysRepository;
 import com.example.bodyboost.models.Exercise;
 import com.example.bodyboost.models.User;
@@ -23,16 +26,12 @@ public class UserViewModel extends AndroidViewModel {
 
     public UserViewModel(@NonNull Application application) {
         super(application);
-        // Initialize repository
+
         this.repository = new UserRepository(application.getApplicationContext());
     }
 
     public int getUserId(String username){
         return repository.getUserId(username);
-    }
-
-    public int correspondingUsers(String username, String password){
-        return repository.correspondingUsers(username, password);
     }
 
     public User getUserById(int id){
@@ -42,22 +41,39 @@ public class UserViewModel extends AndroidViewModel {
     public int isUsernameAvailable(String username){
         return repository.isUsernameAvailable(username);
     }
-
-    public String userGoal(int id){
-        return repository.userGoal(id);
-    }
-
     public void updateUser(User user){
         repository.updateUser(user);
+    }
+
+    public void updateUserAPI(User user, Context context, String updatedGoal){
+        repository.updateUserApi(user, context, updatedGoal);
     }
 
     public void insert(User user){
         repository.insert(user);
     }
 
-
     public void storeUser(User user){
         repository.insert(user);
+    }
+    public void registerUser(Context context, User user, List<Integer> daysList){
+        repository.registerUser(context,user, daysList);
+    }
+
+    public void loginUser(Context context, String username, String hashedpassword, List<Integer> daysOfWeek){
+        repository.loginUser(context,username,hashedpassword,daysOfWeek);
+    }
+
+    public int getUserId(){
+        return repository.getUserId();
+    }
+
+    public int getUserIdAPI(){
+        return repository.userId();
+    }
+
+    public User getUserByName(String name){
+        return repository.getUserByName(name);
     }
 }
 

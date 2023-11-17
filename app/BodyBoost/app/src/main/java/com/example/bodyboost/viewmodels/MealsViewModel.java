@@ -1,6 +1,7 @@
 package com.example.bodyboost.viewmodels;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -23,8 +24,8 @@ public class MealsViewModel extends AndroidViewModel {
         this.repository = new MealsRepository(application.getApplicationContext());
     }
 
-    public void fetchMeals(Callback<MealResponse> callback) {
-        repository.fetchMeals(callback);
+    public void fetchMeals(Context context) {
+        repository.fetchMeals(context);
     }
 
     public LiveData<List<Meals>> getMeals() {
