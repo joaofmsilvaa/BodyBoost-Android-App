@@ -26,8 +26,8 @@ import java.util.List;
 
 public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.ExerciseSetAdapterEventListener {
     private int userId;
-    private ExerciseSetAdapter adapter;
     private int day;
+    private ExerciseSetAdapter adapter;
     private DaysViewModel daysViewModel;
     private WorkoutViewModel workoutViewModel;
     private UserPlanViewModel userPlanViewModel;
@@ -37,6 +37,7 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Initialize the viewmodels
         userPlanViewModel = new ViewModelProvider(this).get(UserPlanViewModel.class);
         userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
         workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
@@ -59,6 +60,7 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
         // Stores the given argument (an ID of the selected day) in the exerciseDay variable
         day = ExerciseFragmentArgs.fromBundle(getArguments()).getExerciseDay();
 
+        // Get and set the name of the day
         TextView dayOfWeek = view.findViewById(R.id.dayIndicatorTextView);
         dayOfWeek.setText(daysViewModel.getDayByID(day));
 
@@ -66,8 +68,10 @@ public class ExerciseFragment extends Fragment implements ExerciseSetAdapter.Exe
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        // Get the id of the user's plan
         int planId = userPlanViewModel.getUserPlanById(userId);
 
+        // Get the list of exercises for the user in the specific day
         List<Exercise> getExercisesForUser = userCompletedViewModel.getExercisesForUser(userId, day, planId);
         adapter = new ExerciseSetAdapter(this, day ,getExercisesForUser, getContext());
         recyclerView.setAdapter(adapter);

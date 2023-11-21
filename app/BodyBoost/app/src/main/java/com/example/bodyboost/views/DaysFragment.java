@@ -28,6 +28,8 @@ public class DaysFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize the viewmodels
         daysViewModel = new ViewModelProvider(this).get(DaysViewModel.class);
         userPlanViewModel = new ViewModelProvider(this).get(UserPlanViewModel.class);
 
@@ -44,7 +46,6 @@ public class DaysFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        int planId = userPlanViewModel.getUserPlanById(HomeFragment.userId);
 
         RecyclerView recyclerView = view.findViewById(R.id.dayRecyclerView);
 
@@ -52,6 +53,7 @@ public class DaysFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
         recyclerView.setLayoutManager(layoutManager);
 
+        // Populate the adapter with data returned by the getAll method from the daysViewModel
         adapter = new DaysAdapter(this,daysViewModel.getAll());
 
         recyclerView.setAdapter(adapter);
@@ -59,6 +61,7 @@ public class DaysFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
     @Override
     public void onDayClicked(int dayId, View v) {
+        // Navigate to the exercise fragment of the certain day
         NavDirections action = DaysFragmentDirections.actionDaysFragmentToExerciseFragment(dayId);
         Navigation.findNavController(v).navigate(action);
     }

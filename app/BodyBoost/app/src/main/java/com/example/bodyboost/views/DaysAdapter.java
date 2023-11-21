@@ -34,6 +34,7 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
     private UserPlanViewModel userPlanViewModel;
     private DayWorkoutViewModel dayWorkoutViewModel;
 
+    // Constructor of the daysAdapter that receives a event listener and list of days
     public DaysAdapter(DaysAdapterEventListener eventLister, List<Days> days) {
         this.eventListener = eventLister;
         this.daysList = days;
@@ -43,28 +44,38 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DaysViewHolder
     @NonNull
     @Override
     public DaysAdapter.DaysViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate the used item layout
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_days, parent, false);
         return new DaysAdapter.DaysViewHolder(itemView, parent.getContext());
     }
 
     @Override
     public void onBindViewHolder(@NonNull DaysAdapter.DaysViewHolder holder, int position) {
+        // Current day
         Days days = this.daysList.get(position);
+
+        // Initialize the view models
         userCompletedViewModel = new ViewModelProvider((ViewModelStoreOwner) holder.context).get(UserCompletedViewModel.class);
         userPlanViewModel = new ViewModelProvider((ViewModelStoreOwner) holder.context).get(UserPlanViewModel.class);
         dayWorkoutViewModel = new ViewModelProvider((ViewModelStoreOwner) holder.context).get(DayWorkoutViewModel.class);
 
+        // Get the id of the user's plan
         int planForUser = userPlanViewModel.getUserPlanById(userId);
-        int numOfExercises = userCompletedViewModel.countExercisesForUser(userId,days.getDayId());
-        int ammountCompleted = userCompletedViewModel.ammountCompleted(userId, days.getDayId());
 
+        // Get the number of exercises in the current day
+        int numOfExercises = userCompletedViewModel.countExercisesForUser(userId,days.getDayId());
+
+        // Get the amount of exercises completed by the user in the current day
+        int amountCompleted = userCompletedViewModel.ammountCompleted(userId, days.getDayId());
+
+        // Set the information's in the respective textviews
         holder.daysTextView.setText(days.getDay());
-        holder.countTextView.setText(ammountCompleted + " / " + numOfExercises);
+        holder.countTextView.setText(amountCompleted + " / " + numOfExercises);
         holder.descriptionTextView.setText(dayWorkoutViewModel.getDescriptionByDayPlan(days.getDayId(),planForUser));
 
+        // When the day card is clicked execute the onDayClicked method from the eventlistener
         holder.dayCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 int currentDay = days.getDayId();
 
                 if (eventListener != null) eventListener.onDayClicked(currentDay, v);
