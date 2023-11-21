@@ -33,7 +33,7 @@
                     <h2 class="mb-6 text-sm font-semibold uppercase text-white">Legal</h2>
                     <ul class="text-gray-400 font-medium">
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">Privacy Policy</a>
+                            <a href="privacy-police" class="hover:underline">Privacy Policy</a>
                         </li>
                         <li>
                             <a href="#" class="hover:underline">Terms &amp; Conditions</a>
