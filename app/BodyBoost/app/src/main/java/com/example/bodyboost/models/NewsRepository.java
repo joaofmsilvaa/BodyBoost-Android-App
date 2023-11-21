@@ -32,24 +32,26 @@ public class NewsRepository {
     }
 
     public void fetchNews(Context context) {
+        // Call getNews method from the service
         Call<NewsResponse> call = service.getNews();
         call.enqueue(new Callback<NewsResponse>() {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 if (response.isSuccessful()) {
+                    // Convert the news response to a list of news ( Feed )
                     NewsResponse mealResponse = response.body();
                     List<Feed> mealsList = mealResponse.getData();
 
                     insertNews(mealsList);
 
                 } else {
-                    Toast.makeText(context, "Request Failed", Toast.LENGTH_SHORT);
+                    Toast.makeText(context, "Request Failed", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<NewsResponse> call, Throwable t) {
-                Toast.makeText(context, t + "", Toast.LENGTH_SHORT);
+                Toast.makeText(context, t + "", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -63,6 +65,7 @@ public class NewsRepository {
         return this.newsDao.getById(newsId);
     }
 
+    // Method to insert the news in the database if they don't exist yet
     public void insertNews(List<Feed> newsList) {
         executor.execute(() -> {
             for (Feed news : newsList) {

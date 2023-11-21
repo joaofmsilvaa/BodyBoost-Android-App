@@ -15,9 +15,6 @@ public interface UserDao {
     @Query("SELECT * FROM User")
     List<User> getAll();
 
-    @Query("SELECT COUNT(userId) FROM User WHERE username = :username AND password = :password")
-    int correspondingUsers(String username, String password);
-
     @Query("SELECT COUNT(userId) FROM User WHERE username = :username")
     int isUsernameAvailable(String username);
 
@@ -32,10 +29,6 @@ public interface UserDao {
 
     @Query("SELECT * FROM User WHERE username = :username")
     User getUserByName(String username);
-
-
-    @Query("SELECT objective FROM User WHERE userId = :userId")
-    String userGoal(int userId);
 
     @Insert
     void insert(User user);

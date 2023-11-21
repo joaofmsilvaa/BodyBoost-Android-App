@@ -159,13 +159,15 @@ public class ProfileActivity extends AppCompatActivity {
                 float updatedWeight = Float.parseFloat(weight.getText().toString());
                 float updatedHeight = Float.parseFloat(height.getText().toString());
 
-                // Encrypt the new password through the hashPassword method
-                String hashPassword = Hash.hashPassword(updatedPassword);
+                if(!user.getPassword().equals(updatedPassword)){
+                    // Encrypt the new password through the hashPassword method
+                    updatedPassword = Hash.hashPassword(updatedPassword);
+                }
 
                 /* Create a new user object with the updated data and send it to the updateUserAPI
                 *  that updated the user data
                 */
-                User user = new User(userId,updatedUsername,hashPassword,updatedWeight,updatedHeight,updatedGoal);
+                User user = new User(userId,updatedUsername,updatedPassword,updatedWeight,updatedHeight,updatedGoal);
                 userViewModel.updateUserAPI(user, ProfileActivity.this, updatedGoal);
 
             }

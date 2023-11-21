@@ -18,6 +18,8 @@ import com.example.bodyboost.views.homeActivity;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +31,7 @@ public class UserRepository {
     private WorkoutPlanDao workoutPlanDao;
     private UserCompletedDao userCompletedDao;
     private JsonPlaceHolderService service;
+    private Executor executor = Executors.newSingleThreadExecutor();
     int userId;
 
     public int getUserId() {
@@ -36,6 +39,8 @@ public class UserRepository {
     }
 
     public UserRepository(Context context) {
+
+        // Initialize the needed DAO's
         this.userDao = AppDatabase.getInstance(context).getUserDao();
         this.userPlanDao = AppDatabase.getInstance(context).getUserPlanDao();
         this.workoutPlanDao = AppDatabase.getInstance(context).getWorkoutPlanDao();
@@ -56,20 +61,25 @@ public class UserRepository {
         return userDao.isUsernameAvailable(username);
     }
 
-    public void updateUser(User user){
-        userDao.updateUser(user);
-    }
-
     public void insert(User user){
-        userDao.insert(user);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                userDao.insert(user);
+            }
+        });
+
     }
 
     public void registerUser(Context context, User user, List<Integer> daysOfWeek){
+        // Call the endpoint in the method registerUser sending the "user" variable as a parameter
         Call<UserResponse> postCall = service.registerUser(user);
         postCall.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                // If the response is successful proceed
                 if (response.isSuccessful()) {
+                    // Convert the response from the API to a User object
                     UserResponse userResponse = response.body();
                     User createdUser = userResponse.getData();
 
@@ -77,30 +87,52 @@ public class UserRepository {
 
                     setUserId(userId);
 
-                    userDao.insert(createdUser);
+                    // Save the user in the local database
+                    executor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            userDao.insert(createdUser);
+                        }
+                    });
 
+                    // Depending in the users goal set different planValue
                     int planValue = createdUser.getObjective().equals("lose weight") ? 1 : 2;
 
+                    // Create a new UserPlan object with the user id and plan
                     UserPlan userPlan = new UserPlan(createdUser.getUserId(), planValue);
 
-                    userPlanDao.insert(userPlan);
+                    // Save the userPlan in the local db
+                    executor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            userPlanDao.insert(userPlan);
+                        }
+                    });
 
+                    // Get the exercises for each day of the week and insert them in the database
                     for (int i = 0; i < daysOfWeek.size(); i++) {
                         List<Integer> getExercisesInDay = workoutPlanDao.getExercisesInDay(planValue, i);
 
                         for (int exerciseId : getExercisesInDay) {
                             UserCompleted userCompleted = new UserCompleted(0, createdUser.getUserId(), i, exerciseId, false);
 
-                            userCompletedDao.insert(userCompleted);
+                            executor.execute(new Runnable() {
+                                @Override
+                                public void run() {
+                                    userCompletedDao.insert(userCompleted);
+                                }
+                            });
                         }
                     }
 
+                    // Navigate to the home activity with the user's Id as a extra
                     Intent intent = new Intent(context, homeActivity.class);
                     intent.putExtra("userId", createdUser.userId);
                     startActivity(context,intent, null);
 
 
                 } else {
+                    // Notify the user that the response was not successful
                     Toast.makeText(context,"Response not successful", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -113,18 +145,24 @@ public class UserRepository {
     }
 
     public void loginUser(Context context, String username, String hashedpassowrd, List<Integer> daysOfWeek){
+        /* Call the endpoint in the method getUserByUsernameAndPassword sending the username
+         * and hashedPassword
+         */
         Call<UserResponse> call = service.getUserByUsernameAndPassword(username, hashedpassowrd);
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                // If the API returns any user
                 if (response.isSuccessful()) {
+                    // Convert the response from the API to a User object
                     UserResponse userResponse = response.body();
                     User user = userResponse.getData();
 
-                    int ammountOfUserWithName = userDao.getUserId(user.username);
+                    // Check if there's any user registered in the local db with the given username
+                    int amountOfUserWithName = userDao.getUserId(user.username);
 
-                    if(ammountOfUserWithName > 0){
-
+                    // If the user is already registered in the db proceed to the homeActivity
+                    if(amountOfUserWithName > 0){
                         setUserId(userId);
 
                         Intent intent = new Intent(context, homeActivity.class);
@@ -132,14 +170,26 @@ public class UserRepository {
                         startActivity(context,intent, null);
 
                     }
+
+                    // If not, store the user as well as it's plan
                     else{
-                        userDao.insert(user);
+                        executor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                userDao.insert(user);
+                            }
+                        });
 
                         int planValue = user.getObjective().equals("lose weight") ? 1 : 2;
 
                         UserPlan userPlan = new UserPlan(user.userId, planValue);
 
-                        userPlanDao.insert(userPlan);
+                        executor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                userPlanDao.insert(userPlan);
+                            }
+                        });
 
                         for (int i = 0; i < daysOfWeek.size(); i++) {
                             List<Integer> getExercisesInDay = workoutPlanDao.getExercisesInDay(planValue, i);
@@ -147,17 +197,24 @@ public class UserRepository {
                             for (int exerciseId : getExercisesInDay) {
                                 UserCompleted userCompleted = new UserCompleted(0, user.getUserId(), i, exerciseId, false);
 
-                                userCompletedDao.insert(userCompleted);
+                                executor.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        userCompletedDao.insert(userCompleted);
+                                    }
+                                });
                             }
                         }
 
+                        // When the data is inserted proceed to the homeActivity
                         Intent intent = new Intent(context, homeActivity.class);
                         intent.putExtra("userId", user.userId);
                         startActivity(context,intent, null);
 
                     }
 
-                } else {
+                }
+                else {
                     Toast.makeText(context, "The given credentials do not match any user in the database", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -170,31 +227,72 @@ public class UserRepository {
     }
 
     public void updateUserApi(User user, Context context, String updatedGoal){
+        /* Call the endpoint in the method updateUser sending the userId
+         * and the updated user
+         */
         Call<UserResponse> postCall = service.updateUser(user.userId,user);
         postCall.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
+                    // Convert the response from the API to a User object
                     UserResponse userResponse = response.body();
                     User updatedUser = userResponse.getData();
 
                     setUserId(updatedUser.userId);
-                    userDao.updateUser(updatedUser);
 
-                    userCompletedDao.deleteByUserId(userId);
-                    userPlanDao.deletePlanByUserId(userId);
+                    // Update the user in the db
+                    executor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            userDao.updateUser(updatedUser);
+                        }
+                    });
+
+                    // Change the user plan and set the exercises
+                    executor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            userCompletedDao.deleteByUserId(userId);
+                        }
+                    });
+
+                    executor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            userPlanDao.deletePlanByUserId(userId);
+                        }
+                    });
 
                     int planValue = updatedGoal.equalsIgnoreCase("lose weight") ? 1 : 2;
 
                     UserPlan userPlan = new UserPlan(userId, planValue);
-                    userPlanDao.insert(userPlan);
+
+                    executor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            executor.execute(new Runnable() {
+                                @Override
+                                public void run() {
+                                    userPlanDao.insert(userPlan);
+                                }
+                            });
+                        }
+                    });
+
 
                     List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
                     for (int day : daysOfWeek) {
                         List<Integer> exerciseIds = workoutPlanDao.getExercisesInDay(planValue, day);
                         for (int exerciseId : exerciseIds) {
                             UserCompleted userCompleted = new UserCompleted(0, userId, day, exerciseId, false);
-                            userCompletedDao.insert(userCompleted);
+
+                            executor.execute(new Runnable() {
+                                @Override
+                                public void run() {
+                                    userCompletedDao.insert(userCompleted);
+                                }
+                            });
                         }
                     }
 
@@ -220,10 +318,6 @@ public class UserRepository {
     public int userId(){
         return this.userId;
     }
-    public User getUserByName(String name){
-        return userDao.getUserByName(name);
-    }
-
 
 }
 

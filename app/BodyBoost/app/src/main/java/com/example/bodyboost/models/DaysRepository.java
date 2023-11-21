@@ -16,7 +16,6 @@ import java.util.concurrent.Executors;
 
 public class DaysRepository {
     private DaysDao daysDao;
-    private Executor executor = Executors.newSingleThreadExecutor(); // To handle background tasks
 
     public DaysRepository(Context context) {
         this.daysDao = AppDatabase.getInstance(context).getDaysDao();
