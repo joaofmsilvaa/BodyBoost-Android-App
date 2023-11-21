@@ -19,7 +19,6 @@ import java.util.concurrent.Executors;
 
 public class DayWorkoutRepository {
     private DayWorkoutDao dayWorkoutDao;
-    private Executor executor = Executors.newSingleThreadExecutor(); // To handle background tasks
 
     public DayWorkoutRepository(Context context) {
         this.dayWorkoutDao = AppDatabase.getInstance(context).getDayWorkoutDao();

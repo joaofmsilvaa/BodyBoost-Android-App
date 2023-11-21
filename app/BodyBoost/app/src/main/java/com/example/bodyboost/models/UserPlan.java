@@ -18,10 +18,6 @@ public class UserPlan {
         this.planId = planId;
     }
 
-    public int getUser_planId() {
-        return user_planId;
-    }
-
     public int getUserId() {
         return userId;
     }

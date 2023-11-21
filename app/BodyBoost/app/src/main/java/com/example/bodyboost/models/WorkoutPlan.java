@@ -7,7 +7,6 @@ import androidx.room.Entity;
 @Entity(primaryKeys = {"planId", "dayId", "exerciseId"})
 public class WorkoutPlan {
 
-
     @ColumnInfo(name = "planId")
     int planId;
 
@@ -37,9 +36,5 @@ public class WorkoutPlan {
 
     public int getExerciseId() {
         return exerciseId;
-    }
-
-    public String getType() {
-        return type;
     }
 }

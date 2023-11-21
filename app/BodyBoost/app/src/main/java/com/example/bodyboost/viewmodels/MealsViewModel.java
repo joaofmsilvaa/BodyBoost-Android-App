@@ -35,10 +35,6 @@ public class MealsViewModel extends AndroidViewModel {
     public Meals getById(int mealId) {
         return repository.getById(mealId);
     }
-
-    public void insertMeals(List<Meals> mealsList){
-        repository.insertMeals(mealsList);
-    }
 }
 
 

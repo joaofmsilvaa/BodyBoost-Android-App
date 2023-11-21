@@ -21,7 +21,6 @@ public class ReportRepository {
         this.reportDao = AppDatabase.getInstance(context).getReportDao();
     }
 
-    // Doesn't require executor since we're observing the list in our Activity
     public LiveData<List<Report>> getReports(int userId) {
         return this.reportDao.getAll(userId);
     }
@@ -30,7 +29,6 @@ public class ReportRepository {
         return this.reportDao.getById(reportId);
     }
 
-    // Requires executor since we're dealing with a database operation
     public void createReport(Report report) {
         executor.execute(new Runnable() {
             @Override
@@ -44,7 +42,6 @@ public class ReportRepository {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-
                 reportDao.delete(report);
             }
         });

@@ -27,10 +27,6 @@ public class IngredientsViewModel extends AndroidViewModel {
     public LiveData<List<Ingredients>> getIngredientsForMeal(int mealId) {
         return repository.getIngredientsForMeal(mealId);
     }
-
-    public void insertIngredients(List<Ingredients> ingredients){
-        repository.insertIngredients(ingredients);
-    }
 }
 
 

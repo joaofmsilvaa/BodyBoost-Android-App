@@ -41,19 +41,11 @@ public class UserViewModel extends AndroidViewModel {
     public int isUsernameAvailable(String username){
         return repository.isUsernameAvailable(username);
     }
-    public void updateUser(User user){
-        repository.updateUser(user);
-    }
-
     public void updateUserAPI(User user, Context context, String updatedGoal){
         repository.updateUserApi(user, context, updatedGoal);
     }
 
     public void insert(User user){
-        repository.insert(user);
-    }
-
-    public void storeUser(User user){
         repository.insert(user);
     }
     public void registerUser(Context context, User user, List<Integer> daysList){
@@ -70,10 +62,6 @@ public class UserViewModel extends AndroidViewModel {
 
     public int getUserIdAPI(){
         return repository.userId();
-    }
-
-    public User getUserByName(String name){
-        return repository.getUserByName(name);
     }
 }
 

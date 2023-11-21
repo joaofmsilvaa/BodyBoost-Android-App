@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
 
-
         }
+
         // Show warning in the input layout of the empty field
         else {
             if (TextUtils.isEmpty(usernameString)) {

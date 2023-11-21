@@ -30,7 +30,12 @@ public class UserCompletedRepository {
     }
 
     public void updateExerciseCompleted(int value, int dayId, int userId, int exerciseId){
-        this.userCompletedDao.updateExerciseCompleted(value,dayId,userId,exerciseId);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                userCompletedDao.updateExerciseCompleted(value, dayId, userId, exerciseId);
+            }
+        });
     }
 
     public int countExercisesForUser(int userId, int dayId) {
@@ -46,11 +51,25 @@ public class UserCompletedRepository {
     }
 
     public void deleteByUserId(int userId){
-        this.userCompletedDao.deleteByUserId(userId);
+
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                userCompletedDao.deleteByUserId(userId);
+            }
+        });
+
     }
 
     public void insert(UserCompleted userCompleted){
-        this.userCompletedDao.insert(userCompleted);
+
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                userCompletedDao.insert(userCompleted);
+            }
+        });
+
     }
 
 }

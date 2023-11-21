@@ -19,7 +19,6 @@ import java.util.concurrent.Executors;
 
 public class ExerciseStepRepository {
     private ExerciseStepsDao exerciseStepsDao;
-    private Executor executor = Executors.newSingleThreadExecutor(); // To handle background tasks
 
     public ExerciseStepRepository(Context context) {
         this.exerciseStepsDao = AppDatabase.getInstance(context).getExerciseStepsDao();
