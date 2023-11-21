@@ -35,9 +35,11 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
     private ExerciseSetViewModel exerciseSetViewModel;
     private ExerciseStepsViewModel exerciseStepsViewModel;
 
+    // Variable to track the currently displayed image
     private int currentImg = 0;
 
     public ExerciseSetAdapter(ExerciseSetAdapterEventListener eventListener, int dayId ,List<Exercise> exerciseList, Context context) {
+        // Initializing the needed viewmodels
         userCompletedViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(UserCompletedViewModel.class);
         exerciseSetViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(ExerciseSetViewModel.class);
         userCompletedViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(UserCompletedViewModel.class);
@@ -58,29 +60,33 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ExerciseSetAdapter.MyViewHolder holder, int position) {
+        // Get current exercise
         Exercise exercise = exerciseList.get(position);
 
+        // Get the information's of the current exercise such as the reps or time
         ExerciseSet getExerciseInfos = exerciseSetViewModel.getInfosForExercise(exercise.getExerciseId());
 
+        // Set the name and description of the exercise
         holder.exerciseNameTextView.setText(exercise.getExerciseName());
         holder.exerciseDescTextView.setText(exercise.getExerciseDescription());
 
+        // Get the exercise step images
         List<String> exerciseStepImages = exerciseStepsViewModel.getExerciseSteps(exercise.getExerciseId());
 
-        Glide.with(holder.context).load(R.drawable.chairdips_1).into(holder.exerciseImageView);
         holder.button5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.left_arrow_disabled));
 
+        // Loading the first exercise step image
         int drawableResourceId = holder.context.getResources().getIdentifier(exerciseStepImages.get(0), "drawable", holder.context.getPackageName());
-
         Glide.with(holder.context).load(drawableResourceId).into(holder.exerciseImageView);
 
-
+        // Handling the repetitions or time of the exercise
         if (getExerciseInfos.getRepetitions() == 0) {
             holder.timeRepetitionsTextView.setText(getExerciseInfos.getTime());
         } else {
             holder.timeRepetitionsTextView.setText(getExerciseInfos.getRepetitions() + "x");
         }
 
+        // Updating the background of the weight card based on completion status
         if (holder.weightCard != null) {
             if (userCompletedViewModel.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId()) == 1) {
                 holder.weightCard.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_exercise_completed) );
@@ -89,12 +95,13 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
             }
         }
 
+        // Handling the click event for marking an exercise as completed or not
         holder.exerciseDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int test = userCompletedViewModel.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId());
+                int exerciseCompletedCheck = userCompletedViewModel.checkIfExerciseCompleted(HomeFragment.userId, day, exercise.getExerciseId());
 
-                if (test == 1) {
+                if (exerciseCompletedCheck == 1) {
 
                     userCompletedViewModel.updateExerciseCompleted(0,day,HomeFragment.userId,exercise.getExerciseId());
                     eventListener.onExerciseCompleted();
@@ -106,6 +113,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ExerciseSetAdapter.
             }
         });
 
+        // Handling the exercise steps image "swipe"
         if (exerciseStepImages.size() > 1) {
             if (exerciseStepImages.size() == 2) {
                 holder.button4.setOnClickListener(new View.OnClickListener() {
