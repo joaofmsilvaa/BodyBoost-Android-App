@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Initialize the needed viewmodels
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
         workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    // Make an intent to the register activity
     public void signUpMenu(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
@@ -92,13 +93,19 @@ public class MainActivity extends AppCompatActivity {
         usernameString = username.getText().toString();
         passwordString = password.getText().toString();
 
+        // If the inserted username and password are not empty proceed
         if (usernameString.trim().length() > 0 && passwordString.trim().length() > 0) {
 
+            // Hash the inserted password
             String hashedpassword = Hash.hashPassword(passwordString);
+
+            // Send the data to the api through the loginUser method in the viewmodel
             userViewModel.loginUser(MainActivity.this, usernameString, hashedpassword, daysOfWeek);
 
+            // Save id of the logged in user
             int userId = userViewModel.getUserIdAPI();
 
+            // If the user was successfully logged in proceed to intent to the home activity
             if(userId > 0){
                 Intent intent = new Intent(MainActivity.this, homeActivity.class);
                 intent.putExtra("userId", userId);
@@ -107,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-        } else {
+        }
+        // Show warning in the input layout of the empty field
+        else {
             if (TextUtils.isEmpty(usernameString)) {
                 textInputLayout1.setError("Insert a username");
             } else {

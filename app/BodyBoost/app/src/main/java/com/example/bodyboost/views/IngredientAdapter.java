@@ -25,6 +25,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     private MealIngredientsViewModel mealIngredientsViewModel;
 
+    // Constructor of the IngredientsAdapter that receives a list of ingredients
     public IngredientAdapter(List<Ingredients> ingredientsList) {
         this.ingredientsList = ingredientsList;
     }
@@ -32,16 +33,20 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     @NonNull
     @Override
     public IngredientAdapter.IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate the list_ingredients layout
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_ingredients, parent, false);
         return new IngredientAdapter.IngredientViewHolder(itemView, parent.getContext());
     }
 
     @Override
     public void onBindViewHolder(@NonNull IngredientAdapter.IngredientViewHolder holder, int position) {
+        // Store the current ingredient
         Ingredients ingredients = this.ingredientsList.get(position);
 
+        // Initialize the mealIngredients viewmodel
         mealIngredientsViewModel = new ViewModelProvider((ViewModelStoreOwner) holder.context).get(MealIngredientsViewModel.class);
 
+        // Set the ingredient name and quantity in the respective textviews
         holder.ingredientNameTextView.setText(ingredients.getIngredientName());
         holder.ingredientQuantityTextView.setText(mealIngredientsViewModel.getQuantityById(ingredients.getIngredientsId()));
 

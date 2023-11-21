@@ -84,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Initialize the needed view-models
         userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
         workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
@@ -92,7 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
         autoCompleteTextView = findViewById(R.id.goalsACT);
         username = findViewById(R.id.usernameEditText);
         password = findViewById(R.id.passwordEditText);
-        // Define the array of goals
+
+        // Define the array of available goals
         String[] goalsArray = {"Gain mass", "Lose weight"};
 
         // Create an ArrayAdapter using the goalsArray and a default spinner layout
@@ -138,6 +140,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void signInMenu(View view) {
+        // Creates an intent to the Log-in activity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -150,23 +153,36 @@ public class RegisterActivity extends AppCompatActivity {
         heightString = height.getText().toString();
         weightString = weight.getText().toString();
 
+        // Counts the ammount of users with the given name in the database
         int usernameAvailable = userViewModel.isUsernameAvailable(usernameString);
 
+        // If all the fields have data on them proceed
         if(usernameString.trim().length() > 0 && passwordString.trim().length() > 0 && goalString.trim().length() > 0 && heightString.trim().length() > 0 && weightString.trim().length() > 0) {
+
             if (usernameAvailable > 0) {
                 // Username is already taken
                 Toast.makeText(this, "Username is not available", Toast.LENGTH_SHORT).show();
-            } else {
+            }
+
+            else {
                 float weightFloat = Float.parseFloat(weightString);
                 float heightFloat = Float.parseFloat(heightString);
 
+                // Calls the method "hashPassword" to encrypt the given password
                 String hashedpassword = Hash.hashPassword(passwordString);
 
+                // Creates a new user with the given data
                 User user = new User(0,usernameString,hashedpassword,weightFloat,heightFloat,goalString);
+
+                /* Calls the register method from the viewModel to save the user information in the local db
+                *  as well as in the database connected to the API
+                */
                 userViewModel.registerUser(RegisterActivity.this, user, daysOfWeek);
 
+                // Gets the id of the created user
                 int userId = userViewModel.getUserId();
 
+                // If the user was actually created proceed to intent to the home activity and send the userId
                 if(userId > 0){
                     Intent intent = new Intent(RegisterActivity.this, homeActivity.class);
                     intent.putExtra("userId", userId);
@@ -176,6 +192,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         }
+
+        // Set an error for the empty fields of the form
         else{
 
             if (TextUtils.isEmpty(usernameString)) {
@@ -215,12 +233,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
         }
-    }
-
-    public void showResponse(String response) {
-
-        Log.e("Response", response);
-
     }
 
 }

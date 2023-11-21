@@ -25,6 +25,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
 
     private List<Feed> newsList;
 
+    // Construct the FeedAdapter from a list of news ( Feed objects )
     public FeedAdapter(List<Feed> News) {
         this.newsList = News;
     }
@@ -38,8 +39,10 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull FeedAdapter.FeedViewHolder holder, int position) {
+        // Get current news
         Feed news = newsList.get(position);
 
+        // Set the news informations in the textviews
         holder.newsTitleTextView.setText(news.getNewsTitle());
         holder.newsDescriptionTextView.setText(news.getNewsSmallDescription());
         holder.newsDateTextView.setText(news.newsDate);
@@ -47,8 +50,10 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         holder.categoryTextView.setText(news.getCategory());
         holder.websiteNameTextView.setPaintFlags(holder.websiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
+        // Load the news image in the imageview with the base url
         Picasso.get().load("http://10.0.2.2:8000/storage/" + news.getNewsImg()).into(holder.newsImageView);
 
+        // Navigate to the Feed fragment when a news is selected
         holder.newsCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int selectedNew = news.getFeedId();
@@ -57,6 +62,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
             }
         });
 
+        // Navigate to the news source website
         holder.websiteNameTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent viewIntent =

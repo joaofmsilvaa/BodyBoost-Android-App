@@ -37,7 +37,6 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     public static int userId;
     public ProgressBar progressBar;
     public TextView percentage;
-
     private DaysViewModel daysViewModel;
     private UserCompletedViewModel userCompletedViewModel;
 
@@ -49,9 +48,11 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         Bundle bundle = getActivity().getIntent().getExtras();
 
         String KEY_USER_ID = "userId";
+
+        // Store the userId sent in the bundle
         this.userId = bundle.getInt(KEY_USER_ID, 0);
 
-        AppDatabase db = AppDatabase.getInstance(requireContext());
+        // Initialize the needed viewmodels
         daysViewModel = new ViewModelProvider(this).get(DaysViewModel.class);
         userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
 
@@ -67,7 +68,10 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Get the ammount of exercises completed
         int ammountCompleted = userCompletedViewModel.ammountCompleted(userId,getCurrentDay());
+
+        // Get the ammount of exercises in the day
         int ammountOfExercisesInDay = userCompletedViewModel.ammountOfExercisesInDay(userId,getCurrentDay());
 
         percentage = view.findViewById(R.id.percentage);
@@ -76,18 +80,20 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         int percentageValue = 0;
 
         if(ammountCompleted != 0){
+            // Calculate the percentage of exercises completed in current day
             percentageValue = ammountCompleted / ammountOfExercisesInDay * 100;
         }
 
+        // set the percentage in the textview
         percentage.setText(percentageValue + "%");
         progressBar.setProgress(percentageValue);
-
 
         RecyclerView daysRecyclerView = view.findViewById(R.id.curretnDayRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
         daysRecyclerView.setLayoutManager(layoutManager);
 
+        // Initialize the adapter
         DaysAdapter adapter = new DaysAdapter(this, daysViewModel.getCurrentDay(getCurrentDay()));
 
         daysRecyclerView.setAdapter(adapter);
@@ -99,10 +105,15 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
         updatePercentage();
     }
 
+    // Calculate the current day of the week
     public static int getCurrentDay() {
+        // Get instance of object calanedar
         Calendar calendar = Calendar.getInstance();
+
+        // Get the day of week from calendar variable
         int currentDay = calendar.get(Calendar.DAY_OF_WEEK);
 
+        // Depending on the value of the currentDay variable set the current day
         switch (currentDay) {
             case Calendar.MONDAY:
                 currentDay = 0;
@@ -133,13 +144,13 @@ public class HomeFragment extends Fragment implements DaysAdapter.DaysAdapterEve
 
     @Override
     public void onDayClicked(int dayId, View v) {
-
+        // When the home card is clicked navigate to the exerciseFragment of the designated day
         NavDirections action = HomeFragmentDirections.actionHomeFragmentToExerciseFragment(dayId);
         Navigation.findNavController(v).navigate(action);
 
     }
 
-
+    // Calculate the percentage of the completed exercises in the day
     public void updatePercentage() {
 
         TextView percentage = this.percentage;

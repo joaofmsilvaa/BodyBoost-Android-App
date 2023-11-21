@@ -37,11 +37,14 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize the report view-model
         viewModel = new ViewModelProvider(this).get(ReportViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the "fragment_report" layout
         return inflater.inflate(R.layout.fragment_report, container, false);
     }
 
@@ -49,8 +52,8 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
     public void onStart() {
         super.onStart();
 
+        // Creates an observer with the given Live data from the getReports method that returns all reports
         viewModel.getReports(HomeFragment.userId).observe(this, reports -> {
-
             if(reports.size() > 0){
                 messageTextView.setText("");
                 adapter.updateData(reports);
@@ -70,8 +73,12 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
         weightInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
         messageTextView = view.findViewById(R.id.textView3);
-
         Button insertWeight = view.findViewById(R.id.insertWeightButton);
+
+        /* When the "insertWeight" button is clicked the method stores the weight in a variable
+         * and then creates a new report with the data and proceeds to call the "createReport"
+         * method from the view-model that stores the report in the database
+         */
         insertWeight.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String inputText = weightInput.getText().toString().trim();
@@ -80,12 +87,10 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
 
                     long currentDateMillis = System.currentTimeMillis();
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                    String currentDate = sdf.format(new Date(currentDateMillis));
-
                     // Setup viewModel
                     viewModel = new ViewModelProvider(getActivity()).get(ReportViewModel.class);
 
+                    // Call the view-model method to store the report
                     viewModel.createReport(new Report(0, HomeFragment.userId, weight, currentDateMillis));
                     weightInput.setText("");
 
@@ -93,7 +98,7 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
 
                     refreshFragment();
                 } else {
-                    // Handle empty input, display an error message, or take appropriate action.
+                    // If the weight field is empty make a toast notifying the user
                     Toast.makeText(getContext(), "Please enter a weight value", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -103,13 +108,12 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
 
         recyclerView.setLayoutManager(layoutManager);
 
-        // Observe
+        // Observe the Live Data given by the getReports method which returns all the reports
         viewModel.getReports(HomeFragment.userId).observe(getViewLifecycleOwner(), reports -> {
 
             if(reports.size() > 0){
                 messageTextView.setText("");
             }
-
 
             adapter = new ReportAdapter(this, reports);
             recyclerView.setAdapter(adapter);
@@ -118,7 +122,7 @@ public class ReportFragment extends Fragment implements ReportAdapter.ReportAdap
     }
 
     public void refreshFragment() {
-        // Observe
+        // Get all the reports and send them to the adapter
         viewModel.getReports(HomeFragment.userId).observe(getViewLifecycleOwner(), reports -> {
 
             if(reports.size() > 0){

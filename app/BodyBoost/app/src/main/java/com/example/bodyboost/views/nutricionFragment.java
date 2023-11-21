@@ -41,7 +41,6 @@ import retrofit2.Response;
 public class nutricionFragment extends Fragment {
 
     private MealsAdapter adapter;
-
     private MealsViewModel viewModel;
     private IngredientsViewModel ingredientsViewModel;
     private MealIngredientsViewModel mealIngredientsViewModel;
@@ -52,6 +51,7 @@ public class nutricionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Initialize the needed viewModels
         viewModel = new ViewModelProvider(this).get(MealsViewModel.class);
         ingredientsViewModel = new ViewModelProvider(this).get(IngredientsViewModel.class);
         mealIngredientsViewModel = new ViewModelProvider(this).get(MealIngredientsViewModel.class);
@@ -76,8 +76,14 @@ public class nutricionFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
+        /* Collect all the meals from the API and store them through the fetchMeals method
+        *  in the viewmodel
+         */
         viewModel.fetchMeals(getContext());
 
+        /* Create and observer that gets all the meals in the database through the viewmodel
+        *  and populate the adapter with them
+         */
         viewModel.getMeals().observe(getViewLifecycleOwner(), meals -> {
 
             adapter = new MealsAdapter(meals);

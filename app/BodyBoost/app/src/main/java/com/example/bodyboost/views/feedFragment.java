@@ -36,6 +36,7 @@ public class feedFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Initialize the needed viewmodel
         viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
 
     }
@@ -61,8 +62,10 @@ public class feedFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
+        // Collect all the news from the API through the fetchNews method in the viewmodel
         viewModel.fetchNews(getContext());
 
+        // Create observer from the getNews method in the viewmodel
         viewModel.getNews().observe(getViewLifecycleOwner(), news -> {
 
             adapter = new FeedAdapter(news);

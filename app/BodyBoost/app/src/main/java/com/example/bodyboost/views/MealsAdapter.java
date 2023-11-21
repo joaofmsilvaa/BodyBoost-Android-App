@@ -26,6 +26,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
 
     private List<Meals> mealsList;
 
+    // Create the constructor of the mealsAdapter that needs a list of meals as a parameter
     public MealsAdapter(List<Meals> mealsList) {
         this.mealsList = mealsList;
     }
@@ -33,13 +34,17 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
     @NonNull
     @Override
     public MealsAdapter.MealsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate the layout of the meals list
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_meals, parent, false);
         return new MealsAdapter.MealsViewHolder(itemView, parent.getContext());
     }
 
     @Override
     public void onBindViewHolder(@NonNull MealsAdapter.MealsViewHolder holder, int position) {
+        // Store the current meal of the adapter
         Meals meals = this.mealsList.get(position);
+
+        // Set the current information's in the textviews
         holder.recipeNameTextView.setText(meals.getMealName());
         holder.recipeDescTextView.setText(meals.getMealsShortDescription());
         holder.caloriesTextView.setText(meals.getCalories() + " cal");
@@ -47,8 +52,10 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.MealsViewHol
         holder.dietaryTypeTV.setText(meals.getDietary_type());
         holder.mealTypeTv.setText(meals.getMeal_type());
 
+        // Load the meals image in the imageview
         Picasso.get().load("http://10.0.2.2:8000/storage/" + meals.getMealImage()).into(holder.mealImageView);
 
+        // Navigate to the nutritionFragment of the selectedRecipe
         holder.recipeCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int selectedRecipe = meals.getMealId();

@@ -13,41 +13,20 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.example.bodyboost.models.UserResponse;
 import com.example.bodyboost.R;
 import com.example.bodyboost.models.User;
-import com.example.bodyboost.models.UserCompleted;
-import com.example.bodyboost.models.UserPlan;
-import com.example.bodyboost.models.retrofit.JsonPlaceHolderService;
-import com.example.bodyboost.models.retrofit.RetrofitClient;
 import com.example.bodyboost.viewmodels.Hash;
-import com.example.bodyboost.viewmodels.UserCompletedViewModel;
-import com.example.bodyboost.viewmodels.UserPlanViewModel;
 import com.example.bodyboost.viewmodels.UserViewModel;
-import com.example.bodyboost.viewmodels.WorkoutViewModel;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.Arrays;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private UserViewModel userViewModel;
-    private UserPlanViewModel userPlanViewModel;
-    private UserCompletedViewModel userCompletedViewModel;
-    private WorkoutViewModel workoutViewModel;
-
     private EditText username;
     private EditText password;
     private AutoCompleteTextView goal;
@@ -60,10 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        // Initialize the usersViewModel
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        userPlanViewModel = new ViewModelProvider(this).get(UserPlanViewModel.class);
-        userCompletedViewModel = new ViewModelProvider(this).get(UserCompletedViewModel.class);
-        workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
 
         username = findViewById(R.id.usernameEditText);
         goal = findViewById(R.id.goalsACT);
@@ -72,18 +49,24 @@ public class ProfileActivity extends AppCompatActivity {
         saveChangesBtn = findViewById(R.id.button3);
         password = findViewById(R.id.passwordEditText);
 
+        // Get a user with the given Id through the getUserId method in the userViewModel
         User user = userViewModel.getUserById(userId);
         username.setText(user.getappUsername());
 
+        // Array of goals available
         String[] goalsArray = {"Lose weight", "Gain mass"};
+
+        // Populate the goals dropdown with the array of goals
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.dropdown_item, goalsArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         goal.setAdapter(adapter);
         goal.setText(user.getObjective(), false);
 
+        // Populate the weight and height textviews with the users information
         weight.setText(Float.toString(user.getWeight()));
         height.setText(Float.toString(user.getHeight()));
 
+        // Find the navigation sidebar
         final NavigationView navigationView = findViewById(R.id.nav_view);
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -92,6 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
         // Hide the sidebar initially
         navigationView.setVisibility(View.GONE);
 
+        // Get the menu of items of the navigationView
         Menu navMenu = navigationView.getMenu();
         MenuItem logOutItem = navMenu.findItem(R.id.logOut);
         MenuItem profileItem = navMenu.findItem(R.id.username);
@@ -99,6 +83,7 @@ public class ProfileActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         Button closeButton = headerView.findViewById(R.id.close_button);
 
+        // When the user clicks on the profile item navigate to the profile
         profileItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
@@ -108,6 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        // Disable the visibility of the sidebar when the close button is clicked
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,6 +102,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        // When the logout button is clicked execute the method to terminate the user session
         logOutItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -126,6 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         Button userButton = findViewById(R.id.user_button);
 
+        // When the side bar button is clicked set its visibility to visible
         userButton.setOnClickListener(new View.OnClickListener() {
             private boolean isSidebarVisible = false;
 
@@ -143,6 +131,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         Button backButton = findViewById(R.id.back_button);
 
+        // When the back button is clicked make an intent to the homeActivity
         backButton.setOnClickListener(new View.OnClickListener() {
             private boolean isSidebarVisible = false;
 
@@ -154,6 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        // Collect the data in the textviews and proceed to update the current user with them
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,8 +159,12 @@ public class ProfileActivity extends AppCompatActivity {
                 float updatedWeight = Float.parseFloat(weight.getText().toString());
                 float updatedHeight = Float.parseFloat(height.getText().toString());
 
+                // Encrypt the new password through the hashPassword method
                 String hashPassword = Hash.hashPassword(updatedPassword);
 
+                /* Create a new user object with the updated data and send it to the updateUserAPI
+                *  that updated the user data
+                */
                 User user = new User(userId,updatedUsername,hashPassword,updatedWeight,updatedHeight,updatedGoal);
                 userViewModel.updateUserAPI(user, ProfileActivity.this, updatedGoal);
 
@@ -178,15 +172,10 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    // Finish the current activity and go to the MainActivity
     private void performLogout() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isLoggedIn", false);
-        editor.remove("userId");
-        editor.apply();
 
         finishAffinity();
-
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
