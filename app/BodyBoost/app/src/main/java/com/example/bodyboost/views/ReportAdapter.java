@@ -21,6 +21,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
     private ReportAdapterEventListener eventListener;
 
+    // Construct the report Adapter with a event listener and the list of reports
     public ReportAdapter(ReportAdapterEventListener eventListener ,List<Report> reports) {
         this.eventListener = eventListener;
         this.reportList = reports;
@@ -29,23 +30,27 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     @NonNull
     @Override
     public ReportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate the list_reports layout
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_reports, parent, false);
         return new ReportViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ReportViewHolder holder, int position) {
+        // Store the current report
         Report current = reportList.get(position);
 
+        // Save the date and format it
         long currentDateMillis = current.getDate();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String currentDate = sdf.format(new Date(currentDateMillis));
 
-        String currentValue = Float.toString(current.getWeight());
-
-        holder.weightValue.setText(currentValue + " KG");
+        // Store the weight of the current report and set it in the textview
+        String currentWeight = Float.toString(current.getWeight());
+        holder.weightValue.setText(currentWeight + " KG");
         holder.dateTextView.setText(currentDate);
 
+        // When long clicked execute the method "onCardLongClicked" from the event listener
         holder.weightCard.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -57,9 +62,11 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
     @Override
     public int getItemCount() {
+        // Get the size of the reports list
         return reportList.size();
     }
 
+    // Send a new list of reports to update the reportList variable
     public void updateData(List<Report> reports) {
         this.reportList = reports;
     }

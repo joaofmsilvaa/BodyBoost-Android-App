@@ -31,6 +31,7 @@ public class homeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Get the userId from the variable in the homeFragment
         int userId = HomeFragment.userId;
 
         final NavigationView navigationView = findViewById(R.id.nav_view);
@@ -58,6 +59,7 @@ public class homeActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         Button closeButton = headerView.findViewById(R.id.close_button);
 
+        // Navigate to the profileActivity
         profileItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
@@ -67,6 +69,7 @@ public class homeActivity extends AppCompatActivity {
             }
         });
 
+        // Redirect the user to the github repository
         visitWebsite.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
@@ -78,6 +81,7 @@ public class homeActivity extends AppCompatActivity {
             }
         });
 
+        // Disable visibility of side bar
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +90,7 @@ public class homeActivity extends AppCompatActivity {
             }
         });
 
+        // Logout user through the performLogout method
         logOutItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -96,6 +101,7 @@ public class homeActivity extends AppCompatActivity {
 
         Button userButton = findViewById(R.id.user_button);
 
+        // Show the sidebar when the button is clicked
         userButton.setOnClickListener(new View.OnClickListener() {
             private boolean isSidebarVisible = false;
 
@@ -113,13 +119,8 @@ public class homeActivity extends AppCompatActivity {
         });
     }
 
-
+    // Finish current activity and go back to the MainActivity ( login page )
     private void performLogout() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isLoggedIn", false);
-        editor.remove("userId");
-        editor.apply();
 
         finishAffinity();
 

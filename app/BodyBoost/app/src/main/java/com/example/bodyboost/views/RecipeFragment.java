@@ -35,8 +35,9 @@ public class RecipeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         this.context = this.getContext();
+
+        // Initialize the needed view models
         mealsViewModel = new ViewModelProvider(this).get(MealsViewModel.class);
         ingredientsViewModel = new ViewModelProvider(this).get(IngredientsViewModel.class);
 
@@ -62,10 +63,13 @@ public class RecipeFragment extends Fragment {
         TextView fullRecipe = view.findViewById(R.id.recipeTextView);
         TextView caloriesTextView = view.findViewById(R.id.caloriesTextView2);
 
+        // Get the meal with the given id through the getById method on the mealsViewModel
         Meals meal = mealsViewModel.getById(mealsId);
 
+        // Load the meal image concatenated with the base url into the imageView
         Picasso.get().load("http://10.0.2.2:8000/storage/" + meal.getMealImage()).into(mealImageView);
 
+        // Set the meal information's in the textviews
         recipeName.setText(meal.getMealName());
         fullRecipe.setText(meal.getMealRecipe());
         caloriesTextView.setText(meal.getCalories() + " cal");
@@ -76,6 +80,9 @@ public class RecipeFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
 
+        /* Create an observer that collects the ingredients of the chosen meal
+         * and passes them to the recyclerView Adapter
+         */
         ingredientsViewModel.getIngredientsForMeal(mealsId).observe(getViewLifecycleOwner(), ingredients -> {
 
             adapter = new IngredientAdapter(ingredients);

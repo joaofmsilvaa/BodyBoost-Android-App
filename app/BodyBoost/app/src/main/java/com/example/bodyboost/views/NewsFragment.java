@@ -30,8 +30,9 @@ public class NewsFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         this.context = this.getContext();
+
+        // Initialize the news viewmodel
         viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
 
     }
@@ -57,9 +58,13 @@ public class NewsFragment extends Fragment{
         TextView newsDateTextView = view.findViewById(R.id.newsDateTextView2);
         TextView newsWebsiteNameTextView = view.findViewById(R.id.websiteNameTextView);
 
+        // Store the news with the given Id
         Feed news = viewModel.getById(newsId);
 
+        // Load the news image and concatenate with base url into the imageView
         Picasso.get().load("http://10.0.2.2:8000/storage/" + news.getNewsImg()).into(newsImageView);
+
+        // Set news information in the respective textviews
         newsTitle.setText(news.getNewsTitle());
         newsSmallDescription.setText(news.getNewsSmallDescription());
         newsFullDescription.setText(news.getNewsFullDescription());
@@ -68,6 +73,7 @@ public class NewsFragment extends Fragment{
 
         newsWebsiteNameTextView.setPaintFlags(newsWebsiteNameTextView.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
+        // Redirect the user to the source website to access the full news
         newsWebsiteNameTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent viewIntent =
@@ -77,6 +83,7 @@ public class NewsFragment extends Fragment{
             }
         });
 
+        // Redirect the user to the source website to access the full news
         newsImageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent viewIntent =
