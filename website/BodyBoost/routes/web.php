@@ -24,6 +24,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('privacy-police', function () {
+    return view('privacyPolice');
+});
+
 Route::get('nutrition', [MealController::class, 'create']);
 Route::get('nutrition/{meal}', [MealController::class, 'show']);
 
