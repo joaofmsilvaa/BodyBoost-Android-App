@@ -72,7 +72,9 @@ The web application was implemented using web technologies like HTML, CSS and Ja
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
- <img src="images/BodyBoostIcon.png" alt="Logo" width="160" height="160">
+<div align="center">
+ <img src="images/BodyBoostIcon.png" alt="Logo" width="160" height="160">  
+</div>
 
 The project is an exercise app that suggests training plans and eating plans to users accor-
 ding to their goals (Gain mass or lose weight). The intention of the app is to give the user
