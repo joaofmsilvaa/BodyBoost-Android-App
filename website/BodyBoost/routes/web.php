@@ -28,6 +28,10 @@ Route::get('privacy-police', function () {
     return view('privacyPolice');
 });
 
+Route::get('terms', function () {
+    return view('terms');
+});
+
 Route::get('nutrition', [MealController::class, 'create']);
 Route::get('nutrition/{meal}', [MealController::class, 'show']);
 

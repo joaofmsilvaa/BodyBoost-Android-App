@@ -41,79 +41,117 @@
         <div>
             <h2 class="text-bold text-3xl">BodyBoost Privacy Policy</h2>
             <p class="mt-5 text-sm text-gray-500 font-bold">Last Updated: <span class="text-red-500">21/11/2023</span></p>
-            <p class="mt-5 text-justify">Thank you for choosing BodyBoost for your fitness and well-being needs. This privacy policy is intended to inform our users about how we collect, use, share, and protect your personal information. By using our application, you agree to the practices outlined in this policy.
-
-                1. Information Collected:
-
-                1.1 Registration Information:
-
-                Name
-                Email address
-                Date of birth
-                Gender
-                Other profile information
-                1.2 Exercise Information:
-
-                Workout data, including exercise type, duration, and intensity
-                Progress over time
-                1.3 Technical Information:
-
-                Device type
-                Operating system
-                Device identifiers
-                IP address
-                Browser information
-                2. Use of Information:
-
-                2.1 Personalization of Experience:
-
-                Personalized workout recommendations based on your profile and exercise history.
-                2.2 Service Improvement:
-
-                Data analysis to enhance the quality of service, features, and content.
-                2.3 Communications:
-
-                Sending information about updates, new features, and special offers (with opt-out option).
-                3. Sharing of Information:
-
-                3.1 Business Partners:
-
-                Data sharing with service providers assisting in the operation and improvement of the application.
-                3.2 Anonymization of Data:
-
-                Sharing aggregated and anonymized data for research and analysis.
-                3.3 Legal Compliance:
-
-                Disclosure of information as required by law or to protect our legal rights.
-                4. Security:
-
-                We implement security measures to protect your information against unauthorized access and misuse. We used methods to guarentee that no one would steal your data, like using the CHATBOT HASH wombo combo.
-
-                5. Your Rights:
-
-                5.1 Access and Correction:
-
-                You can access and correct your profile information at any time.
-                5.2 Account Deletion:
-
-                Option to delete your account and associated data.
-                6. Children:
-
-                BodyBoost is not intended for children under 13, and we do not knowingly collect personal information from children.
-
-                7. Changes to the Policy:
-
-                We reserve the right to modify this policy at any time. Changes will be notified through the application or other means.
-
-                8. Contact:
-
-                If you have questions about this policy, please contact us at "sup@bodyboost.pt".
-
-                By continuing to use BodyBoost, you agree to this privacy policy.
-
-                Thank you for trusting BodyBoost for your fitness and well-being goals!  (CHATBOT)
-            </p>
-            <p class="mt-5 text-sm text-gray-500 font-bold">Terms of service written by <a class="text-red-500" href="https://github.com/HeavyFromTF2">Martim Dias</a></p>
+            <ul class="mt-5">
+                <li>
+                    <strong>1. Information Collected:</strong>
+                    <ul>
+                        <li>1.1 Registration Information:
+                            <ul>
+                                <li>Name</li>
+                                <li>Email address</li>
+                                <li>Date of birth</li>
+                                <li>Gender</li>
+                                <li>Other profile information</li>
+                            </ul>
+                        </li>
+                        <li>1.2 Exercise Information:
+                            <ul>
+                                <li>Workout data, including exercise type, duration, and intensity</li>
+                                <li>Progress over time</li>
+                            </ul>
+                        </li>
+                        <li>1.3 Technical Information:
+                            <ul>
+                                <li>Device type</li>
+                                <li>Operating system</li>
+                                <li>Device identifiers</li>
+                                <li>IP address</li>
+                                <li>Browser information</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>2. Use of Information:</strong>
+                    <ul>
+                        <li>2.1 Personalization of Experience:
+                            <ul>
+                                <li>Personalized workout recommendations based on your profile and exercise history.</li>
+                            </ul>
+                        </li>
+                        <li>2.2 Service Improvement:
+                            <ul>
+                                <li>Data analysis to enhance the quality of service, features, and content.</li>
+                            </ul>
+                        </li>
+                        <li>2.3 Communications:
+                            <ul>
+                                <li>Sending information about updates, new features, and special offers (with opt-out option).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>3. Sharing of Information:</strong>
+                    <ul>
+                        <li>3.1 Business Partners:
+                            <ul>
+                                <li>Data sharing with service providers assisting in the operation and improvement of the application.</li>
+                            </ul>
+                        </li>
+                        <li>3.2 Anonymization of Data:
+                            <ul>
+                                <li>Sharing aggregated and anonymized data for research and analysis.</li>
+                            </ul>
+                        </li>
+                        <li>3.3 Legal Compliance:
+                            <ul>
+                                <li>Disclosure of information as required by law or to protect our legal rights.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>4. Security:</strong>
+                    <ul>
+                        <li>We implement security measures to protect your information against unauthorized access and misuse. We used methods to guarantee that no one would steal your data.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>5. Your Rights:</strong>
+                    <ul>
+                        <li>5.1 Access and Correction:
+                            <ul>
+                                <li>You can access and correct your profile information at any time.</li>
+                            </ul>
+                        </li>
+                        <li>5.2 Account Deletion:
+                            <ul>
+                                <li>Option to delete your account and associated data.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>6. Children:</strong>
+                    <ul>
+                        <li>BodyBoost is not intended for children under 15, and we do not knowingly collect personal information from children.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>7. Changes to the Policy:</strong>
+                    <ul>
+                        <li>We reserve the right to modify this policy at any time. Changes will be notified through the application or other means.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>8. Contact:</strong>
+                    <ul>
+                        <li>If you have questions about this policy, please contact us at "sup@bodyboost.pt".</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="mt-5 text-sm text-gray-500 font-bold">Privacy policy written by <a class="text-red-500" href="https://github.com/HeavyFromTF2">Martim Dias</a></p>
         </div>
     </div>
 </section>
