@@ -19,9 +19,8 @@ class UsersController extends Controller
 
         if ($existingUserWithUsername) {
             return response()->json(['message' => 'Username not available'], 422);
-        }
-        else{
-            $nextTransactionId = AppUser::orderBy('id','desc')->first()->id + 1;
+        } else {
+            $nextTransactionId = AppUser::orderBy('id', 'desc')->first()->id + 1;
             $createdUser = request()->all();
             $createdUser["id"] = $nextTransactionId;
 
@@ -47,38 +46,42 @@ class UsersController extends Controller
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
 
         $user = AppUser::find($id);
 
-        if(isset($user)){
+        if (isset($user)) {
 
             $newUsername = $request->input('username');
 
             $existingUserWithUsername = AppUser::where('username', $newUsername)->first();
 
-            if ($existingUserWithUsername) {
-                return response()->json(['message' => 'Username not available'], 422);
-            }
-            else{
-
+            if ($existingUserWithUsername)
                 $attributes = $request->validate([
-                    'username' => ['required'],
                     'password' => ['required'],
                     'weight' => ['required'],
                     'height' => ['required'],
                     'objective' => ['required'],
                 ]);
 
-                $user->update($attributes);
+            $user->update($attributes);
 
-                return new AppUserResource($user);
-            }
+            return new AppUserResource($user);
 
-        }
-        else{
-            return response()->json(['message' => 'User not found with the given Id'], 404);
+        } else {
 
+            $attributes = $request->validate([
+                'username' => ['required'],
+                'password' => ['required'],
+                'weight' => ['required'],
+                'height' => ['required'],
+                'objective' => ['required'],
+            ]);
+
+            $user->update($attributes);
+
+            return new AppUserResource($user);
         }
 
     }
