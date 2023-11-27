@@ -12,6 +12,9 @@
                     <li class="px-3">
                         <a href="/admin/users" class="{{request()->is('admin/users') ? 'text-red-500' : ''}}">All Users</a>
                     </li>
+                    <li class="px-3">
+                        <a href="/admin/appUsers" class="{{request()->is('admin/appUsers') ? 'text-red-500' : ''}}">All App Users</a>
+                    </li>
                 </ul>
             </div>
             <div>

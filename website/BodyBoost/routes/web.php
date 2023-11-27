@@ -52,6 +52,11 @@ Route::get('admin/exercise-sets', [AdminController::class, 'createExerciseSets']
 Route::get('admin/exercise-steps', [AdminController::class, 'createExerciseSteps'])->middleware(['auth', 'admin']);
 Route::get('admin/workout-plans', [AdminController::class, 'createWorkoutPlans'])->middleware(['auth', 'admin']);
 
+Route::get('admin/appUsers', [AdminController::class, 'createAppUsers'])->middleware(['auth', 'admin']);
+Route::delete('admin/appUsers/{appUser}', [AdminController::class, 'destroyAppUser'])->middleware('admin');
+Route::get('admin/appUsers/{appUser}/edit', [AdminController::class, 'editAppUser'])->middleware('admin');
+Route::patch('admin/appUsers/{appUser}', [AdminController::class, 'updateAppUser'])->middleware('admin');
+
 
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->middleware('admin');
 Route::delete('/admin/meals/{meal}', [AdminController::class, 'destroyMeal'])->middleware('admin');
@@ -61,7 +66,6 @@ Route::delete('/admin/news/{news}', [AdminController::class, 'destroyNews'])->mi
 Route::delete('/admin/meal-types/{mealType}', [AdminController::class, 'destroyMealType'])->middleware('admin');
 Route::delete('/admin/dietary-types/{dietaryType}', [AdminController::class, 'destroyDietaryType'])->middleware('admin');
 Route::delete('/admin/categories/{category}', [AdminController::class, 'destroyCategory'])->middleware('admin');
-
 Route::delete('/admin/exercises/{exercise}', [AdminController::class, 'destroyExercise'])->middleware('admin');
 Route::delete('/admin/exercise-sets/{exerciseSet}', [AdminController::class, 'destroyExerciseSet'])->middleware('admin');
 Route::delete('/admin/exercise-steps/{exerciseSteps}', [AdminController::class, 'destroyExerciseStep'])->middleware('admin');

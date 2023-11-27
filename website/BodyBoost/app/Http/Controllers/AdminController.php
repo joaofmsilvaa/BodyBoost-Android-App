@@ -14,6 +14,7 @@ use App\Models\Exercise;
 use App\Models\ExerciseSet;
 use App\Models\ExerciseSteps;
 use App\Models\WorkoutPlan;
+use App\Models\AppUser;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -39,6 +40,17 @@ class AdminController extends Controller
             'meals' => $meals
         ]);
     }
+
+    public function createAppUsers(){
+
+        $appUsers = AppUser::latest()
+            ->paginate(10);
+
+        return view('admin.appUsers.create', [
+            'appUsers' => $appUsers
+        ]);
+    }
+
     public function createUsers(){
         $users = User::latest()
             ->paginate(10);
@@ -150,6 +162,12 @@ class AdminController extends Controller
         return back()->with('success', 'User Deleted');
     }
 
+    public function destroyAppUser(AppUser $appUser){
+        $appUser->delete();
+
+        return back()->with('success', 'User Deleted');
+    }
+
     public function destroyCategory(Category $category){
         $category->delete();
 
@@ -216,6 +234,9 @@ class AdminController extends Controller
     public function editUser(User $user){
         return view('admin.users.edit', ['user' => $user]);
     }
+    public function editAppUser(AppUser $appUser){
+        return view('admin.AppUsers.edit', ['appUser' => $appUser]);
+    }
     public function editCategory(Category $category){
         return view('admin.categories.edit', ['category' => $category]);
     }
@@ -272,6 +293,22 @@ class AdminController extends Controller
         return back()->with('success', 'User Updated');
 
     }
+
+    public function updateAppUser(AppUser $appUser){
+
+        $attributes = request()->validate([
+            'username' => ['required','max:30', Rule::unique('app_users', 'username')->ignore($appUser->id)],
+            'weight' => ['required'],
+            'height' => ['required']
+        ]);
+
+
+        $appUser->update($attributes);
+
+        return back()->with('success', 'App User Updated');
+
+    }
+
     public function updateMeal(Meal $meal){
         $attributes = request()->validate([
             'name'=>'required',
