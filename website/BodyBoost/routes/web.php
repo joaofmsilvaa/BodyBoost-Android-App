@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NewsLetterController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,6 +32,8 @@ Route::get('privacy-police', function () {
 Route::get('terms', function () {
     return view('terms');
 });
+
+Route::POST('newsletter', NewsletterController::class);
 
 Route::get('nutrition', [MealController::class, 'create']);
 Route::get('nutrition/{meal}', [MealController::class, 'show']);
