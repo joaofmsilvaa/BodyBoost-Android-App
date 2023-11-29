@@ -72,13 +72,14 @@ class UsersController extends Controller
 
             if ($existingUserWithUsername)
                 $attributes = $request->validate([
+                    'username' => ['required'],
                     'password' => ['required'],
                     'weight' => ['required'],
                     'height' => ['required'],
                     'objective' => ['required'],
                 ]);
 
-            $user->update($attributes);
+            $user->update(request()->all());
 
             return new AppUserResource($user);
 
