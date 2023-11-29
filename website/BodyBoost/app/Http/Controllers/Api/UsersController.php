@@ -20,13 +20,26 @@ class UsersController extends Controller
         if ($existingUserWithUsername) {
             return response()->json(['message' => 'Username not available'], 422);
         } else {
-            $nextTransactionId = AppUser::orderBy('id', 'desc')->first()->id + 1;
-            $createdUser = request()->all();
-            $createdUser["id"] = $nextTransactionId;
 
-            $user = AppUser::create($createdUser);
+            if(AppUser::all()->count() > 0){
+                $nextTransactionId = AppUser::orderBy('id', 'desc')->first()->id + 1;
 
-            return new AppUserResource($user);
+                $createdUser = request()->all();
+                $createdUser["id"] = $nextTransactionId;
+
+                $user = AppUser::create($createdUser);
+
+                return new AppUserResource($user);
+            }
+            else{
+                $createdUser = request()->all();
+                $createdUser["id"] = 0;
+
+                $user = AppUser::create($createdUser);
+
+                return new AppUserResource($user);
+            }
+
         }
 
 
