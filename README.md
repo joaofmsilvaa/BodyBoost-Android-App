@@ -44,7 +44,7 @@ The project has a mobile application and website for exercise and healthy meals 
 
 #### Return all meals
 
-```http
+```
   GET /api/meals
 ```
 
@@ -54,7 +54,7 @@ The project has a mobile application and website for exercise and healthy meals 
 
 #### Return the ingredients of a certain meal
 
-```http
+```
   GET /api/meals/{id}/ingredients
 ```
 
@@ -64,7 +64,7 @@ The project has a mobile application and website for exercise and healthy meals 
 
 #### Return the relations between the ingredient and the meal
 
-```http
+```
   GET /api/meals/{id}/meal-ingredients
 ```
 
@@ -75,7 +75,7 @@ The project has a mobile application and website for exercise and healthy meals 
 
 #### Return all news
 
-```http
+```
   GET /api/news
 ```
 
