@@ -50,7 +50,7 @@ The project has a mobile application and website for exercise and healthy meals 
 
 | Type       | Description                           |
 | :--------- | :---------------------------------- |
-| `Array` | Returns all the recipes with its informations |
+| `Array` | Returns all the meals with its informations |
 
 #### Return the ingredients of a certain meal
 
