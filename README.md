@@ -1,5 +1,5 @@
 <div align="center">
- <img src="images/BodyBoostIcon.png" alt="Logo" width="160" height="180">  
+ <img src="images/BodyBoostIcon.png" alt="Logo" width="160" height="auto">  
 </div>
 
 
