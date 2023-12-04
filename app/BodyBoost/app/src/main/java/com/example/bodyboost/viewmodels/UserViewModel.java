@@ -41,8 +41,8 @@ public class UserViewModel extends AndroidViewModel {
     public int isUsernameAvailable(String username){
         return repository.isUsernameAvailable(username);
     }
-    public void updateUserAPI(User user, Context context, String updatedGoal){
-        repository.updateUserApi(user, context, updatedGoal);
+    public void updateUserAPI(User user, Context context, String oldGoal ,String updatedGoal){
+        repository.updateUserApi(user, context, oldGoal ,updatedGoal);
     }
 
     public void insert(User user){

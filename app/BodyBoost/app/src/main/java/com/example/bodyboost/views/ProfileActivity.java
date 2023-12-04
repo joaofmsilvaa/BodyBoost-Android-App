@@ -154,7 +154,9 @@ public class ProfileActivity extends AppCompatActivity {
                 if(updatedPassword.equals("")){
                     updatedPassword = user.getPassword();
                 }
+
                 String updatedGoal = goal.getText().toString();
+                String oldGoal = user.getObjective();
 
                 float updatedWeight = Float.parseFloat(weight.getText().toString());
                 float updatedHeight = Float.parseFloat(height.getText().toString());
@@ -168,7 +170,7 @@ public class ProfileActivity extends AppCompatActivity {
                 *  that updated the user data
                 */
                 User user = new User(userId,updatedUsername,updatedPassword,updatedWeight,updatedHeight,updatedGoal);
-                userViewModel.updateUserAPI(user, ProfileActivity.this, updatedGoal);
+                userViewModel.updateUserAPI(user, ProfileActivity.this, oldGoal, updatedGoal);
 
             }
         });
