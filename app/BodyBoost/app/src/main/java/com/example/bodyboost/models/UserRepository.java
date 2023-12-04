@@ -18,6 +18,7 @@ import com.example.bodyboost.views.homeActivity;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -226,7 +227,7 @@ public class UserRepository {
         });
     }
 
-    public void updateUserApi(User user, Context context, String updatedGoal){
+    public void updateUserApi(User user, Context context, String oldGoal, String updatedGoal){
         /* Call the endpoint in the method updateUser sending the userId
          * and the updated user
          */
@@ -249,52 +250,57 @@ public class UserRepository {
                         }
                     });
 
-                    // Change the user plan and set the exercises
-                    executor.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            userCompletedDao.deleteByUserId(userId);
-                        }
-                    });
+                    // If the user changed is goal update the data in the database
+                    if(!Objects.equals(oldGoal, updatedGoal)){
 
-                    executor.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            userPlanDao.deletePlanByUserId(userId);
-                        }
-                    });
+                        // Change the user plan and set the exercises
+                        executor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                userCompletedDao.deleteByUserId(userId);
+                            }
+                        });
 
-                    int planValue = updatedGoal.equalsIgnoreCase("lose weight") ? 1 : 2;
+                        executor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                userPlanDao.deletePlanByUserId(userId);
+                            }
+                        });
 
-                    UserPlan userPlan = new UserPlan(userId, planValue);
+                        int planValue = user.getObjective().equalsIgnoreCase("lose weight") ? 1 : 2;
 
-                    executor.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            executor.execute(new Runnable() {
-                                @Override
-                                public void run() {
-                                    userPlanDao.insert(userPlan);
-                                }
-                            });
-                        }
-                    });
+                        UserPlan userPlan = new UserPlan(userId, planValue);
+
+                        executor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                executor.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        userPlanDao.insert(userPlan);
+                                    }
+                                });
+                            }
+                        });
 
 
-                    List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
-                    for (int day : daysOfWeek) {
-                        List<Integer> exerciseIds = workoutPlanDao.getExercisesInDay(planValue, day);
-                        for (int exerciseId : exerciseIds) {
-                            UserCompleted userCompleted = new UserCompleted(0, userId, day, exerciseId, false);
+                        List<Integer> daysOfWeek = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
+                        for (int day : daysOfWeek) {
+                            List<Integer> exerciseIds = workoutPlanDao.getExercisesInDay(planValue, day);
+                            for (int exerciseId : exerciseIds) {
+                                UserCompleted userCompleted = new UserCompleted(0, userId, day, exerciseId, false);
 
-                            executor.execute(new Runnable() {
-                                @Override
-                                public void run() {
-                                    userCompletedDao.insert(userCompleted);
-                                }
-                            });
+                                executor.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        userCompletedDao.insert(userCompleted);
+                                    }
+                                });
+                            }
                         }
                     }
+
 
                     Toast.makeText(context, "Changes saved", Toast.LENGTH_SHORT).show();
 
