@@ -17,6 +17,11 @@ class NewsController extends Controller
             ->paginate(15);
 
 
-        return view('news', compact('news'));
+        return view('news.index', compact('news'));
+    }
+
+    public function show(News $news)
+    {
+        return view('news.show', compact('news'));
     }
 }

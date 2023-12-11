@@ -3,8 +3,9 @@
     <img src="{{ asset('storage/' . $news->thumbnail) }}" alt="News Article" class="w-full h-48 object-cover">
     <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">
-            {{$news->title}}
-            {{$news->category->name}}
+            <a href="/news/{{$news->id}}">
+                {{$news->title}}
+            </a>
         </div>
         <div class="font-bold text-lg text-red-500">
             {{$news->category->name}}

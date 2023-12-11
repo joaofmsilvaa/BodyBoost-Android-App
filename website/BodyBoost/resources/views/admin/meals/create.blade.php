@@ -104,6 +104,5 @@
 
         </x-settings>
     </div>
-
 @endsection
 
