@@ -35,9 +35,6 @@
                                 Exercise Id
                             </th>
                             <th scope="col" class="w-1/6 px-6 py-3">
-                                Day Id
-                            </th>
-                            <th scope="col" class="w-1/6 px-6 py-3">
                                 Type
                             </th>
                             <th scope="col" class="w-1/6 px-6 py-3">
@@ -61,10 +58,7 @@
                                     <p>{{$workoutPlan->workoutId}}</p>
                                 </td>
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p>{{$workoutPlan->exercise_id}}</p>
-                                </td>
-                                <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <p>{{$workoutPlan->dayId}}</p>
+                                    <p>{{$workoutPlan->exerciseSet_id}}</p>
                                 </td>
                                 <td class="w-1/6 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <p>{{$workoutPlan->type}}</p>
@@ -83,7 +77,7 @@
                                         @method('DELETE')
 
                                         <button class="text-red-500 hover:text-red-600"
-                                                onclick="return confirm('By clicking \'ok\' you confirm that you are aware that the exercise \'{{$workoutPlan->exercises->name}} \'  will be removed from the workout plan \'{{$workoutPlan->workoutId}}\'')">
+                                                onclick="return confirm('By clicking \'ok\' you confirm that you are aware that the exercise \'{{$workoutPlan->exercisesId}} \'  will be removed from the workout plan \'{{$workoutPlan->workoutId}}\'')">
                                             Delete
                                         </button>
 

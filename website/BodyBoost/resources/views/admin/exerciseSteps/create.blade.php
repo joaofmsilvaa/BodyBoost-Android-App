@@ -9,7 +9,7 @@
         <x-settings heading="Manage Exercise steps">
             <div class="bg-red-500 p-2 rounded-full text-white mb-2 flex justify-center w-1/6">
                 <a href="/admin/exercise-steps/create">
-                    Create Exercise Set
+                    Create Exercise Step
                 </a>
                 <div class="ml-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
