@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6e4a591c-315f-4190-90a6-25a297f1bb7d" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/BodyBoost/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php\php.exe">
+    <include_path>
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/composer" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/fruitcake/php-cors" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/mailchimp/marketing" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/mobiledetect/mobiledetectlib" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/guzzlehttp/uri-template" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/laravel/breeze" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/laravel/prompts" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/laravel/sanctum" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/laravel/pint" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/laravel/sail" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/league/config" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/psr/clock" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/league/commonmark" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/league/flysystem-local" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/spatie/backtrace" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/spatie/ignition" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/spatie/flare-client-php" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/spatie/laravel-ignition" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/nunomaduro/termwind" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/BodyBoost/vendor/psy/psysh" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="2azVQNk4aSom9Oo3hHuunrlqgBS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/35193/OneDrive/Ambiente de Trabalho/tudo/pastas/bodyboost_2324/BodyBoost-Android-App/website/BodyBoost",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e4a591c-315f-4190-90a6-25a297f1bb7d" name="Changes" comment="" />
+      <created>1705321378497</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705321378497</updated>
+      <workItem from="1705321379502" duration="727000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
