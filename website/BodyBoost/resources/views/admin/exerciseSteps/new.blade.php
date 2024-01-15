@@ -33,8 +33,7 @@
                 </div>
 
                 <div class="mr-2">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dietary
-                        Type</label>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Exercise</label>
                     <select name="exercise_id" id="exercise_id">
                         @php
                             $exercises = App\Models\Exercise::all();
