@@ -77,7 +77,6 @@
 </section>
 
 <section class="justify-center pb-5 px-5">
-    <div class="px-4 w-full">
         @if($news->count() > 0)
             <div class="lg:grid lg:grid-cols-3 px-3">
                 @foreach($news as $new)
@@ -87,8 +86,6 @@
         @else
             <p class="my-3 text-center">No news yet</p>
         @endif
-
-    </div>
 </section>
 
 

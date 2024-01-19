@@ -1,5 +1,5 @@
 @props(['news'])
-<div class="max-w-xl mt-4 mx-2 rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
+<div class="mt-4 mx-2 rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:bg-gray-200">
     <img src="{{ asset('storage/' . $news->thumbnail) }}" alt="News Article" class="w-full h-48 object-cover">
     <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">
