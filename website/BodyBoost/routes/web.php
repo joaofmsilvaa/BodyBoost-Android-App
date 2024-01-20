@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\ApiDocsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NewsLetterController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
     return view('welcome');
 })->name('home');
 
@@ -40,6 +40,8 @@ Route::get('nutrition/{meal}', [MealController::class, 'show']);
 
 Route::get('news', [NewsController::class, 'create']);
 Route::get('news/{news}', [NewsController::class, 'show']);
+
+Route::get('api', [ApiDocsController::class, 'create']);
 
 Route::get('admin/users', [AdminController::class, 'createUsers'])->middleware(['auth', 'admin'])->name('adminUsers');
 Route::get('admin/meals', [AdminController::class, 'createMeals'])->middleware(['auth', 'admin'])->name('adminMeals');
