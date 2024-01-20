@@ -6,7 +6,7 @@
                 <div>
                     <!-- Website Logo -->
                     <a href="/" class="flex items-center py-4 px-2">
-                        <img class="w-36 h-auto" src="/images/logo.png">
+                        <img class="w-28 h-auto" src="/images/logo.png">
                     </a>
                 </div>
                 <!-- Primary Navbar items -->
@@ -14,6 +14,7 @@
                     <a href="/" class="{{request()->is('/') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Home</a>
                     <a href="/nutrition" class="{{request()->is('nutrition') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">Nutrition</a>
                     <a href="/news" class="{{request()->is('news') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">News</a>
+                    <a href="/api" class="{{request()->is('api') ? 'py-4 px-2 text-white border-b-4 border-white font-semibold' : 'py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300'}}">API</a>
                 </div>
             </div>
 
