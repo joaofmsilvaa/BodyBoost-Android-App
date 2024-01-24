@@ -83,8 +83,8 @@
 
 <x-navbar/>
 <div class="flex">
-        <x-sidebar/>
-        <x-docs.APIreference/>
+    <x-sidebar/>
+    <x-docs.mealdocs/>
 </div>
 
 <x-footer/>

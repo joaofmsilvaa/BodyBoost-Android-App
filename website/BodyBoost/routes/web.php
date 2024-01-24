@@ -33,6 +33,14 @@ Route::get('terms', function () {
     return view('terms');
 });
 
+Route::get('api', [ApiDocsController::class, 'create']);
+
+Route::get('api/docs/meals', [ApiDocsController::class, 'createMeals']);
+Route::get('api/docs/ingredients-meal', [ApiDocsController::class, 'createIngredientsMeal']);
+Route::get('api/docs/ingredients-in-meal', [ApiDocsController::class, 'createIngredientsInMeal']);
+Route::get('api/docs/news', [ApiDocsController::class, 'createNews']);
+
+
 Route::POST('newsletter', NewsletterController::class);
 
 Route::get('nutrition', [MealController::class, 'create']);
@@ -40,8 +48,6 @@ Route::get('nutrition/{meal}', [MealController::class, 'show']);
 
 Route::get('news', [NewsController::class, 'create']);
 Route::get('news/{news}', [NewsController::class, 'show']);
-
-Route::get('api', [ApiDocsController::class, 'create']);
 
 Route::get('admin/users', [AdminController::class, 'createUsers'])->middleware(['auth', 'admin'])->name('adminUsers');
 Route::get('admin/meals', [AdminController::class, 'createMeals'])->middleware(['auth', 'admin'])->name('adminMeals');

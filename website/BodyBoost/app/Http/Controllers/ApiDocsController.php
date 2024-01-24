@@ -10,4 +10,21 @@ class ApiDocsController extends Controller
         return view('api.welcome');
 
     }
+
+    public function createMeals(){
+        return view('api.meals');
+
+    }
+    public function createIngredientsMeal(){
+        return view('api.ingredientsmeals');
+
+    }
+    public function createIngredientsInMeal(){
+        return view('api.ingredientsinmeal');
+
+    }
+    public function createNews(){
+        return view('api.news');
+
+    }
 }
