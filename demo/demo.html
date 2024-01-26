@@ -1,0 +1,372 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>BodyBoost</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="//unpkg.com/alpinejs" defer=""></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/xjei76kbizfjo1f2974ozkdl8tkdjgb2jrmi8pvkjphg2uob/tinymce/6/tinymce.min.js"
+            referrerpolicy="origin"></script>
+
+    <!-- JS -->
+    <script src="//unpkg.com/alpinejs" defer=""></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- ... Tinymce ... -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/xjei76kbizfjo1f2974ozkdl8tkdjgb2jrmi8pvkjphg2uob/tinymce/6/tinymce.min.js"
+            referrerpolicy="origin"></script>
+
+    <style>
+        .carousel-container {
+            width: 1000px;
+            height: 500px;
+            margin: 0 auto; /* Center the carousel horizontally */
+            position: relative;
+            z-index: 0;
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel img {
+            width: 1000px;
+            height: 500px;
+            margin: auto;
+        }
+
+        nav {
+            z-index: 40;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $('.carousel').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: false,
+                dots: true,
+            });
+        });
+    </script>
+
+
+</head>
+<body class="antialiased">
+
+<!-- Navbar goes here -->
+<nav class="fixed bg-red-500 shadow-lg right-0 left-0 top-0 w-full">
+    <div class="max-w-full mx-auto px-4">
+        <div class="flex justify-between">
+            <div class="flex space-x-7">
+                <div>
+                    <!-- Website Logo -->
+                    <a href="/" class="flex items-center py-4 px-2">
+                        <img class="w-28 h-auto" src="/images/logo.png">
+                    </a>
+                </div>
+                <!-- Primary Navbar items -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="/" class="py-4 px-2 text-white border-b-4 border-white font-semibold">Home</a>
+                    <a href="/nutrition"
+                       class="py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300">Nutrition</a>
+                    <a href="/news"
+                       class="py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300">News</a>
+                    <a href="/api"
+                       class="py-4 px-2 text-white font-semibold hover:text-gray-500 transition duration-300">API</a>
+                </div>
+            </div>
+
+
+            <div class="hidden md:flex items-center space-x-3 ">
+
+                <a href="/login"
+                   class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
+                    In</a>
+                <a href="/register"
+                   class="py-2 px-2 font-medium text-white rounded  hover:text-gray-500 transition duration-300">Sign
+                    Up</a>
+            </div>
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+                <button class="outline-none mobile-menu-button">
+                    <svg class=" w-6 h-6 text-white hover:text-gray-500 " x-show="!showMenu" fill="none"
+                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <a href="/login"
+                   class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Log
+                    In</a>
+                <a href="/register"
+                   class="py-2 px-2 font-medium text-white rounded hover:text-gray-500 transition duration-300">Sign
+                    Up</a>
+            </div>
+        </div>
+    </div>
+    <!-- mobile menu -->
+    <div class="hidden mobile-menu">
+        <ul class="text-right">
+            <li class="active"><a href="/" class="block text-sm px-2 py-4 text-white bg-red-500 font-semibold">Home</a>
+            </li>
+            <li><a href="/nutrition"
+                   class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">Nutrition</a>
+            </li>
+            <li><a href="/news"
+                   class="block text-sm px-2 py-4 hover:bg-gray-100 hover:text-red-500 transition duration-300">News</a>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        let btn = document.querySelector("button.mobile-menu-button");
+        let menu = document.querySelector(".mobile-menu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
+</nav>
+
+
+<!-- Main content -->
+<header class="flex justify-center p-8 overflow-hidden w-full" id="inicio">
+    <div class="flex justify-center items-center mt-5 p-8">
+        <div class="container mx-auto m-5">
+            <div class="py-8">
+                <div class="flex flex-col justify-center lg:flex-row">
+                    <div class="p-5 lg:w-6/12 text-center lg:text-left">
+                        <h1 class="text-3xl lg:text-5xl font-semibold mt-5">
+                            Power Up Your Fitness Journey with
+                            <span class="text-red-600">BodyBoost</span>.
+                        </h1>
+                        <p class="my-4 mt-8 text-lg text-justify  leading-relaxed">
+                            Experience a Body Transformation and Elevate Your Lifestyle with BodyBoost, the Ultimate
+                            Android Workout App. With Customized Training Plans, Expert Guidance, and a Diverse Range of
+                            Exercises, BodyBoost serves as your ultimate fitness companion. Its user-friendly interface
+                            and extensive features make achieving your fitness goals more accessible than ever before.
+                            Begin your transformation today by downloading BodyBoost and embark on a journey to a better
+                            version of yourself.
+                        </p>
+                    </div>
+                    <div class="lg:w-1/3 flex justify-center items-center">
+                        <img class="w-56" src="images/phone.png" alt="Image of a phone with the app">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main content -->
+
+
+<section class="justify-center p-5 my-8">
+    <div class="p-8 overflow-hidden w-full">
+        <div>
+            <h1 class="text-4xl font-bold text-center my-5 w-">Services</h1>
+        </div>
+        <div class="flex lg:flex-row flex-col justify-center items-center w-full">
+            <div class="transition  duration-300 w-96 hover:bg-gray-200 m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="/nutrition">
+                    <img class="rounded-t-lg h-60 w-full object-cover" src="images/healthyfood.jpg" alt="healthy food">
+                </a>
+                <div class="p-5 h-40">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
+                            Nutricional Advices</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">We give you access to a wide range of
+                        healthy meals </p>
+                </div>
+            </div>
+            <div class="transition duration-300 hover:bg-gray-200 m-2 w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg h-60 w-full object-cover" src="images/exercice.jpg" alt="exercise">
+                </a>
+                <div class="p-5 h-40">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
+                            Customized Workout Plans</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">We offer you a customized workout plan
+                        for you to reach your goals!</p>
+                </div>
+            </div>
+            <div class="transition duration-300 hover:bg-gray-200 m-2 w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg h-60 w-full object-cover" src="images/news.jpg" alt="news">
+                </a>
+                <div class="p-5 h-40">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
+                            Sports News</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">We give you access to the hottest
+                        sports news!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="justify-center p-5 my-8">
+    <div class="p-8 overflow-hidden w-full">
+        <div>
+            <h1 class="text-4xl font-bold text-center my-5 w-">About us</h1>
+        </div>
+        <div class="justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
+            <div class="flex flex-wrap ">
+                <div class="w-full pr-4 mb-10 lg:w-1/2 lg:mb-0">
+                    <h2 class="mt-2 mb-6 text-2xl font-bold dark:text-gray-300">
+                        Who are we?</h2>
+                    <p class="mb-10 text-lg text-justify">
+                        We are two Portuguese students from ESTIG (Beja), and we are currently studying web and Android
+                        development. We are in the final year of our course, and this year, we will have the opportunity
+                        to
+                        put into practice the lessons we have learned in the areas of web and Android development. This
+                        semester, we will be focusing on backend development and API creation. </p>
+
+                </div>
+
+                <div class="w-full px-8 mb-10 lg:w-1/2 lg:mb-0">
+                    <div class="shadow-xl">
+                        <img src="images/IPBejaESTIG.jpg" alt="ESTIG Logo" class="rounded">
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <h2 class="mt-2 mb-6 text-2xl font-bold dark:text-gray-300">
+                    What is BodyBoost?</h2>
+                <p class="mt-5 text-lg text-justify">
+                    Bodyboost is a project that has emerged from a strong desire to assist individuals who, due to
+                    economic
+                    or geographical constraints, find it challenging to adopt a healthier lifestyle. Our goal is to
+                    create
+                    an application that empowers users to pursue their aspirations for a healthier life. This app will
+                    provide them with access to a wealth of resources, including recipes, personalized workout plans,
+                    and
+                    the latest sports news.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="w-full bg-gray-300 mt-12 py-12 align-center rounded-t-xl">
+    <div class="flex justify-center">
+        <div class="mt-10 px-4">
+            <pannel>
+                <h5 class="text-3xl">Stay in touch with the latest news</h5>
+                <p class="text-sm text-center mt-3">Promise to keep the inbox clean. No bugs.</p>
+            </pannel>
+
+            <div class="relative mt-5 inline-block w-full lg:bg-gray-200 rounded-full">
+
+                <form method="POST" action="/newsletter" class="lg:flex text-sm">
+                    <input type="hidden" name="_token" value="NMCGLyaTduK7WAdPcFoScXoJf1O3i9DAnB6eyR8Y"
+                           autocomplete="off">
+                    <div class="lg:py-3 lg:px-5 flex items-center w-full">
+
+                        <input id="email" type="text" name="email" placeholder="Your email address"
+                               class="lg:bg-transparent pl-4 focus-within:outline-none w-full rounded">
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="relative transition-colors duration-300 bg-red-600 hover:bg-red-700 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
+                        Subscribe
+                    </button>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="bg-gray-900 ">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <div class="mb-6 md:mb-0">
+                <a href="/" class="flex items-center">
+                    <img src="/images/logo_branco.png" class="h-12 mr-3" alt="BodyBoost Logo">
+                </a>
+            </div>
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase text-white">Resources</h2>
+                    <ul class="text-gray-400 font-medium">
+                        <li class="mb-4">
+                            <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                        </li>
+                        <li class="mb-4">
+                            <a href="https://laravel.com/" class="hover:underline">Laravel</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase text-white">Follow us</h2>
+                    <ul class="text-gray-400 font-medium">
+                        <li class="mb-4">
+                            <a href="https://github.com/JOao7640/" class="hover:underline ">João Silva's Github</a>
+                        </li>
+                        <li class="mb-4">
+                            <a href="https://github.com/IM-SaiNt-LuKe" class="hover:underline ">João Santos' Github</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase text-white">Legal</h2>
+                    <ul class="text-gray-400 font-medium">
+                        <li class="mb-4">
+                            <a href="privacy-police" class="hover:underline">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="terms" class="hover:underline">Terms &amp; Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm sm:text-center text-gray-400">© 2023 <a href="/" class="hover:underline">BodyBoost™</a>. All Rights Reserved.
+          </span>
+            <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
+                <a href="https://github.com/JOao7640/BodyBoost-Android-App" class="text-gray-500 hover:text-white">
+                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                         viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                              d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">GitHub project</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
