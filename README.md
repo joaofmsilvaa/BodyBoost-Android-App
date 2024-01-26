@@ -104,7 +104,7 @@ Import our SQL file to your XAMPP database
 Open the mobile app in the android studio emulator and enjoy.
 
 ## License
-Distributed under the MIT License. See LICENSE.txt for more information.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 ## Authors
