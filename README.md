@@ -15,7 +15,7 @@
   <h3 align="center">BodyBoost</h3>
 
   <p align="center">
-    Bodyboost is the and healthy meals aimed at people who can't go to a gym or get dietary advice by other means.
+    Bodyboost is a project focused in providing healthy meals, sports news and workout plans and its aimed at people who can't go to a gym or get dietary advice by other means.
     <br />
     <a href="https://github.com/JOao7640/BodyBoost-Android-App"><strong>Explore the docs »</strong></a>
     <br />
