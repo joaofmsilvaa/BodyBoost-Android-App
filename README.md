@@ -1,21 +1,61 @@
+
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
+
+<br />
+
 <div align="center">
  <img src="images/BodyBoostIcon.png" alt="Logo" width="160" height="auto">  
 </div>
+  <h3 align="center">BodyBoost</h3>
 
+  <p align="center">
+    Bodyboost is the and healthy meals aimed at people who can't go to a gym or get dietary advice by other means.
+    <br />
+    <a href="https://github.com/JOao7640/BodyBoost-Android-App"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://joao7640.github.io/BodyBoost-Android-App/demo.html">View Demo</a>
+    ·
+    <a href="https://github.com/JOao7640/BodyBoost-Android-App/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/JOao7640/BodyBoost-Android-App/issues">Request Feature</a>
+  </p>
+</div>
 
-# Bodyboost
+### Introduction
 
 The project has a mobile application and website for exercise and healthy meals aimed at people who can't go to a gym or get dietary advice by other means. The project is focused in an API powered mobile app and the API itself. The mobile app provides meals, news and exercise plans as well as user registration and log-in.
 
-## Functionalities
+### Demo
 
-- Comercial website with meals and news
+<div align="center">
+ <img src="images/demoprint.jpg" alt="Logo" width="900" height="auto">  
+</div>
+Take a look at the <a href="https://joao7640.github.io/BodyBoost-Android-App/demo.html">Demo</a>
+ of the website's homepage where we present our ideas about the project, the application's functionalities and more.
+
+### Functionalities
+
+- Comercial website with meals, news and API documentation
 - Responsive website
 - Strong Laravel API
-- API powered mobile app developed in Android Studio
+- API powered mobile app developed with Java in Android Studio
+- Subscribe to the websites newsletter from them MailChimp API
+
+### Built With
+
+* [![Java][java.com]][java-url]
+* [![Laravel][Laravel.com]][Laravel-url]
+* [![Tailwind][tailwindcss.com]][tailwind-url]
 
 <!-- ROADMAP -->
-## Roadmap
+### Roadmap
 
 - [X] Code the structure of the inicial menu
   - [X] Make the progress bar functional
@@ -39,8 +79,12 @@ The project has a mobile application and website for exercise and healthy meals 
 - [X] Code the structure of the feed menu
   - [X] Make the "news consulting" option functional
 
+- [X] Connect the website to the MailChimp API
+  - [X] Style the section in the website
 
-## API Documentation
+- [X] Connect the app to the Laravel API
+
+### API Documentation
 
 #### Return all meals
 
@@ -84,24 +128,42 @@ The project has a mobile application and website for exercise and healthy meals 
 | `Array` | Retuns all the news with its informations |
 
 
-## Deploy
+### Installation and setup
+To completely use our project follow the following steps.
 
-To deploy the project open the folder of the website and initialize it.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/JOao7640/BodyBoost-Android-App.git
+   ```
+2. Install Xampp
+   <a href="https://www.apachefriends.org/">XAMPP</a>
+3. Create the database "BodyBoost" in XAMPPs PHPMyAdmin page
+4. After that open the folder you cloned the repo to and navigate to **website/bodyboost** and execute the following command
+   ```sh
+      php artisan migrate
+   ```
+5. After migrating the database import the data from the **bodyboost.sql** file
+6. Start the application
+   ```sh
+      php artisan serve
+   ```
+7.  Install and setup Android Studio
+   <a href="https://developer.android.com/studio?hl=pt-br">Android Studio</a>
+8. Start the Android Studio emulator and enjoy : )
 
-```bash
-  php artisan serve
-```
+<!-- CONTRIBUTING -->
+## Contributing
 
-Initialize and create the database "bodyboost" in XAMPP
+Bodyboost is open source so feel free to create, inspire and learn amazing things with the comunity of our project. Any contributions you make are **greatly appreciated**.
 
-Migrate the database
-```bash
-  php artisan migrate
-```
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-Import our SQL file to your XAMPP database
-
-Open the mobile app in the android studio emulator and enjoy.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 Distributed under the MIT License. See `LICENSE.txt` for more information.
@@ -111,3 +173,24 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 - [@joao7640](https://www.github.com/joao7640)
 - [@SaiNt._.LuKe](https://github.com/IM-SaiNt-LuKe)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/JOao7640/BodyBoost-Android-App.svg?style=for-the-badge
+[contributors-url]: https://github.com/JOao7640/BodyBoost-Android-App/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/JOao7640/BodyBoost-Android-App.svg?style=for-the-badge
+[forks-url]: https://github.com/JOao7640/BodyBoost-Android-App/network/members
+[stars-shield]: https://img.shields.io/github/stars/JOao7640/BodyBoost-Android-App.svg?style=for-the-badge
+[stars-url]: https://github.com/JOao7640/BodyBoost-Android-App/stargazers
+[issues-shield]: https://img.shields.io/github/issues/JOao7640/BodyBoost-Android-App.svg?style=for-the-badge
+[issues-url]: https://github.com/JOao7640/BodyBoost-Android-App/issues
+[license-shield]: https://img.shields.io/github/license/JOao7640/BodyBoost-Android-App.svg?style=for-the-badge
+[license-url]: https://github.com/JOao7640/BodyBoost-Android-App/blob/master/LICENSE.txt
+
+
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
+[tailwindcss.com]: https://img.shields.io/badge/tailwindcss-0F172A?&logo=tailwindcss
+[tailwind-url]: https://tailwindcss.com
+[java.com]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
+[java-url]: https://java.com 
