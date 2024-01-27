@@ -3,16 +3,28 @@
 </div>
 
 
-# Bodyboost
+## Bodyboost
 
 The project has a mobile application and website for exercise and healthy meals aimed at people who can't go to a gym or get dietary advice by other means. The project is focused in an API powered mobile app and the API itself. The mobile app provides meals, news and exercise plans as well as user registration and log-in.
 
+## Demo
+
+<div align="center">
+ <img src="images/demoprint.jpg" alt="Logo" width="900" height="auto">  
+</div>
+Take a look at the <a href="https://joao7640.github.io/BodyBoost-Android-App/demo.html">Demo</a>
+ of the website's homepage where we present our ideas about the project, the application's functionalities and more.
+
 ## Functionalities
 
-- Comercial website with meals and news
+- Comercial website with meals, news and API documentation
 - Responsive website
 - Strong Laravel API
-- API powered mobile app developed in Android Studio
+- API powered mobile app developed with Java in Android Studio
+- Subscribe to the websites newsletter from them MailChimp API
+
+## Built With
+
 
 <!-- ROADMAP -->
 ## Roadmap
