@@ -20,7 +20,7 @@
     <a href="https://github.com/JOao7640/BodyBoost-Android-App"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/JOao7640/BodyBoost-Android-App">View Demo</a>
+    <a href="https://joao7640.github.io/BodyBoost-Android-App/demo.html">View Demo</a>
     ·
     <a href="https://github.com/JOao7640/BodyBoost-Android-App/issues">Report Bug</a>
     ·
