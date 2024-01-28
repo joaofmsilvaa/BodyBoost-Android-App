@@ -98,6 +98,22 @@ Take a look at the <a href="https://joao7640.github.io/BodyBoost-Android-App/dem
 - [X] Code the Laravel API and its endpoints
  - [X] Connect the app to the Laravel API
 
+<!-- Database Structure -->
+### Database Structure
+
+#### Room Database
+In the depicted image, we have meticulously established the foundational elements for a Room Database within our Android application.
+<div align="center">
+ <img src="images/db1.png" alt="Logo" width="700" height="auto">  
+</div>
+
+#### External Database
+In the provided image, we have diligently laid the groundwork for the core components of an external database integration.
+<div align="center">
+ <img src="images/db2.png" alt="Logo" width="900" height="auto">  
+</div>
+
+<!-- API Documentation -->
 ### API Documentation
 
 #### Return all meals
