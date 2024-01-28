@@ -79,10 +79,24 @@ Take a look at the <a href="https://joao7640.github.io/BodyBoost-Android-App/dem
 - [X] Code the structure of the feed menu
   - [X] Make the "news consulting" option functional
 
+- [X] Code the websites home page
+  - [X] Style it with TailwindCSS
+
 - [X] Connect the website to the MailChimp API
   - [X] Style the section in the website
 
-- [X] Connect the app to the Laravel API
+- [X] Code the websites meals page
+  - [X] Style it with TailwindCSS
+
+- [X] Code the websites news page
+  - [X] Style it with TailwindCSS
+
+- [X] Code the admin dashboard
+  - [X] Style it with TailwindCSS
+  - [X] Implement the middleware for security
+
+- [X] Code the Laravel API and its endpoints
+ - [X] Connect the app to the Laravel API
 
 ### API Documentation
 
